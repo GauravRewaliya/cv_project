@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_23_073218) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_23_122150) do
   create_table "candidates", force: :cascade do |t|
     t.string "name"
     t.string "employ_id"
@@ -30,13 +30,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_23_073218) do
     t.index ["candidate_id"], name: "index_profiles_on_candidate_id"
   end
 
-  create_table "project_tech_stacks", force: :cascade do |t|
+  create_table "project_core_teches", force: :cascade do |t|
     t.integer "project_id", null: false
     t.integer "tech_stack_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["project_id"], name: "index_project_tech_stacks_on_project_id"
-    t.index ["tech_stack_id"], name: "index_project_tech_stacks_on_tech_stack_id"
+    t.index ["project_id"], name: "index_project_core_teches_on_project_id"
+    t.index ["tech_stack_id"], name: "index_project_core_teches_on_tech_stack_id"
+  end
+
+  create_table "project_supportive_techs", force: :cascade do |t|
+    t.integer "project_id", null: false
+    t.integer "tech_stack_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_project_supportive_techs_on_project_id"
+    t.index ["tech_stack_id"], name: "index_project_supportive_techs_on_tech_stack_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -44,8 +53,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_23_073218) do
     t.text "desc"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "tech_stack_id"
-    t.index ["tech_stack_id"], name: "index_projects_on_tech_stack_id"
   end
 
   create_table "tech_stacks", force: :cascade do |t|
@@ -68,7 +75,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_23_073218) do
   end
 
   add_foreign_key "profiles", "candidates"
-  add_foreign_key "project_tech_stacks", "projects"
-  add_foreign_key "project_tech_stacks", "tech_stacks"
-  add_foreign_key "projects", "tech_stacks"
+  add_foreign_key "project_core_teches", "projects"
+  add_foreign_key "project_core_teches", "tech_stacks"
+  add_foreign_key "project_supportive_techs", "projects"
+  add_foreign_key "project_supportive_techs", "tech_stacks"
 end

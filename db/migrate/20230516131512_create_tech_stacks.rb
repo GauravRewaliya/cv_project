@@ -1,6 +1,6 @@
-class CreateSkills < ActiveRecord::Migration[7.0]
+class CreateTechStacks < ActiveRecord::Migration[7.0]
   def change
-    create_table :skills do |t|
+    create_table :tech_stacks do |t|
       t.string :title
       t.text :desc
 

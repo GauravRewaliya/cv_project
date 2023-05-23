@@ -1,0 +1,27 @@
+<h1>Projects</h1>
+
+<div id="projects">
+  <table border=1 class="table table-hover table-striped", style="border: 2px solid black;">
+    <tr style="background-color: darkblue; color: aqua;">
+       <th>Title</th>
+       <th>Description</th>
+       <th></th>
+     </tr>
+  <% @projects.each do |project| %>
+  <tr>
+    <td><p><%= project.title %></p></td>
+    <td><p><%= project.desc %></p></td>
+    <td><%= link_to "Edit", edit_project_path(project) %></td>
+    <td><%= button_to "Delete" , project , method: :delete ,class: "btn-primary"%></td>
+    <td>
+    <p>
+      <%= link_to "Show this project", project %>
+    </p>
+  </td>
+  </tr>
+  <% end %>
+  </table>
+</div>
+
+<%= link_to "New project", new_project_path,class: 'btn-primary' %>
+<%= link_to "Home", home_index_path,class: 'btn-primary' %>

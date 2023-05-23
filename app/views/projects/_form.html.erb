@@ -1,0 +1,49 @@
+<%= form_with(model: project) do |form| %>
+  <% if project.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+        <% project.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :title, style: "display: block" ,class: "text-white" %>
+    <%= form.text_field :title ,class:"form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :desc, style: "display: block" ,class: "text-white"%>
+    <%= form.text_area :desc ,class:"form-control"%>
+  </div>
+  <div class="form-group">
+    <%= form.label :core_skill, style: "display: block" ,class: "text-white"%>
+    
+    <!-- <%= form.collection_select :core_skill, TechStack.order(:title), :id, :title ,{ include_blank: true } ,{ selected: project.core_skill }%> -->
+    <%= form.collection_select :tech_stack_id, TechStack.order(:title), :id, :title ,{ include_blank: true } ,{ selected: project.core_skill }%>
+  </div>
+  
+  <div class="form-group">
+    <%# form.label :tech_stack_ids , style: "display: block" ,class: "text-white" %>
+    <%= form.label :supportive_skill  , style: "display: block" ,class: "text-white"%>
+    <div style="margin-left: 25% ; margin-right: 25%">
+      <div>
+        <%= form.collection_select(:tech_stack_ids, TechStack.all, :id, :title , {}, { multiple: true,  include_blank: false  ,id: 'selectgr'   }) %>
+      
+        </select><script>
+        new MultiSelectTag('selectgr')  // id
+      </script>
+     
+
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <%= form.submit class: 'btn-primary'%>
+  </div>
+<% end %>

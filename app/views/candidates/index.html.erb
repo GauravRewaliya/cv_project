@@ -1,0 +1,27 @@
+<h1>Candidates</h1>
+
+<div id="candidates" >
+  <table border=1 class="table table-hover table-striped " , style="border: 2px solid black;">
+    <tr style="background-color: darkblue; color: aqua;">
+      <th>name</th>
+      <th>employ_id</th>
+      <th></th>
+    </tr>
+  <% @candidates.each do |candidate| %>
+  <tr>
+    <td ><h6><%= candidate.name %></h6></td>
+    <td><p><%= candidate.employ_id %></p></td>
+    <td><%= link_to "Edit", edit_candidate_path(candidate) %></td>
+    <td><%= button_to "Delete" , candidate , method: :delete ,class: "btn-primary"%></td>
+    <td>
+    <p>
+      <%= link_to "Show this candidate", candidate %>
+    </p>
+  </td>
+  </tr>
+  <% end %>
+  </table>
+</div>
+
+<%= link_to "New candidate", new_candidate_path ,class: 'btn-primary' %>
+<%= link_to "Home" ,  home_index_path ,class: 'btn-primary' %>

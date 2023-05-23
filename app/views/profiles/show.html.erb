@@ -1,0 +1,45 @@
+<div class="card text-center" >
+  <div class="card-header">
+    
+    Profile 
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">email</h5>
+    <p class="card-text">
+      <%= @profile.email %>
+    </p>
+
+    <h5 class="card-title">contact</h5>
+    <p class="card-text">
+      <%= @profile.contact %>
+    </p>
+    
+    <h5 class="card-title">skill</h5>
+    <p class="card-text">
+      <%= @profile.skill %>
+    </p>
+
+    <h5 class="card-title">address:</h5>
+    <p class="card-text">
+      <%= @profile.address %>
+    </p>
+
+    <h5 class="card-title">candidate:</h5>
+    <% if @profile.candidate %>
+    <p class="card-text">
+      <%= link_to  ""+@profile.candidate.name, edit_candidate_path(@profile.candidate) %>  
+    </p>
+    <%else%>
+    null
+    <%end%>
+
+  </div>
+  <div class="card-footer text-muted">
+    
+  <%= link_to "Edit this profile", edit_profile_path(@profile) %> |
+  <%= link_to "Back to profiles", profiles_path %>
+
+  <%= button_to "Destroy this profile", @profile, method: :delete ,class:"btn btn-primary"%>
+  </div>
+</div>
+

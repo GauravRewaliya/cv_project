@@ -1,0 +1,61 @@
+
+<% name = current_user.present? ? current_user.email : 'Stranger' %>
+<div>
+<h1>Welcome, <%= name %> </h1>
+<%= link_to "Skills", tech_stacks_path ,class: 'btn-primary'%>
+<%= link_to "Projects", projects_path ,class: 'btn-primary' %>
+<%= link_to "Candidates", candidates_path ,class: 'btn-primary' %>
+<%= link_to "Profiles", profiles_path ,class: 'btn-primary' %>
+
+</div>
+
+
+<!-- <select class="select" multiple data-mdb-placeholder="Example placeholder" multiple>
+    <option value="1">One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+    <option value="4">Four</option>
+    <option value="5">Five</option>
+  </select> -->
+
+<!-- <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Dropdown button
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="#">Action</a>
+      <a class="dropdown-item" href="#">Another action</a>
+      <a class="dropdown-item" href="#">Something else here</a>
+    </div>
+  </div> -->
+
+  <!-- //////////////////new  -->
+<!-- <div class="dropright">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Dropdown button
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <option class="dropdown-item" value="1">One</option>
+    <option class="dropdown-item" value="2">Two</option>
+    <option class="dropdown-item" value="3">Three</option>
+    <option class="dropdown-item" value="4">Four</option>
+    <option class="dropdown-item" value="5">Five</option>
+    </div>
+  </div>
+ -->
+
+  
+
+
+  <!-- ////////////////// -->
+  <!-- <div class="container">
+    <h3>Multiple Select Dropdown</h3>
+    <select class="form-control" multiple>
+      <option>Option 1</option>
+      <option>Option 2</option>
+      <option>Option 3</option>
+      <option>Option 4</option>
+      <option>Option 5</option>
+    </select>
+  </div> -->
+ 

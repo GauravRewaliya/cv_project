@@ -1,0 +1,29 @@
+<div>
+<p>
+  <strong>name:</strong>
+  <%= @candidate.name %>
+</p>
+
+<p>
+  <strong>employ_id:</strong>
+  <%= @candidate.employ_id %>
+</p>
+
+<h5 class="card-title">profile:
+    <% if @candidate.profile %>
+  
+      <%= link_to  "view", edit_profile_path(@candidate.profile) %>  
+
+    <%else%>
+    null
+    <%= link_to  "create new", new_profile_path(candidate_id: @candidate.id) %>  
+    <%end%>
+  </h5>
+</div>
+
+<div>
+  <%= link_to "Edit this candidate", edit_candidate_path(@candidate) %> |
+  <%= link_to "Back to candidates", candidates_path %>
+
+  <%= button_to "Destroy this candidate", @candidate, method: :delete %>
+</div>

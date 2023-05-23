@@ -1,0 +1,27 @@
+<h1>Tech_stack\Skills</h1>
+
+<div id="tech_stacks" >
+  <table border=1 class="table table-hover table-striped " , style="border: 2px solid black;">
+    <tr style="background-color: darkblue; color: aqua;">
+      <th>Title</th>
+      <th>Description</th>
+      <th></th>
+    </tr>
+  <% @tech_stacks.each do |tech_stack| %>
+  <tr>
+    <td ><h6><%= tech_stack.title %></h6></td>
+    <td><p><%= tech_stack.desc %></p></td>
+    <td><%= link_to "Edit", edit_tech_stack_path(tech_stack) %></td>
+    <td><%= button_to "Delete" , tech_stack , method: :delete ,class: "btn-primary"%></td>
+    <td>
+    <p>
+      <%= link_to "Show this tech_stack", tech_stack %>
+    </p>
+  </td>
+  </tr>
+  <% end %>
+  </table>
+</div>
+
+<%= link_to "New tech_stack", new_tech_stack_path ,class: 'btn-primary' %>
+<%= link_to "Home" ,  home_index_path ,class: 'btn-primary' %>

@@ -1,0 +1,27 @@
+<div>
+<p>
+  <strong>Title:</strong>
+  <%= @tech_stack.title %>
+</p>
+
+<p>
+  <strong>Desc:</strong>
+  <%= @tech_stack.desc %>
+</p>
+<p>
+  <strong>Projects:</strong>
+  <br>
+  
+  <% @tech_stack.projects.each do |project| %>
+  <%= project.title+", " %>
+  <%end%>
+</p>
+
+</div>
+
+<div>
+  <%= link_to "Edit this skill", edit_tech_stack_path(@tech_stack) %> |
+  <%= link_to "Back to skills", tech_stacks_path %>
+
+  <%= button_to "Destroy this skill", @tech_stack, method: :delete %>
+</div>

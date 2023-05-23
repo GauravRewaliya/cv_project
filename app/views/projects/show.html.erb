@@ -1,0 +1,36 @@
+
+<div class="card text-center" >
+  <div class="card-header">
+    <h3>
+      <strong>Title:</strong>
+      <%= @project.title %>
+    </h3>
+
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Description</h5>
+    <p class="card-text">
+      <%= @project.desc %>
+    </p>
+    <h5 class="card-title">Core Skill</h5>
+    <p class="card-text">
+      <%= @project.core_skill.title %>
+    </p>
+
+    <h5 class="card-title">TechStacks</h5>
+    <p class="card-text">
+      <% @project.tech_stacks.each do |tech_stack| %>
+     <%= tech_stack.title+"," %>
+    <%end%>
+    </p>
+
+  </div>
+  <div class="card-footer text-muted">
+    
+  <%= link_to "Edit this project", edit_project_path(@project) %> |
+  <%= link_to "Back to projects", projects_path %>
+
+  <%= button_to "Destroy this project", @project, method: :delete ,class:"btn btn-primary"%>
+  </div>
+</div>
+

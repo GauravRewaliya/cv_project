@@ -1,0 +1,42 @@
+<%= form_with(model: tech_stack) do |form| %>
+  <% if tech_stack.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(tech_stack.errors.count, "error") %> errors found , cant be save</h2>
+
+      <ul>
+        <% tech_stack.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :title, style: "display: block" ,class: "text-white" %>
+    <%= form.text_field :title ,style: "width: 100%;text-align: center;" ,class: "form-control"%>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :desc, style: "display: block" ,class: "text-white"%>
+    <%= form.text_area :desc ,style: "width: 100%;text-align: center;height: 100px;"%>
+  </div>
+  <!-- <div>
+    <%= form.label :product_ids, style: "display: block" %>
+    <div style="margin-left: 25% ; margin-right: 25%">
+      <div>
+        <%= form.select(:project_ids, options_from_collection_for_select(Project.all , :id , :title, {:selected => @tech_stack.project_ids}),{}, { :multiple => true }  ) %>
+        
+
+        <%= form.collection_select(:project_ids, Project.all, :id, :title , {}, { multiple: true,  include_blank: false  ,id: 'selectgr'   }) %>
+      
+      <script>
+        new MultiSelectTag('selectgr')  // id
+      </script>
+
+      </div>
+    </div>
+  </div> -->
+  <div>
+    <%= form.submit class: 'btn-primary'%>
+  </div>
+<% end %>

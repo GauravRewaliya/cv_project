@@ -18,8 +18,18 @@ class Project < ApplicationRecord
         # belongs_to :tech_stack , optional: true
         # alias_attribute :core_skill, :tech_stack
             # want has_one through:
-            has_one :project_core_tech
-            has_one :core_skill, through: :project_core_tech, source: :tech_stack
+            has_one :project_core_tech , dependent: :destroy
+            has_one :core_skill, through: :project_core_tech, source: :tech_stack 
+                                                                            # dependent dest not work on through
+            accepts_nested_attributes_for :core_skill
+            
+#     before_destroy :destroy_core_skill
+#     private
+#   def destroy_core_skill
+#     core_skill.destroy if core_skill.present?
+#   end
+
+            # has_one :profile , dependent: :destroy
 
         # use belongs to /or// has_one through.. bec else ,, another table only link with one
 

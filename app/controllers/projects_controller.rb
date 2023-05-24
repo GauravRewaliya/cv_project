@@ -19,7 +19,7 @@ class ProjectsController < ApplicationController
     # a = project_params
     # project_params[:tech_stack_ids] = project_params[:tech_stack_ids].reject(&:empty?)
     @project = Project.new(project_params)
-
+    # @project.core_skill = TechStack.find_by(id: params[:core_skill_id])
     respond_to do |format|
       if @project.save
         format.html { redirect_to project_url(@project), notice: "Project was successfully created." }
@@ -40,6 +40,8 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.update(project_params)
+        #  @project.core_skill = TechStack.find_by(id: params[:core_skill_id])
+        #  @project.save
         format.html { redirect_to project_url(@project), notice: "Project was successfully updated." }
         format.json { render :show, status: :ok, location: @project }
       else
@@ -50,7 +52,7 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    @project.tech_stacks = []
+    @project.supportive_skills = []
     @project.destroy
 
     respond_to do |format|
@@ -65,7 +67,10 @@ class ProjectsController < ApplicationController
       @project = Project.find(params[:id])
     end
 
+    # def project_params
+    #   params.require(:project).permit(:title, :desc,supportive_skill_ids:[])
+    # end
     def project_params
-      params.require(:project).permit(:title, :desc, :tech_stack_id ,tech_stack_ids:[])
+      params.require(:project).permit(:title, :desc, core_skill_attributes: [:id],supportive_skill_ids:[])
     end
 end

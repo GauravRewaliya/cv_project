@@ -14,13 +14,13 @@
     </p>
     <h5 class="card-title">Core Skill</h5>
     <p class="card-text">
-      <%= @project.core_skill.title %>
+      <%= @project.core_skill&.title %>
     </p>
 
     <h5 class="card-title">TechStacks</h5>
     <p class="card-text">
-      <% @project.tech_stacks.each do |tech_stack| %>
-     <%= tech_stack.title+"," %>
+      <% @project.supportive_skills.each do |supportive_skill| %>
+     <%= supportive_skill.title+"," %>
     <%end%>
     </p>
 

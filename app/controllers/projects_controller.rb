@@ -39,6 +39,7 @@ class ProjectsController < ApplicationController
 
 
     respond_to do |format|
+      debugger
       if @project.update(project_params)
         #  @project.core_skill = TechStack.find_by(id: params[:core_skill_id])
         #  @project.save
@@ -71,6 +72,6 @@ class ProjectsController < ApplicationController
     #   params.require(:project).permit(:title, :desc,supportive_skill_ids:[])
     # end
     def project_params
-      params.require(:project).permit(:title, :desc, core_skill_attributes: [:id],supportive_skill_ids:[])
+      params.require(:project).permit(:title, :desc, project_core_tech_attributes: [:tech_stack_id],supportive_skill_ids:[])
     end
 end

@@ -24,8 +24,8 @@
     <%= form.label :core_skill, style: "display: block" ,class: "text-white"%>
     
   <!-- <%= form.collection_select :core_skill_id, TechStack.order(:title), :id, :title ,{ include_blank: true } ,{ selected: project.core_skill }%> -->
-  <%= form.fields_for :core_skill_attributes, @project.core_skill do |cs| %>
-  <%= cs.collection_select :id, TechStack.order(:title), :id, :title, { include_blank: true } %>
+  <%= form.fields_for :project_core_tech_attributes, @project.project_core_tech do |cs| %>
+  <%= cs.collection_select :tech_stack_id, TechStack.order(:title), :id, :title, { include_blank: true } %>
   <% end %>  
 </div>
   

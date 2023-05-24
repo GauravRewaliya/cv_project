@@ -39,7 +39,9 @@ class ProjectsController < ApplicationController
 
 
     respond_to do |format|
-      debugger
+      if project_params[:project_core_tech_attributes][:tech_stack_id].blank?
+        @project.core_skill = nil
+      end
       if @project.update(project_params)
         #  @project.core_skill = TechStack.find_by(id: params[:core_skill_id])
         #  @project.save

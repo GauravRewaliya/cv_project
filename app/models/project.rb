@@ -21,8 +21,10 @@ class Project < ApplicationRecord
             has_one :project_core_tech , dependent: :destroy
             has_one :core_skill, through: :project_core_tech, source: :tech_stack 
                                                                             # dependent dest not work on through
-            accepts_nested_attributes_for :project_core_tech
-            
+            accepts_nested_attributes_for :project_core_tech , reject_if: :reject_core_skill_blank
+            def reject_core_skill_blank(attributes)
+                attributes['tech_stack_id'].blank?
+              end
 #     before_destroy :destroy_core_skill
 #     private
 #   def destroy_core_skill

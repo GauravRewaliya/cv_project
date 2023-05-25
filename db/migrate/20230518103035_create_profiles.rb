@@ -4,7 +4,7 @@ class CreateProfiles < ActiveRecord::Migration[7.0]
       t.string :email
       t.string :contact
       t.string :gender
-      t.string :skill
+      # t.string :skill
       t.string :address
       # t.references :skill, null: true, foreign_key: true
 #  by def may be false

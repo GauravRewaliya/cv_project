@@ -92,11 +92,8 @@ class CandidatesController < ApplicationController
     def candidate_params
       # params.require(:candidate).permit(:name, :employ_id , :profile_id)
       # params.require(:candidate).permit(:name, :employ_id, profile: [:email, :contact, :skill, :address])
-      params.require(:candidate).permit(:name, :employ_id, profile_attributes: [:email, :contact, :skill, :address])
+      params.require(:candidate).permit(:name, :employ_id, profile_attributes: [:email, :contact,  :address ,supportive_skill_ids:[]])
 
-    end
-    def profile_params
-      params.require(:profile).permit(:email, :contact, :skill, :address)
     end
     # def profile_params
     #   debugger

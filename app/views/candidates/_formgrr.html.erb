@@ -9,7 +9,7 @@
 </div>
   <div class="field">
     <tr>
-      <td><%= form.label :employ_id %></td>
+      <td><%= form.label "Employee ID" %></td>
     <td><%= form.text_field :employ_id %></td>
   </tr>
 </div>
@@ -30,12 +30,21 @@
       <td><%= profile_form.text_field :contact %></td>
     </tr>
   </div>
-    <div class="field">
-      <tr>
-        <td><%= profile_form.label :skill %></td>
-      <td><%= profile_form.text_field :skill %></td>
-    </tr>
-  </div>
+  <div class="form">
+    
+    <tr>
+      <td>
+        <%= profile_form.label :supportive_skills %>
+      </td>
+    <td>
+      <%= profile_form.collection_select(:supportive_skill_ids, TechStack.all, :id, :title , {}, { multiple: true,  include_blank: false  ,id: 'selectgr'   }) %>
+      
+       <script>
+        new MultiSelectTag('selectgr')  // id
+      </script>
+    </td>
+  </tr>
+   </div>
     <div class="field">
       <tr>
         <td><%= profile_form.label :address %></td>

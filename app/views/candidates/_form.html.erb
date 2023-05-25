@@ -1,4 +1,5 @@
-<%= form_with(model: candidate) do |form| %>
+<%= form_with(model: candidate ,method: :post) do |form| %>
+<%= form.hidden_field :authenticity_token, value: form_authenticity_token %>
   <% if candidate.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(candidate.errors.count, "error") %> errors found , cant be save</h2>
@@ -17,19 +18,11 @@
   </div>
 
   <div class="form-group">
-    <%= form.label :employ_id, style: "display: block" ,class: "text-white"%>
+    <%= form.label "Employee ID", style: "display: block" ,class: "text-white"%>
     <%= form.text_field :employ_id ,style: "width: 100%;text-align: center;" ,class: "form-control"%>
   </div>
-
-
-  <!-- <% profile_array = Profile.all.map { |profile| [profile.contact, profile.id] } %>
-
-  <select id="outline-select-without-floating" class="form-control" name="candidate[profile_id]">
-        <option value="" selected></option>
-        <%= options_for_select(profile_array , {:selected => @candidate.profile}) %>
-      </select>  -->
-
-      
+ 
+ 
       
     <%= form.submit class: 'btn-primary'%>
   

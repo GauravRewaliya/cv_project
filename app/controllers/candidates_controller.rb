@@ -26,28 +26,6 @@ class CandidatesController < ApplicationController
 
   
   def create
-    # @candidate = Candidate.new(candidate_params)
-    # debugger
-    # respond_to do |format|
-    #   if @candidate.save
-    #     # rollback
-    #     @profile = Profile.new(profile_params)
-    #     debugger
-    #     @profile.candidate_id = @candidate.id
-    #     if @profile.save
-    #       format.html { redirect_to candidate_url(@candidate), notice: "Candidate was successfully created." }
-    #       format.json { render :show, status: :created, location: @candidate }
-    #     else 
-    #       @candidate.rollback
-    #       format.html { render :new, status: :unprocessable_entity }
-    #     format.json { render json: @profile.errors, status: :unprocessable_entity }
-    #     end
-    #   else
-    #     format.html { render :new, status: :unprocessable_entity }
-    #     format.json { render json: @candidate.errors, status: :unprocessable_entity }
-    #   end
-    # end
-
     @candidate = Candidate.new(candidate_params)
     # @profile = @candidate.build_profile(profile_params)
   
@@ -61,6 +39,11 @@ class CandidatesController < ApplicationController
   
   def update
     respond_to do |format|
+      if candidate_params[:profile_core_tech_attributes].nil? || candidate_params[:profile_core_tech_attributes][:tech_stack_id].blank?
+        if @candidate.profile
+          @candidate.profile.core_skill = nil
+        end
+      end
       if @candidate.update(candidate_params)
         format.html { redirect_to candidate_url(@candidate), notice: "Candidate was successfully updated." }
         format.json { render :show, status: :ok, location: @candidate }
@@ -73,7 +56,7 @@ class CandidatesController < ApplicationController
 
   
   def destroy
-    # @candidate.projects = []
+    @candidate.profiles = []
     @candidate.destroy
 
     respond_to do |format|
@@ -92,7 +75,7 @@ class CandidatesController < ApplicationController
     def candidate_params
       # params.require(:candidate).permit(:name, :employ_id , :profile_id)
       # params.require(:candidate).permit(:name, :employ_id, profile: [:email, :contact, :skill, :address])
-      params.require(:candidate).permit(:name, :employ_id, profile_attributes: [:email, :contact,  :address ,supportive_skill_ids:[]])
+      params.require(:candidate).permit(:name, :employ_id, profile_attributes: [:email, :contact,  :address ,profile_core_tech_attributes: [:tech_stack_id],supportive_skill_ids:[]])
 
     end
     # def profile_params

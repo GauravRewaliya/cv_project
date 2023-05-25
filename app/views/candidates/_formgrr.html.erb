@@ -44,6 +44,21 @@
       </script>
     </td>
   </tr>
+</div>
+<div class="field">
+  <tr>
+    <td>
+      <%= profile_form.label "Core Skill", style: "display: block" ,class: "text-white"%>
+    </td>
+  <td>
+     <div class="col-sm-10">
+      <%= profile_form.fields_for :profile_core_tech_attributes, @candidate.profile.profile_core_tech do |cs| %>
+      <%= cs.collection_select :tech_stack_id, TechStack.order(:title), :id, :title, { include_blank: true } %>
+      <% end %>
+     </div>  
+  </td>
+</tr>
+</div>
    </div>
     <div class="field">
       <tr>

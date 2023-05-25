@@ -10,12 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_25_100756) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_25_110256) do
   create_table "candidates", force: :cascade do |t|
     t.string "name"
     t.string "employ_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "profile_core_teches", force: :cascade do |t|
+    t.integer "profile_id", null: false
+    t.integer "tech_stack_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_profile_core_teches_on_profile_id"
+    t.index ["tech_stack_id"], name: "index_profile_core_teches_on_tech_stack_id"
   end
 
   create_table "profile_supportive_teches", force: :cascade do |t|
@@ -31,7 +40,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_25_100756) do
     t.string "email"
     t.string "contact"
     t.string "gender"
-    t.string "skill"
     t.string "address"
     t.integer "candidate_id"
     t.datetime "created_at", null: false
@@ -83,6 +91,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_25_100756) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "profile_core_teches", "profiles"
+  add_foreign_key "profile_core_teches", "tech_stacks"
   add_foreign_key "profile_supportive_teches", "profiles"
   add_foreign_key "profile_supportive_teches", "tech_stacks"
   add_foreign_key "profiles", "candidates"

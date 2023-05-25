@@ -1,4 +1,4 @@
-<%= form_with(model: candidate ,method: :post) do |form| %>
+<%= form_with(model: candidate) do |form| %>
 <%= form.hidden_field :authenticity_token, value: form_authenticity_token %>
   <% if candidate.errors.any? %>
     <div style="color: red">

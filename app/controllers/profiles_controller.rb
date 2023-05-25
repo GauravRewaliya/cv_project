@@ -49,8 +49,8 @@ class ProfilesController < ApplicationController
 
   
   def destroy
+    @profile.supportive_skills = []
     @profile.destroy
-
     respond_to do |format|
       format.html { redirect_to profiles_url, notice: "Profile was successfully destroyed." }
       format.json { head :no_content }
@@ -65,6 +65,7 @@ class ProfilesController < ApplicationController
 
     
     def profile_params
-      params.require(:profile).permit(:email, :contact, :address,:candidate_id ,supportive_skill_ids:[])
+      params.require(:profile).permit(:email, :contact, :address,:candidate_id ,profile_core_tech_attributes: [:tech_stack_id],supportive_skill_ids:[])
+                                                                                  #  profile_core_tech me tech_stack_id lega
     end
 end

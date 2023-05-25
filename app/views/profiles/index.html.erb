@@ -5,7 +5,8 @@
     <tr style="background-color: darkblue; color: aqua;">
       <th>email</th>
       <th>contact</th>
-      <th>skill</th>
+      <th>Supportive skill</th>
+      <th>Core skill</th>
       <th>address</th>
     </tr>
   <% @profiles.each do |profile| %>
@@ -13,7 +14,19 @@
    
     <td><p><%= profile.email %></p></td>
     <td><p><%= profile.contact %></p></td>
-    <td><p><%= profile.skill %></p></td>
+    <td>
+      <!-- <p><%= profile.supportive_skills %></p> -->
+      <% profile.supportive_skills.each do |supportive_skill| %>
+        <%= supportive_skill.title+"," %>
+      <%end%>
+    </td>
+    <td><p>
+      <% if profile.core_skill %>
+      <%= profile.core_skill.title %>
+      <%else%>
+       nill 
+       <%end%>
+    </p></td>
     <td><p><%= profile.address %></p></td>
     <td><%= link_to "Edit", edit_profile_path(profile) %></td>
     <td><%= button_to "Delete" , profile , method: :delete ,class: "btn-primary"%></td>

@@ -21,6 +21,15 @@
     <%end%>
     </p>
 
+    <h5 class="card-title">Core Skill:</h5>
+    <p class="card-text">
+      <% if @profile.core_skill %>
+      <%= @profile.core_skill.title %>
+      <%else%>
+       nill 
+       <%end%>
+    </p>
+
     <h5 class="card-title">address:</h5>
     <p class="card-text">
       <%= @profile.address %>

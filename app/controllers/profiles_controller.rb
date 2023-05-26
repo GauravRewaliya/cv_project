@@ -38,6 +38,11 @@ class ProfilesController < ApplicationController
   def update
     respond_to do |format|
       if @profile.update(profile_params)
+        c = nil 
+        if !params[:core_skill_id].blank?
+        c = TechStack.find(params[:core_skill_id])
+        end
+        @profile.core_skill  = c 
         format.html { redirect_to profile_url(@profile), notice: "Profile was successfully updated." }
         format.json { render :show, status: :ok, location: @profile }
       else
@@ -65,7 +70,8 @@ class ProfilesController < ApplicationController
 
     
     def profile_params
-      params.require(:profile).permit(:email, :contact, :address,:candidate_id ,profile_core_tech_attributes: [:tech_stack_id],supportive_skill_ids:[])
+      # params.require(:profile).permit(:email, :contact, :address,:candidate_id ,profile_core_tech_attributes: [:tech_stack_id],supportive_skill_ids:[])
+      params.require(:profile).permit(:email, :contact, :address,:candidate_id ,supportive_skill_ids:[])
                                                                                   #  profile_core_tech me tech_stack_id lega
     end
 end

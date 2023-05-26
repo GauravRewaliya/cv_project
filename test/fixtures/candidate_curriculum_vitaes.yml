@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  candidate: one
+  curriculum_vitae: one
+
+two:
+  candidate: two
+  curriculum_vitae: two

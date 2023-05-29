@@ -63,9 +63,21 @@
     <div class="field">
       <tr>
         <td><%= profile_form.label :address %></td>
-      <td><%= profile_form.text_field :address %></td>
+       <td><%= profile_form.text_field :address %></td>
     </tr>
   </div>
+</div>
+<div class="field">
+  <tr>
+    <td>
+      <%= profile_form.label :gender, style: "display: block" ,class: "text-white"%>
+      </td>
+   <td>
+      <%= profile_form.radio_button :gender, 'Male' %> Male<br />
+      <%= profile_form.radio_button :gender, 'Female' %> Female<br />
+  </td>
+</tr>
+</div>
     </table>
   <% end %>
 

@@ -71,7 +71,7 @@ class ProfilesController < ApplicationController
     
     def profile_params
       # params.require(:profile).permit(:email, :contact, :address,:candidate_id ,profile_core_tech_attributes: [:tech_stack_id],supportive_skill_ids:[])
-      params.require(:profile).permit(:email, :contact, :address,:candidate_id ,supportive_skill_ids:[])
+      params.require(:profile).permit(:gender,:email, :contact, :address,:candidate_id ,supportive_skill_ids:[])
                                                                                   #  profile_core_tech me tech_stack_id lega
     end
 end

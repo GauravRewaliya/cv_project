@@ -12,15 +12,18 @@
     </div>
   <% end %>
 
-  //form
   <div>
-  //candidate select one
-  <%= collection_select( nil , :candidate_id, Candidate.all, :id, :name, { include_blank: true ,selected: @curriculum_vitae.candidate&.id} )%>
+    
+    <%= form.label "Candidate ID", style: "display: block" ,class: "text-white"%>
+    <%= collection_select( nil , :candidate_id, Candidate.all, :id, :name, { include_blank: true ,selected: @curriculum_vitae.candidate&.id} )%>
   </div>
   
   <div>
-  //project select_many
-  <%= form.collection_select(:project_ids, Project.all, :id, :title , {}, { multiple: true,  include_blank: false }) %>
+  <%= form.label "Projects", style: "display: block" ,class: "text-white"%>
+  <%= form.collection_select(:project_ids, Project.all, :id, :title , {}, { multiple: true,  include_blank: false ,id: 'selectgr' }) %>
+<script>
+  new MultiSelectTag('selectgr')  // id
+</script>
   </div>
   
   <%= form.submit class: 'btn-primary'%>

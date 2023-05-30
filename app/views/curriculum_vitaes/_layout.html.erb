@@ -1,0 +1,82 @@
+<div class="container">
+
+    <div class="bg-secondary">
+      <div class="text-center text-white">
+        <h2>Resume</h2>
+      </div>
+    </div>
+    <div class="row">
+      <!-- <div class="col-sm-9 col-md-2 col-lg-8 col-xl-8 bg-warning"> -->
+     <div class="col-7 pb-4">
+      <div class="col bg-success">
+        <div class="row">
+          <div class="col text-center">
+          <h4><strong>Candidate:</strong>
+            <%= curriculum_vitae.candidate.name %>
+          </h4>
+  
+          <h5><strong>Objective:</strong>
+            <%= curriculum_vitae.objective %>
+          </h5>
+          <h5><strong>Profile Descriotion:</strong>
+            <%= curriculum_vitae.profile_desc %>
+          </h5>
+          </div>
+        </div>
+      </div>
+      <div class="col bg-danger ">
+        <h3>Profile:</h3>
+        <% if curriculum_vitae.candidate.profile %>
+          <% profile = curriculum_vitae.candidate.profile %>
+          <table class="table table-bordered table-striped text-white">
+            <tbody>
+              <tr>
+                <th>Email:</th>
+                <td><%= profile.email %></td>
+              </tr>
+              <tr>
+                <th>Contact:</th>
+                <td><%= profile.contact %></td>
+              </tr>
+              <tr>
+                <th>Gender:</th>
+                <td><%= profile.gender %></td>
+              </tr>
+              <tr>
+                <th>Address:</th>
+                <td><%= profile.address %></td>
+              </tr>
+            </tbody>
+          </table>
+          <% if profile.core_skill %>
+            <h4>Core Skill:</h4>
+            <p><%= profile.core_skill.title %></p>
+          <% end %>
+          <h4>Supportive Skills:</h4>
+          
+          <% profile.supportive_skills.each do |supportive_skill| %>
+          
+                <h5>Title:<%= supportive_skill.title %></h5>
+                <p><%= supportive_skill.desc %></p>
+              
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    
+      <div class="col bg-primary">
+        <h3>Projects:</h3>
+        <% curriculum_vitae.projects.each do |project| %>
+          <h4>Title:  </h4><%= project.title %>
+          <p>Description:  <%= project.desc %></p>
+        <% end %>
+      </div>
+      
+    </div>
+    <%= link_to "Edit this curriculum_vitae", edit_curriculum_vitae_path(curriculum_vitae) %> |
+    <%= link_to "Back to curriculum_vitaes", curriculum_vitaes_path %>
+    
+    <%= button_to "Destroy this curriculum_vitae", curriculum_vitae, method: :delete ,class:"btn-sm btn-primary"%>
+    
+  </div>
+  

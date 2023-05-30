@@ -8,6 +8,7 @@ class CurriculumVitaesController < ApplicationController
 
   
   def show
+    @resume_html = render_to_string(partial: 'layout' , locals: { curriculum_vitae: @curriculum_vitae})
   end
 
   

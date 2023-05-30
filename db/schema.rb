@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_26_122743) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_30_074259) do
   create_table "candidate_curriculum_vitaes", force: :cascade do |t|
     t.integer "candidate_id", null: false
     t.integer "curriculum_vitae_id", null: false
@@ -30,6 +30,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_26_122743) do
   create_table "curriculum_vitaes", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "objective"
+    t.string "profile_desc"
   end
 
   create_table "profile_core_teches", force: :cascade do |t|

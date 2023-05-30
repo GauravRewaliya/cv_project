@@ -82,6 +82,6 @@ class CurriculumVitaesController < ApplicationController
 
     
     def curriculum_vitae_params
-      params.require(:curriculum_vitae).permit(project_ids: [])                                                                                #  curriculum_vitae_core_tech me tech_stack_id lega
+      params.require(:curriculum_vitae).permit(:objective , :profile_desc,project_ids: [])                                                                                #  curriculum_vitae_core_tech me tech_stack_id lega
     end
 end

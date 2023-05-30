@@ -11,8 +11,16 @@
     <div class="col bg-success">
       <div class="row">
         <div class="col text-center">
-          <h3>Candidate:</h3>
+        <h4><strong>Candidate:</strong>
           <%= @curriculum_vitae.candidate.name %>
+        </h4>
+
+        <h5><strong>Objective:</strong>
+          <%= @curriculum_vitae.objective %>
+        </h5>
+        <h5><strong>Profile Descriotion:</strong>
+          <%= @curriculum_vitae.profile_desc %>
+        </h5>
         </div>
       </div>
     </div>
@@ -23,23 +31,19 @@
         <table class="table table-bordered table-striped text-white">
           <tbody>
             <tr>
-              <!-- <td><i class="bi bi-envelope"></i></td> -->
-              <td><strong>Email:</strong></td>
+              <th>Email:</th>
               <td><%= profile.email %></td>
             </tr>
             <tr>
-              <!-- <td><i class="bi bi-telephone"></i></td> -->
-              <td><strong>Contact:</strong></td>
+              <th>Contact:</th>
               <td><%= profile.contact %></td>
             </tr>
             <tr>
-              <!-- <td><i class="bi bi-gender-female"></i></td> -->
-              <td><strong>Gender:</strong></td>
+              <th>Gender:</th>
               <td><%= profile.gender %></td>
             </tr>
             <tr>
-              <!-- <td><i class="bi bi-house-door"></i></td> -->
-              <td><strong>Address:</strong></td>
+              <th>Address:</th>
               <td><%= profile.address %></td>
             </tr>
           </tbody>
@@ -48,13 +52,14 @@
           <h4>Core Skill:</h4>
           <p><%= profile.core_skill.title %></p>
         <% end %>
-        <div class=" ">
         <h4>Supportive Skills:</h4>
+        
         <% profile.supportive_skills.each do |supportive_skill| %>
-          <h5><%= supportive_skill.title %></h5>
-          <p><%= supportive_skill.desc %></p>
+        
+              <h5>Title:<%= supportive_skill.title %></h5>
+              <p><%= supportive_skill.desc %></p>
+            
         <% end %>
-      </div>
       <% end %>
     </div>
   </div>
@@ -62,8 +67,8 @@
     <div class="col bg-primary">
       <h3>Projects:</h3>
       <% @curriculum_vitae.projects.each do |project| %>
-        <h4><%= project.title %></h4>
-        <p><%= project.desc %></p>
+        <h4>Title:  </h4><%= project.title %>
+        <p>Description:  <%= project.desc %></p>
       <% end %>
     </div>
     

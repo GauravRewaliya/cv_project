@@ -11,16 +11,24 @@
       </ul>
     </div>
   <% end %>
+  
 
   <div>
-    
     <%= form.label "Candidate ID", style: "display: block" ,class: "text-white"%>
     <%= collection_select( nil , :candidate_id, Candidate.all, :id, :name, { include_blank: true ,selected: @curriculum_vitae.candidate&.id} )%>
   </div>
-  
+  <div>
+    <%= form.label :objective, style: "display: block" ,class: "text-white"%>
+    <%= form.text_field :objective ,style: "width: 100%;text-align: center;" ,class: "form-control"%>
+ </div>
+ <div>
+  <%= form.label "Profile Description", style: "display: block" ,class: "text-white"%>
+  <%= form.text_field :profile_desc ,style: "width: 100%;text-align: center;" ,class: "form-control"%>
+</div>
   <div>
   <%= form.label "Projects", style: "display: block" ,class: "text-white"%>
   <%= form.collection_select(:project_ids, Project.all, :id, :title , {}, { multiple: true,  include_blank: false ,id: 'selectgr' }) %>
+
 <script>
   new MultiSelectTag('selectgr')  // id
 </script>

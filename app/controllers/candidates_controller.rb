@@ -1,6 +1,6 @@
 class CandidatesController < ApplicationController
   before_action :set_candidate, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!
+
 
   def index
     @candidates = Candidate.all

@@ -1,5 +1,5 @@
 class CurriculumVitaesController < ApplicationController
-  before_action :set_curriculum_vitae, only: %i[ show edit update destroy ]
+  before_action :set_curriculum_vitae, only: %i[ show edit update destroy save_layout_data]
   before_action :authenticate_user!
 
   def index
@@ -8,7 +8,7 @@ class CurriculumVitaesController < ApplicationController
 
   
   def show
-    @resume_html = render_to_string(partial: 'layout' , locals: { curriculum_vitae: @curriculum_vitae})
+    # @resume_html = render_to_string(partial: 'layout' , locals: { curriculum_vitae: @curriculum_vitae})
   end
 
   
@@ -71,6 +71,33 @@ class CurriculumVitaesController < ApplicationController
     @curriculum_vitae.destroy
     respond_to do |format|
       format.html { redirect_to curriculum_vitaes_url, notice: "CurriculumVitae was successfully destroyed." }
+      format.json { head :no_content }
+    end
+  end
+
+  def save_layout_data
+   puts "////////////////////////////////////////////////////"
+   @resume_html = render_to_string(partial: 'layout' , locals: { curriculum_vitae: @curriculum_vitae})
+    # layout = Layout.new
+    # layout.save_html = @resume_html
+    # layout.save
+    Layout.create(save_html: @resume_html).save
+
+   redirect_to curriculum_vitaes_path, notice: "Layout is saved"   
+  end
+
+  def layout_index
+    @layouts = Layout.all
+  end
+
+  def show_layout_data
+    @layout = Layout.find( params[:id])
+  end
+
+  def layout_destroy
+    Layout.find(params[:id]).destroy
+    respond_to do |format|
+      format.html { redirect_to layout_index_path, notice: "Layout was successfully destroyed." }
       format.json { head :no_content }
     end
   end

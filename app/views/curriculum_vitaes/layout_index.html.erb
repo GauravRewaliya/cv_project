@@ -1,0 +1,21 @@
+<h1>Stored Curriculum Vitae</h1>
+
+<div id="layout" >
+    <table border=1 class="table table-hover table-striped " , style="border: 2px solid black;">
+      <tr style="background-color: darkblue; color: white;">
+        <th>id</th>
+      </tr>
+      <% @layouts.each do |layout| %>
+      <tr>
+      <td>
+          <%= link_to layout.id, show_layout_data_path(layout.id) %>
+      </td>
+   
+      <td>
+        <%# <%= button_to "Delete" , layout , method: :delete ,class: "btn-primary"%></td>
+    </tr>
+    <% end %>
+    </table>
+  </div>
+
+<%= link_to "Home" ,  home_index_path ,class: "btn btn-sm btn-outline-secondary" %>

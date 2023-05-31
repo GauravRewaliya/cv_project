@@ -5,70 +5,100 @@
         <h2>Resume</h2>
       </div>
     </div>
-    <div class="row">
-      <!-- <div class="col-sm-9 col-md-2 col-lg-8 col-xl-8 bg-warning"> -->
-     <div class="col-7 pb-4">
-      <div class="col bg-success">
-        <div class="row">
-          <div class="col text-center">
-          <h4><strong>Candidate:</strong>
-            <%= curriculum_vitae.candidate.name %>
-          </h4>
-  
-          <h5><strong>Objective:</strong>
-            <%= curriculum_vitae.objective %>
-          </h5>
-          <h5><strong>Profile Descriotion:</strong>
-            <%= curriculum_vitae.profile_desc %>
-          </h5>
-          </div>
+    <div class="col" style="background:bisque;">
+      <div class="row">
+        <div class="col text-center">
+        <h4><strong>Candidate:</strong>
+          <%= curriculum_vitae.candidate.name %>
+        </h4>
+
+        <h5><strong>Objective:</strong>
+          <%= curriculum_vitae.objective %>
+        </h5>
+        <h5><strong>Profile Descriotion:</strong>
+          <%= curriculum_vitae.profile_desc %>
+        </h5>
         </div>
       </div>
-      <div class="col bg-danger ">
-        <h3>Profile:</h3>
+    </div>
+    <div class="row">
+      <!-- <div class="col-sm-9 col-md-2 col-lg-8 col-xl-8 bg-warning"> -->
+     <div class="col-5 pb-2">
+      
+      <div class="col" >
         <% if curriculum_vitae.candidate.profile %>
+       
           <% profile = curriculum_vitae.candidate.profile %>
-          <table class="table table-bordered table-striped text-white">
-            <tbody>
-              <tr>
-                <th>Email:</th>
-                <td><%= profile.email %></td>
-              </tr>
-              <tr>
-                <th>Contact:</th>
-                <td><%= profile.contact %></td>
-              </tr>
-              <tr>
-                <th>Gender:</th>
-                <td><%= profile.gender %></td>
-              </tr>
-              <tr>
-                <th>Address:</th>
-                <td><%= profile.address %></td>
-              </tr>
-            </tbody>
-          </table>
-          <% if profile.core_skill %>
-            <h4>Core Skill:</h4>
-            <p><%= profile.core_skill.title %></p>
-          <% end %>
-          <h4>Supportive Skills:</h4>
-          
-          <% profile.supportive_skills.each do |supportive_skill| %>
-          
+          <div class="card" style="background: lavende;margin-bottom: 10px;">
+            <div class="card-header">
+              <h4>Profile: </h4>
+            </div>
+            <div class="card-body">
+              <table class="table " style="width:50%  ;margin: 0 auto;">
+                <tbody>
+                  <tr>
+                    <th>Email:</th>
+                    <td><%= profile.email %></td>
+                  </tr>
+                  <tr>
+                    <th>Contact:</th>
+                    <td><%= profile.contact %></td>
+                  </tr>
+                  <tr>
+                    <th>Gender:</th>
+                    <td><%= profile.gender %></td>
+                  </tr>
+                  <tr>
+                    <th>Address:</th>
+                    <td><%= profile.address %></td>
+                  </tr>
+                </tbody>
+              </table>
+              </div>
+
+
+              <% if profile.core_skill %>
+              <div class="card-header">
+              <h4>Core Skill:</h4></div>
+              <div class="card-body">
+              <p><%= profile.core_skill.title %></p>
+            </div>
+            <% end %>
+
+            <div class="card-header">
+            <h4>Supportive Skills:</h4> 
+            </div>
+            <div class="card-body">
+            <% profile.supportive_skills.each do |supportive_skill| %>
                 <h5>Title:<%= supportive_skill.title %></h5>
                 <p><%= supportive_skill.desc %></p>
-              
           <% end %>
+        </div>
+
+            </div>
+
+          
+          
+          
+
         <% end %>
       </div>
     </div>
     
-      <div class="col bg-primary">
+      <div class="col">
         <h3>Projects:</h3>
+
         <% curriculum_vitae.projects.each do |project| %>
-          <h4>Title:  </h4><%= project.title %>
-          <p>Description:  <%= project.desc %></p>
+
+        <div class="card" style="background: lightcyan;margin-bottom: 10px;">
+          <div class="card-header">
+            <h4>Title: <%= project.title %>   </h4>
+          </div>
+          <div class="card-body">
+              <h5 class="card-title">Description:</h5>
+              <p class="card-text"><%= project.desc %></p>
+            </div>
+          </div>
         <% end %>
       </div>
       

@@ -1,6 +1,7 @@
 <%= link_to "Save this layout permently", save_layout_data_path(@curriculum_vitae) %>
 
 <%=render "layout", curriculum_vitae: @curriculum_vitae%> 
+<%= @curriculum_vitae.template_format&.name%>
 <%#
 
   <%= raw @resume_html %>

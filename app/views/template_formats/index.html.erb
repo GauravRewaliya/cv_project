@@ -6,7 +6,7 @@
 </style>
 <h1>Tech_stack\Skills</h1>
 
-<div id="templates" >
+<div id="template_formats" >
   <table border=1 class="table table-hover table-striped " , style="border: 2px solid black;">
     <tr style="background-color: darkblue; color:White">
       <th>name</th>
@@ -15,15 +15,15 @@
       <th>Delete</th>
       <th>Show</th>
     </tr>
-  <% @templates.each do |template| %>
+  <% @template_formats.each do |template_format| %>
   <tr>
-    <td ><h6><%= template.name %></h6></td>
-    <td><p><%= template.layout %></p></td>
-    <td><%= link_to "Edit", edit_template_path(template) %></td>
-    <td><%= button_to "Delete" , template , method: :delete ,class: "btn-primary"%></td>
+    <td ><h6><%= template_format.name %></h6></td>
+    <td><p><%= template_format.layout %></p></td>
+    <td><%= link_to "Edit", edit_template_format_path(template_format) %></td>
+    <td><%= button_to "Delete" , template_format , method: :delete ,class: "btn-primary"%></td>
     <td>
     <p>
-      <%= link_to "Show this template", template %>
+      <%= link_to "Show this template_format", template_format %>
     </p>
   </td>
   </tr>
@@ -31,6 +31,6 @@
   </table>
 </div>
 
-<%= link_to "New template", new_template_path ,class: 'btn-primary' %>
+<%= link_to "New template_format", new_template_format_path ,class: 'btn-primary' %>
 <%= link_to "Home" ,  home_index_path ,class: 'btn-primary'  ,style: 'text-decoration: none;
 text-color: red;' %>

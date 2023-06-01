@@ -110,11 +110,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_100452) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "templates", force: :cascade do |t|
+  create_table "template_formats", force: :cascade do |t|
     t.string "name"
     t.text "layout"
+    t.integer "curriculum_vitae_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["curriculum_vitae_id"], name: "index_template_formats_on_curriculum_vitae_id"
   end
 
   create_table "users", force: :cascade do |t|

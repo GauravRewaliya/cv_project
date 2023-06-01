@@ -18,6 +18,11 @@
     <%= collection_select( nil , :candidate_id, Candidate.all, :id, :name, { include_blank: true ,selected: @curriculum_vitae.candidate&.id} )%>
   </div>
   <div>
+    <%= form.label "Layout", style: "display: block" ,class: "text-white"%>
+    
+    <%= collection_select( nil , :template_format_id, TemplateFormat.all, :id, :name, { include_blank: true,selected: @curriculum_vitae.template_format&.id} )%>
+  </div>
+  <div>
     <%= form.label :objective, style: "display: block" ,class: "text-white"%>
     <%= form.text_field :objective ,style: "width: 100%;text-align: center;" ,class: "form-control"%>
  </div>

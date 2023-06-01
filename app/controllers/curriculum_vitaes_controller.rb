@@ -30,6 +30,12 @@ class CurriculumVitaesController < ApplicationController
     end
     @curriculum_vitae.candidate = c 
 
+    t = nil
+    if !params[:tech_stack_id].blank?
+      t = TemplateFormat.find(params[:tech_stack_id])
+    end
+    @curriculum_vitae.template_format = t 
+
     respond_to do |format|
       if @curriculum_vitae.save
         format.html { redirect_to curriculum_vitae_url(@curriculum_vitae), notice: "CurriculumVitae was successfully created." }
@@ -49,6 +55,14 @@ class CurriculumVitaesController < ApplicationController
     c = Candidate.find(params[:candidate_id])
     end
     @curriculum_vitae.candidate = c 
+
+    ##template
+    t = nil
+    if !params[:template_format_id].blank?
+      t = TemplateFormat.find(params[:template_format_id])
+    end
+    @curriculum_vitae.template_format = t 
+    
     
     respond_to do |format|
       if @curriculum_vitae.update(curriculum_vitae_params)

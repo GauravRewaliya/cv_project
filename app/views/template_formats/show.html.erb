@@ -1,0 +1,19 @@
+<div>
+<p>
+  <strong>name:</strong>
+  <%= @template_format.name %>
+</p>
+
+<p>
+  <strong>layout:</strong>
+  <%= @template_format.layout %>
+</p>
+
+</div>
+
+<div>
+  <%= link_to "Edit this skill", edit_template_format_path(@template_format) %> |
+  <%= link_to "Back to skills", template_formats_path %>
+
+  <%= button_to "Destroy this skill", @template_format, method: :delete ,class:"btn btn-primary btn-sm mt-4"%>
+</div>

@@ -1,6 +1,5 @@
 class TechStacksController < ApplicationController
   before_action :set_tech_stack, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!
 
   def index
     @tech_stacks = TechStack.all

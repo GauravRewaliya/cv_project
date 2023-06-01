@@ -14,8 +14,6 @@ class CandidatesController < ApplicationController
 
   
   def new
-    # @candidate = Candidate.new
-    # @profile = Profile.new
     @candidate = Candidate.new
     @profile = @candidate.build_profile
   end
@@ -56,7 +54,6 @@ class CandidatesController < ApplicationController
 
   
   def destroy
-    # @candidate.profiles = []
     @candidate.destroy
 
     respond_to do |format|

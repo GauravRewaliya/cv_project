@@ -7,7 +7,6 @@ class Profile < ApplicationRecord
   # validates :candidate, uniqueness: true
 
   # belongs_to :candidate, optional: true
-  before_destroy :dependent_nil_fun
 
   belongs_to :candidate
 
@@ -20,8 +19,5 @@ class Profile < ApplicationRecord
   has_one :core_skill, through: :profile_core_tech, source: :tech_stack 
                                                                   # dependent dest not work on through
   accepts_nested_attributes_for :profile_core_tech , reject_if: :all_blank#:reject_core_skill_blank
-  def dependent_nil_fun
-    self.supportive_skills = []
-    
-  end
+
 end

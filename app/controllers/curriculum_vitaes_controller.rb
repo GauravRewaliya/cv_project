@@ -1,6 +1,5 @@
 class CurriculumVitaesController < ApplicationController
   before_action :set_curriculum_vitae, only: %i[ show edit update destroy save_layout_data]
-  before_action :authenticate_user!
 
   def index
     @curriculum_vitaes = CurriculumVitae.all
@@ -64,10 +63,6 @@ class CurriculumVitaesController < ApplicationController
 
   
   def destroy
-    # cant destroy directly 
-    # @curriculum_vitae.candidate =nil 
-    # @curriculum_vitae.project_ids = [] 
-
     @curriculum_vitae.destroy
     respond_to do |format|
       format.html { redirect_to curriculum_vitaes_url, notice: "CurriculumVitae was successfully destroyed." }

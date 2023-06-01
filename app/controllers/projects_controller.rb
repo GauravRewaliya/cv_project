@@ -1,6 +1,5 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!
 
   def index
     @projects = Project.all
@@ -55,7 +54,6 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    # @project.supportive_skills = []
     @project.destroy
 
     respond_to do |format|

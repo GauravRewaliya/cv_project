@@ -10,6 +10,14 @@ class Candidate < ApplicationRecord
         a_ids = self.curriculum_vitae_ids
         CurriculumVitae.destroy(a_ids)
     end
+    # candidate dependent destroy is at candidate also so if we delete that it also destery .. 
+    #if i put here dep dest it run first then before del fun run // to over rite this beheviour
+         # and if we want to run befor_del fun before has_many dep dest
+              #>> we need to overwrite fun 
+                #  def destroy
+                #     delete_associated_curriculum_vitaes
+                #     super
+                #   end
     # def delete_fun
         # self.curriculum_vitaes.destroy_all
         # candidate_curriculum_vitaes.each do |ccv|

@@ -55,7 +55,7 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    @project.supportive_skills = []
+    # @project.supportive_skills = []
     @project.destroy
 
     respond_to do |format|

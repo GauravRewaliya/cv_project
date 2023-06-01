@@ -2,7 +2,8 @@ class Project < ApplicationRecord
     # has_many :project_tech_stacks
     # has_many :tech_stacks, through: :project_tech_stacks  # supportive skill
     # has_many :supportive_skills, through: :project_tech_stacks, source: :tech_stack
-    has_many :project_supportive_techs
+    before_destroy :delete_fun
+    has_many :project_supportive_techs , dependent: :destroy
     has_many :supportive_skills, through: :project_supportive_techs, source: :tech_stack
 
 
@@ -35,5 +36,10 @@ class Project < ApplicationRecord
             # has_one :profile , dependent: :destroy
 
         # use belongs to /or// has_one through.. bec else ,, another table only link with one
+            def delete_fun
 
+                self.supportive_skills = []
+                ProjectCurriculumVitae.where(project_id: self.id).destroy_all
+
+            end
 end

@@ -56,7 +56,7 @@ class CandidatesController < ApplicationController
 
   
   def destroy
-    @candidate.profiles = []
+    # @candidate.profiles = []
     @candidate.destroy
 
     respond_to do |format|

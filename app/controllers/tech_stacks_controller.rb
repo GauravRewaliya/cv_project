@@ -49,7 +49,6 @@ class TechStacksController < ApplicationController
 
   
   def destroy
-    @tech_stack.projects = []
     @tech_stack.destroy
 
     respond_to do |format|

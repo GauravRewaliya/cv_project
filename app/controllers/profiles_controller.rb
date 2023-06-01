@@ -54,7 +54,7 @@ class ProfilesController < ApplicationController
 
   
   def destroy
-    @profile.supportive_skills = []
+    # @profile.supportive_skills = [] # handle in model
     @profile.destroy
     respond_to do |format|
       format.html { redirect_to profiles_url, notice: "Profile was successfully destroyed." }

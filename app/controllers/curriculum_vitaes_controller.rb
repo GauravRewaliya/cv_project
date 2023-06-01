@@ -65,8 +65,8 @@ class CurriculumVitaesController < ApplicationController
   
   def destroy
     # cant destroy directly 
-    @curriculum_vitae.candidate =nil 
-    @curriculum_vitae.project_ids = [] 
+    # @curriculum_vitae.candidate =nil 
+    # @curriculum_vitae.project_ids = [] 
 
     @curriculum_vitae.destroy
     respond_to do |format|

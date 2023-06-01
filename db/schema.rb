@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_30_142548) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_01_100452) do
   create_table "candidate_curriculum_vitaes", force: :cascade do |t|
     t.integer "candidate_id", null: false
     t.integer "curriculum_vitae_id", null: false
@@ -106,6 +106,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_30_142548) do
   create_table "tech_stacks", force: :cascade do |t|
     t.string "title"
     t.text "desc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "templates", force: :cascade do |t|
+    t.string "name"
+    t.text "layout"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

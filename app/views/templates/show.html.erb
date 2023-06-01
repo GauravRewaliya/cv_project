@@ -1,0 +1,26 @@
+<div>
+<p>
+  <strong>name:</strong>
+  <%= @template.name %>
+</p>
+
+<p>
+  <strong>layout:</strong>
+  <%= @template.layout %>
+</p>
+<p>
+  <strong>Projects:</strong>
+  <br>
+  <% @template.projects.each do |project| %>
+  <%= project.name+", " %>
+  <%end%>
+</p>
+
+</div>
+
+<div>
+  <%= link_to "Edit this skill", edit_template_path(@template) %> |
+  <%= link_to "Back to skills", templates_path %>
+
+  <%= button_to "Destroy this skill", @template, method: :delete ,class:"btn btn-primary btn-sm mt-4"%>
+</div>

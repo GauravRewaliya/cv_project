@@ -19,12 +19,9 @@
   </div>
   <div>
     <%= form.label "Layout", style: "display: block" ,class: "text-white"%>
-    
-    <%# 
+   
     <%= collection_select( nil , :template_format_id, TemplateFormat.all, :id, :name, { include_blank: true,selected: @curriculum_vitae.template_format&.id} )%>
-    <%= form.fields_for :template_format , curriculum_vitae do |ff| %>
-    <%= ff.collection_select :id, TemplateFormat.all, :id, :name, { include_blank: true }, { class: 'form-control' } %>
-    <% end %>
+    
   </div>
   <div>
     <%= form.label :objective, style: "display: block" ,class: "text-white"%>

@@ -3,7 +3,7 @@ class CreateTemplateFormats < ActiveRecord::Migration[7.0]
     create_table :template_formats do |t|
       t.string :name
       t.text :layout
-      t.references :curriculum_vitae
+      # t.references :curriculum_vitae
       t.timestamps
     end
   end

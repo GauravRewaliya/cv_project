@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_01_100452) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_02_080422) do
   create_table "candidate_curriculum_vitaes", force: :cascade do |t|
     t.integer "candidate_id", null: false
     t.integer "curriculum_vitae_id", null: false
@@ -32,6 +32,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_100452) do
     t.datetime "updated_at", null: false
     t.string "objective"
     t.string "profile_desc"
+  end
+
+  create_table "cv_templates", force: :cascade do |t|
+    t.integer "curriculum_vitae_id", null: false
+    t.integer "template_format_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["curriculum_vitae_id"], name: "index_cv_templates_on_curriculum_vitae_id"
+    t.index ["template_format_id"], name: "index_cv_templates_on_template_format_id"
   end
 
   create_table "layouts", force: :cascade do |t|
@@ -113,10 +122,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_100452) do
   create_table "template_formats", force: :cascade do |t|
     t.string "name"
     t.text "layout"
-    t.integer "curriculum_vitae_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["curriculum_vitae_id"], name: "index_template_formats_on_curriculum_vitae_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -133,6 +140,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_100452) do
 
   add_foreign_key "candidate_curriculum_vitaes", "candidates"
   add_foreign_key "candidate_curriculum_vitaes", "curriculum_vitaes"
+  add_foreign_key "cv_templates", "curriculum_vitaes"
+  add_foreign_key "cv_templates", "template_formats"
   add_foreign_key "profile_core_teches", "profiles"
   add_foreign_key "profile_core_teches", "tech_stacks"
   add_foreign_key "profile_supportive_teches", "profiles"

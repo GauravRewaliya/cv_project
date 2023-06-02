@@ -6,4 +6,5 @@ class CurriculumVitae < ApplicationRecord
     has_one :candidate , through: :candidate_curriculum_vitae
     
     has_one :template_format
+  accepts_nested_attributes_for :template_format , reject_if: :all_blank
 end

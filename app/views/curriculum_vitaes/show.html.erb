@@ -5,8 +5,10 @@
 <%#
 
   <%= raw @resume_html %>
-
-
+  <br>
+  <%#<%= image_tag url_for(@curriculum_vitae.image) if @curriculum_vitae.image.attached? %>
+  <%#<%= image_tag @curriculum_vitae.image %>
+  <br>
 
   <%= link_to "Edit this curriculum_vitae", edit_curriculum_vitae_path(@curriculum_vitae) %> |
   <%= link_to "Back to curriculum_vitaes", curriculum_vitaes_path %>

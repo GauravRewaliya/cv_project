@@ -19,8 +19,9 @@
         <%end%>
       </td>
    
-      <td><%= link_to "Edit", edit_curriculum_vitae_path(curriculum_vitae) %></td>
+      <td><%= link_to "Edit", edit_curriculum_vitae_path(curriculum_vitae) ,class: "material-symbols-outlined"%></td>
       <td><%= button_to "Delete" , curriculum_vitae , method: :delete ,class: "btn-primary"%></td>
+   
       <td>
       <p>
         <%= link_to "Show this curriculum_vitae", curriculum_vitae %>

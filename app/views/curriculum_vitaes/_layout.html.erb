@@ -7,6 +7,10 @@
     </div>
     <div class="col" style="background:bisque;">
       <div class="row">
+        <div class="col-3">    
+  <%#<%= image_tag @curriculum_vitae.image.variant(resize_to_limit:[140,nil]) if @curriculum_vitae.image.attached?%>
+  <%= image_tag @curriculum_vitae.image.variant(resize_to_limit:[nil,120]) if @curriculum_vitae.image.attached?%>
+        </div>
         <div class="col text-center">
         <h4><strong>Candidate:</strong>
           <%= curriculum_vitae.candidate&.name %>
@@ -18,6 +22,9 @@
         <h5><strong>Profile Descriotion:</strong>
           <%= curriculum_vitae.profile_desc %>
         </h5>
+        </div>
+        <div class="col-3">
+
         </div>
       </div>
     </div>

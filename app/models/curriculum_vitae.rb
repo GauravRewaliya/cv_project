@@ -8,5 +8,6 @@ class CurriculumVitae < ApplicationRecord
     has_one :cv_template , dependent: :destroy
     has_one :template_format , through: :cv_template
     
-  accepts_nested_attributes_for :template_format , reject_if: :all_blank
+  # accepts_nested_attributes_for :template_format , reject_if: :all_blank
+    has_one_attached :image
 end

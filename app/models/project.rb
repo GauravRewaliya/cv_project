@@ -12,6 +12,17 @@ class Project < ApplicationRecord
     #     attributes['tech_stack_id'].blank?
     # end
 
+    # validates_comparison_of :end_date, greater_than_or_equal_to: :start_date , format: { message: 'must be valid date'}
+    
+    validate :date_validation
+    def date_validation
+        return if end_date.blank? || start_date.blank?
+
+        if end_date < start_date
+            errors.add(:end_date , "==>>starting date must start first")
+        end 
+    end
+
     def delete_fun
         ProjectCurriculumVitae.where(project_id: self.id).destroy_all
     end

@@ -1,4 +1,8 @@
-
+<style>
+.col-6
+{
+  margin: 0;
+}</style>
 <div class="card text-center" >
   <div class="card-header">
     <h3>
@@ -12,6 +16,21 @@
     <p class="card-text">
       <%= @project.desc %>
     </p>
+    <div class="row justify-content-md-center">
+    <div class="col-2">
+    <h5 class="card-title">Start Date</h5>
+    <p class="card-text">
+      <%= @project.start_date %>
+    </p>
+  </div>
+  <div class="col-2">
+    <h5 class="card-title">End Date</h5>
+    <p class="card-text">
+      <%= @project.end_date %>
+    </p>
+  </div>
+  </div>
+  <br>
     <h5 class="card-title">Core Skill</h5>
     <p class="card-text">
       <%= @project.core_skill&.title %>

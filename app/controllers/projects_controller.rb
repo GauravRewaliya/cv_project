@@ -72,6 +72,6 @@ class ProjectsController < ApplicationController
     #   params.require(:project).permit(:title, :desc,supportive_skill_ids:[])
     # end
     def project_params
-      params.require(:project).permit(:title, :desc, project_core_tech_attributes: [:tech_stack_id],supportive_skill_ids:[])
+      params.require(:project).permit(:title, :desc,:start_date ,:end_date, project_core_tech_attributes: [:tech_stack_id],supportive_skill_ids:[])
     end
 end

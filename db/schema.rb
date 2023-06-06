@@ -138,6 +138,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_02_105731) do
     t.text "desc"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "start_date"
+    t.date "end_date"
   end
 
   create_table "tech_stacks", force: :cascade do |t|

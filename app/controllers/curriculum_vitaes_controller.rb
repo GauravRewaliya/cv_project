@@ -8,6 +8,13 @@ class CurriculumVitaesController < ApplicationController
   
   def show
     # @resume_html = render_to_string(partial: 'layout' , locals: { curriculum_vitae: @curriculum_vitae})
+
+    if @curriculum_vitae.template_format.present?
+      template = ERB.new(@curriculum_vitae.template_format.layout)
+      curriculum_vitae = @curriculum_vitae
+      @resultCv = template.result(binding)
+    end
+    
   end
 
   
@@ -85,12 +92,17 @@ class CurriculumVitaesController < ApplicationController
   end
 
   def save_layout_data
-   puts "////////////////////////////////////////////////////"
-   @resume_html = render_to_string(partial: 'layout' , locals: { curriculum_vitae: @curriculum_vitae})
+  #  @resume_html = render_to_string(partial: 'layout' , locals: { curriculum_vitae: @curriculum_vitae})
     # layout = Layout.new
     # layout.save_html = @resume_html
     # layout.save
-    Layout.create(save_html: @resume_html).save
+
+    # Layout.create(save_html: @resume_html).save
+      template = ERB.new(@curriculum_vitae.template_format.layout)
+      curriculum_vitae = @curriculum_vitae
+      @resultCv = template.result(binding)
+
+    Layout.create(save_html: @resultCv).save
 
    redirect_to curriculum_vitaes_path, notice: "Layout is saved"   
   end

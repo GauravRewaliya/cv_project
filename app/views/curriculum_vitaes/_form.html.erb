@@ -40,8 +40,10 @@
 </script>
   </div>
 
-
-  <%= form.file_field :image %>
+  <div>
+    <%= form.label "select profile image", class: "text-white" %>
+    <%= form.file_field :image  ,class: "form-control"%>
+  </div>
 
   
   <%= form.submit class: 'btn-primary'%>

@@ -1,13 +1,15 @@
 <%= link_to "Save this layout permently", save_layout_data_path(@curriculum_vitae) %>
-
-<%=render "layout", curriculum_vitae: @curriculum_vitae%> 
-<%= @curriculum_vitae.template_format&.name%>
 <%#
+<%=render "layout", curriculum_vitae: @curriculum_vitae%> 
 
-  <%= raw @resume_html %>
+<% if @resultCv.present? %>
+<%= raw @resultCv %>
+<%#<%= @resultCv.html_safe%>
+  <% end %>
+
+<%= @curriculum_vitae.template_format&.name%>
+
   <br>
-  <%#<%= image_tag url_for(@curriculum_vitae.image) if @curriculum_vitae.image.attached? %>
-  <%#<%= image_tag @curriculum_vitae.image %>
   <br>
 
   <%= link_to "Edit this curriculum_vitae", edit_curriculum_vitae_path(@curriculum_vitae) %> |

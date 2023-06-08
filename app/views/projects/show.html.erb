@@ -1,8 +1,10 @@
-<style>
+<%# <style>
 .col-6
 {
   margin: 0;
-}</style>
+}</style> %>
+<%= stylesheet_link_tag  "show" %>
+
 <div class="card text-center" >
   <div class="card-header">
     <h3>
@@ -11,19 +13,24 @@
     </h3>
 
   </div>
+
   <div class="card-body">
+
+    <div class="formBox">
+        <div class="formContainer">
+
     <h5 class="card-title">Description</h5>
     <p class="card-text">
       <%= @project.desc %>
     </p>
     <div class="row justify-content-md-center">
-    <div class="col-2">
+    <div class="col-5">
     <h5 class="card-title">Start Date</h5>
     <p class="card-text">
       <%= @project.start_date %>
     </p>
   </div>
-  <div class="col-2">
+  <div class="col-5">
     <h5 class="card-title">End Date</h5>
     <p class="card-text">
       <%= @project.end_date %>
@@ -42,7 +49,8 @@
      <%= supportive_skill.title+"," %>
     <%end%>
     </p>
-
+    </div>
+    </div>
   </div>
   <div class="card-footer text-muted">
     

@@ -1,4 +1,11 @@
-<div>
+<%= stylesheet_link_tag  "show" %>
+
+
+<div class="card text-center" >
+  <div class="card-body">
+    <div class="formBox">
+        <div class="formContainer">
+   
 <p>
   <strong>name:</strong>
   <%= @candidate.name %>
@@ -19,11 +26,14 @@
     <%= link_to  "create new", new_profile_path(candidate_id: @candidate.id) %>  
     <%end%>
   </h5>
-</div>
+  </div>
+  </div>
+  </div>
+  </div>
 
 <div>
   <%= link_to "Edit this candidate", edit_candidate_path(@candidate) %> |
   <%= link_to "Back to candidates", candidates_path %>
 
-  <%= button_to "Destroy this candidate", @candidate, method: :delete %>
+  <%= button_to "Destroy this candidate", @candidate, method: :delete ,class: "btn btn-primary btn-sm mt-4"%>
 </div>

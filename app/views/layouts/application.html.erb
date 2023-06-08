@@ -7,7 +7,7 @@
     <%= csp_meta_tag %>
 
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
-
+    <%#
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
     
@@ -28,18 +28,35 @@
     *{
       margin: 2px;
     }
-   
+    .header_gr
+    {
+      padding: 14px;
+    }
+   .table_gr
+   {
+    padding: 0 50px 0 50px;
+   }
+   .table_gr table
+   {
+    border: 2px solid black;
+   }
+   /* .table_gr table tbody tr:first-child.class_gr */
+   .table_gr table tbody tr:first-child
+   {
+    background-color: #43a5b0;
+   }
   </style>
   <body>
     <div>
-     
+      <% if user_signed_in? %>
     <%= render 'shared/navbar' %>
+     <% end %>
     </div>
     <div style="text-align: center">
       <% if notice || alert%>
     <p style="color: green" class="notice"><%= notice %></p>
     <p style="color: red" class="alert"><%= alert %></p>
-    <% end%>
+       <% end%>
     <%= yield %>
   </div>
   </body>

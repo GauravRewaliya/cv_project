@@ -4,21 +4,29 @@
     text-color: red;
   }
 </style>
-<h1>Tech_stack\Skills</h1>
+<h1>Template</h1>
 
-<div id="template_formats" >
+<div class="table_gr" >
   <table border=1 class="table table-hover table-striped " , style="border: 2px solid black;">
-    <tr style="background-color: darkblue; color:White">
+    <tr style="color:White">
       <th>name</th>
       <th>layout</th>
       <th>Edit</th>
       <th>Delete</th>
       <th>Show</th>
     </tr>
+  <style>
+  .b{
+  white-space: nowrap; 
+  width: 200px; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  }</style>
   <% @template_formats.each do |template_format| %>
+
   <tr>
     <td ><h6><%= template_format.name %></h6></td>
-    <td><p><%= template_format.layout %></p></td>
+    <td ><p class="b"><%= template_format.layout %></p></td>
     <td><%= link_to "Edit", edit_template_format_path(template_format) %></td>
     <td><%= button_to "Delete" , template_format , method: :delete ,class: "btn-primary"%></td>
     <td>
@@ -31,6 +39,6 @@
   </table>
 </div>
 
-<%= link_to "New template_format", new_template_format_path ,class: 'btn-primary' %>
-<%= link_to "Home" ,  home_index_path ,class: 'btn-primary'  ,style: 'text-decoration: none;
+<%= link_to "New template_format", new_template_format_path ,class: 'btn btn-primary' %>
+<%= link_to "Home" ,  home_index_path ,class: 'btn btn-primary'  ,style: 'text-decoration: none;
 text-color: red;' %>

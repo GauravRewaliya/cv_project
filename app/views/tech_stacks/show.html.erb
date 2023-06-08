@@ -1,8 +1,16 @@
-<div>
-<p>
-  <strong>Title:</strong>
-  <%= @tech_stack.title %>
-</p>
+<%= stylesheet_link_tag  "show" %>
+
+
+<div class="card text-center" >
+  <div class="card-header">
+    
+  </div>
+  <div class="card-body">
+<div class="formBox">
+  <div class="formContainer">
+
+    <p><strong>Title:</strong>
+  <%= @tech_stack.title %></p>
 
 <p>
   <strong>Desc:</strong>
@@ -15,9 +23,10 @@
   <%= project.title+", " %>
   <%end%>
 </p>
-
 </div>
-
+</div>
+</div>
+</div>
 <div>
   <%= link_to "Edit this skill", edit_tech_stack_path(@tech_stack) %> |
   <%= link_to "Back to skills", tech_stacks_path %>

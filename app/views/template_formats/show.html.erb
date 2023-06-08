@@ -1,4 +1,9 @@
-<div>
+<%= stylesheet_link_tag  "show" %>
+<div class="card text-center" >
+  <div class="card-body">
+    <div class="formBox">
+        <div class="formContainer">
+
 <p>
   <strong>name:</strong>
   <%= @template_format.name %>
@@ -10,10 +15,13 @@
 </p>
 
 </div>
-
+</div>
+</div>
+</div>
 <div>
   <%= link_to "Edit this skill", edit_template_format_path(@template_format) %> |
   <%= link_to "Back to skills", template_formats_path %>
 
   <%= button_to "Destroy this skill", @template_format, method: :delete ,class:"btn btn-primary btn-sm mt-4"%>
 </div>
+

@@ -31,6 +31,11 @@
   <%= form.label "Profile Description", style: "display: block" ,class: "text-white"%>
   <%= form.text_field :profile_desc ,style: "width: 100%;text-align: center;" ,class: "form-control"%>
 </div>
+<div>
+  <%= form.label "Projects Testing", style: "display: block" ,class: "text-white"%>
+  <div ></div>
+</div>
+
   <div>
   <%= form.label "Projects", style: "display: block" ,class: "text-white"%>
   <%= form.collection_select(:project_ids, Project.all, :id, :title , {}, { multiple: true,  include_blank: false ,id: 'selectgr' }) %>

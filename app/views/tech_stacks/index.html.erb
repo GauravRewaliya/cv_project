@@ -6,9 +6,9 @@
 </style>
 <h1>Tech_stack\Skills</h1>
 
-<div id="tech_stacks" >
+<div class="table_gr" >
   <table border=1 class="table table-hover table-striped " , style="border: 2px solid black;">
-    <tr style="background-color: darkblue; color:White">
+    <tr style="color:White">
       <th>Title</th>
       <th>Description</th>
       <th>Edit</th>
@@ -19,7 +19,7 @@
   <tr>
     <td ><h6><%= tech_stack.title %></h6></td>
     <td><p><%= tech_stack.desc %></p></td>
-    <td><%= link_to "Edit", edit_tech_stack_path(tech_stack) %></td>
+    <td><%= link_to "Edit", edit_tech_stack_path(tech_stack),class: "material-symbols-outlined" %></td>
     <td><%= button_to "Delete" , tech_stack , method: :delete ,class: "btn-primary"%></td>
     <td>
     <p>
@@ -31,6 +31,6 @@
   </table>
 </div>
 
-<%= link_to "New tech_stack", new_tech_stack_path ,class: 'btn-primary' %>
-<%= link_to "Home" ,  home_index_path ,class: 'btn-primary'  ,style: 'text-decoration: none;
+<%= link_to "New tech_stack", new_tech_stack_path ,class: 'btn btn-primary' %>
+<%= link_to "Home" ,  home_index_path ,class: 'btn btn-primary'  ,style: 'text-decoration: none;
 text-color: red;' %>

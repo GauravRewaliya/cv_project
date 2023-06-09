@@ -4,10 +4,16 @@ class Project < ApplicationRecord
     has_many :supportive_skills, through: :project_supportive_techs, source: :tech_stack
     
     has_one :project_core_tech , dependent: :destroy
-    has_one :core_skill, through: :project_core_tech, source: :tech_stack 
+    has_one :core_skill, through: :project_core_tech, source: :tech_stack   # rename actual table
                                                                     # dependent dest not work on through
     accepts_nested_attributes_for :project_core_tech , reject_if: :all_blank#:reject_core_skill_blank
     
+    #domain
+    has_one :project_domain , dependent: :destroy  # destroy 3rd table
+    has_one :domain, through: :project_domain
+
+    accepts_nested_attributes_for :project_domain , reject_if: :all_blank
+
     # def reject_core_skill_blank(attributes)
     #     attributes['tech_stack_id'].blank?
     # end

@@ -2,7 +2,11 @@ class TechStacksController < ApplicationController
   before_action :set_tech_stack, only: %i[ show edit update destroy ]
 
   def index
+    if !params['search'].blank?
+    @tech_stacks = TechStack.where('lower(title) LIKE ?' ,"%"+params['search']+"%" )
+    else
     @tech_stacks = TechStack.all
+    end
   end
 
   

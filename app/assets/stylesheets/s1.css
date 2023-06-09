@@ -2,9 +2,9 @@ body{
     /* background-image: url(img/background.jpg); */
     /* background-image: url(bg-light.jpg); */
     background: linear-gradient(60deg , transparent , #209aa3 ,#723af5  );;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    /* background-size: cover; */
+    /* background-repeat: no-repeat; */
+    /* background-position: center; */
     
     display: flex;
     justify-content: center;

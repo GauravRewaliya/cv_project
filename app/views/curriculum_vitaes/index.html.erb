@@ -1,8 +1,15 @@
 <h1>Curriculum Vitae</h1>
 
+<!-- <form action="curriculum_vitaes" class="form-inline" style="margin-left: 70px">
+  <input type="number" name="search" placeholder="Search by id" class="form-control form-control-lg">
+  <button type="submit" class="btn btn-lg btn-success">Search</button>
+</form> -->
+<!-- need to work -->
+
 <div class="table_gr" >
     <table border=1 class="table table-hover table-striped " , style="border: 2px solid black;">
       <tr style="color: white;">
+        <th>id</th>
         <th>name</th>
         <th>projects</th>
         <th>Edit</th>
@@ -11,7 +18,7 @@
       </tr>
       <% @curriculum_vitaes.each do |curriculum_vitae| %>
       <tr>
-     
+      <td><%= curriculum_vitae.id%> </td>
       <td><p><%= curriculum_vitae.candidate&.name %></p></td>
       <td>
         <% curriculum_vitae.projects.each do |project| %>
@@ -34,7 +41,7 @@
 <style>
 
 </style>
-<%= link_to "New CV", new_curriculum_vitae_path ,class: "btn btn-sm btn-outline-success" %>
-<%= link_to "Home" ,  home_index_path ,class: "btn btn-sm btn-outline-secondary" %>
+<%= link_to "New CV", new_curriculum_vitae_path ,class: "btn btn-success" %>
+<%= link_to "Home" ,  home_index_path ,class: "btn btn-secondary" %>
 <br>
-<%= link_to "List of Layouts", layout_index_path ,class: "btn btn-outline-info" %>
+<%= link_to "List of Layouts", layout_index_path ,class: "btn btn-info" %>

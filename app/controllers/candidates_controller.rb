@@ -3,7 +3,12 @@ class CandidatesController < ApplicationController
 
 
   def index
-    @candidates = Candidate.all
+    if !params['search'].blank?
+      @candidates = Candidate.where('lower(name) LIKE ?' ,"%"+params['search']+"%" )
+      else
+      @candidates = Candidate.all
+      end
+    # @candidates = Candidate.all
   end
 
   

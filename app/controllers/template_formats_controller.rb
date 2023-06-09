@@ -2,7 +2,11 @@ class TemplateFormatsController < ApplicationController
         before_action :set_template_format, only: %i[ show edit update destroy save_layout_data]
       
         def index
-          @template_formats = TemplateFormat.all
+          if !params['search'].blank?
+            @template_formats = TemplateFormat.where('lower(name) LIKE ?' ,"%"+params['search']+"%" )
+            else
+              @template_formats = TemplateFormat.all
+            end
         end
       
         

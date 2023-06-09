@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_02_105731) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_09_092503) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -71,6 +71,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_02_105731) do
     t.index ["template_format_id"], name: "index_cv_templates_on_template_format_id"
   end
 
+  create_table "domains", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "layouts", force: :cascade do |t|
     t.string "save_html"
     t.datetime "created_at", null: false
@@ -124,6 +130,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_02_105731) do
     t.index ["project_id"], name: "index_project_curriculum_vitaes_on_project_id"
   end
 
+  create_table "project_domains", force: :cascade do |t|
+    t.integer "project_id", null: false
+    t.integer "domain_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["domain_id"], name: "index_project_domains_on_domain_id"
+    t.index ["project_id"], name: "index_project_domains_on_project_id"
+  end
+
   create_table "project_supportive_techs", force: :cascade do |t|
     t.integer "project_id", null: false
     t.integer "tech_stack_id", null: false
@@ -140,6 +155,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_02_105731) do
     t.datetime "updated_at", null: false
     t.date "start_date"
     t.date "end_date"
+    t.integer "team_size"
+    t.text "role"
   end
 
   create_table "tech_stacks", force: :cascade do |t|
@@ -183,6 +200,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_02_105731) do
   add_foreign_key "project_core_teches", "tech_stacks"
   add_foreign_key "project_curriculum_vitaes", "curriculum_vitaes"
   add_foreign_key "project_curriculum_vitaes", "projects"
+  add_foreign_key "project_domains", "domains"
+  add_foreign_key "project_domains", "projects"
   add_foreign_key "project_supportive_techs", "projects"
   add_foreign_key "project_supportive_techs", "tech_stacks"
 end

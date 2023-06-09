@@ -3,7 +3,12 @@ class ProfilesController < ApplicationController
   # before_action :authenticate_user!
 
   def index
-    @profiles = Profile.all
+    if !params['search'].blank?
+      @profiles = Profile.where('lower(email) LIKE ?' ,"%"+params['search']+"%" )
+      else
+      @profiles = Profile.all
+      end
+    # @profiles = Profile.all
   end
 
   
@@ -40,7 +45,7 @@ class ProfilesController < ApplicationController
       if @profile.update(profile_params)
         c = nil 
         if !params[:core_skill_id].blank?
-        c = TechStack.find(params[:core_skill_id])
+        c = Profile.find(params[:core_skill_id])
         end
         @profile.core_skill  = c 
         format.html { redirect_to profile_url(@profile), notice: "Profile was successfully updated." }

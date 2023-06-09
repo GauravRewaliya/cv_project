@@ -2,7 +2,12 @@ class CurriculumVitaesController < ApplicationController
   before_action :set_curriculum_vitae, only: %i[ show edit update destroy save_layout_data]
 
   def index
-    @curriculum_vitaes = CurriculumVitae.all
+    if !params['search'].blank?
+      @curriculum_vitaes = CurriculumVitae.where('lower(id) LIKE ?' ,"%"+params['search']+"%" )
+      else
+      @curriculum_vitaes = CurriculumVitae.all
+      end
+    # @curriculum_vitaes = CurriculumVitae.all
   end
 
   

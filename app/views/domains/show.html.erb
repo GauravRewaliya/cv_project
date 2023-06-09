@@ -1,0 +1,41 @@
+<%# <style>
+.col-6
+{
+  margin: 0;
+}</style> %>
+
+<!-- ................... no need .......... -->
+<%= stylesheet_link_tag  "show" %>
+
+<div class="card text-center" >
+  <div class="card-header">
+    <h3>
+      <strong>Type:</strong>
+      <%= @domain.title %>
+    </h3>
+
+  </div>
+
+  <!-- <div class="card-body">
+
+    <div class="formBox">
+        <div class="formContainer">
+
+    <h5 class="card-title">Description</h5>
+    <p class="card-text">
+      <%#<%= @domain.desc %>
+    </p>
+
+  
+        </div>
+    </div>
+  </div> -->
+  <div class="card-footer text-muted">
+    
+  <%= link_to "Edit this domain", edit_domain_path(@domain) %> |
+  <%= link_to "Back to domains", domains_path %>
+
+  <%= button_to "Destroy this domain", @domain, method: :delete ,class:"btn btn-primary btn-sm mt-4"%>
+  </div>
+</div>
+

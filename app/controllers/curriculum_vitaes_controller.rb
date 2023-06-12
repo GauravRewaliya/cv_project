@@ -136,7 +136,6 @@ class CurriculumVitaesController < ApplicationController
 
     
     def curriculum_vitae_params
-      # params.require(:curriculum_vitae).permit(:objective ,:profile_desc,template_format_attributes: [:id], project_ids: [])                                                                                #  curriculum_vitae_core_tech me tech_stack_id lega
-      params.require(:curriculum_vitae).permit(:image,:objective ,:profile_desc, project_ids: [])                                                                                #  curriculum_vitae_core_tech me tech_stack_id lega
+      params.require(:curriculum_vitae).permit(:experience ,:image,:objective ,:profile_desc, curriculum_vitae_core_tech_attributes: [:tech_stack_id] ,supportive_skill_ids:[],project_ids: [] )
     end
 end

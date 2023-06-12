@@ -20,19 +20,7 @@
    
     <td><p><%= profile.email %></p></td>
     <td><p><%= profile.contact %></p></td>
-    <td>
-      <!-- <p><%= profile.supportive_skills %></p> -->
-      <% profile.supportive_skills.each do |supportive_skill| %>
-        <%= supportive_skill.title+"," %>
-      <%end%>
-    </td>
-    <td><p>
-      <% if profile.core_skill %>
-      <%= profile.core_skill.title %>
-      <%else%>
-       nill 
-       <%end%>
-    </p></td>
+
     <td><p><%= profile.address %></p></td>
     <td><%= link_to "Edit", edit_profile_path(profile) %></td>
     <td><%= button_to "Delete" , profile , method: :delete ,class: "btn-primary"%></td>

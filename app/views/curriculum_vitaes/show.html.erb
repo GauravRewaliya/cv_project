@@ -1,11 +1,15 @@
 <%= link_to "Save this layout permently", save_layout_data_path(@curriculum_vitae) %>
 <%#
 <%=render "layout", curriculum_vitae: @curriculum_vitae%> 
-
+<% if params[:template_format_id] == nil%>
+\\\\ no template select 
+<%=render "layout", curriculum_vitae: @curriculum_vitae%> 
+<%else %>
 <% if @resultCv.present? %>
 <%= raw @resultCv %>
 <%#<%= @resultCv.html_safe%>
   <% end %>
+ <%end%> 
 <%#
 <%= @curriculum_vitae.template_format&.name%>
 

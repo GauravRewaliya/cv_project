@@ -33,25 +33,7 @@
 <h5 class="card-title">gender:</h5>
     <p class="card-text">
       <%= @profile.gender %>
-    </p>   
-
-    
-    
-    <h5 class="card-title">TechStacks</h5>
-    <p class="card-text">
-      <% @profile.supportive_skills.each do |supportive_skill| %>
-     <%= supportive_skill.title+"," %>
-    <%end%>
-    </p>
-
-    <h5 class="card-title">Core Skill:</h5>
-    <p class="card-text">
-      <% if @profile.core_skill %>
-      <%= @profile.core_skill.title %>
-      <%else%>
-       nill 
-       <%end%>
-    </p>
+    </p>  
 
    
    

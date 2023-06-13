@@ -1,0 +1,181 @@
+<style>
+    * {
+        margin: 0%;
+        padding: 0%;
+    }
+
+    .paddingL {
+        padding-left: 63px;
+    }
+
+    ul {
+        padding-left: 31px;
+        font-size: 17px;
+        color: #373131;
+        font-weight: 400;
+        padding-top: 14px;
+
+    }
+
+    h4 {
+        font-size: 21px;
+        padding-top: 11px;
+        font-weight: bold;
+    }
+
+    h6 {
+
+        font-weight: 700;
+        font-size: 15px;
+    }
+
+    p {
+        /* font-weight: 400; */
+        font-size: 18px;
+        color: #1f2a2a;
+    }
+
+    .date_p {
+
+        position: absolute;
+        top: 17px;
+        left: 12px;
+        font-size: 12px;
+    }
+</style>
+
+<img src="https://media.licdn.com/dms/image/D4D3DAQFvQZ9_jsopIA/image-scale_191_1128/0/1661435399916?e=1687168800&v=beta&t=kDy7mvpUNGY8h4JPrX9e0noLi8sWi3cWEXrxDtFykQw"
+    style="width: 100%;">
+
+<div style="display: flex;justify-content: center;position: relative;top: -15px">
+    <img src="/assets/banner.png" width="90%">
+</div>
+<div class="row">
+
+
+    <div class="col-8 paddingL">
+        <h1 style="font-size: 50px;">
+            <%= curriculum_vitae.candidate&.name %>
+        </h1>
+        <div>
+            <h5>SOFTWARE ENGINEER</h5>
+            <div style="border-bottom: 3px solid lightgreen; width: 120px;"></div>
+            <p>
+                <%= curriculum_vitae.profile_desc %>
+            </p>
+        </div>
+
+        <div>
+            <h4>PROJECT HISTORY</h4>
+
+            <% curriculum_vitae.projects.each do |project| %>
+                <div style="position: relative;">
+                    <h6><b>Project:</b>
+                        <%= project.title %>
+                    </h6>
+                    <p class="date_p">
+                        <%if !project.start_date.blank? %>
+                            ( <%=project.start_date%> ->
+                                <%= project.end_date.blank? ? " inProgerss" : " to " +project.end_date.to_s %>
+                                    )
+                                    <%end%>
+                    </p>
+                    <ul>
+                        <li>
+                            <%= project.desc %>
+                        </li>
+
+                        <%if !project.domain.blank? %>
+                            <li>Project is based on <%= project.domain&.title %> doamin</li>
+                            <%end%>
+                                <%if !project.team_size.blank? %>
+                                    <li>Project has Team Size of <%= project.team_size %>
+                                    </li>
+                                    <%end%>
+                                        <%if !project.role.blank? %>
+                                            <li>Project has specific roles and responcibilites <br>
+                                                <%= project.role %>
+                                            </li>
+                                            <%end%>
+
+                    </ul>
+                </div>
+                <%end%>
+        </div>
+    </div>
+    <div class="col-4 paddingL" style="border-left: 3px solid darkgray;">
+
+        <% profile=curriculum_vitae.candidate.profile %>
+            <div>
+                <h4>Profile</h4>
+                <table>
+                    <tr>
+                        <td>email</td>
+                        <td>
+                            <%= profile.email %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Contact</td>
+                        <td><%= profile.contact %></td>
+                    </tr>
+                    <tr>
+                        <td>Gender</td>
+                        <td><%= profile.gender %></td>
+                    </tr>
+                    <tr>
+                        <td>address</td>
+                        <td><%= profile.address %></td>
+                    </tr>
+                </table>
+                <style>
+                    th,
+                    td {
+                        padding-left: 17px;
+    font-size: 17px;
+    padding-bottom: 5px;
+
+                    }
+                </style>
+            </div>
+
+            <div>
+                <h4>S K I L L S</h4>
+                <%if !curriculum_vitae.core_skill.blank?%>
+                    <div>
+                        <h6>Main Skill</h6>
+                        <ul>
+                            <li>
+                                <%= curriculum_vitae.core_skill&.title %>
+                                    <br>( <%= curriculum_vitae.core_skill&.desc %> )
+                            </li>
+
+                        </ul>
+                    </div>
+                    <%end%>
+
+                        <%if !curriculum_vitae.supportive_skills.blank?%>
+                            <div>
+                                <h6>Supportive Skills</h6>
+                                <ul>
+                                    <% curriculum_vitae.supportive_skills.each do |supportive_skill| %>
+                                        <li>
+                                            <%= supportive_skill.title %>
+                                        </li>
+                                        <% end %>
+                                </ul>
+                            </div>
+                            <%end%>
+                                <!-- <div>
+                                    <h6>Scraping</h6>
+                                    <ul>
+                                        <li>Beautifulsoup
+                                            Python requests</li>
+                                    </ul>
+                                </div> -->
+
+                               
+            </div>
+
+    </div>
+</div>

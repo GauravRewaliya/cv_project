@@ -16,16 +16,34 @@
   <%= @candidate.employ_id %>
 </p>
 
-<h5 class="card-title">profile:
+<p>
+  <strong>email:</strong>
+  <%= @candidate.profile.email %>
+</p>
+<p>
+  <strong>gender:</strong>
+  <%= @candidate.profile.gender %>
+</p>
+<p>
+  <strong>address:</strong>
+  <%= @candidate.profile.address %>
+</p>
+
+<p>
+  <strong>contact:</strong>
+  <%= @candidate.profile.contact %>
+</p>
+
+<!-- <h5 class="card-title">profile:
     <% if @candidate.profile %>
   
-      <%= link_to  "view", edit_profile_path(@candidate.profile) %>  
+      <%#<%= link_to  "view", edit_profile_path(@candidate.profile) %>  
 
     <%else%>
     null
-    <%= link_to  "create new", new_profile_path(candidate_id: @candidate.id) %>  
+    <%#<%= link_to  "create new", new_profile_path(candidate_id: @candidate.id) %>  
     <%end%>
-  </h5>
+  </h5> -->
   </div>
   </div>
   </div>

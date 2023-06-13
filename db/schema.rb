@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_12_135503) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_13_080339) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -53,6 +53,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_135503) do
     t.string "employ_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "created_by"
+    t.string "updated_by"
   end
 
   create_table "curriculum_vitae_core_teches", force: :cascade do |t|
@@ -79,6 +81,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_135503) do
     t.string "objective"
     t.string "profile_desc"
     t.integer "experience"
+    t.string "template_name"
   end
 
   create_table "cv_templates", force: :cascade do |t|
@@ -92,12 +95,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_135503) do
 
   create_table "domains", force: :cascade do |t|
     t.string "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "layouts", force: :cascade do |t|
-    t.string "save_html"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

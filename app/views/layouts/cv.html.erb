@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>ProjectManagement</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -29,35 +29,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   </head>
-  <style>
-    *{
-      margin: 2px;
-    }
-    .header_gr
-    {
-      padding: 14px;
-    }
-   .table_gr
-   {
-    padding: 0 50px 0 50px;
-   }
-   .table_gr table
-   {
-    border: 2px solid black;
-   }
-   /* .table_gr table tbody tr:first-child.class_gr */
-   .table_gr table tbody tr:first-child
-   {
-    background-color: #43a5b0;
-   }
-   .bg-secondary {
-    /* background-color: #6c757d!important; */
-    background: linear-gradient(45deg, #744848f5, #77d8c9bf);
-    }
-  </style>
-  <body>
-    <div>
-    <%= yield %>
-  </div>
-  </body>
+<body>
+  <%= yield %>
+</body>
 </html>

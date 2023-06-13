@@ -1,0 +1,128 @@
+<div class="container">
+
+  <div class="bg-secondary">
+    <div class="text-center text-white">
+      <h2>Resume</h2>
+    </div>
+  </div>
+  <div class="col" style="background:bisque;">
+    <div class="row">
+      <div class="col-3">
+        <% if @curriculum_vitae.image.attached? %>
+      <%# <%= image_tag curriculum_vitae.image.variant(resize_to_limit:[nil,120]) if curriculum_vitae.image.attached?%>
+        
+        <img src="<%= url_for(@curriculum_vitae.image.variant(resize_to_limit: [nil, 120])) %>" alt="Curriculum Vitae Image">
+          <!-- it works   -->
+        <%end%>
+      </div>
+      <div class="col text-center">
+        <h4><strong>Candidate:</strong>
+          <%= curriculum_vitae.candidate&.name %>
+        </h4>
+
+        <h5><strong>Objective:</strong>
+          <%= curriculum_vitae.objective %>
+        </h5>
+        <h5><strong>Profile Descriotion:</strong>
+          <%= curriculum_vitae.profile_desc %>
+        </h5>
+      </div>
+      <div class="col-3">
+
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-5 pb-2">
+
+      <div class="col">
+        <% if curriculum_vitae.candidate&.profile %>
+
+          <% profile=curriculum_vitae.candidate.profile %>
+            <div class="card" style="background: lavende;margin-bottom: 10px;margin-top: 47px;">
+              <div class="card-header">
+                <h4>Profile: </h4>
+              </div>
+              <div class="card-body">
+                <table class="table " style="width:50%  ;margin: 0 auto;">
+                  <tbody>
+                    <tr>
+                      <th>Email:</th>
+                      <td>
+                        <%= profile.email %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>Contact:</th>
+                      <td>
+                        <%= profile.contact %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>Gender:</th>
+                      <td>
+                        <%= profile.gender %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th>Address:</th>
+                      <td>
+                        <%= profile.address %>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              
+              <% if curriculum_vitae.core_skill %>
+                <div class="card-header">
+                  <h4>Core Skill:</h4>
+                </div>
+                <div class="card-body">
+                  <p>
+                    <%= curriculum_vitae.core_skill.title %>
+                  </p>
+                </div>
+                <% end %>
+
+                  <div class="card-header">
+                    <h4>Supportive Skills:</h4>
+                  </div>
+                  <div class="card-body">
+                    <% curriculum_vitae.supportive_skills.each do |supportive_skill| %>
+                      <h5>Title:<%= supportive_skill.title %>
+                      </h5>
+                      <p>
+                        <%= supportive_skill.desc %>
+                      </p>
+                      <% end %>
+                  </div>
+            </div>
+            <% end %>
+      </div>
+    </div>
+
+    <div class="col">
+      <h3>Projects:</h3>
+
+      <% curriculum_vitae.projects.each do |project| %>
+
+        <div class="card" style="background: lightcyan;margin-bottom: 10px;">
+          <div class="card-header">
+            <h4>Title: <%= project.title %>
+            </h4>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Description:</h5>
+            <p class="card-text">
+              <%= project.desc %>
+            </p>
+          </div>
+        </div>
+        <% end %>
+    </div>
+
+  </div>
+
+</div>

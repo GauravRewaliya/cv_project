@@ -1,6 +1,6 @@
 class CurriculumVitaesController < ApplicationController
   before_action :set_curriculum_vitae, only: %i[ show edit update destroy save_layout_data]
-
+  layout 'cv' ,only: %i[ show]
   def index
     if !params['search'].blank?
       @curriculum_vitaes = CurriculumVitae.where('lower(id) LIKE ?' ,"%"+params['search']+"%" )
@@ -14,12 +14,12 @@ class CurriculumVitaesController < ApplicationController
   def show
     # @resume_html = render_to_string(partial: 'layout' , locals: { curriculum_vitae: @curriculum_vitae})
 
-    if @curriculum_vitae.template_format.present?
-      template = ERB.new(@curriculum_vitae.template_format.layout)
-      curriculum_vitae = @curriculum_vitae
-      @resultCv = template.result(binding)
-    end
-    
+    # if @curriculum_vitae.template_format.present?
+    #   template = ERB.new(@curriculum_vitae.template_format.layout)
+    #   curriculum_vitae = @curriculum_vitae
+    #   @resultCv = template.result(binding)
+    # end
+
   end
 
   
@@ -42,11 +42,11 @@ class CurriculumVitaesController < ApplicationController
     end
     @curriculum_vitae.candidate = c 
 
-    t = nil
-    if !params[:tech_stack_id].blank?
-      t = TemplateFormat.find(params[:tech_stack_id])
-    end
-    @curriculum_vitae.template_format = t 
+    # t = nil
+    # if !params[:template_format_id].blank?
+    #   t = TemplateFormat.find(params[:template_format_id])
+    # end
+    # @curriculum_vitae.template_format = t 
 
     respond_to do |format|
       if @curriculum_vitae.save
@@ -69,11 +69,11 @@ class CurriculumVitaesController < ApplicationController
     @curriculum_vitae.candidate = c 
 
     ##template
-    t = nil
-    if !params[:template_format_id].blank?
-      t = TemplateFormat.find(params[:template_format_id])
-    end
-    @curriculum_vitae.template_format = t 
+    # t = nil
+    # if !params[:template_format_id].blank?
+    #   t = TemplateFormat.find(params[:template_format_id])
+    # end
+    # @curriculum_vitae.template_format = t 
     
     
     respond_to do |format|
@@ -136,6 +136,6 @@ class CurriculumVitaesController < ApplicationController
 
     
     def curriculum_vitae_params
-      params.require(:curriculum_vitae).permit(:experience ,:image,:objective ,:profile_desc, curriculum_vitae_core_tech_attributes: [:tech_stack_id] ,supportive_skill_ids:[],project_ids: [] )
+      params.require(:curriculum_vitae).permit(:template_name,:experience ,:image,:objective ,:profile_desc, curriculum_vitae_core_tech_attributes: [:tech_stack_id] ,supportive_skill_ids:[],project_ids: [] )
     end
 end

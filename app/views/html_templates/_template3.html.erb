@@ -1,3 +1,5 @@
+<div style="text-align: center">
+
 <div class="container">
   <div>
     <div class="row ">
@@ -113,7 +115,7 @@
                 <div class="dashboard-timeline-info">
                   <%if !project.start_date.blank? %>
                   <span class="jobster-timeline-time"><%=project.start_date%> 
-                  <%= project.end_date.blank? ? " inProgerss" : "to "+project.end_date %>
+                  <%= project.end_date.blank? ? " inProgerss" : "to "+project.end_date.to_s %>
                   </span>
                   <%end%>
                   <h6 class="mb-2"><%= project.title %></h6>
@@ -320,3 +322,5 @@
     color: #212529;
   }
 </style>
+
+</div>

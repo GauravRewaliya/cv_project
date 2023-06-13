@@ -65,9 +65,25 @@
     <%= form.file_field :image  ,class: "form-control"%>
   </div>
 
-  <div>
+  <!-- <div>
     <%= form.label "Layout", style: "display: block" ,class: "text-white"%>
     <%= collection_select( nil , :template_format_id, TemplateFormat.all, :id, :name, { include_blank: true,selected: @curriculum_vitae.template_format&.id} )%>
+  </div> -->
+  <div>
+    <%= form.label "Layout", style: "display: block" ,class: "text-white"%>
+    
+    <!-- <%= collection_select( nil , :template_format_id, TemplateFormat.all, :id, :name, { include_blank: true,selected: @curriculum_vitae.template_format&.id} )%> -->
+   
+   <% template_files = Dir.glob(Rails.root.join('app', 'views', 'HTML_templates', '*.html.erb')) %> 
+   <% @template_options = template_files.map { |file| File.basename(file, '.html.erb') }%>
+    
+    <select name="curriculum_vitae[template_name]">
+      <option value="">select any template</option>
+      <% @template_options.each do |template_option| %>
+      <option value="<%= template_option %>"><%= template_option.titleize %></option>
+    <% end %>
+  
+    </select>
   </div>
   
   <%= form.submit class: 'btn-primary'%>

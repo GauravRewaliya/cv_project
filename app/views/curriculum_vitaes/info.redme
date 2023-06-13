@@ -44,11 +44,13 @@
                             
 
                             <h6 class="text-uppercase text-black-50">
+
                                 <%if !project.start_date.blank? %>
                             <span class="jobster-timeline-time"><%=project.start_date%> 
                              <%= project.end_date.blank? ? " inProgerss" : " to "+project.end_date %>
                              </span>
                             <%end%>
+                            
                             </h6>
                             <p><%= project.desc %></p>
 

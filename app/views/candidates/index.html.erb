@@ -10,6 +10,9 @@
     <tr style=" color: white">
       <th>name</th>
       <th>employ_id</th>
+      <th>email</th>
+      <th>contact</th>
+      <th>address</th>
       <th>Edit</th>
       <th>Delete</th>
       <th>Show</th>
@@ -18,6 +21,11 @@
   <tr>
     <td ><h6><%= candidate.name %></h6></td>
     <td><p><%= candidate.employ_id %></p></td>
+    
+    <td><p><%= candidate.profile.email %></p></td>
+    <td><p><%= candidate.profile.contact %></p></td>
+    <td><p><%= candidate.profile.address %></p></td>
+    
     <td><%= link_to "Edit", edit_candidate_path(candidate) %></td>
     <td><%= button_to "Delete" , candidate , method: :delete ,class: "btn-primary"%></td>
     <td>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_09_092503) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_12_135503) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -55,11 +55,30 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_09_092503) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "curriculum_vitae_core_teches", force: :cascade do |t|
+    t.integer "curriculum_vitae_id", null: false
+    t.integer "tech_stack_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["curriculum_vitae_id"], name: "index_curriculum_vitae_core_teches_on_curriculum_vitae_id"
+    t.index ["tech_stack_id"], name: "index_curriculum_vitae_core_teches_on_tech_stack_id"
+  end
+
+  create_table "curriculum_vitae_supportive_teches", force: :cascade do |t|
+    t.integer "curriculum_vitae_id", null: false
+    t.integer "tech_stack_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["curriculum_vitae_id"], name: "index_curriculum_vitae_supportive_teches_on_curriculum_vitae_id"
+    t.index ["tech_stack_id"], name: "index_curriculum_vitae_supportive_teches_on_tech_stack_id"
+  end
+
   create_table "curriculum_vitaes", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "objective"
     t.string "profile_desc"
+    t.integer "experience"
   end
 
   create_table "cv_templates", force: :cascade do |t|
@@ -81,24 +100,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_09_092503) do
     t.string "save_html"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "profile_core_teches", force: :cascade do |t|
-    t.integer "profile_id", null: false
-    t.integer "tech_stack_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["profile_id"], name: "index_profile_core_teches_on_profile_id"
-    t.index ["tech_stack_id"], name: "index_profile_core_teches_on_tech_stack_id"
-  end
-
-  create_table "profile_supportive_teches", force: :cascade do |t|
-    t.integer "profile_id", null: false
-    t.integer "tech_stack_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["profile_id"], name: "index_profile_supportive_teches_on_profile_id"
-    t.index ["tech_stack_id"], name: "index_profile_supportive_teches_on_tech_stack_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -157,6 +158,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_09_092503) do
     t.date "end_date"
     t.integer "team_size"
     t.text "role"
+    t.string "created_by"
+    t.string "updated_by"
   end
 
   create_table "tech_stacks", force: :cascade do |t|
@@ -189,12 +192,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_09_092503) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "candidate_curriculum_vitaes", "candidates"
   add_foreign_key "candidate_curriculum_vitaes", "curriculum_vitaes"
+  add_foreign_key "curriculum_vitae_core_teches", "curriculum_vitaes"
+  add_foreign_key "curriculum_vitae_core_teches", "tech_stacks"
+  add_foreign_key "curriculum_vitae_supportive_teches", "curriculum_vitaes"
+  add_foreign_key "curriculum_vitae_supportive_teches", "tech_stacks"
   add_foreign_key "cv_templates", "curriculum_vitaes"
   add_foreign_key "cv_templates", "template_formats"
-  add_foreign_key "profile_core_teches", "profiles"
-  add_foreign_key "profile_core_teches", "tech_stacks"
-  add_foreign_key "profile_supportive_teches", "profiles"
-  add_foreign_key "profile_supportive_teches", "tech_stacks"
   add_foreign_key "profiles", "candidates"
   add_foreign_key "project_core_teches", "projects"
   add_foreign_key "project_core_teches", "tech_stacks"

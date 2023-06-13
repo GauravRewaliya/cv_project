@@ -16,12 +16,14 @@ h5{
     color: black;
     font-size: 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-top: 10px;
 }
 p{
     position: relative;
     color: black;
     font-size: 15px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 6px;
 }
 .row,.col-6{
     margin: 0;
@@ -46,7 +48,7 @@ p{
     /* display: grid;
     place-items: center; */
 }
-h5{
+/* h5{ */
     /* height: 40px; */
     /* width: 100%;
     border: none;
@@ -55,7 +57,7 @@ h5{
     padding: 0 0 0 20px;
     opacity: 90%;
     color: black; */
-}
+/* } */
 ::-webkit-input-placeholder{
     color: rbg(49,48,48);
 }

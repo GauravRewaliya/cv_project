@@ -7,7 +7,19 @@ padding-right:15px;
 }
 </style>
 
-  <%= project.errors.any? %>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-6">
+        <label style="display: block" class="text-white">Created_by</label>
+        <input class="form-control" type="text" value="<%= project.created_by %>" disabled>
+      </div>
+      <div class="col-6">
+        <label style="display: block" class="text-white">Updating_by</label>
+        <input class="form-control" type="text" value="<%= current_user.email %>" disabled>
+     </div>
+    </div>
+    </div>
+ <%# <%= project.errors.any? %>
 <%= form_with(model: project) do |form| %>
   <% if project.errors.any? %>
     <div style="color: red">
@@ -21,8 +33,7 @@ padding-right:15px;
       </ul>
     </div>
     <% end %>
-
-      <div class="form-group">
+    <div class="form-group">
         <%= form.label :title, style: "display: block" ,class: "text-white" %>
           <%= form.text_field :title ,class:"form-control" %>
       </div>

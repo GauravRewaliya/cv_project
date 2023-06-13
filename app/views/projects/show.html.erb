@@ -19,47 +19,68 @@
     <div class="formBox">
         <div class="formContainer">
 
-    <h5 class="card-title">Description</h5>
-    <p class="card-text">
+          <div class="row justify-content-md-center">
+            <div class="col-5">
+            <h5 >Created by</h5>
+            <p >
+              <%= @project.created_by %>
+            </p>
+          </div>
+          <div class="col-5">
+            <h5 >Updated By</h5>
+            <p >
+              <%= @project.updated_by %>
+            </p>
+          </div>
+          </div>
+
+    <h5 >Description</h5>
+    <p >
       <%= @project.desc %>
     </p>
-    <h5 class="card-title">Domain</h5>
-    <p class="card-text">
+
+    <%if !@project.domain.blank?%>
+    <h5 >Domain</h5>
+    <p >
       <%= @project.domain.title %>
     </p>
+    <%end%>
 
-    <h5 class="card-title">Team Size</h5>
-    <p class="card-text">
+    <%if !@project.team_size.blank?%>
+    <h5 >Team Size</h5>
+    <p >
       <%= @project.team_size %>
     </p>
-
-    <h5 class="card-title">Roles & Responsability</h5>
-    <p class="card-text">
+    <%end%>
+    <%if !@project.role.blank?%>
+    <h5 >Roles & Responsability</h5>
+    <p >
       <!-- text area?? -->
       <%= @project.role %>
     </p>
+    <%end%>
     <div class="row justify-content-md-center">
     <div class="col-5">
-    <h5 class="card-title">Start Date</h5>
-    <p class="card-text">
+    <h5 >Start Date</h5>
+    <p >
       <%= @project.start_date %>
     </p>
   </div>
   <div class="col-5">
-    <h5 class="card-title">End Date</h5>
-    <p class="card-text">
+    <h5 >End Date</h5>
+    <p >
       <%= @project.end_date %>
     </p>
   </div>
   </div>
   <br>
-    <h5 class="card-title">Core Skill</h5>
-    <p class="card-text">
+    <h5 >Core Skill</h5>
+    <p >
       <%= @project.core_skill&.title %>
     </p>
 
-    <h5 class="card-title">TechStacks</h5>
-    <p class="card-text">
+    <h5 >TechStacks</h5>
+    <p >
       <% @project.supportive_skills.each do |supportive_skill| %>
      <%= supportive_skill.title+"," %>
     <%end%>

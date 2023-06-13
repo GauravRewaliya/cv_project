@@ -1,4 +1,4 @@
-<%= stylesheet_link_tag  "show" %>
+<%#<%= stylesheet_link_tag  "show" %>
 <div class="card text-center" >
   <div class="card-body">
     <div class="formBox">
@@ -9,19 +9,27 @@
   <%= @template_format.name %>
 </p>
 
-<p>
+<!-- <p>
   <strong>layout:</strong>
   <%= @template_format.layout %>
-</p>
+</p> -->
+
 
 </div>
 </div>
 </div>
-</div>
-<div>
-  <%= link_to "Edit this skill", edit_template_format_path(@template_format) %> |
-  <%= link_to "Back to skills", template_formats_path %>
 
-  <%= button_to "Destroy this skill", @template_format, method: :delete ,class:"btn btn-primary btn-sm mt-4"%>
+<p>
+  <!-- <iframe width=" 100%" height="1000" src="<%#<%= template_format_view_format_path(@template_format) %>"> -->
+   <%= raw @res_cv_html %>
+ </p>
+ 
+ <div>
+   <%= link_to "Edit this skill", edit_template_format_path(@template_format) %> |
+   <%= link_to "Back to skills", template_formats_path %>
+ 
+   <%= button_to "Destroy this skill", @template_format, method: :delete ,class:"btn btn-primary btn-sm mt-4"%>
+ </div>
+ 
+ 
 </div>
-

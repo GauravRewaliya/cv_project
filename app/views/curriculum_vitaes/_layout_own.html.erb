@@ -1,0 +1,113 @@
+<style>
+  *{
+    margin: 0px;
+  }
+</style>
+<div class="bg-light ">
+    <div class="container p-5">
+        <div class="row">
+            <div class="col-lg-4 bg-dark text-white text-center py-4">
+                <div class="header-left">
+                    <% if !@curriculum_vitae.image.blank?%>
+                    <img src="<%= url_for(@curriculum_vitae.image.variant(resize_to_limit: [nil, 120])) %>"
+                    alt="not found" class="img-thumbnail rounded-circle " style="height: 130px; width: 150px;">
+                    <%end%>
+                <h1 class="display-5"> <%= curriculum_vitae.candidate&.name %></h1>
+                    <h4 class="lead text-uppercase text-white-50 mb-4"><%= curriculum_vitae.objective %></h4>
+
+                </div>
+                <div >
+<!-- h2.class.class.. -->
+                <% profile=curriculum_vitae.candidate.profile %>
+                <h5 class="text-uppercase bg-white text-dark py-2 rounded-pill">info</h5>
+                    <ul class="list-unstyled text-white-50 ml-3 py-2 text-left">
+                        <li class="list-item">
+                            <i class="fas fa-mobile-alt mx-4"></i><%= profile.contact %>
+                        </li>
+                        <li class="list-item">
+                            <i class="fas fa-envelope-open-text mx-4"></i><%= profile.email %>
+                        </li>
+                        <!-- <li class="list-item">
+                            <i class="fas fa-blog mx-4"></i>www.sample.com
+                        </li> -->
+                        <li class="list-item">
+                          <i class="fas fa-map-marker-alt mx-4"></i><%= profile.address %>
+                        </li>
+                        <li class="list-item">
+                            <i class="fas fa-solid fa-user mx-4"></i><%= profile.gender %>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-uppercase bg-white text-dark py-2 rounded-pill">skills</h5>
+                    <ul class="list text-white-50 ml-3 py-2 text-left text-capitalize">
+                        <%if !curriculum_vitae.core_skill.blank?%>
+                        <h5>Main Skill</h5>
+                        <li class="list-item"><%= curriculum_vitae.core_skill&.title %></li>
+                          ( <%= curriculum_vitae.core_skill&.desc %> )
+                        <%end%>
+                        <br>
+                        <%if !curriculum_vitae.supportive_skills.blank?%>
+                        <h5>More Skills</h5>
+                          <% curriculum_vitae.supportive_skills.each do |supportive_skill| %>
+                        <li class="list-item">
+                          <%= supportive_skill.title %>
+                          <br>
+                          ( <%= supportive_skill.desc %> )
+                          <%# <%= supportive_skill.desc %>
+                         
+                        </li>
+                          <% end %>
+                          <% end %>
+                          
+                      </ul>
+                </div>
+           
+            </div> 
+
+            <!-- <div class="col-md-8 bg-light text-dark py-4 px-5"> -->
+            <div class="col-lg-8 bg-light text-dark py-4 px-5">
+                <div class="header-right">
+                    <h4 class="text-uppercase">profile</h4>
+                    <hr>
+                    <p>
+                        <%= curriculum_vitae.profile_desc %>
+                    </p>
+
+                </div>
+                <div>
+                    <% if !curriculum_vitae.projects.blank? %>
+                    <h4 class="text-uppercase">Project</h4>
+                    <hr>
+                    <ul class="list">
+
+                        <% curriculum_vitae.projects.each do |project| %>
+                        <li class="list-item">
+                            <h5 class="display-6 text-uppercase"><%= project.title %></h5>
+                            
+
+                            <h6 class="text-uppercase text-black-50">
+                                <%if !project.start_date.blank? %>
+                            <span class="jobster-timeline-time"><%=project.start_date%> 
+                             <%= project.end_date.blank? ? " inProgerss" : " to "+project.end_date %>
+                             </span>
+                            <%end%>
+                            </h6>
+                            <p><%= project.desc %></p>
+
+                        </li>
+                        <% end %>
+                        <%# <li class="list-item">
+                            <h5 class="display-6 text-uppercase">online media marketing</h5>
+                            <h6 class="text-uppercase text-black-50">company name /2020.present</h6>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda modi distinctio voluptatibus doloribus nulla doloremque mollitia rem. Tempora esse perferendis asperiores libero, itaque, mollitia, necessitatibus quaerat ducimus omnis voluptatum autem.
+                            </p>
+                            
+                        </li> %>
+                        <% end%>
+                    </ul>
+                </div>
+             </div>   
+        </div>
+    </div>
+</div>

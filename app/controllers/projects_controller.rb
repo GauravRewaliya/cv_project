@@ -23,6 +23,9 @@ class ProjectsController < ApplicationController
     # project_params[:tech_stack_ids] = project_params[:tech_stack_ids].reject(&:empty?)
     @project = Project.new(project_params)
     # @project.core_skill = Project.find_by(id: params[:core_skill_id])
+
+    @project.created_by = current_user.email
+    @project.updated_by = current_user.email
     respond_to do |format|
       if @project.save
         format.html { redirect_to project_url(@project), notice: "Project was successfully created." }
@@ -45,6 +48,8 @@ class ProjectsController < ApplicationController
       if project_params[:project_core_tech_attributes][:tech_stack_id].blank?
         @project.core_skill = nil
       end
+
+      @project.updated_by = current_user.email
       if @project.update(project_params)
         #  @project.core_skill = Project.find_by(id: params[:core_skill_id])
         #  @project.save

@@ -7,7 +7,6 @@ class CreateProjects < ActiveRecord::Migration[7.0]
       t.date :end_date
       t.integer "team_size"
       t.text "role"
-     
       t.timestamps
     end
   end

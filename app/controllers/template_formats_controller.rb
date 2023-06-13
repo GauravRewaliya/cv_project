@@ -1,6 +1,7 @@
 class TemplateFormatsController < ApplicationController
-        before_action :set_template_format, only: %i[ show edit update destroy save_layout_data]
-      
+       before_action :set_template_format, only: %i[ show edit update destroy save_layout_data]
+      #  layout false, only: [:show]
+      #  layout "default", only: [:show]
         def index
           if !params['search'].blank?
             @template_formats = TemplateFormat.where('lower(name) LIKE ?' ,"%"+params['search']+"%" )
@@ -11,7 +12,37 @@ class TemplateFormatsController < ApplicationController
       
         
         def show
-          # @resume_html = render_to_string(partial: 'layout' , locals: { template_format: @template_format})
+          # layout "application"
+          
+           t= ERB.new( @template_format.layout)
+              # initialize variables 
+            #   require 'ostruct'
+
+            #   @curriculum_vitae  = OpenStruct.new
+            #   @curriculum_vitae.candidate =OpenStruct.new
+            #   @curriculum_vitae.candidate.name = "Abhishake Kumar"
+              
+            #   @curriculum_vitae.profile_desc ="5* hacker rank java developer, like to learn and code , got top 10 place in few competiion also  doing coding at free time , Hobby is to repair things , and do analisys that how things works , and can be modified and better"
+
+            #   profile =OpenStruct.new
+            #   profile.contact = "8889454754"
+            #   profile.email = "GauravRewaliya@yahoo.com"
+            #   profile.address = "xyz ,coloney"
+            #   profile.gender = "male"
+            #   @curriculum_vitae.candidate.profile= profile
+
+            # # skill 
+
+            # # core 
+
+            # # projects 
+             
+             @curriculum_vitae = CurriculumVitae.first
+              curriculum_vitae = @curriculum_vitae
+            @res_cv_html = t.result(binding)
+            
+          # render layout: "default"
+          render :layout => 'default'
         end
       
         
@@ -53,6 +84,11 @@ class TemplateFormatsController < ApplicationController
           end
         end
       
+        def view_format
+          @projects  = Project.first(5)
+          @template_format = TemplateFormat.find(params[:template_format_id])
+          render :layout => 'cv'
+        end
         
         def destroy
           @template_format.destroy

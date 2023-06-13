@@ -3,7 +3,12 @@ Rails.application.routes.draw do
   # resources :skills ,:candidates ,:profiles
   devise_for :users
   resources :tech_stacks ,:candidates ,:profiles
-  resources :curriculum_vitaes ,:template_formats
+  resources :curriculum_vitaes 
+  
+  resources :template_formats
+  # resources :template_formats do 
+  #  get :view_format 
+  # end
   resources :domains
   get 'home/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

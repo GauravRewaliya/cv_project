@@ -18,7 +18,7 @@ class CandidatesController < ApplicationController
   
   def new
     @candidate = Candidate.new
-    @profile = @candidate.build_profile
+    @candidate.build_profile
   end
 
   

@@ -8,6 +8,8 @@ gem "rails", "~> 7.0.4", ">= 7.0.4.3"
 
 #
 gem 'devise'
+gem "select2-rails"
+
 # gem 'active_storage' // for 5.2 old
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"

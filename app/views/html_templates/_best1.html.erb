@@ -13,8 +13,6 @@
         font-size: 17px;
         color: #373131;
         font-weight: 400;
-        padding-top: 14px;
-
     }
 
     h4 {
@@ -30,16 +28,11 @@
     }
 
     p {
-        /* font-weight: 400; */
         font-size: 18px;
         color: #1f2a2a;
     }
 
     .date_p {
-
-        position: absolute;
-        top: 17px;
-        left: 12px;
         font-size: 12px;
     }
 </style>
@@ -53,7 +46,7 @@
 <div class="row">
 
 
-    <div class="col-8 paddingL">
+    <div class="col-7 paddingL">
         <h1 style="font-size: 50px;">
             <%= curriculum_vitae.candidate&.name %>
         </h1>
@@ -103,28 +96,28 @@
                 <%end%>
         </div>
     </div>
-    <div class="col-4 paddingL" style="border-left: 3px solid darkgray;">
+    <div class="col-5 paddingL" style="border-left: 3px solid darkgray;padding-left: 20px;">
 
         <% profile=curriculum_vitae.candidate.profile %>
             <div>
                 <h4>Profile</h4>
                 <table>
                     <tr>
-                        <td>email</td>
+                        <th>Email</th>
                         <td>
                             <%= profile.email %>
                         </td>
                     </tr>
                     <tr>
-                        <td>Contact</td>
+                        <th>Contact</th>
                         <td><%= profile.contact %></td>
                     </tr>
                     <tr>
-                        <td>Gender</td>
+                        <th>Gender</th>
                         <td><%= profile.gender %></td>
                     </tr>
                     <tr>
-                        <td>address</td>
+                        <th><A></A>ddress</th>
                         <td><%= profile.address %></td>
                     </tr>
                 </table>

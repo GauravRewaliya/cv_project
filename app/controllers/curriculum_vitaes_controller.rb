@@ -1,6 +1,9 @@
 class CurriculumVitaesController < ApplicationController
   before_action :set_curriculum_vitae, only: %i[ show edit update destroy save_layout_data]
   layout 'cv' ,only: %i[ show]
+  # include CvHelper
+  # helper CvHelper
+      # no need to include??
   def index
     if !params['search'].blank?
       @curriculum_vitaes = CurriculumVitae.where('lower(id) LIKE ?' ,"%"+params['search']+"%" )
@@ -52,9 +55,11 @@ class CurriculumVitaesController < ApplicationController
       if @curriculum_vitae.save
         format.html { redirect_to curriculum_vitae_url(@curriculum_vitae), notice: "CurriculumVitae was successfully created." }
         format.json { render :show, status: :created, location: @curriculum_vitae }
+        # format.js { render js: "window.open('#{curriculum_vitae_url(@curriculum_vitae)}' , '_blank' )"}
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @curriculum_vitae.errors, status: :unprocessable_entity }
+
       end
     end
   end
@@ -78,8 +83,13 @@ class CurriculumVitaesController < ApplicationController
     
     respond_to do |format|
       if @curriculum_vitae.update(curriculum_vitae_params)
-        format.html { redirect_to curriculum_vitae_url(@curriculum_vitae), notice: "CurriculumVitae was successfully updated." }
-        format.json { render :show, status: :ok, location: @curriculum_vitae }
+        # format.html { redirect_to curriculum_vitae_url(@curriculum_vitae), notice: "CurriculumVitae was successfully updated." }
+        # format.json { render :show, status: :ok, location: @curriculum_vitae }
+
+        # format.html { render js: "window.open('#{curriculum_vitae_url(@curriculum_vitae)}' , '_blank' )"}
+        
+        format.html { redirect_to curriculum_vitae_url(@curriculum_vitae) ,target: '_blank' }
+        format.js { render js: "window.open('#{curriculum_vitae_url(@curriculum_vitae)}' , '_blank' )"}
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @curriculum_vitae.errors, status: :unprocessable_entity }

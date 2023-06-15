@@ -2,6 +2,10 @@
 
 
 <div class="card text-center" >
+  <div class="card-header">
+    <h3>
+      <strong>Candidate</strong>
+    </h3>
   <div class="card-body">
     <div class="formBox">
         <div class="formContainer">
@@ -33,25 +37,16 @@
   <strong>contact:</strong>
   <%= @candidate.profile.contact %>
 </p>
-
-<!-- <h5 class="card-title">profile:
-    <% if @candidate.profile %>
+  </div>
+  </div>
+  </div>
   
-      <%#<%= link_to  "view", edit_profile_path(@candidate.profile) %>  
-
-    <%else%>
-    null
-    <%#<%= link_to  "create new", new_profile_path(candidate_id: @candidate.id) %>  
-    <%end%>
-  </h5> -->
-  </div>
-  </div>
-  </div>
-  </div>
-
-<div>
-  <%= link_to "Edit this candidate", edit_candidate_path(@candidate) %> |
-  <%= link_to "Back to candidates", candidates_path %>
-
-  <%= button_to "Destroy this candidate", @candidate, method: :delete ,class: "btn btn-primary btn-sm mt-4"%>
+  
+<div class="card-footer text-muted" style="position: relative;">
+  
+  <%= link_to "Edit this candidate", edit_candidate_path(@candidate) %>
+  
+  <%= link_to "arrow_back", candidates_path ,class:"pos_l material-symbols-outlined"  %>
+  <%= button_to "Destroy this candidate", @candidate, method: :delete ,class:"btn btn-outline-danger pos_r"%>
+</div>
 </div>

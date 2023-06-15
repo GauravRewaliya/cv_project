@@ -1,9 +1,10 @@
 body{
     /* background-image: url(img/background.jpg); */
     /* background-image: url(bg-light.jpg); */
-    background: linear-gradient(60deg , transparent , #209aa3 ,#723af5  );;
-    /* background-size: cover; */
-    /* background-repeat: no-repeat; */
+    background: linear-gradient(60deg , transparent , #209aa3 ,#723af5  );
+    background-repeat: no-repeat;
+    height: 100vh;
+
     /* background-position: center; */
     
     display: flex;
@@ -24,7 +25,6 @@ p{
     position: relative;
     left: 10px;
     bottom: 40px;
-    font-family: Comic Sans MS;
 }
 .formBox{
     display: flex;
@@ -64,7 +64,8 @@ i{
     right: 20px;
 }
 #submitButton{
-    height: 40px;
+    margin-top: 10px;
+    height: 36px;
     width: 100%;
     border: none;
     outline: none;
@@ -76,7 +77,7 @@ i{
 #forgotPW
 {
     position: relative;
-    color: yellow;
+    color: #0013ff;
     font-size: 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     /* left: 50px; */

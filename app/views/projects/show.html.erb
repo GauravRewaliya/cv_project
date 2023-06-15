@@ -1,8 +1,4 @@
-<%# <style>
-.col-6
-{
-  margin: 0;
-}</style> %>
+
 <%= stylesheet_link_tag  "show" %>
 
 <div class="card text-center" >
@@ -55,7 +51,6 @@
     <%if !@project.role.blank?%>
     <h5 >Roles & Responsability</h5>
     <p >
-      <!-- text area?? -->
       <%= @project.role %>
     </p>
     <%end%>
@@ -69,7 +64,11 @@
   <div class="col-5">
     <h5 >End Date</h5>
     <p >
+      <%if !@project.end_date.blank?%>
       <%= @project.end_date %>
+      <%else %>
+       Project is still running
+       <%end%>
     </p>
   </div>
   </div>
@@ -88,12 +87,11 @@
     </div>
     </div>
   </div>
-  <div class="card-footer text-muted">
+  <div class="card-footer text-muted" style="position: relative;">
     
-  <%= link_to "Edit this project", edit_project_path(@project) %> |
-  <%= link_to "Back to projects", projects_path %>
-
-  <%= button_to "Destroy this project", @project, method: :delete ,class:"btn btn-primary btn-sm mt-4"%>
+    <%= link_to "Edit this project", edit_project_path(@project) %>
+    
+    <%= link_to "arrow_back", projects_path ,class:"pos_l material-symbols-outlined"  %>
+    <%= button_to "Destroy this project", @project, method: :delete ,class:"btn btn-outline-danger pos_r"%>
   </div>
 </div>
-

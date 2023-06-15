@@ -1,0 +1,14 @@
+.pos_l ,h1 {
+    position: relative;
+    left: 15%;
+}
+.pos_r {
+    position: absolute;
+    right: 13%;
+}
+label {
+    color: white;
+}
+h2{
+    color: skyblue;
+}

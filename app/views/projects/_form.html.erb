@@ -7,7 +7,7 @@ padding-right:15px;
 }
 </style>
 
-  <div class="form-group">
+  <!-- <div class="form-group">
     <div class="row">
       <div class="col-6">
         <label style="display: block" class="text-white">Created_by</label>
@@ -18,8 +18,9 @@ padding-right:15px;
         <input class="form-control" type="text" value="<%= current_user.email %>" disabled>
      </div>
     </div>
-    </div>
- <%# <%= project.errors.any? %>
+    </div> -->
+    
+    <!-- //    created_by updated_by -->
 <%= form_with(model: project) do |form| %>
   <% if project.errors.any? %>
     <div style="color: red">
@@ -42,11 +43,6 @@ padding-right:15px;
         <%= form.label :desc, style: "display: block" ,class: "text-white" %>
           <%= form.text_area :desc ,class:"form-control"%>
       </div>
-      <!-- domain -->
-      <!-- <div class="form-group">
-        <%#<%= form.label :desc, style: "display: block" ,class: "text-white" %>
-          <%#<%= form.text_area :desc ,class:"form-control"%>
-      </div> -->
       <div class="form-group">
         <%= form.label :domain, style: "display: block" ,class: "text-white" %>
         <!-- nested form for by 3rd table -->
@@ -77,13 +73,35 @@ padding-right:15px;
         </div>
       </div>
       </div>
+      <div style="padding-left: 4%;" class="form-inline">
+        <input type="checkbox" id="inprogress_id">
+        <p style="margin-bottom: 0px;color: #cfdeea;">currently running</p>
+      </div>
       <script>
         // its seem i can do without using getElementById
+        e = document.getElementById("end_date_id")
         function updateEndDate()
          {
         end_date_id.value = end_date_id.min = start_date_id.value
          }
       start_date_id.addEventListener('change', updateEndDate);
+
+        //  check box disabled , blank
+        function endDateDisable()
+        {
+          if( inprogress_id.checked == true)
+          {
+            e.value = ""
+            e.disabled = true;
+          }
+          else
+          {
+            e.disabled = false ;
+            updateEndDate()
+          }
+        } 
+        inprogress_id.addEventListener('change', endDateDisable);
+        
       </script>
 
 <div class="form-group">

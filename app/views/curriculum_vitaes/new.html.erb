@@ -1,7 +1,24 @@
+<div style="text-align: center">
 <h1>New curriculum_vitae</h1>
 <div class="card" style="margin: 0% 20% 0% 20%">
   <div class="card-body bg-secondary"><%= render "form", curriculum_vitae: @curriculum_vitae %></div>
 </div>
+<script>
+core_select = document.getElementById("core_tech_select_id");
+
+core_select.innerHTML = core_select.innerHTML+ '<option value="+" label="+" id="core_opt"></option>'
+  o =  document.getElementById("core_opt")
+  
+  core_select.addEventListener('click', () => {
+  if (core_select.value === "+") {
+    core_select.selectedIndex = 0;
+  }
+});
+
+
+</script>
+<%= render "shared/add_core_tech" %>
 <div>
   <%= link_to "Back to CV Index", curriculum_vitaes_path %>
+</div>
 </div>

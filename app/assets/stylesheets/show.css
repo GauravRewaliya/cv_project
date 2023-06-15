@@ -48,16 +48,15 @@ p{
     /* display: grid;
     place-items: center; */
 }
-/* h5{ */
-    /* height: 40px; */
-    /* width: 100%;
-    border: none;
-    outline: none;
-    border-radius: 30px;
-    padding: 0 0 0 20px;
-    opacity: 90%;
-    color: black; */
-/* } */
 ::-webkit-input-placeholder{
     color: rbg(49,48,48);
+}
+.pos_r {
+    position: absolute;
+    top: 8px;
+    right: 8%;
+}
+.pos_l {
+    position: absolute;
+    left: 12%;
 }

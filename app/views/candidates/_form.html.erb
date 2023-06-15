@@ -1,4 +1,4 @@
-<h1>New Candidate</h1>
+<h2>Candidate</h2>
 <%= form_with(model: @candidate) do |form| %>
   <table class="table">
   <div class="field">
@@ -54,6 +54,6 @@
   <% end %>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "btn-primary"%>
   </div>
 <% end %>

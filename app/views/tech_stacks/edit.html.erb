@@ -1,11 +1,13 @@
-<h1>Editing tech_stack // skill</h1>
+<%= stylesheet_link_tag  "edit" %>
+<h1 class="pos_l">Editing tech_stack // skill</h1>
 <div class="card" style="margin: 0% 20% 0% 20%">
   <div class="card-body bg-secondary"><%= render "form", tech_stack: @tech_stack %></div>
 </div>
 
 <br>
 
-<div>
-  <%= link_to "Show this tech_stack", @tech_stack  %> |
-  <%= link_to "Back to tech_stacks", tech_stacks_path %>
+
+<div style="position: relative;">
+  <%= link_to "Show this tech_stack", @tech_stack ,class: "pos_r" %>
+  <%= link_to "arrow_back", tech_stacks_path ,class:"pos_l material-symbols-outlined" %>
 </div>

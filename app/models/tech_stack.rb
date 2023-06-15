@@ -1,7 +1,8 @@
 class TechStack < ApplicationRecord
-    has_many :project_supportive_techs , dependent: :destroy
-    has_many :projects, through: :project_supportive_techs
-
+    # has_many :project_supportive_techs , dependent: :destroy
+    # has_many :projects, through: :project_supportive_techs
+      has_many :project_core_techs
+      has_many :projects, through: :project_core_techs
     # belongs_to :project ,optional: true
     before_destroy :destroy_with_associations
     

@@ -3,8 +3,9 @@
 
 <div class="card text-center" >
   <div class="card-header">
-    
-  </div>
+    <h3>
+      <strong>Skill</strong>
+    </h3>
   <div class="card-body">
 <div class="formBox">
   <div class="formContainer">
@@ -16,20 +17,16 @@
   <strong>Desc:</strong>
   <%= @tech_stack.desc %>
 </p>
-<p>
-  <strong>Projects:</strong>
-  <br>
-  <% @tech_stack.projects.each do |project| %>
-  <%= project.title+", " %>
-  <%end%>
-</p>
-</div>
-</div>
-</div>
-</div>
-<div>
-  <%= link_to "Edit this skill", edit_tech_stack_path(@tech_stack) %> |
-  <%= link_to "Back to skills", tech_stacks_path %>
 
-  <%= button_to "Destroy this skill", @tech_stack, method: :delete ,class:"btn btn-primary btn-sm mt-4"%>
+</div>
+</div>
+</div>
+
+<div class="card-footer text-muted" style="position: relative;">
+    
+  <%= link_to "Edit this tech_stack", edit_tech_stack_path(@tech_stack) %>
+  
+  <%= link_to "arrow_back", tech_stacks_path ,class:"pos_l material-symbols-outlined"  %>
+  <%= button_to "Destroy this tech_stack", @tech_stack, method: :delete ,class:"btn btn-outline-danger pos_r"%>
+</div>
 </div>

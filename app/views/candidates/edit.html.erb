@@ -1,11 +1,12 @@
-<h1 class="header_gr">Editing candidate</h1>
+<%= stylesheet_link_tag  "edit" %>
+<h1 >Editing candidate</h1>
 <div class="card" style="margin: 0% 20% 0% 20%">
   <div class="card-body bg-secondary"><%= render "form", candidate: @candidate %></div>
 </div>
 
 <br>
 
-<div>
-  <%= link_to "Show this candidate", @candidate  %> |
-  <%= link_to "Back to candidates", candidates_path %>
+<div style="position: relative;">
+  <%= link_to "Show this candidate", @candidate ,class: "pos_r" %>
+  <%= link_to "arrow_back", candidates_path ,class:"pos_l material-symbols-outlined"  %>
 </div>

@@ -26,6 +26,7 @@ class ProjectsController < ApplicationController
 
     @project.created_by = current_user.email
     @project.updated_by = current_user.email
+    
     respond_to do |format|
       if @project.save
         format.html { redirect_to project_url(@project), notice: "Project was successfully created." }
@@ -38,21 +39,13 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    #  need to managed...
-
-    # a = project_params
-    # project_params[:tech_stack_ids] = project_params[:tech_stack_ids].reject(&:empty?)
-
+    if project_params[:project_core_tech_attributes][:tech_stack_id].blank?
+      @project.core_skill = nil
+    end
+    @project.updated_by = current_user.email
 
     respond_to do |format|
-      if project_params[:project_core_tech_attributes][:tech_stack_id].blank?
-        @project.core_skill = nil
-      end
-
-      @project.updated_by = current_user.email
       if @project.update(project_params)
-        #  @project.core_skill = Project.find_by(id: params[:core_skill_id])
-        #  @project.save
         format.html { redirect_to project_url(@project), notice: "Project was successfully updated." }
         format.json { render :show, status: :ok, location: @project }
       else
@@ -82,5 +75,6 @@ class ProjectsController < ApplicationController
     # end
     def project_params
       params.require(:project).permit(:team_size , :role ,  :title, :desc,:start_date ,:end_date, project_domain_attributes: [:domain_id],project_core_tech_attributes: [:tech_stack_id],supportive_skill_ids:[])
+      # params.permit(:team_size ) // need expriment
     end
 end

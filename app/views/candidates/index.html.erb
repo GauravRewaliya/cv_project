@@ -1,7 +1,8 @@
 <div style="position: relative;">
 <h1 class="pos_l">Candidates</h1>
+
 <form action="candidates" class="form-inline pos_r">
-  <input type="text" name="search" placeholder="Search" class="form-control form-control-lg">
+  <input type="text" name="search" placeholder="Search" class="form-control mr-sm-2 form-control-lg">
   <button type="submit" class="btn btn-lg btn-success">Search</button>
 </form>
 </div>
@@ -26,7 +27,7 @@
     <td><p><%= candidate.profile.contact %></p></td>
     <td><p><%= candidate.profile.address %></p></td>
     
-    <td><%= link_to "Edit", edit_candidate_path(candidate) %></td>
+    <td><%= link_to "Edit", edit_candidate_path(candidate) ,class: "material-symbols-outlined" %></td>
     <td><%= button_to "Delete" , candidate , method: :delete ,class: "btn-primary"%></td>
     <td>
     <p>

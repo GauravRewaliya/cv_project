@@ -6,13 +6,6 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-      
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
-    <%#
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-
-    
-
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -56,6 +49,16 @@
     /* background-color: #6c757d!important; */
     background: linear-gradient(45deg, #744848f5, #77d8c9bf);
     }
+
+    .pos_l{    
+    position: relative;
+    left: 57px;
+    }
+    .pos_r{
+    position: absolute;
+    top: 0;
+    right: 49px;
+    }
   </style>
     <div>
       <% if user_signed_in? %>
@@ -69,19 +72,9 @@
     <p style="color: red" class="alert"><%= alert %></p>
        <% end%>
       
+
     <%= yield %>
   <!-- </div> -->
-  <style>
-    .pos_l{    
-    position: relative;
-    left: 57px;
-    }
-    .pos_r{
-    position: absolute;
-    top: 0;
-    right: 49px;
-    }
 
-  </style>
   </body>
 </html>

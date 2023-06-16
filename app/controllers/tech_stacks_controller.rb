@@ -2,10 +2,19 @@ class TechStacksController < ApplicationController
   before_action :set_tech_stack, only: %i[ show edit update destroy ]
 
   def index
-    if !params['search'].blank?
-    @tech_stacks = TechStack.where('lower(title) LIKE ?' ,"%"+params['search']+"%" )
+   
+    if !params['tech_type'].blank?
+      if params['tech_type'] == '1'
+        @tech_stacks = TechStack.core_skills
+      else
+        @tech_stacks = TechStack.supportive_skills
+      end
     else
-    @tech_stacks = TechStack.all
+       @tech_stacks = TechStack.all
+    end
+
+    if !params['search'].blank?
+    @tech_stacks = @tech_stacks.where('lower(title) LIKE ?' ,"%"+params['search']+"%" )
     end
   end
 
@@ -68,6 +77,6 @@ class TechStacksController < ApplicationController
 
     
     def tech_stack_params
-      params.require(:tech_stack).permit(:title, :desc , project_ids: [])
+      params.require(:tech_stack).permit( :tech_type ,:title, :desc , project_ids: [])
     end
 end

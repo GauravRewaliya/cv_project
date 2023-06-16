@@ -3,24 +3,40 @@
     <div style="color: red">
       <h2><%= pluralize(tech_stack.errors.count, "error") %> errors found , cant be save</h2>
 
-      <ul>
+      <!-- <ul>
         <% tech_stack.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
-      </ul>
+      </ul> -->
     </div>
   <% end %>
-
-  <div class="form-group">
-    <%= form.label :title, style: "display: block" ,class: "text-white" %>
+    <div class="row">
+  
+      <%= form.label :Tech_type ,class: "text-white col-2" %>
+  <div class="col-5">
+    <div class="form-inline">
+      <%= form.radio_button :tech_type, 1 %>
+      <%= form.label "core Tech", style: "display: block" ,class: "text-white" %>
+    </div>
+    
+    <div class="form-inline">
+      <%= form.radio_button :tech_type, 2 %>
+      <%= form.label "supportive Tech", style: "display: block" ,class: "text-white" %>
+    </div>
+  </div>
+</div>
+  <div >
+    <%= form.label :title ,class: "text-white" %>
     <%= form.text_field :title ,style: "width: 100%;text-align: center;" ,class: "form-control"%>
   </div>
-
+ 
+    
   <div class="form-group">
     <%= form.label :desc, style: "display: block" ,class: "text-white"%>
     <%= form.text_area :desc ,style: "width: 100%;text-align: center;height: 100px;"%>
   </div>
  
+
   <div>
     <%= form.submit class: 'btn-primary'%>
   </div>

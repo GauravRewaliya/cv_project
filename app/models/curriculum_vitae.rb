@@ -26,9 +26,9 @@ class CurriculumVitae < ApplicationRecord
   
   accepts_nested_attributes_for :curriculum_vitae_core_tech , reject_if: :all_blank
   
-  before_validation :debug_before_validation
+  # before_validation :debug_before_validation
 
-  def debug_before_validation
-    debugger
-  end
+  # def debug_before_validation
+  #   debugger
+  # end
 end

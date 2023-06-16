@@ -1,11 +1,14 @@
+<%= stylesheet_link_tag  "edit" %>
 
 <div class="card" style="margin: 0% 20% 0% 20%">
-  <div class="card-body bg-secondary"><%= render "form", candidate: @candidate %></div>
+  <div class="card-body bg-secondary">
+    <%= render "form", candidate: @candidate %>
+  </div>
 
 </div>
 
 <br>
 
-<div>
-  <%= link_to "Back to candidates", candidates_path %>
+<div style="position: relative;">
+  <%= link_to "arrow_back", candidates_path ,class:"pos_l material-symbols-outlined"%>
 </div>

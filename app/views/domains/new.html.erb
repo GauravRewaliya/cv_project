@@ -1,3 +1,5 @@
+<%= stylesheet_link_tag  "edit" %>
+
 <h1>New domain</h1>
 <div class="card" style="margin: 0% 20% 0% 20%">
   <div class="card-body bg-secondary"><%= render "form", domain: @domain %></div>
@@ -5,6 +7,6 @@
 
 <br>
 
-<div>
-  <%= link_to "Back to domains", domains_path %>
+<div style="position: relative;">
+  <%= link_to "arrow_back", domains_path ,class:"pos_l material-symbols-outlined"%>
 </div>

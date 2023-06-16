@@ -1,13 +1,13 @@
 <%= form_with(model: tech_stack) do |form| %>
   <% if tech_stack.errors.any? %>
-    <div style="color: red">
+  <div class="alert alert-warning" role="alert">
       <h2><%= pluralize(tech_stack.errors.count, "error") %> errors found , cant be save</h2>
 
-      <!-- <ul>
+      <ul>
         <% tech_stack.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
-      </ul> -->
+      </ul>
     </div>
   <% end %>
     <div class="row">
@@ -28,6 +28,10 @@
   <div >
     <%= form.label :title ,class: "text-white" %>
     <%= form.text_field :title ,style: "width: 100%;text-align: center;" ,class: "form-control"%>
+    <%#  <%= form.error_message_on :title, class: 'error-message' %>
+    <%#  <%= error_message_on "tech_stack", "title" %>
+
+    <%#  <%= form.error :title %>
   </div>
  
     

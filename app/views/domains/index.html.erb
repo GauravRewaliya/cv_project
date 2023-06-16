@@ -18,11 +18,7 @@
     <td><p><%= domain.title %></p></td>
     <td><%= link_to "Edit", edit_domain_path(domain),class: "material-symbols-outlined" %></td>
     <td><%= button_to "Delete" , domain , method: :delete ,class: "btn-primary"%></td>
-    <!-- <td>
-    <p>
-      <%#<%= link_to "Show this domain", domain %>
-    </p>
-  </td> -->
+
   </tr>
   <% end %>
   </table>
@@ -30,5 +26,4 @@
 
 <div style="position: relative;">
 <%= link_to "New domain", new_domain_path,class: 'btn btn-primary pos_r' %>
-<!-- <%= link_to "Home", home_index_path,class: 'btn btn-primary pos_l' %> -->
 </div>

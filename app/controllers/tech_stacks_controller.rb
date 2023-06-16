@@ -1,8 +1,7 @@
 class TechStacksController < ApplicationController
   before_action :set_tech_stack, only: %i[ show edit update destroy ]
 
-  def index
-   
+  def index  
     if !params['tech_type'].blank?
       if params['tech_type'] == '1'
         @tech_stacks = TechStack.core_skills
@@ -22,7 +21,6 @@ class TechStacksController < ApplicationController
   def show
   end
 
-  
   def new
     @tech_stack = TechStack.new
   end

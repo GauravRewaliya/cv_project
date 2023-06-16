@@ -7,23 +7,9 @@ padding-right:15px;
 }
 </style>
 
-  <!-- <div class="form-group">
-    <div class="row">
-      <div class="col-6">
-        <label style="display: block" class="text-white">Created_by</label>
-        <input class="form-control" type="text" value="<%= project.created_by %>" disabled>
-      </div>
-      <div class="col-6">
-        <label style="display: block" class="text-white">Updating_by</label>
-        <input class="form-control" type="text" value="<%= current_user.email %>" disabled>
-     </div>
-    </div>
-    </div> -->
-    
-    <!-- //    created_by updated_by -->
 <%= form_with(model: project) do |form| %>
   <% if project.errors.any? %>
-    <div style="color: red">
+  <div class="alert alert-warning" role="alert">
 
       <ul>
         <% project.errors.each do |error| %>

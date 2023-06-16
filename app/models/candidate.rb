@@ -1,11 +1,15 @@
 class Candidate < ApplicationRecord
+    validates :name , :employ_id , presence: true
+            # profile got no effect
+    before_destroy :delete_fun
+
     has_one :profile , dependent: :destroy
-    accepts_nested_attributes_for :profile
-    #cand hasmany cv so i delete cv releted to it
+
     has_many :candidate_curriculum_vitaes 
     has_many :curriculum_vitaes , through: :candidate_curriculum_vitaes
-
-    before_destroy :delete_fun
+    
+    accepts_nested_attributes_for :profile
+    
     def delete_fun
         #destroy all cvs related to candidate
         a_ids = self.curriculum_vitae_ids

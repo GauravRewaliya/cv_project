@@ -1,4 +1,18 @@
-<h2>Candidate</h2>
+
+<% if @candidate.errors.any? %>
+<div class="alert alert-warning" role="alert">
+
+    <ul>
+      <% @candidate.errors.each do |error| %>
+        <li>
+          <%= error.full_message %>
+        </li>
+        <% end %>
+      </ul>
+  </div>
+  <% end %>
+  
+  <h2>Candidate</h2>
 <%= form_with(model: @candidate) do |form| %>
   <table class="table">
   <div class="field">
@@ -27,7 +41,7 @@
     <div class="field">
       <tr>
         <td><%= profile_form.label :contact %></td>
-      <td><%= profile_form.text_field :contact %></td>
+      <td><%= profile_form.number_field :contact %></td>
     </tr>
   </div>
 

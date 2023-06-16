@@ -40,7 +40,6 @@
    {
     border: 2px solid black;
    }
-   /* .table_gr table tbody tr:first-child.class_gr */
    .table_gr table tbody tr:first-child
    {
     background-color: #43a5b0;
@@ -59,6 +58,10 @@
     top: 0;
     right: 49px;
     }
+    .btn-primary
+    {
+      /* border-radius: 25px; */
+    }
   </style>
     <div>
       <% if user_signed_in? %>
@@ -67,10 +70,13 @@
      <% end %>
     </div>
     <!-- <div style="text-align: center"> -->
-      <% if notice || alert%>
-    <p style="color: green" class="notice"><%= notice %></p>
+
+      <% if notice %>
+      <p style="color: green" class="notice"><%= notice %></p>
+      <% end%>
+      <% if alert %>
     <p style="color: red" class="alert"><%= alert %></p>
-       <% end%>
+    <% end%>
       
 
     <%= yield %>

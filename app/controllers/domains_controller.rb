@@ -57,10 +57,7 @@ class DomainsController < ApplicationController
   def set_domain
       @domain = Domain.find(params[:id])
     end
-
-    # def domain_params
-    #   params.require(:domain).permit(:title, :desc,supportive_skill_ids:[])
-    # end
+    
     def domain_params
       params.require(:domain).permit(:title, :desc,:start_date ,:end_date, domain_core_tech_attributes: [:tech_stack_id],supportive_skill_ids:[])
     end

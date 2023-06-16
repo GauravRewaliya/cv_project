@@ -19,10 +19,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    # a = project_params
-    # project_params[:tech_stack_ids] = project_params[:tech_stack_ids].reject(&:empty?)
     @project = Project.new(project_params)
-    # @project.core_skill = Project.find_by(id: params[:core_skill_id])
 
     @project.created_by = current_user.email
     @project.updated_by = current_user.email
@@ -69,12 +66,7 @@ class ProjectsController < ApplicationController
   def set_project
       @project = Project.find(params[:id])
     end
-
-    # def project_params
-    #   params.require(:project).permit(:title, :desc,supportive_skill_ids:[])
-    # end
     def project_params
       params.require(:project).permit(:team_size , :role ,  :title, :desc,:start_date ,:end_date, project_domain_attributes: [:domain_id],project_core_tech_attributes: [:tech_stack_id],supportive_skill_ids:[])
-      # params.permit(:team_size ) // need expriment
     end
 end

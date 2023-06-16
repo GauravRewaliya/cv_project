@@ -1,14 +1,8 @@
-<%#<%= helper CvHelper %>  
-<!-- only defined in controller only  -->
 
-
-<%#<%= form_with(model: curriculum_vitae  , remote: true )do |form| %>
-<%#<%= form_with(model: curriculum_vitae ,html: {target: "_blank"} )do |form| %>
 <%= form_with(model: curriculum_vitae )do |form| %>
 
 <% if curriculum_vitae.errors.any? %>
 <div class="alert alert-warning" role="alert">
-    <!-- <div style="color: #b53535"> -->
       <h2>
         <%= pluralize(curriculum_vitae.errors.count, "error" ) %> errors found , cant be save
       </h2>
@@ -20,10 +14,11 @@
           </li>
           <% end %>
       </ul>
-    </div>
+</div>
     <% end %>
 
-
+      <div class="row">
+<div class="col-md6">
       <div>
         <%= form.label "Candidate ID" , style: "display: block" ,class: "text-white" %>
           <%= collection_select( nil , :candidate_id, Candidate.all, :id, :name, { include_blank: true ,selected:
@@ -45,7 +40,9 @@
         <%= form.label "Experience" , style: "display: block" ,class: "text-white" %>
           <%= form.number_field :experience ,style: "width: 100%;text-align: center;" ,class: "form-control" %>
       </div>
+    </div>
 
+    <div class="col-md-6">
       <div>
         <%= form.label "Core Skill" , style: "display: block" ,class: "text-white" %>
           <!-- <%= collection_select( nil , :core_skill_id, TechStack.all, :id, :title, { include_blank: true ,selected: curriculum_vitae.core_skill&.id } )%> -->
@@ -62,40 +59,20 @@
           <%= form.collection_select(:supportive_skill_ids, TechStack.supportive_skills, :id, :title , {}, { multiple: true,
             include_blank: false ,id: 'supportive_skill' }) %>
             <script>
-              new MultiSelectTag('supportive_skill')  // id
+              new MultiSelectTag('supportive_skill')
             </script>
-      </div>
-          <!-- normal multipal select  -->
-      <!-- <div>
-  <%= form.label "Projects", style: "display: block" ,class: "text-white"%>
-  <%= form.collection_select(:project_ids, Project.all, :id, :title , {}, { multiple: true,  include_blank: false ,id: 'selectgr' }) %>
-<script>
-  new MultiSelectTag('selectgr')  // id
-</script>
-  </div> -->
-
-          <!-- group by select by manual  -->
-      <div>
-        <%= form.label "Projects", style: "display: block" ,class: "text-white"%>
-        <!-- <select multiple name="curriculum_vitae[project_ids][]" > -->
-        <select multiple name="curriculum_vitae[project_ids][]" class="selectpicker show-menu-arrow form-control" data-live-search="true">
-          <% TechStack.core_skills.each do |core_skill|%>
-            <% if core_skill.projects.count> 0 %>
-              <optgroup label=<%=core_skill.title%>>
-                <% core_skill.projects.each do |project|%>
-                  <option value=<%=project.id %>> <%= project.title%>
-                  </option>
-                  <%end%>
-              </optgroup>
-            <%end%>
-          <%end%>
-        </select>
       </div>
       
       <!-- by using grouped_options_for_select  // at hepler method -->
       <div>
         <%= form.label "Projects", style: "display: block" ,class: "text-white"%>
-        <%= form.select(:project_ids, grouped_options_for_select(helper_grouped_projects_options), {}, { multiple: true,  include_blank: false ,id: 'selectgr' }) %>
+        <%= form.select(:project_ids, grouped_options_for_select(helper_grouped_projects_options), {}, { multiple: true,  include_blank: false ,id: 'selectgr' ,class: "selectpicker show-menu-arrow form-control" , 'data-live-search':"true" }) %>
+        <!-- <div > -->
+          <% curriculum_vitae.errors[:projects].each do |message| %>
+            <span style="background: cornsilk; color: red; border-radius: 5px;"> <%= message %> </span>
+          <%end%>
+
+        <!-- </div> -->
       </div>
       
       <!-- https://developer.snapappointments.com/bootstrap-select/examples/ -->
@@ -111,12 +88,8 @@
         <%= form.label "select profile image" , class: "text-white" %>
           <%= form.file_field :image ,class: "form-control" %>
       </div>
-
-      <!-- <div>
-    <%= form.label "Layout", style: "display: block" ,class: "text-white"%>
-    <%#<%= collection_select( nil , :template_format_id, TemplateFormat.all, :id, :name, { include_blank: true,selected: @curriculum_vitae.template_format&.id} )%>
-  </div> -->
-
+    </div>
+    </div>
       <div>
         <%= form.label "Layout" , style: "display: block" ,class: "text-white" %>
           <% template_files=Dir.glob(Rails.root.join('app', 'views' , 'HTML_templates' , '*.html.erb' )) %>

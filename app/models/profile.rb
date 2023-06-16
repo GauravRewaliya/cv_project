@@ -1,13 +1,12 @@
 class Profile < ApplicationRecord
-  # belongs_to :skill
-  #  has_one :skill
-  #  has_one :Tag_stack
-
-  # validates :candidate, presence: true
-  # validates :candidate, uniqueness: true
-
-  # belongs_to :candidate, optional: true
-
+  validates :gender ,:address, presence: true
+  # cont 
+  # email
+  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i,message: "not a valid email address"}  
+                                                                                          # on: ,without:
+  validates :contact ,:presence => true,
+                        :numericality => true,
+                          :length => {is: 10}
   belongs_to :candidate
 
 end

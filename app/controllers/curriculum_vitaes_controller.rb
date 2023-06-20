@@ -4,7 +4,14 @@ class CurriculumVitaesController < ApplicationController
 
   def index
     if !params['search'].blank?
-      @curriculum_vitaes = CurriculumVitae.where('lower(id) LIKE ?' ,"%"+params['search']+"%" )
+      # cs = Candidate.all
+      # cs_ids = cs.pluck(:id)
+      # CurriculumVitae.where(candidate_id: cs_ids)
+
+      
+      # CurriculumVitae.joins(:candidate).where(candidates: { name: 'GauravRR' })
+     @curriculum_vitaes =  CurriculumVitae.joins(:candidate).where('lower(candidates.name) LIKE ?' ,"%#{params['search'].downcase}%" )
+      # @curriculum_vitaes = CurriculumVitae.where('lower(name) LIKE ?' ,"%#{params['search'].downcase}%" )
       else
       @curriculum_vitaes = CurriculumVitae.all
       end

@@ -3,6 +3,8 @@
 
 <div class="card text-center" >
   <div class="card-header">
+    <%= link_to "arrow_back", tech_stacks_path ,class:"pos_l material-symbols-outlined"  %>
+ 
     <h3>
       <strong>Skill</strong>
     </h3>
@@ -30,7 +32,6 @@
     
   <%= link_to "Edit this tech_stack", edit_tech_stack_path(@tech_stack) %>
   
-  <%= link_to "arrow_back", tech_stacks_path ,class:"pos_l material-symbols-outlined"  %>
-  <%= button_to "Destroy this tech_stack", @tech_stack, method: :delete ,class:"btn btn-outline-danger pos_r"%>
+   <%= button_to "Destroy this tech_stack", @tech_stack, method: :delete ,class:"btn btn-outline-danger pos_r"%>
 </div>
 </div>

@@ -5,8 +5,10 @@ class Candidate < ApplicationRecord
 
     has_one :profile , dependent: :destroy
 
-    has_many :candidate_curriculum_vitaes 
-    has_many :curriculum_vitaes , through: :candidate_curriculum_vitaes
+    # has_many :candidate_curriculum_vitaes 
+    # has_many :curriculum_vitaes , through: :candidate_curriculum_vitaes
+    
+    has_many :curriculum_vitaes
     
     accepts_nested_attributes_for :profile
     

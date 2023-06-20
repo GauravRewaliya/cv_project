@@ -6,30 +6,49 @@
   <button type="submit" class="btn btn-lg btn-success">Search</button>
 </form>
 </div>
+<style>
+  @media (max-width: 768px) {
+    /* table-layout: ; */
+    table th:not(.needCol) , table td:not(.needCol)
+    {
+      display: none;
+    }
+  }
+  @media (max-width: 1100px) {
+    table th.hideOnNeed , 
+    table td.hideOnNeed {
+      display: none;
+    }
+  }
+  table 
+    { width: 100%;
+    }
+
+</style>
 <div class="table_gr" >
-  <table border=1 class="table table-hover table-striped " , style="border: 2px solid black;">
+  <table border=1 class="table table-hover table-striped ">
     <tr style=" color: white">
-      <th>name</th>
-      <th>employ_id</th>
-      <th>email</th>
-      <th>contact</th>
-      <th>address</th>
-      <th>Edit</th>
-      <th>Delete</th>
-      <th>Show</th>
+      <th class="needCol">name</th>
+      <th class="hideOnNeed">employ_id</th>
+      <th >email</th>
+      <th >contact</th>
+      <th class="hideOnNeed">address</th>
+      <th class="needCol">Edit</th>
+      <th class="needCol">Delete</th>
+      <th class="needCol">Show</th>
     </tr>
   <% @candidates.each do |candidate| %>
   <tr>
-    <td ><h6><%= candidate.name %></h6></td>
-    <td><p><%= candidate.employ_id %></p></td>
+    <td  class="needCol"><h6><%= candidate.name %></h6></td>
+    <td class="hideOnNeed"><p><%= candidate.employ_id %></p></td>
     
     <td><p><%= candidate.profile.email %></p></td>
     <td><p><%= candidate.profile.contact %></p></td>
-    <td><p><%= candidate.profile.address %></p></td>
+    <td class="hideOnNeed"><p><%= candidate.profile.address %></p></td>
     
-    <td><%= link_to "Edit", edit_candidate_path(candidate) ,class: "material-symbols-outlined" %></td>
-    <td><%= button_to "Delete" , candidate , method: :delete ,class: "btn-primary"%></td>
-    <td>
+    <td  class="needCol"><%= link_to "Edit", edit_candidate_path(candidate) ,class: "material-symbols-outlined" %></td>
+    <td  class="needCol"><%= button_to "Delete" , candidate , method: :delete ,class: "btn-primary"%></td>
+    <td  class="needCol">
     <p>
       <%= link_to "Show this candidate", candidate %>
     </p>

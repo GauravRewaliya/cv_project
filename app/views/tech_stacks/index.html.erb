@@ -29,7 +29,7 @@
   <input type="text" name="search" placeholder="Search" class="form-control mr-sm-2 form-control-lg">
   <button type="submit" class="btn btn-lg btn-success">Search</button>
     </div>
-  <div style="display: flex; margin-top: 9px;">
+  <div style="display: flex; margin-top: 3px;">
     <div><input type="radio" name="tech_type" value="1">Core_skills</div>
     <div><input type="radio" name="tech_type" value="2">Supportive_skills</div>
     <div><input type="radio" name="tech_type" value="">All Skills</div>
@@ -39,7 +39,7 @@
 
 
 <div class="table_gr" >
-  <table border=1 class="table table-hover table-striped " , style="border: 2px solid black;">
+  <table border=1 class="table table-hover table-striped " , style="border: 2px solid #626262;">
     <tr style="color:White">
       <th>Title</th>
       <th>Description</th>
@@ -47,15 +47,16 @@
       <th>Delete</th>
       <th>Show</th>
     </tr>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
   <% @tech_stacks.each do |tech_stack| %>
   <tr>
     <td ><h6><%= tech_stack.title %></h6></td>
     <td><p><%= tech_stack.desc %></p></td>
     <td><%= link_to "Edit", edit_tech_stack_path(tech_stack),class: "material-symbols-outlined" %></td>
-    <td><%= button_to "Delete" , tech_stack , method: :delete ,class: "btn-sm btn-danger"%></td>
+    <td><%= button_to "" , tech_stack , method: :delete ,class: "fa-solid fa-trash alert-light "%></td>
     <td>
     <p>
-      <%= link_to "Show ", tech_stack %>
+      <%= link_to "", tech_stack , class: "fa fa-info-circle " , style: "font-size: x-large;"%>
     </p>
   </td>
   </tr>

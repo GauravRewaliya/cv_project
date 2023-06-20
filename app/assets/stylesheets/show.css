@@ -11,6 +11,11 @@
     
     align-items: center;
 }
+.formContainer
+{
+    padding-left: 5%;
+    padding-right: 5%;
+}
 h5{
     position: relative;
     color: black;
@@ -58,5 +63,7 @@ p{
 }
 .pos_l {
     position: absolute;
-    left: 12%;
+    /* margin-left: 12%; */
+    /* back */
+    left: 0;
 }

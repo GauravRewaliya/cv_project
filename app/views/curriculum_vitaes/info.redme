@@ -3,7 +3,10 @@
 // img
   <img src="<%= url_for(@curriculum_vitae.image.variant(resize_to_limit: [nil, 120])) %>"
                     alt="not found" class="img-thumbnail rounded-circle " style="height: 130px; width: 150px;">
-               
+
+    <%= curriculum_vitae.profile_desc %>  
+    <%= curriculum_vitae.experience %>  
+
     //candidate
         <%= curriculum_vitae.candidate&.name %>
         //curriculum_vitae

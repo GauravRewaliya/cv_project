@@ -5,12 +5,13 @@ class CurriculumVitae < ApplicationRecord
   validates :projects  , presence: true
   validates :experience, numericality: {greater_than_or_equal_to: 0 ,allow_nil: true}
 
+    belongs_to :candidate
   
      has_many :project_curriculum_vitaes ,dependent: :destroy
      has_many :projects , through: :project_curriculum_vitaes
   
-    has_one :candidate_curriculum_vitae , dependent: :destroy
-    has_one :candidate , through: :candidate_curriculum_vitae
+    # has_one :candidate_curriculum_vitae , dependent: :destroy
+    # has_one :candidate , through: :candidate_curriculum_vitae
     
     has_one_attached :image
     

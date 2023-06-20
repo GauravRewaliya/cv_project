@@ -3,6 +3,7 @@
 
 <div class="card text-center" >
   <div class="card-header">
+    <%= link_to "arrow_back", candidates_path ,class:"pos_l material-symbols-outlined"  %>
     <h3>
       <strong>Candidate</strong>
     </h3>
@@ -42,11 +43,11 @@
   </div>
   
   
-<div class="card-footer text-muted" style="position: relative;">
-  
-  <%= link_to "Edit this candidate", edit_candidate_path(@candidate) %>
-  
-  <%= link_to "arrow_back", candidates_path ,class:"pos_l material-symbols-outlined"  %>
-  <%= button_to "Destroy this candidate", @candidate, method: :delete ,class:"btn btn-outline-danger pos_r"%>
-</div>
+  <div class="card-footer text-muted" style="position: relative;">
+    
+    
+    <%= link_to "Edit this candidate", edit_candidate_path(@candidate) %>
+    
+    <%= button_to "Destroy this candidate", @candidate, method: :delete ,class:"btn btn-outline-danger pos_r"%>
+  </div>
 </div>

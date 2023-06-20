@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_15_135650) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_19_094727) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -37,15 +37,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_135650) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
-  end
-
-  create_table "candidate_curriculum_vitaes", force: :cascade do |t|
-    t.integer "candidate_id", null: false
-    t.integer "curriculum_vitae_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["candidate_id"], name: "index_candidate_curriculum_vitaes_on_candidate_id"
-    t.index ["curriculum_vitae_id"], name: "index_candidate_curriculum_vitaes_on_curriculum_vitae_id"
   end
 
   create_table "candidates", force: :cascade do |t|
@@ -82,6 +73,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_135650) do
     t.string "profile_desc"
     t.integer "experience"
     t.string "template_name"
+    t.integer "candidate_id"
+    t.index ["candidate_id"], name: "index_curriculum_vitaes_on_candidate_id"
   end
 
   create_table "cv_templates", force: :cascade do |t|
@@ -188,12 +181,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_135650) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "candidate_curriculum_vitaes", "candidates"
-  add_foreign_key "candidate_curriculum_vitaes", "curriculum_vitaes"
   add_foreign_key "curriculum_vitae_core_teches", "curriculum_vitaes"
   add_foreign_key "curriculum_vitae_core_teches", "tech_stacks"
   add_foreign_key "curriculum_vitae_supportive_teches", "curriculum_vitaes"
   add_foreign_key "curriculum_vitae_supportive_teches", "tech_stacks"
+  add_foreign_key "curriculum_vitaes", "candidates"
   add_foreign_key "cv_templates", "curriculum_vitaes"
   add_foreign_key "cv_templates", "template_formats"
   add_foreign_key "profiles", "candidates"

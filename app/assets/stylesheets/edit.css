@@ -1,6 +1,10 @@
-.pos_l ,h1 {
+.pos_l ,h1{
     position: relative;
-    left: 15%;
+    margin-left: 16%;
+}
+.h_pos_l ,h1
+{   
+    padding-left: 3%;
 }
 .pos_r {
     position: absolute;

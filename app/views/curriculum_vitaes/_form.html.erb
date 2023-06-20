@@ -1,8 +1,7 @@
-
 <%= form_with(model: curriculum_vitae )do |form| %>
 
-<% if curriculum_vitae.errors.any? %>
-<div class="alert alert-warning" role="alert">
+  <% if curriculum_vitae.errors.any? %>
+    <div class="alert alert-warning" role="alert">
       <h2>
         <%= pluralize(curriculum_vitae.errors.count, "error" ) %> errors found , cant be save
       </h2>
@@ -14,14 +13,13 @@
           </li>
           <% end %>
       </ul>
-</div>
+    </div>
     <% end %>
 
-      <div class="row">
-<div class="col-md6">
+
       <div>
         <%= form.label "Candidate ID" , style: "display: block" ,class: "text-white" %>
-          <%= collection_select( nil , :candidate_id, Candidate.all, :id, :name, { include_blank: true ,selected:
+          <%= form.collection_select(:candidate_id, Candidate.all, :id, :name, { include_blank: true ,selected:
             @curriculum_vitae.candidate&.id} ,{required: true})%>
       </div>
 
@@ -40,62 +38,56 @@
         <%= form.label "Experience" , style: "display: block" ,class: "text-white" %>
           <%= form.number_field :experience ,style: "width: 100%;text-align: center;" ,class: "form-control" %>
       </div>
-    </div>
 
-    <div class="col-md-6">
       <div>
         <%= form.label "Core Skill" , style: "display: block" ,class: "text-white" %>
           <!-- <%= collection_select( nil , :core_skill_id, TechStack.all, :id, :title, { include_blank: true ,selected: curriculum_vitae.core_skill&.id } )%> -->
 
-          <%= form.fields_for :curriculum_vitae_core_tech_attributes, curriculum_vitae.curriculum_vitae_core_tech do
-            |cs| %>
-            <%= cs.collection_select :tech_stack_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{
-              id: "core_tech_select_id" }%>
-              <% end %>
+          <%= form.fields_for :curriculum_vitae_core_tech_attributes, curriculum_vitae.curriculum_vitae_core_tech do  |cs| %>
+            <%= cs.collection_select :tech_stack_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{ id: "core_tech_select_id" }%>
+          <% end %>
       </div>
       <!-- skills ++ -->
       <div>
         <%= form.label :supportive_skills, style: "display: block" ,class: "text-white" %>
-          <%= form.collection_select(:supportive_skill_ids, TechStack.supportive_skills, :id, :title , {}, { multiple: true,
-            include_blank: false ,id: 'supportive_skill' }) %>
+          <!-- <%= form.collection_select(:supportive_skill_ids, TechStack.supportive_skills, :id, :title , {}, { multiple: true, include_blank: false ,id: 'supportive_skill' }) %>
             <script>
               new MultiSelectTag('supportive_skill')
-            </script>
+            </script> -->
+           <%= form.collection_select(:supportive_skill_ids, TechStack.supportive_skills, :id, :title , {}, {multiple: true   , include_blank: false ,class: "selectpicker show-menu-arrow form-control" , 'data-live-search': "true"}) %>
       </div>
-      
+
       <!-- by using grouped_options_for_select  // at hepler method -->
       <div>
-        <%= form.label "Projects", style: "display: block" ,class: "text-white"%>
-        <%= form.select(:project_ids, grouped_options_for_select(helper_grouped_projects_options), {}, { multiple: true,  include_blank: false ,id: 'selectgr' ,class: "selectpicker show-menu-arrow form-control" , 'data-live-search':"true" }) %>
-        <!-- <div > -->
-          <% curriculum_vitae.errors[:projects].each do |message| %>
-            <span style="background: cornsilk; color: red; border-radius: 5px;"> <%= message %> </span>
-          <%end%>
+        <%= form.label "Projects" , style: "display: block" ,class: "text-white" %>
+          <!-- <%= form.select(:project_ids, grouped_options_for_select(helper_grouped_projects_options), {}, { multiple: true, include_blank: false ,class: "selectpicker show-menu-arrow form-control" , 'data-live-search': "true" }) %> -->
+          <%= form.select(:project_ids, grouped_options_for_select(helper_grouped_projects_options , selected: curriculum_vitae.project_ids), {}, { multiple: true, include_blank: false ,class: "selectpicker show-menu-arrow form-control" , 'data-live-search': "true" }) %>
+            <!-- error message-->
+            <% curriculum_vitae.errors[:projects].each do |message| %>
+              <span style="background: cornsilk; color: red; border-radius: 5px;">
+                <%= message %>
+              </span>
+              <%end%>
 
-        <!-- </div> -->
+                <%# <%=form.error_message_on :projects, class: 'error-message' %>
+                  <%# <%=error_message_on "tech_stack" , "projects" %>
+
+                    <%# <%=form.error :projects %>
+
+                      <!-- </div> -->
       </div>
-      
-      <!-- https://developer.snapappointments.com/bootstrap-select/examples/ -->
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
-      <style>
-        .bootstrap-select .dropdown-menu {
-          min-width: auto;
-          }
-      </style>
 
       <div>
-        <%= form.label "select profile image" , class: "text-white" %>
-          <%= form.file_field :image ,class: "form-control" %>
+        <%= form.label "select profile image" , style: "display: block", class: "text-white" %>
+          <%= form.file_field :image %>
       </div>
-    </div>
-    </div>
+
       <div>
         <%= form.label "Layout" , style: "display: block" ,class: "text-white" %>
           <% template_files=Dir.glob(Rails.root.join('app', 'views' , 'HTML_templates' , '*.html.erb' )) %>
             <% @template_options=template_files.map { |file| File.basename(file, '.html.erb' ) }%>
 
-              <select required name="curriculum_vitae[template_name]">
+              <!-- <select required name="curriculum_vitae[template_name]">
                 <option value="">select any template</option>
                 <% @template_options.each do |template_option| %>
                   <option value="<%= template_option %>">
@@ -103,8 +95,9 @@
                   </option>
                   <% end %>
 
-              </select>
+              </select> -->
+              <%= form.select(:template_name, @template_options , {}, {}) %>
       </div>
 
-      <%= form.submit class: 'btn-primary' %>
+      <%= form.submit class: 'btn-primary' , style: "margin-top: 20px;" %>
         <% end%>

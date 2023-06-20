@@ -8,8 +8,6 @@ class TechStack < ApplicationRecord
 
   def destroy_with_associations
     ProjectCoreTech.where(tech_stack_id: self.id).destroy_all
-    ProfileCoreTech.where(tech_stack_id: self.id).destroy_all
-    ProfileSupportiveTech.where(tech_stack_id: self.id).destroy_all
   end
 
   def  self.core_skills

@@ -10,6 +10,16 @@ gem "rails", "~> 7.0.4", ">= 7.0.4.3"
 gem 'devise'
 gem "select2-rails"
 
+# gem 'prawn' ,'~> 2.4'
+gem 'wicked_pdf'
+
+gem 'wkhtmltopdf-binary'
+
+gem 'docx'
+gem 'htmltoword'
+
+gem 'docx-templater'
+
 # gem 'active_storage' // for 5.2 old
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"

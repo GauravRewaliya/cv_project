@@ -22,9 +22,10 @@
     <td><%= link_to "Edit", edit_project_path(project),class: "material-symbols-outlined" %></td>
     <td><%= button_to "Delete" , project , method: :delete ,class: "btn-primary"%></td>
     <td>
-    <p>
-      <%= link_to "Show this project", project %>
-    </p>
+      <%#<%= link_to "Show this project", project %>
+      <%= link_to (project) , class: 'material-symbols-outlined' do %>
+      <span>Visibility</span>
+      <%end%>
   </td>
   </tr>
   <% end %>

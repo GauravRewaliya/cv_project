@@ -16,6 +16,8 @@
         <th>Edit</th>
         <th>Delete</th>
         <th>Show</th>
+        <th>download PDF</th>
+        <th>download DOC</th>
       </tr>
       <% @curriculum_vitaes.each do |curriculum_vitae| %>
       <tr>
@@ -31,10 +33,19 @@
       <td><%= button_to "Delete" , curriculum_vitae , method: :delete ,class: "btn-primary"%></td>
    
       <td>
-      <p>
-        <%= link_to "Show this curriculum_vitae", curriculum_vitae , target: "_blank" %>
-      </p>
+        <%#<%= link_to "Show this curriculum_vitae", curriculum_vitae , target: "_blank" %>
+      <%= link_to (curriculum_vitae) ,target: '_blank' , class: 'material-symbols-outlined' do %>
+      <span>Visibility</span>
+      <%end%>
     </td>
+
+     <td><%= link_to 'Download as PDF', download_curriculum_vitae_path(curriculum_vitae.id, format: 'pdf') %>
+    </td>
+    <td>
+    <%= link_to 'Download as DOC', download_curriculum_vitae_path(curriculum_vitae.id, format: 'docx') %>
+  </td>
+  <td><%= link_to 'pdf as htmlRed', pdf_html_req_path(curriculum_vitae) %>
+  </td>
     </tr>
     <% end %>
     </table>

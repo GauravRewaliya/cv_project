@@ -3,8 +3,13 @@ Rails.application.routes.draw do
   
   devise_for :users
   resources :tech_stacks ,:candidates ,:profiles
-  resources :curriculum_vitaes 
+  # resources :curriculum_vitaes 
   
+  resources :curriculum_vitaes do
+    # get 'download', on: :member, format: :pdf
+    get 'download', on: :member
+  end
+  get 'pdf_html_req/:id' ,to:"curriculum_vitaes#pdf_html_req" , as: :pdf_html_req
   resources :domains
   get 'home/index'
 

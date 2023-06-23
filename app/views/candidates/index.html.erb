@@ -49,9 +49,10 @@
     <td  class="needCol"><%= link_to "Edit", edit_candidate_path(candidate) ,class: "material-symbols-outlined" %></td>
     <td  class="needCol"><%= button_to "Delete" , candidate , method: :delete ,class: "btn-primary"%></td>
     <td  class="needCol">
-    <p>
-      <%= link_to "Show this candidate", candidate %>
-    </p>
+      <%#<%= link_to "Show this candidate", candidate %>
+    <%= link_to (candidate) , class: 'material-symbols-outlined' do %>
+    <span>Visibility</span>
+    <%end%>
   </td>
   </tr>
   <% end %>

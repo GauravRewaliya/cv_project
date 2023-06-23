@@ -8,9 +8,6 @@
     margin-left: 18px;
     margin-right: 5px;
 }
-.material-symbols-outlined{
-  color: black;
-}
 .btn-sm{
   border-radius: 20px;
 }
@@ -22,7 +19,7 @@
 
 
 <div style="position: relative; margin-bottom: 40px;">
-<h1 class="pos_l">Tech_stack\Skills</h1>
+<h1 class="pos_l">Skills</h1>
 
 <form action="tech_stacks"  class="pos_r">
     <div style="display: flex;">
@@ -55,9 +52,10 @@
     <td><%= link_to "Edit", edit_tech_stack_path(tech_stack),class: "material-symbols-outlined" %></td>
     <td><%= button_to "" , tech_stack , method: :delete ,class: "fa-solid fa-trash alert-light "%></td>
     <td>
-    <p>
-      <%= link_to "", tech_stack , class: "fa fa-info-circle " , style: "font-size: x-large;"%>
-    </p>
+      <%#<%= link_to "", tech_stack , class: "fa fa-info-circle " , style: "font-size: x-large;"%>
+      <%= link_to (tech_stack) , class: 'material-symbols-outlined' do %>
+       <span>Visibility</span>
+       <%end%>
   </td>
   </tr>
   <% end %>

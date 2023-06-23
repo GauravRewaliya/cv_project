@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <head>
     <title>PDF</title>
-    <!-- <%= stylesheet_link_tag 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css' %> -->
+    
+    <%# <%= stylesheet_link_tag 'http://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css' %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
 </head>
 <body>
     
@@ -10,8 +13,8 @@
 
         
        
-    <style>
- body {
+   <style>
+    body {
   margin: 0;
   padding: 0;
   font-family: "Poppins", sans-serif;
@@ -46,8 +49,24 @@ li {
   list-style: none;
 }
 
+/* :root {
+  --primary: #0a1b39;
+  --secondary: #f9faf7;
+  --dark: #444344;
+  --medium: #1d2944;
+  --light: #fe9800;
+  --success: #acaeaf;
+  --warning: #000000;
+  --white: #ffffff;
+  --light-green: #a9cf03;
+  --dark-green: #3bc065;
+  --grey: #212121;
+  --light-blue: #3366CC;
+  --transition: all 0.2s ease-in-out;
+} */
+
 .header {
-  background-color: var(--primary);
+  background-color: #0a1b39;;
 }
 
 .main_header {
@@ -62,12 +81,12 @@ li {
 }
 
 .logo {
-  border-right: 1px solid var(--success);
+  border-right: 1px solid #acaeaf;
   max-width: 30%;
 }
 
 .main_header .header_text h4 {
-  color: var(--dark-green);
+  color: #3bc065;
   font-size: 18px;
   font-family: sans-serif;
   font-weight: 600;
@@ -85,32 +104,32 @@ section.logo_area {
 }
 
 .logo_bg {
-  background: var(--secondary);
+  background: #f9faf7;
   padding: 10px 30px;
   text-align: center;
 }
 
-.main_logo {
+/* .main_logo {
   display: flex;
   display: -webkit-box;
   display: inline-flex;
-}
+} */
 
 .main_logo .logo_star img {
   width: 40% !important;
 }
 
-.logo_star {
+/* .logo_star {
   display: flex;
   gap: 5px;
   align-items: center;
   justify-content: center;
-}
+} */
 
 .logo_star h5 {
   font-size: 14px;
   font-weight: 700;
-  color: var(--primary);
+  color: #0a1b39;
 }
 
 section.education_area {
@@ -118,11 +137,11 @@ section.education_area {
 }
 
 /* education area */
-.education_main {
+/* .education_main {
   display: flex;
   display: -webkit-box;
   width: 100%;
-}
+} */
 
 .education_in {
   width: 65%;
@@ -131,7 +150,7 @@ section.education_area {
 .education_in_second {
   width: 35%;
   padding: 0px 0px 0px 10px;
-  border-left: 2px solid var(--success);
+  border-left: 2px solid  #acaeaf;
 }
 
 .education_in h1 {
@@ -147,7 +166,7 @@ section.education_area {
 }
 
 .border {
-  border-bottom: 2px solid var(--light-green) !important;
+  border-bottom: 2px solid  #a9cf03 !important;
   width: 15%;
   margin-bottom: 40px;
 }
@@ -156,12 +175,12 @@ section.education_area {
   font-size: 16px;
   font-weight: 500;
   width: 95%;
-  color: var(--dark);
+  color: #444344;
   margin-bottom: 40px;
 }
 
 .education_in p span {
-  color: var(--grey);
+  color:  #212121;
   font-weight: 600;
 }
 
@@ -175,7 +194,7 @@ section.education_area {
 .education_in_sub p {
   font-size: 18px;
   font-weight: 700;
-  color: var(--dark);
+  color: #444344;
   margin-bottom: 35px;
 }
 
@@ -187,11 +206,11 @@ span.dot {
   display: inline-block;
 }
 
-.educational_sub {
+/* .educational_sub {
   display: flex;
   align-items: center;
   gap: 10px;
-}
+} */
 
 .educational_sub h4 {
   font-size: 16px;
@@ -202,7 +221,7 @@ span.dot {
 .education_in_sub span {
   font-size: 18px;
   font-weight: 600;
-  color: var(--dark);
+  color: #444344;
 }
 
 .education_in_sub {
@@ -215,11 +234,11 @@ span.dot {
   font-weight: 400 !important;
 }
 
-.educational_sub_se {
+/* .educational_sub_se {
   gap: 10px;
   display: flex;
   display: -webkit-box;
-}
+} */
 
 .educational_sub_se h4 {
   font-size: 16px;
@@ -238,7 +257,7 @@ section.technology_stack_area {
   margin-top: 30px;
 }
 .technology_light {
-  border-left: 3px solid var(--success);
+  border-left: 3px solid #acaeaf;
   padding: 10px 0px 10px 25px;
   margin-bottom: 6px;
 }
@@ -251,7 +270,7 @@ section.technology_stack_area {
   font-weight: 400;
 }
 .technology_green {
-  border-left: 3px solid var(--light-green);
+  border-left: 3px solid #a9cf03;
   padding: 10px 0px 10px 25px;
   margin-bottom: 6px;
 }
@@ -272,36 +291,34 @@ section.technology_stack_area {
 .tech_main .technology_logo_in img {
   width: 60% !important;
 }
-.tech_in {
+/* .tech_in {
   display: flex;
   justify-content: space-between;
   align-items: center;
   text-align: center;
   margin-bottom: 25px;
-}
+} */
 
 /* footer */
 .footer {
-  background: var(--secondary);
+  background: #f9faf7;
 }
-.footer_in {
+/* .footer_in {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 0px;
-}
+} */
 .footer_in p {
   font-size: 16px;
   font-weight: 400;
 }
 .footer_in p span{
-  color: var(--light-blue);
+  color:  #3366CC;
 }
     </style>
 
-    <!-- font family -->
-    <!-- <link href="https://fonts.cdnfonts.com/css/font" rel="stylesheet"> -->
-    <!-- <%= wicked_pdf_stylesheet_link_tag 'https://fonts.cdnfonts.com/css/font' %> -->
+    <%= wicked_pdf_stylesheet_link_tag 'https://fonts.cdnfonts.com/css/font' %>
     
 
     <section class="header">

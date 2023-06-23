@@ -15,6 +15,8 @@ gem 'wicked_pdf'
 
 gem 'wkhtmltopdf-binary'
 
+gem 'grover'
+
 gem 'docx'
 gem 'htmltoword'
 

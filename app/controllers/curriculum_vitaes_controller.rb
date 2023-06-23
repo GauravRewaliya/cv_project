@@ -147,6 +147,8 @@ pour_html = template.result(binding)
 
     pdf = WickedPdf.new.pdf_from_string(pour_html)
     pdf 
+    
+    # grover = Grover.new( pour_html , format: 'A4' ,options: { args: ['--disable-setuid-sandbox']}).to_pdf
   end
 
   def generate_pdf(curriculum_vitae)    # by own usig ERB

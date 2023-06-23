@@ -2,8 +2,8 @@
 <head>
     <title>PDF</title>
     
-    <%# <%= stylesheet_link_tag 'http://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css' %>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <%= stylesheet_link_tag 'http://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css' %>
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
     
 </head>
 <body>
@@ -71,6 +71,7 @@ li {
 
 .main_header {
   display: flex;
+  display: -webkit-box;
   gap: 70px;
   align-items: center;
   padding: 35px 0px;
@@ -109,22 +110,23 @@ section.logo_area {
   text-align: center;
 }
 
-/* .main_logo {
+.main_logo {
   display: flex;
-  display: -webkit-box;
   display: inline-flex;
-} */
+  display: -webkit-box;
+}
 
 .main_logo .logo_star img {
   width: 40% !important;
 }
 
-/* .logo_star {
+.logo_star {
   display: flex;
+  display: -webkit-box;
   gap: 5px;
   align-items: center;
   justify-content: center;
-} */
+}
 
 .logo_star h5 {
   font-size: 14px;
@@ -136,12 +138,12 @@ section.education_area {
   page-break-after: always;
 }
 
-/* education area */
-/* .education_main {
+/* education area */ 
+ .education_main {
   display: flex;
   display: -webkit-box;
   width: 100%;
-} */
+}
 
 .education_in {
   width: 65%;
@@ -206,11 +208,12 @@ span.dot {
   display: inline-block;
 }
 
-/* .educational_sub {
+.educational_sub {
   display: flex;
+  display: -webkit-box;
   align-items: center;
   gap: 10px;
-} */
+}
 
 .educational_sub h4 {
   font-size: 16px;
@@ -234,11 +237,11 @@ span.dot {
   font-weight: 400 !important;
 }
 
-/* .educational_sub_se {
+.educational_sub_se {
   gap: 10px;
   display: flex;
   display: -webkit-box;
-} */
+}
 
 .educational_sub_se h4 {
   font-size: 16px;
@@ -291,24 +294,26 @@ section.technology_stack_area {
 .tech_main .technology_logo_in img {
   width: 60% !important;
 }
-/* .tech_in {
+.tech_in {
   display: flex;
+  display: -webkit-box;
   justify-content: space-between;
   align-items: center;
   text-align: center;
   margin-bottom: 25px;
-} */
+}
 
 /* footer */
 .footer {
   background: #f9faf7;
 }
-/* .footer_in {
+.footer_in {
   display: flex;
+  display: -webkit-box;
   justify-content: space-between;
   align-items: center;
   padding: 15px 0px;
-} */
+}
 .footer_in p {
   font-size: 16px;
   font-weight: 400;

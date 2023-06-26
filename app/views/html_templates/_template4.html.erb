@@ -8,7 +8,8 @@
 <div class="bg-light ">
     <div class="container p-5">
         <div class="row">
-            <div class="col-lg-4 bg-dark text-white text-center py-4">
+            <!-- <div class="col-lg-4 bg-dark text-white text-center py-4"> -->
+            <div class="col-5 bg-dark text-white text-center py-4">
                 <div class="header-left">
                     <% if !@curriculum_vitae.image.blank?%>
          <%= image_tag @curriculum_vitae.image.variant(resize_to_limit: [nil, 120]) , class: "img-thumbnail rounded-circle " , style: "height: 130px; width: 150px;" if curriculum_vitae.image.attached? %>
@@ -20,7 +21,6 @@
 
                 </div>
                 <div >
-<!-- h2.class.class.. -->
                 <% profile=curriculum_vitae.candidate.profile %>
                 <h5 class="text-uppercase bg-white text-dark py-2 rounded-pill">info</h5>
                     <ul class="list-unstyled text-white-50 ml-3 py-2 text-left">
@@ -68,8 +68,8 @@
            
             </div> 
 
-            <!-- <div class="col-md-8 bg-light text-dark py-4 px-5"> -->
-            <div class="col-lg-8 bg-light text-dark py-4 px-5">
+            <!-- <div class="col-lg-8 bg-light text-dark py-4 px-5"> -->
+            <div class="col-7 bg-light text-dark py-4 px-5">
                 <div class="header-right">
                     <h4 class="text-uppercase">profile</h4>
                     <hr>

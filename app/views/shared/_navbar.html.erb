@@ -3,7 +3,8 @@
     color: rgb(207 242 251 / 93%);
 }
 </style>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="padding: 0.2rem 1rem;">
+<div class="fixed_nav">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="padding: 0.2rem 1rem;margin: 0;">
   <a class="navbar-brand" href="/">Project Management</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -29,7 +30,7 @@
 
     <div class="form-inline my-2 my-lg-0">
       <% if user_signed_in? %>
-      <%= link_to 'edit Details', edit_user_registration_path, class: 'nav-link btn btn-sm btn-primary' , style: "margin-right: 6px;" %>
+      <%= link_to 'edit User', edit_user_registration_path, class: 'nav-link btn btn-sm btn-primary' , style: "margin-right: 6px;" %>
       <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'nav-link btn btn-sm btn-danger', stytle: "margin-right: -11px;"%>
       <% else %>
       <%= link_to 'Sign In', new_user_session_path, class: 'nav-link' %>
@@ -44,3 +45,4 @@
        
     
 </nav>
+</div>

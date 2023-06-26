@@ -158,6 +158,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_19_094727) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "tech_type"
+    t.string "created_by"
+    t.string "updated_by"
   end
 
   create_table "template_formats", force: :cascade do |t|

@@ -8,9 +8,6 @@
     margin-left: 18px;
     margin-right: 5px;
 }
-.btn-sm{
-  border-radius: 20px;
-}
 .btn-danger
 {
   border-color: #9a5e64;
@@ -18,7 +15,7 @@
 </style>
 
 
-<div style="position: relative; margin-bottom: 40px;">
+<div class="top_header">
 <h1 class="pos_l">Skills</h1>
 
 <form action="tech_stacks"  class="pos_r">
@@ -32,6 +29,7 @@
     <div><input type="radio" name="tech_type" value="">All Skills</div>
   </div>
 </form>
+<%= link_to "New tech_stack", new_tech_stack_path ,class: 'btn btn-primary new_pos' %>
 </div>
 
 
@@ -62,7 +60,7 @@
   </table>
 </div>
 
-<div style="position: relative;">
-<%= link_to "New tech_stack", new_tech_stack_path ,class: 'btn btn-primary pos_r' %>
+<!-- <div style="position: relative;"> -->
+<!-- <%= link_to "New tech_stack", new_tech_stack_path ,class: 'btn btn-primary pos_r' %> -->
 <!-- <%= link_to "Home" ,  home_index_path ,class: 'btn btn-primary pos_l'%> -->
-</div>
+<!-- </div> -->

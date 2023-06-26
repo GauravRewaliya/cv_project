@@ -21,7 +21,13 @@
   </p>
   <p>
     <strong>Tech_type:</strong>
-    <%= @tech_stack.tech_type %>
+    <%= @tech_stack.tech_type == 1 ? "core Skill" : "supportive skill" %>
+  </p>
+  
+  
+  <p>
+    <strong>Updated_by:</strong>
+    <%= @tech_stack.updated_by %>
   </p>
   
 </div>

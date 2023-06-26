@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <head>
     <title>PDF</title>
-    
-    <%= stylesheet_link_tag 'http://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css' %>
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
-    
+   <!-- <%= stylesheet_link_tag 'http://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css'%> -->
+    <!-- <%= stylesheet_link_tag 'http://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css' %>  -->
+    <link data-require="bootstrap@3.3.7" data-semver="3.3.7" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 </head>
 <body>
     
@@ -14,6 +13,9 @@
         
        
    <style>
+    .footer_in p {
+    padding: 1%;
+}
     body {
   margin: 0;
   padding: 0;
@@ -49,21 +51,6 @@ li {
   list-style: none;
 }
 
-/* :root {
-  --primary: #0a1b39;
-  --secondary: #f9faf7;
-  --dark: #444344;
-  --medium: #1d2944;
-  --light: #fe9800;
-  --success: #acaeaf;
-  --warning: #000000;
-  --white: #ffffff;
-  --light-green: #a9cf03;
-  --dark-green: #3bc065;
-  --grey: #212121;
-  --light-blue: #3366CC;
-  --transition: all 0.2s ease-in-out;
-} */
 
 .header {
   background-color: #0a1b39;;
@@ -95,7 +82,7 @@ li {
 
 /* Logo area Section */
 .logo_area .logo_in img {
-  width: 65%;
+  width: 100%;
   margin-bottom: 4px;
 }
 
@@ -108,12 +95,18 @@ section.logo_area {
   background: #f9faf7;
   padding: 10px 30px;
   text-align: center;
+  display: flex;
+  width: 100%;
+}
+.logo_in{
+    width: 23%;
 }
 
 .main_logo {
   display: flex;
-  display: inline-flex;
   display: -webkit-box;
+  display: inline-flex;
+  width: 100%;
 }
 
 .main_logo .logo_star img {
@@ -122,7 +115,6 @@ section.logo_area {
 
 .logo_star {
   display: flex;
-  display: -webkit-box;
   gap: 5px;
   align-items: center;
   justify-content: center;
@@ -138,8 +130,8 @@ section.education_area {
   page-break-after: always;
 }
 
-/* education area */ 
- .education_main {
+/*education area */
+.education_main {
   display: flex;
   display: -webkit-box;
   width: 100%;
@@ -297,10 +289,9 @@ section.technology_stack_area {
 .tech_in {
   display: flex;
   display: -webkit-box;
-  justify-content: space-between;
-  align-items: center;
-  text-align: center;
+  
   margin-bottom: 25px;
+  width: 100%;
 }
 
 /* footer */
@@ -320,6 +311,38 @@ section.technology_stack_area {
 }
 .footer_in p span{
   color:  #3366CC;
+}
+.tech_main{
+    display: flex;
+    display: -webkit-box;
+    width: 20%;
+    text-align: center;
+}
+.technology_stack_main{
+    width: 50%;
+}
+.technology_webkit{
+    display: flex;
+    display: -webkit-box;
+    width: 100%;
+}
+.technology_stack_in{
+    display: flex;
+    display: -webkit-box;
+    width: 100%;
+}
+.technologystack
+{
+    width: 50%;
+}
+.technology_dif
+{
+    display: flex;
+    display: -webkit-box;
+    width: 100%;
+}
+.technology_stack_main h2{
+    margin-bottom:  10px;
 }
     </style>
 
@@ -449,34 +472,27 @@ section.technology_stack_area {
 
                 <div class="education_in_second">
                     <div class="education_in_sub">
-                        <h6>EDUCATION</h6>
-                        <p>Bachelor Of Computer
-                            Science</p>
-                    </div>
-                    <div class="education_in_sub">
                         <h6>S K I L L S</h6>
-                        <span>Languages (Server-Side /
-                            Client-Side)</span>
+                        <span>Core Skill</span>
                         <div class="educational_sub">
                             <span class="dot"></span>
-                            <h4>Python2</h4>
+                            <h4> <%= curriculum_vitae.core_skill&.title %>
+                                <br>( <%= curriculum_vitae.core_skill&.desc %> )</h4>
                         </div>
-                        <div class="educational_sub">
-                            <span class="dot"></span>
-                            <h4>Python2</h4>
-                        </div>
+                       
                     </div>
 
                     <div class="education_in_sub">
-                        <span>Technology / Framework</span>
+                        <span>Supportive Skill</span>
                         <div class="educational_sub">
                             <span class="dot"></span>
-                            <h4>Django</h4>
+                            <h4>
+                                <% curriculum_vitae.supportive_skills.each do |supportive_skill| %>
+                                    <%= supportive_skill.title %>
+                                <% end %>
+                            </h4>
                         </div>
-                        <div class="educational_sub">
-                            <span class="dot"></span>
-                            <h4>Flask</h4>
-                        </div>
+                       
                     </div>
 
                     <div class="education_in_sub">
@@ -565,11 +581,16 @@ section.technology_stack_area {
 
     <section class="technology_stack_area">
         <div class="container">
-            <div class="row">
-                <div class="technology_stack_main col">
-                    <div class="technology_stack_in row">
-                        <h2>TECHNOLOGY STACK WE USE</h2>
-                        <div class="technologystack col">
+            <div class="technology_webkit">
+                <div class="technology_stack_main">
+
+                
+            <h2>TECHNOLOGY STACK WE USE</h2>
+                 <div class="technology_stack_in">
+                            <div class="technology_dif">
+                                <div class="technologystack">
+
+                           
                             <div class="education_in_sub">
                                 <span>Backend</span>
                                 <div class="educational_sub">
@@ -639,8 +660,8 @@ section.technology_stack_area {
                                     <h4>Vue.jS</h4>
                                 </div>
                             </div>
-                        </div>
-                        <div class="technologystack col">
+                                </div>
+                        <div class="technologystack">
                             <div class="education_in_sub">
                                 <span>E-Commerce</span>
                                 <div class="educational_sub">
@@ -702,9 +723,10 @@ section.technology_stack_area {
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="technology_stack_main col">
+                 </div>
+            </div>
+          
+                <div class="technology_stack_main">
                     <div class="technology_stack_de">
                         <div class="technology_light">
                             <h4>700+</h4>
@@ -743,7 +765,8 @@ section.technology_stack_area {
                         </div>
                     </div>
                 </div>
-            </div>
+                        
+             </div>
         </div>
     </section>
 

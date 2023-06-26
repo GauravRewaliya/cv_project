@@ -5,6 +5,7 @@
   <input type="text" name="search" placeholder="Search" class="form-control mr-sm-2 form-control-lg">
   <button type="submit" class="btn btn-lg btn-success">Search</button>
 </form>
+<%= link_to "New candidate", new_candidate_path ,class: 'btn btn-primary new_pos' %>
 </div>
 <style>
   @media (max-width: 768px) {
@@ -57,9 +58,4 @@
   </tr>
   <% end %>
   </table>
-</div>
-
-<div style="position: relative;">
-<%= link_to "New candidate", new_candidate_path ,class: 'btn btn-primary pos_r' %>
-<!-- <%= link_to "Home" ,  home_index_path ,class: 'btn btn-primary pos_l' %> -->
 </div>

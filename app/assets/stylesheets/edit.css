@@ -9,6 +9,7 @@
 .pos_r {
     position: absolute;
     right: 13%;
+    top: 0;
 }
 label {
     color: white;
@@ -19,7 +20,14 @@ label {
 h2{
     color: skyblue;
 }
-.btn
+/* .btn
 {
     margin-top: 3%;
+} */
+
+.btn
+{
+    margin-top: 0px;
+    padding-bottom: 0px;
+    padding-top: 0px;
 }

@@ -4,7 +4,7 @@
   <input type="text" name="search" placeholder="Search by name" class="form-control mr-sm-2 form-control-lg">
   <button type="submit" class="btn btn-lg btn-success">Search</button>
 </form>
-<!-- need to work -->
+<%= link_to "New CV", new_curriculum_vitae_path ,class: 'btn btn-primary new_pos' %>
 </div>
 
 <div class="table_gr" >
@@ -34,17 +34,13 @@
    
       <td>
         <%#<%= link_to "Show this curriculum_vitae", curriculum_vitae , target: "_blank" %>
-      <%= link_to (curriculum_vitae) ,target: '_blank' , class: 'material-symbols-outlined' do %>
+      <%= link_to curriculum_vitae ,target: '_blank' , class: 'material-symbols-outlined' do %>
       <span>Visibility</span>
       <%end%>
     </td>
-
-     <td><%= link_to 'Download as PDF', download_curriculum_vitae_path(curriculum_vitae.id, format: 'pdf') %>
-    </td>
-    <td>
-    <%= link_to 'Download as DOC', download_curriculum_vitae_path(curriculum_vitae.id, format: 'docx') %>
+  <td><%= link_to 'pdf download', pdf_html_req_path(curriculum_vitae) %>
   </td>
-  <td><%= link_to 'pdf as htmlRed', pdf_html_req_path(curriculum_vitae) %>
+  <td><%= link_to 'docx download', docx_html_req_path(curriculum_vitae) %>
   </td>
     </tr>
     <% end %>
@@ -55,5 +51,5 @@
 </style>
 
 <div style="position: relative;">
-<%= link_to "New CV", new_curriculum_vitae_path ,class: 'btn btn-primary pos_r' %>
+
 </div>

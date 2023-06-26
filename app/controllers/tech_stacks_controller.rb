@@ -33,6 +33,7 @@ class TechStacksController < ApplicationController
   def create
     @tech_stack = TechStack.new(tech_stack_params)
 
+    @tech_stack.updated_by = current_user.email
     respond_to do |format|
       if @tech_stack.save
         format.html { redirect_to tech_stack_url(@tech_stack), notice: "Tech_stack was successfully created." }
@@ -46,6 +47,7 @@ class TechStacksController < ApplicationController
 
   
   def update
+    @tech_stack.updated_by = current_user.email
     respond_to do |format|
       if @tech_stack.update(tech_stack_params)
         format.html { redirect_to tech_stack_url(@tech_stack), notice: "tech_stack was successfully updated." }

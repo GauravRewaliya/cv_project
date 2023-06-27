@@ -41,9 +41,9 @@ class CandidatesController < ApplicationController
 
   
   def update
+    @candidate.updated_by = current_user.email
+    
     respond_to do |format|
-      @candidate.updated_by = current_user.email
-      
       if @candidate.update(candidate_params)
         format.html { redirect_to candidate_url(@candidate), notice: "Candidate was successfully updated." }
         format.json { render :show, status: :ok, location: @candidate }

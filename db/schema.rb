@@ -74,6 +74,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_19_094727) do
     t.integer "experience"
     t.string "template_name"
     t.integer "candidate_id"
+    t.string "created_by"
+    t.string "updated_by"
     t.index ["candidate_id"], name: "index_curriculum_vitaes_on_candidate_id"
   end
 
@@ -90,6 +92,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_19_094727) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "created_by"
+    t.string "updated_by"
   end
 
   create_table "profiles", force: :cascade do |t|

@@ -20,6 +20,8 @@ class DomainsController < ApplicationController
 
   def create
     @domain = Domain.new(domain_params)
+    @domain.created_by = current_user.email
+    @domain.updated_by = current_user.email
     respond_to do |format|
       if @domain.save
         format.html {redirect_to domains_path, notice: "Domain was successfully created." }
@@ -32,6 +34,7 @@ class DomainsController < ApplicationController
   end
 
   def update
+    @domain.updated_by = current_user.email
     respond_to do |format|
        if @domain.update(domain_params)
         format.html { redirect_to domains_path, notice: "Domain was successfully updated." }

@@ -33,6 +33,7 @@ class TechStacksController < ApplicationController
   def create
     @tech_stack = TechStack.new(tech_stack_params)
 
+    @tech_stack.created_by = current_user.email
     @tech_stack.updated_by = current_user.email
     respond_to do |format|
       if @tech_stack.save

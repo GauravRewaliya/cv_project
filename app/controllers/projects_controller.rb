@@ -39,6 +39,7 @@ class ProjectsController < ApplicationController
     if project_params[:project_core_tech_attributes][:tech_stack_id].blank?
       @project.core_skill = nil
     end
+    
     @project.updated_by = current_user.email
 
     respond_to do |format|

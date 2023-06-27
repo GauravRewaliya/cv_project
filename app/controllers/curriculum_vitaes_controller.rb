@@ -74,7 +74,8 @@ class CurriculumVitaesController < ApplicationController
   def create
 
     @curriculum_vitae = CurriculumVitae.new(curriculum_vitae_params)
-
+    @curriculum_vitae.created_by = current_user.email
+    @curriculum_vitae.updated_by = current_user.email
     respond_to do |format|
       if @curriculum_vitae.save
         format.html { redirect_to curriculum_vitae_url(@curriculum_vitae), notice: "CurriculumVitae was successfully created." }
@@ -90,12 +91,13 @@ class CurriculumVitaesController < ApplicationController
   
   def update
 
-    c = nil
-    if !params[:candidate_id].blank?
-    c = Candidate.find(params[:candidate_id])
-    end
-    @curriculum_vitae.candidate = c 
+    # c = nil
+    # if !params[:candidate_id].blank?
+    # c = Candidate.find(params[:candidate_id])
+    # end
+    # @curriculum_vitae.candidate = c 
 
+    @curriculum_vitae.updated_by = current_user.email
     respond_to do |format|
       if @curriculum_vitae.update(curriculum_vitae_params)
         format.html { redirect_to curriculum_vitae_url(@curriculum_vitae), notice: "CurriculumVitae was successfully updated." }

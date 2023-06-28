@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   get 'pdf_html_req/:id' ,to:"curriculum_vitaes#pdf_html_req" , as: :pdf_html_req
   get 'docx_html_req/:id' ,to:"curriculum_vitaes#docx_html_req" , as: :docx_html_req
+  get 'doc_html_req/:id' ,to:"curriculum_vitaes#doc_html_req" , as: :doc_html_req
 
 
   resources :domains

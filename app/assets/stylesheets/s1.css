@@ -26,12 +26,23 @@ p{
     left: 10px;
     bottom: 40px;
 }
-.formBox{
+/* .formBox{
     display: flex;
     position: relative;
     padding: 80px;
     width: 400px;
     height: 440px;
+    background: #f8f8f875;
+    justify-content: center;
+    border: 2px solid white;
+    border-radius: 20px;
+    backdrop-filter: blur(3px);
+} */
+.formBox {
+    margin: 6%;
+    padding: 80px;
+    height: 70%;
+    width: 400px;
     background: #f8f8f875;
     justify-content: center;
     border: 2px solid white;

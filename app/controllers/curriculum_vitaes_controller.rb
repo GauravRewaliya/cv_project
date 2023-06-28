@@ -43,16 +43,34 @@ class CurriculumVitaesController < ApplicationController
   end
   def docx_html_req
     pour_html = get_html(@curriculum_vitae)
-    docx_file = Htmltoword::Document.create(pour_html)
+    # docx_file = Htmltoword::Document.create(pour_html) # only give text
 
-    # pdf_data = WickedPdf.new.pdf_from_string(pour_html)
-    # pdf_file = 'output.pdf' # Specify the output PDF file path
-    # File.binwrite(pdf_file, pdf_data)
-    # docx_file = 'output.docx' 
-    # # system("pandoc -s #{pdf_file} -o #{docx_file}")
-    # system("pandoc -s #{pdf_file} -o #{docx_file} --from=pdf --to=docx")
+    pdf_data = WickedPdf.new.pdf_from_string(pour_html)
+    input_path = "public/tempCv.pdf"
+    File.open(input_path,'wb'){ |file| file << pdf_data}
+    system(" lowriter --headless --infilter='writer_pdf_import' --convert-to doc:'MS Word 97' public/tempCv.pdf --outdir public/")
+    output_path = "public/tempCv.doc"
+    doc_data = File.read(output_path)
 
-    send_data docx_file, filename: 'cv.docx', disposition: 'attachment'
+    # doc_data = Libreconv.convert(pour_html, 'doc')
+    # Libreconv.convert(out_path, in_path)
+    send_data doc_data, filename: "grCv.doc", type: "application/msword", disposition: 'attachment'
+    
+
+    # # pdf_data = WickedPdf.new.pdf_from_string(pour_html)
+    # # pdf_file = 'output.pdf' # Specify the output PDF file path
+    # # File.binwrite(pdf_file, pdf_data)
+    # # docx_file = 'output.docx' 
+    # # # system("pandoc -s #{pdf_file} -o #{docx_file}")
+    # # system("pandoc -s #{pdf_file} -o #{docx_file} --from=pdf --to=docx")
+
+    # send_data docx_file, filename: 'cv.docx', disposition: 'attachment'
+   
+    # pour_html = get_html(@curriculum_vitae)
+     # docx_data = `pandoc -s -o grCv.docx -f html -t docx #{pour_html}`
+     # send_data File.read('grCv.docx'), filename: "grCv.docx", type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document", disposition: 'attachment'
+  
+    
   end
 
   def get_html(curriculum_vitae)

@@ -17,10 +17,12 @@ gem 'wkhtmltopdf-binary'
 
 gem 'grover'
 
-gem 'docx'
 gem 'htmltoword'
+# gem 'docx'
+# gem 'libreconv'
+# gem 'pandoc'
 
-gem 'docx-templater'
+# gem 'docx-templater'
 
 # gem 'active_storage' // for 5.2 old
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]

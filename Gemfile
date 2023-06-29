@@ -18,6 +18,8 @@ gem 'wkhtmltopdf-binary'
 gem 'grover'
 
 gem 'htmltoword'
+
+# gem 'pdf2docx'
 # gem 'docx'
 # gem 'libreconv'
 # gem 'pandoc'

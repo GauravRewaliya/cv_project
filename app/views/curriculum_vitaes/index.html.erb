@@ -7,10 +7,18 @@
 <%= link_to "New CV", new_curriculum_vitae_path ,class: 'btn btn-primary new_pos' %>
 </div>
 
+<style>
+  .table td, .table th {
+    /* + */
+    text-align: center;
+}
+.table .l, .table .l {
+    text-align: left;
+}
+</style>
 <div class="table_gr" >
     <table border=1 class="table table-hover table-striped " >
       <tr style="color: white;">
-        <th>id</th>
         <th>name</th>
         <th>projects</th>
         <th>Edit</th>
@@ -21,8 +29,7 @@
       </tr>
       <% @curriculum_vitaes.each do |curriculum_vitae| %>
       <tr>
-      <td><%= curriculum_vitae.id%> </td>
-      <td><p><%= curriculum_vitae.candidate&.name %></p></td>
+      <td class="l"><p><%= curriculum_vitae.candidate&.name %></p></td>
       <td>
         <% curriculum_vitae.projects.each do |project| %>
           <%= project.title+", " %>
@@ -38,9 +45,13 @@
       <span>Visibility</span>
       <%end%>
     </td>
-  <td><%= link_to 'pdf download', pdf_html_req_path(curriculum_vitae) %>
+  <td><%= link_to pdf_html_req_path(curriculum_vitae), class: 'material-symbols-outlined' do  %>
+    <span>picture_as_pdf</span>
+      <%end%>
   </td>
-  <td><%= link_to 'docx download', docx_html_req_path(curriculum_vitae) %>
+  <td><%= link_to docx_html_req_path(curriculum_vitae), class: 'material-symbols-outlined' do  %>
+    <span>edit_document</span>
+      <%end%>
   </td>
   <!-- <td><%= link_to 'doc by curl download', doc_html_req_path(curriculum_vitae) %></td> -->
     </tr>

@@ -1,6 +1,10 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<div style="text-align: center">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+<div style="text-align: center">
+<style>
+  
+</style>
 <div class="container">
   <div>
     <div class="row ">
@@ -11,7 +15,9 @@
               <!-- <div class="profile-avatar"> -->
                 <!-- <div> -->
                   <%= image_tag @curriculum_vitae.image.variant(resize_to_limit: [nil, 120]) , style: " width: 200px;  border-radius: 50%;     position: relative; z-index: 2;" if curriculum_vitae.image.attached? %>
-                <!-- <img src="<%= url_for(@curriculum_vitae.image.variant(resize_to_limit: [nil, 120])) %>"
+                  <!--  object-fit: cover; object-position: center;-->
+
+                  <!-- <img src="<%= url_for(@curriculum_vitae.image.variant(resize_to_limit: [nil, 120])) %>"
                   alt="Curriculum Vitae Image" style=" width: 250px;  border-radius: 50%;"> -->
               <!-- </div> -->
               <div class="profile-avatar-info mt-3">
@@ -26,42 +32,47 @@
           </div>
 
           <% profile=curriculum_vitae.candidate.profile %>
-            <div class="about-candidate border-top">
-              <div class="candidate-info">
-                <h6 class="text-white">Name:</h6>
-                <p class="text-white">
-                  <%= curriculum_vitae.candidate&.name %>
-                </p>
-              </div>
-              <div class="candidate-info">
-                <h6 class="text-white">Email:</h6>
-                <p class="text-white">
-                  <%= profile.email %>
-                </p>
-              </div>
-              <div class="candidate-info">
-                <h6 class="text-white">Phone:</h6>
-                <p class="text-white">
-                  <%= profile.contact %>
-                </p>
-              </div>
-              <!-- <div class="candidate-info">
-          <h6 class="text-white">Date Of Birth:</h6>
-          <p class="text-white">1993-12-28</p>
-        </div> -->
-              <div class="candidate-info">
-                <h6 class="text-white">Address:</h6>
-                <p class="text-white">
+             <div class="about-candidate border-top">
+              <ul class="list-unstyled text-left">
+                <style>
+                  body{
+                    font-family: Arial, sans-serif;
+                    /* font-family: Helvetica, Arial, sans-serif; */
+                  }
+                  .icon{
+                    fill: white;
+                    width: 1em;
+                  height: 1em;
+                  }
+                  svg{
+                    margin-right: 12px;
+                    margin-left: 8px;
+                  }
+                </style>
+                <li class="list-item">
+                    <!-- <i class="fas fa-mobile-alt mx-4"></i><%= profile.contact %> -->
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M272 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM160 480c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm112-108c0 6.6-5.4 12-12 12H60c-6.6 0-12-5.4-12-12V60c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v312z"/></svg>
+                    <%= profile.contact %> 
+                </li>
+                <li class="list-item">
+                    <!-- <i class="fas fa-envelope-open-text mx-4"></i> <%= profile.email %> -->
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M215.4 96H144 107.8 96v8.8V144v40.4 89L.2 202.5c1.6-18.1 10.9-34.9 25.7-45.8L48 140.3V96c0-26.5 21.5-48 48-48h76.6l49.9-36.9C232.2 3.9 243.9 0 256 0s23.8 3.9 33.5 11L339.4 48H416c26.5 0 48 21.5 48 48v44.3l22.1 16.4c14.8 10.9 24.1 27.7 25.7 45.8L416 273.4v-89V144 104.8 96H404.2 368 296.6 215.4zM0 448V242.1L217.6 403.3c11.1 8.2 24.6 12.7 38.4 12.7s27.3-4.4 38.4-12.7L512 242.1V448v0c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64v0zM176 160H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H176c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H176c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg>
+                    <%= profile.email %>
+                </li>
+                <li class="list-item">
+                  <!-- <i class="fas fa-map-marker-alt mx-4"></i> -->
+                  <svg class="icon" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
+                    <path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
+                  </svg>
                   <%= profile.address %>
-                </p>
+                </li>
+                <li class="list-item">
+                    <!-- <i class="fas fa-solid fa-user mx-4"></i><%= profile.gender %> -->
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
+                    <%= profile.gender %>
+                </li>
+            </ul>
               </div>
-              <div class="candidate-info">
-                <h6 class="text-white">Gender:</h6>
-                <p class="text-white">
-                  <%= profile.gender %>
-                </p>
-              </div>
-            </div>
             <div class="mt-0">
               <% if curriculum_vitae.core_skill %>
                 <div class="card-header">
@@ -88,10 +99,7 @@
                   </div>
             </div>
         <style>
-          .card-header , .card-body
-          {
-            color: white;
-          }
+       
         </style>
       </div>
     </div>
@@ -106,7 +114,7 @@
 
             <!--  -->
             <div class="card" style="margin-bottom: 10px;">
-              <div class="card-header text-dark">
+              <div class="card-header text-dark" style="background-color: #ebebeb";>
                 <h5 class="resume-experience-title">Projects</h5>
               </div>
               <div class="card-body text-dark">
@@ -139,6 +147,22 @@
 </div>
 </div>
 <style>
+
+.card-header , .card-body
+          {
+            color: white;
+          }
+  .card-header {
+    margin-bottom: 0;
+    background-color: rgb(102 150 201 / 92%);
+    /* background-color: mediumaquamarine; */
+    /* background-color: #729ecd!important; */
+    /* background-color: transparent; */
+    background-color: #1072dd;
+    /* background-color: #00000014; */
+    /* border-bottom: 1px solid rgba(0,0,0,.125); */
+    border-bottom: 0;
+}      
   .profile {
     margin-bottom: 25px;
   }
@@ -176,8 +200,8 @@
   }
 
   .about-candidate {
-    padding: 25px 0px;
-  }
+    padding: 25px 35px;
+}
 
   .about-candidate .candidate-info {
     margin-bottom: 20px;
@@ -191,28 +215,6 @@
     padding-right: 50px;
     background: #f6f6f6;
   }
-
-  .resume-experience:before {
-    position: absolute;
-    left: -40%;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    background: #f6f6f6;
-    content: "";
-    z-index: -1;
-    top: 0;
-  }
-
-  .resume-experience .jobster-candidate-timeline .jobster-timeline-item .jobster-timeline-cricle {
-    border-color: #f6f6f6;
-  }
-
-  .user-dashboard-info-box .select2-container--default .select2-selection--single .select2-selection__rendered {
-    font-weight: bold;
-    color: #626262;
-  }
-
 
   @media (max-width: 991px) {
     .resume-experience {}
@@ -230,68 +232,6 @@
     .secondary-menu ul li a {}
   }
 
-  /*****************************
-    Progress Bar
-*****************************/
-
-
-  /* Jobster Candidate */
-  .jobster-candidate-timeline {
-    position: relative;
-  }
-
-  .jobster-candidate-timeline:before {
-    content: "";
-    position: absolute;
-    left: 20px;
-    width: 2px;
-    top: 5px;
-    bottom: 5px;
-    height: calc(100% - 5px);
-    background-color: #eeeeee;
-  }
-
-  .jobster-candidate-timeline .jobster-timeline-item {
-    display: table;
-    position: relative;
-    margin-bottom: 20px;
-    width: 100%;
-  }
-
-  .jobster-candidate-timeline .jobster-timeline-item .jobster-timeline-cricle {
-    border-radius: 50%;
-    border: 12px solid white;
-    z-index: 1;
-    top: 5px;
-    left: 9px;
-    position: absolute;
-  }
-
-  .jobster-candidate-timeline .jobster-timeline-item .jobster-timeline-cricle:before {
-    content: "";
-    position: absolute;
-    left: 12px;
-    width: 20px;
-    top: -1px;
-    bottom: 5px;
-    height: 2px;
-    background-color: #eeeeee;
-  }
-
-  .jobster-candidate-timeline .jobster-timeline-item .jobster-timeline-cricle>i {
-    font-size: 15px;
-    top: -8px;
-    left: -7px;
-    position: absolute;
-    color: #21c87a;
-  }
-
-  .jobster-candidate-timeline .jobster-timeline-item .jobster-timeline-info {
-    display: table-cell;
-    vertical-align: top;
-    padding: 5px 0 0 70px;
-  }
-
   .jobster-candidate-timeline .jobster-timeline-item .jobster-timeline-info h6 {
     color: #21c87a;
     margin: 5px 0 0px;
@@ -302,27 +242,10 @@
     font-size: 13px;
     font-weight: 500;
   }
-
-  .jobster-candidate-timeline span.jobster-timeline-time {
-    color: #646f79 !important;
+  li.list-item {
+    color: white;
   }
-
-  .jobster-candidate-timeline .jobster-timeline-icon {
-    border: 2px solid #eeeeee;
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    line-height: 42px;
-    text-align: center;
-    background: #ffffff;
-    position: relative;
-    margin-bottom: 20px;
-  }
-
-  .jobster-candidate-timeline .jobster-timeline-icon i {
-    font-size: 16px;
-    color: #212529;
-  }
+  
 </style>
 
 </div>

@@ -41,12 +41,8 @@
 
     <div class="row">
 
-        <div class="col-md-4">
-          <%= form.label "Experience" , style: "display: block" ,class: "text-white" %>
-            <%= form.number_field :experience ,style: "width: 100%;text-align: center;" ,class: "form-control" %>
-        </div>
-
-      <div class="col-md-4">
+       
+      <div class="col-md-6">
         <%= form.label "Core Skill" , style: "display: block" ,class: "text-white" %>
           <!-- <%= collection_select( nil , :core_skill_id, TechStack.all, :id, :title, { include_blank: true ,selected: curriculum_vitae.core_skill&.id } )%> -->
 
@@ -55,37 +51,47 @@
           <% end %>
       </div>
       <!-- skills ++ -->
-      <div class="col-md-4">
+      <div class="col-md-6">
         <%= form.label :supportive_skills, style: "display: block" ,class: "text-white" %>
           <!-- <%= form.collection_select(:supportive_skill_ids, TechStack.supportive_skills, :id, :title , {}, { multiple: true, include_blank: false ,id: 'supportive_skill' }) %>
             <script>
               new MultiSelectTag('supportive_skill')
             </script> -->
-           <%= form.collection_select(:supportive_skill_ids, TechStack.supportive_skills, :id, :title , {}, {multiple: true   , include_blank: false ,class: "selectpicker show-menu-arrow form-control" , 'data-live-search': "true"}) %>
+           <!-- <%= form.collection_select(:supportive_skill_ids, TechStack.supportive_skills, :id, :title , {}, {multiple: true   , include_blank: false ,class: "selectpicker show-menu-arrow form-control" , 'data-live-search': "true"}) %> -->
+           <%= form.collection_select(:supportive_skill_ids, TechStack.supportive_skills, :id, :title , {}, {multiple: true ,class: "selectpicker show-menu-arrow form-control"}) %>
       </div>
 
       
     </div>
 
-      <!-- by using grouped_options_for_select  // at hepler method -->
-      <div>
-        <%= form.label "Projects" , style: "display: block" ,class: "text-white" %>
-          <!-- <%= form.select(:project_ids, grouped_options_for_select(helper_grouped_projects_options), {}, { multiple: true, include_blank: false ,class: "selectpicker show-menu-arrow form-control" , 'data-live-search': "true" }) %> -->
-          <%= form.select(:project_ids, grouped_options_for_select(helper_grouped_projects_options , selected: curriculum_vitae.project_ids), {}, { multiple: true, include_blank: false ,class: "selectpicker show-menu-arrow form-control" , 'data-live-search': "true" }) %>
-            <!-- error message-->
-            <% curriculum_vitae.errors[:projects].each do |message| %>
-              <span style="background: cornsilk; color: red; border-radius: 5px;">
-                <%= message %>
-              </span>
-              <%end%>
-
-                <%# <%=form.error_message_on :projects, class: 'error-message' %>
-                  <%# <%=error_message_on "tech_stack" , "projects" %>
-
-                    <%# <%=form.error :projects %>
-
-                      <!-- </div> -->
+     <div class="row">
+      <div class="col-md-6">
+        <%= form.label "Experience" , style: "display: block" ,class: "text-white" %>
+          <%= form.number_field :experience ,style: "width: 100%;text-align: center;" ,class: "form-control" %>
       </div>
+
+      <!-- by using grouped_options_for_select  // at hepler method -->
+       <div class="col-6">
+         <%= form.label "Projects" , style: "display: block" ,class: "text-white" %>
+           <!-- <%= form.select(:project_ids, grouped_options_for_select(helper_grouped_projects_options), {}, { multiple: true, include_blank: false ,class: "selectpicker show-menu-arrow form-control" , 'data-live-search': "true" }) %> -->
+           <%= form.select(:project_ids, grouped_options_for_select(helper_grouped_projects_options , selected: curriculum_vitae.project_ids), {}, { multiple: true, include_blank: false ,class: "selectpicker show-menu-arrow form-control" , 'data-live-search': "true" }) %>
+             <!-- error message-->
+             <% curriculum_vitae.errors[:projects].each do |message| %>
+               <span style="background: cornsilk; color: red; border-radius: 5px;">
+                 <%= message %>
+               </span>
+               <%end%>
+ 
+                 <%# <%=form.error_message_on :projects, class: 'error-message' %>
+                   <%# <%=error_message_on "tech_stack" , "projects" %>
+ 
+                     <%# <%=form.error :projects %>
+ 
+                       <!-- </div> -->
+       </div>
+      
+
+     </div>
 
       <div class="row">
 

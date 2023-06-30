@@ -1,5 +1,14 @@
-.pos_l ,h1{
-    position: relative;
+.pos_l{
+    /* position: relative; */
+    margin-left: 16%;
+}
+.pos_l:hover
+{
+    box-shadow: -1px 0px 20px 0 cyan;
+    border-radius: 50%; 
+}
+h1{
+    /* position: relative; */
     margin-left: 16%;
 }
 .h_pos_l ,h1

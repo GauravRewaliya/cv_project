@@ -14,7 +14,7 @@
             <div class="jobster-user-info">
               <!-- <div class="profile-avatar"> -->
                 <!-- <div> -->
-                  <%= image_tag @curriculum_vitae.image.variant(resize_to_limit: [nil, 120]) , style: " width: 200px;  border-radius: 50%;     position: relative; z-index: 2;" if curriculum_vitae.image.attached? %>
+                  <%= image_tag @curriculum_vitae.image.variant(resize_to_limit: [nil, 120]) , style: " width: 150px; height: 150px ; border-radius: 50%;     position: relative; z-index: 2;" if curriculum_vitae.image.attached? %>
                   <!--  object-fit: cover; object-position: center;-->
 
                   <!-- <img src="<%= url_for(@curriculum_vitae.image.variant(resize_to_limit: [nil, 120])) %>"

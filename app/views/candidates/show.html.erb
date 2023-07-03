@@ -10,34 +10,37 @@
   <div class="card-body">
     <div class="formBox">
         <div class="formContainer">
-   
-<p>
-  <strong>name:</strong>
-  <%= @candidate.name %>
-</p>
+   <table style="text-align: left;">
+    <tr>
+      <th>name:</th>
+      <td> <%= @candidate.name %></td>
+    </tr>
+    <tr>
+      <th>employ_id:</th>
+      <td>  <%= @candidate.employ_id %></td>
+    </tr>
+    <tr>
+      <th>email:</th>
+      <td>  <%= @candidate.profile.email %></td>
+    </tr>
+    <tr>
+      <th>gender:</th>
+      <td>  <%= @candidate.profile.gender %></td>
+    </tr>
+    <tr>
+      <th>address:</th>
+      <td>  <%= @candidate.profile.address %></td>
+    </tr>
+    <tr>
+      <th>contact:</th>
+      <td>  <%= @candidate.profile.contact %></td>
+    </tr>
+   </table>
 
-<p>
-  <strong>employ_id:</strong>
-  <%= @candidate.employ_id %>
-</p>
-
-<p>
-  <strong>email:</strong>
-  <%= @candidate.profile.email %>
-</p>
-<p>
-  <strong>gender:</strong>
-  <%= @candidate.profile.gender %>
-</p>
-<p>
-  <strong>address:</strong>
-  <%= @candidate.profile.address %>
-</p>
-
-<p>
+<!-- <p>
   <strong>contact:</strong>
   <%= @candidate.profile.contact %>
-</p>
+</p> -->
   </div>
   </div>
   </div>

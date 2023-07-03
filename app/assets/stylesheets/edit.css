@@ -35,8 +35,24 @@ h2{
 } */
 
 .btn
-{
-    margin-top: 0px;
+{   
+    /* margin-top: 11px; */
+    /* margin-top: 0px;
     padding-bottom: 0px;
-    padding-top: 0px;
+    padding-top: 0px; */
 }
+/* .edit_class {
+    transform: scale(0.8);
+    transform-origin: top left;
+    width: 125%;
+    height: 125%;
+    overflow: hidden;
+  } */
+  /* .body
+  {
+      transform: scale(0.8);
+      transform-origin: top left;
+      width: 125%;
+      height: 125%;
+      overflow: hidden;
+  } */

@@ -27,6 +27,22 @@ a.nav-link::after {
     transform: scaleX(0);
     transition: transform .3s;
 }
+.fixed_nav
+    {
+      position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    z-index: 100;
+    }
+.fixed_nav{
+  transform: scale(0.9);
+  transform-origin: top left;
+  width: 111.11%;
+  overflow: hidden;
+}
+
 </style>
 <div class="fixed_nav">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="padding: 0.2rem 1rem;margin: 0;">

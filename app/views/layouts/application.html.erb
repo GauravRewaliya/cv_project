@@ -49,21 +49,6 @@
       margin: 2px;
     }
 
-    .header_gr {
-      padding: 14px;
-    }
-
-    .table_gr {
-      padding: 0 50px 0 50px;
-    }
-
-    .table_gr table {
-      /* border: 2px solid black; */
-    }
-
-    .table_gr table tbody tr:first-child {
-      background-color: #43a5b0;
-    }
 
     .bg-secondary {
       /* background-color: #6c757d!important; */
@@ -88,7 +73,6 @@
       margin-left: 6%;
       margin-top: -4px;
       margin-bottom: 15px;
-
     }
     .top_header{
       position: relative;
@@ -114,36 +98,24 @@
     {
       margin-top: 60px; 
     }
-    .fixed_nav
-    {
-      position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    margin: 0;
-    z-index: 100;
-    }
-
-    .table-hover tbody tr:hover{
-      box-shadow: inset -4px 1px 16px 0px #00ffff87;;
-      background: none;
-    }
+   
     /* tempory adjust screen */
     /* html {
   zoom: 0.8;
   } */
-  html {
+  /* html {
   transform: scale(0.8);
   transform-origin: top left;
   width: 125%;
   height: 125%;
   overflow: hidden;
-}
+} */
   </style>
 
     <% if user_signed_in? %>
       <%= render 'shared/navbar' %>
     <% end %>
+
   <!-- <div style="text-align: center"> -->
   <div class="content">
   <% if notice %>
@@ -156,10 +128,12 @@
       <%= alert %>
     </p>
   <% end%>
-
+    <div class="body">
   <%= yield %>
+    </div>
 </div>
-  <style>
+  <style> 
+    /* just to preserve this if any one change ,any where change */
     .btn-sm
     {
       padding: 0.5rem 1rem;

@@ -11,20 +11,24 @@
       </ul>
   </div>
   <% end %>
-  
+  <style>
+    table{
+      table-layout:fixed;
+    }
+  </style>
   <h2>Candidate</h2>
 <%= form_with(model: @candidate) do |form| %>
   <table class="table">
   <div class="field">
     <tr>
       <td><%= form.label :name %></td>
-    <td><%= form.text_field :name %></td>
+    <td><%= form.text_field :name ,class: "form-control"%></td>
   </tr>
 </div>
   <div class="field">
     <tr>
       <td><%= form.label "Employee ID" %></td>
-    <td><%= form.text_field :employ_id %></td>
+    <td><%= form.text_field :employ_id ,class: "form-control"%></td>
   </tr>
 </div>
 </table>
@@ -35,13 +39,13 @@
    <div class="field">
     <tr>   
       <td><%= profile_form.label :email %></td>
-      <td><%= profile_form.text_field :email %></td>
+      <td><%= profile_form.text_field :email ,class: "form-control"%></td>
     </tr>
     </div>
     <div class="field">
       <tr>
         <td><%= profile_form.label :contact %></td>
-      <td><%= profile_form.number_field :contact %></td>
+      <td><%= profile_form.number_field :contact ,class: "form-control"%></td>
     </tr>
   </div>
 
@@ -49,7 +53,7 @@
     <div class="field">
       <tr>
         <td><%= profile_form.label :address %></td>
-       <td><%= profile_form.text_field :address %></td>
+       <td><%= profile_form.text_field :address ,class: "form-control"%></td>
     </tr>
   </div>
 </div>

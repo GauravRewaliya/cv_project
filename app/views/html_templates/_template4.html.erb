@@ -15,6 +15,10 @@
                     margin-right: 12px;
                     margin-left: 8px;
                   }
+                  /* .rounded-circle 
+      {
+    -webkit-border-radius: 100px!important;
+      } */
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -26,6 +30,7 @@
               <div class="col-5 bg-dark text-white text-center py-4">
                   <div class="header-left">
                       <% if !@curriculum_vitae.image.blank?%>
+           <!-- <%= image_tag @curriculum_vitae.image.variant(resize_to_limit: [nil, 120]) , class: "img-thumbnail rounded-circle " , style: "height: 130px; width: 150px;    border-radius: 50px!important;" if curriculum_vitae.image.attached? %> -->
            <%= image_tag @curriculum_vitae.image.variant(resize_to_limit: [nil, 120]) , class: "img-thumbnail rounded-circle " , style: "height: 130px; width: 150px;" if curriculum_vitae.image.attached? %>
                       <!-- <img src="<%= url_for(@curriculum_vitae.image.variant(resize_to_limit: [nil, 120])) %>"
                       alt="not found" class="img-thumbnail rounded-circle " style="height: 130px; width: 150px;"> -->

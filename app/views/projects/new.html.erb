@@ -1,13 +1,17 @@
-<div style="text-align: center">
+<%= stylesheet_link_tag  "edit" %>
+<div>
 <h1>New project</h1>
-<div class="card" style="margin: 0% 20% 0% 20%">
+<div style="position: relative;">
+  <%= link_to "arrow_back", projects_path ,class:"pos_l material-symbols-outlined" %>
+</div>
+<div class="card" style="margin: 0% 15% 0% 15%">
   <div class="card-body bg-secondary"><%= render "form", project: @project %></div>
 </div>
 
 <br>
 
-<div>
+<!-- <div>
   <%= link_to "Back to projects", projects_path %>
-</div>
+</div> -->
 
 </div>

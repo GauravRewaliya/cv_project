@@ -12,21 +12,21 @@
   <% end %>
     <div class="row">
   
-      <%= form.label :Tech_type ,class: "text-white col-2" %>
+      <%= form.label :Tech_type ,class: " col-2" %>
   <div class="col-5">
     <div class="form-inline">
       <%= form.radio_button :tech_type, 1 %>
-      <%= form.label "core Tech", style: "display: block" ,class: "text-white" %>
+      <%= form.label "core Tech", style: "display: block"  %>
     </div>
     
     <div class="form-inline">
       <%= form.radio_button :tech_type, 2 %>
-      <%= form.label "supportive Tech", style: "display: block" ,class: "text-white" %>
+      <%= form.label "supportive Tech", style: "display: block"  %>
     </div>
   </div>
 </div>
   <div >
-    <%= form.label :title ,class: "text-white" %>
+    <%= form.label :title  %>
     <%= form.text_field :title ,style: "width: 100%;text-align: center;" ,class: "form-control"%>
     <%#  <%= form.error_message_on :title, class: 'error-message' %>
     <%#  <%= error_message_on "tech_stack", "title" %>
@@ -36,7 +36,7 @@
  
     
   <div class="form-group">
-    <%= form.label :desc, style: "display: block" ,class: "text-white"%>
+    <%= form.label :desc, style: "display: block" %>
     <%= form.text_area :desc ,style: "width: 100%;text-align: center;height: 100px;"%>
   </div>
  

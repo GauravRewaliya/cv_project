@@ -1,6 +1,9 @@
 <%= stylesheet_link_tag  "edit" %>
 <!-- <div style="text-align: center"> -->
 <h1>New curriculum_vitae</h1>
+<div style="position: relative;">
+  <%= link_to "arrow_back", curriculum_vitaes_path ,class:"pos_l material-symbols-outlined"%>
+</div>
 <div class="card" style="margin: 0% 20% 0% 20%">
   <div class="card-body bg-secondary">
     <%= render "form", curriculum_vitae: @curriculum_vitae %>
@@ -23,7 +26,4 @@ core_select.innerHTML = core_select.innerHTML+ '<option value="+" label="+" id="
 <%#<%= render "shared/add_core_tech" %>  // for popup
 -->
 
-</div>
-<div style="position: relative;">
-  <%= link_to "arrow_back", curriculum_vitaes_path ,class:"pos_l material-symbols-outlined"%>
 </div>

@@ -5,21 +5,25 @@ margin: 0;
 padding-left: 15px;
 padding-right:15px;
 }
+body
+{
+background:#b9d7d7;
+}
+.body{
+  background: azure;
+    border-radius: 3%;
+}
+.text-white{
+  color: black!important;
+}
+/* .bg-secondry{
+  background-color: white!important;
+  background: white!important;
+} */
 </style>
 
 <%= form_with(model: project) do |form| %>
-  <% if project.errors.any? %>
-  <div class="alert alert-warning" role="alert">
 
-      <ul>
-        <% project.errors.each do |error| %>
-          <li>
-            <%= error.full_message %>
-          </li>
-          <% end %>
-      </ul>
-    </div>
-    <% end %>
     <div class="form-group">
         <%= form.label :title, style: "display: block" ,class: "text-white" %>
           <%= form.text_field :title ,class:"form-control" %>
@@ -106,7 +110,7 @@ padding-right:15px;
           
              <%= form.fields_for :project_core_tech_attributes, @project.project_core_tech do |cs| %>
                 <%= cs.collection_select :tech_stack_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{class: "form-control" ,style:"height: 45px; margin-top: 7px;"} %>
-                  <% end %>
+              <% end %>
           </div>
           
         </div>
@@ -131,4 +135,15 @@ padding-right:15px;
       <div>
         <%= form.submit class: 'btn-primary' %>
       </div>
+      <!-- new error message by js -->
+      <% if project.errors.any? %>
+      <% project.errors.each do |error| %>
+         <script>
+          inputf = $(document.getElementsByName('project[<%=error.attribute.to_s %>]')[0])
+          inputf.addClass("is-invalid")
+          $("<div class='invalid-feedback'>  <%= error.full_message %> </div>").insertAfter(inputf)
+         </script>  
+        <% end %>
+      <% end %>
+
       <% end %>

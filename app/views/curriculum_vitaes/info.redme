@@ -1,0 +1,62 @@
+@curriculum_vitae
+
+// img
+  <img src="<%= url_for(@curriculum_vitae.image.variant(resize_to_limit: [nil, 120])) %>"
+                    alt="not found" class="img-thumbnail rounded-circle " style="height: 130px; width: 150px;">
+
+    <%= curriculum_vitae.profile_desc %>  
+    <%= curriculum_vitae.experience %>  
+
+    //candidate
+        <%= curriculum_vitae.candidate&.name %>
+        //curriculum_vitae
+        <%= curriculum_vitae.profile_desc %>
+
+
+    //profile   
+        <% profile=curriculum_vitae.candidate.profile %>
+
+           <%= profile.contact %>
+            <%= profile.email %>
+            <%= profile.address %>
+            <%= profile.gender %>
+
+         //core_skill   
+         <%if !curriculum_vitae.core_skill.blank?%>
+                        <h5>Main Skill</h5>
+                        <li class="list-item"><%= curriculum_vitae.core_skill&.title %></li>
+                          ( <%= curriculum_vitae.core_skill&.desc %> )
+                        <%end%>
+            //supportive_skill
+
+            <% curriculum_vitae.supportive_skills.each do |supportive_skill| %>
+                        <li class="list-item">
+                          <%= supportive_skill.title %>
+                          <br>
+                          ( <%= supportive_skill.desc %> )
+                          <%# <%= supportive_skill.desc %>
+                         
+                        </li>
+                          <% end %>
+
+// project 
+
+<% curriculum_vitae.projects.each do |project| %>
+                        <li class="list-item">
+                            <h5 class="display-6 text-uppercase"><%= project.title %></h5>
+                            
+
+                            <h6 class="text-uppercase text-black-50">
+
+                                <%if !project.start_date.blank? %>
+                            <span class="jobster-timeline-time"><%=project.start_date%> 
+                             <%= project.end_date.blank? ? " inProgerss" : " to "+project.end_date %>
+                             </span>
+                            <%end%>
+                            
+                            </h6>
+                            <p><%= project.desc %></p>
+
+                        </li>
+                        <% end %>
+                        

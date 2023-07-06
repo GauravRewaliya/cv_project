@@ -1,36 +1,98 @@
 
+<%= stylesheet_link_tag  "show" %>
+
 <div class="card text-center" >
   <div class="card-header">
+    
+    
+    <%= link_to "arrow_back", projects_path ,class:"pos_l material-symbols-outlined"  %>
     <h3>
       <strong>Title:</strong>
       <%= @project.title %>
     </h3>
 
   </div>
+
   <div class="card-body">
-    <h5 class="card-title">Description</h5>
-    <p class="card-text">
+
+    <div class="formBox">
+        <div class="formContainer">
+
+          <!-- <div class="row justify-content-md-center">
+            <div class="col-5">
+            <h5 >Created by</h5>
+            <p >
+              <%= @project.created_by %>
+            </p>
+          </div>
+          <div class="col-5">
+            <h5 >Updated By</h5>
+            <p >
+              <%= @project.updated_by %>
+            </p>
+          </div>
+          </div> -->
+
+    <h5 >Description</h5>
+    <p >
       <%= @project.desc %>
     </p>
-    <h5 class="card-title">Core Skill</h5>
-    <p class="card-text">
+
+    <%if !@project.domain.blank?%>
+    <h5 >Domain</h5>
+    <p >
+      <%= @project.domain.title %>
+    </p>
+    <%end%>
+
+    <%if !@project.team_size.blank?%>
+    <h5 >Team Size</h5>
+    <p >
+      <%= @project.team_size %>
+    </p>
+    <%end%>
+    <%if !@project.role.blank?%>
+    <h5 >Roles & Responsability</h5>
+    <p >
+      <%= @project.role %>
+    </p>
+    <%end%>
+    <div class="row justify-content-md-center">
+    <div class="col-5">
+    <h5 >Start Date</h5>
+    <p >
+      <%= @project.start_date %>
+    </p>
+  </div>
+  <div class="col-5">
+    <h5 >End Date</h5>
+    <p >
+      <%if !@project.end_date.blank?%>
+      <%= @project.end_date %>
+      <%else %>
+       Project is still running
+       <%end%>
+    </p>
+  </div>
+  </div>
+  <br>
+    <h5 >Core Skill</h5>
+    <p >
       <%= @project.core_skill&.title %>
     </p>
 
-    <h5 class="card-title">TechStacks</h5>
-    <p class="card-text">
+    <h5 >TechStacks</h5>
+    <p >
       <% @project.supportive_skills.each do |supportive_skill| %>
      <%= supportive_skill.title+"," %>
     <%end%>
     </p>
-
+    </div>
+    </div>
   </div>
-  <div class="card-footer text-muted">
+  <div class="card-footer text-muted" style="position: relative;">
     
-  <%= link_to "Edit this project", edit_project_path(@project) %> |
-  <%= link_to "Back to projects", projects_path %>
-
-  <%= button_to "Destroy this project", @project, method: :delete ,class:"btn btn-primary btn-sm mt-4"%>
+    <%= link_to "Edit this project", edit_project_path(@project) %>
+    <%= button_to "Destroy this project", @project, method: :delete ,class:"btn btn-outline-danger pos_r"%>
   </div>
 </div>
-

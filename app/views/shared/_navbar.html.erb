@@ -1,62 +1,87 @@
+<style>
+  .navbar-dark .navbar-nav .nav-link {
+    color: rgb(207 242 251 / 93%);
+}
+.nav-link:hover{
+      /* box-shadow: inset 0px -1px 2px 0px cyan;
+    border-radius: 30%;
+    transition: box-shadow .3s; */
+}
+.nav-link {
+  display: inline-block;
+}
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">Project Management</a>
-    
-  
+a.nav-link
+{
+  padding: 8px 15px !important;
+}
+a.nav-link:hover::after {
+    width: 100%;
+    transform: scaleX(0.9);
+}
+a.nav-link::after {
+    border-radius: 25%;
+    content: "";
+    display: block;
+    border: 2px inset aquamarine;
+    transform: scaleX(0);
+    transition: transform .3s;
+}
+.fixed_nav
+    {
+      position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    z-index: 100;
+    }
+.fixed_nav{
+  transform: scale(0.9);
+  transform-origin: top left;
+  width: 111.11%;
+  overflow: hidden;
+}
+.active{
+  color: beige;
+}
+</style>
+<div class="fixed_nav">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="padding: 0.2rem 1rem;margin: 0;">
+  <a class="navbar-brand" href="/">Project Management</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item">
+        <%= link_to "Skills", tech_stacks_path ,class:"nav-link #{'active' if params[:controller] == 'tech_stacks'}"%>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Projects", projects_path  ,class:"nav-link #{'active' if params[:controller] == 'projects'}"%>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Domains", domains_path  ,class:"nav-link #{'active' if params[:controller] == 'domains'}"%>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Candidates", candidates_path ,class:"nav-link #{'active' if params[:controller] == 'candidates'}"%>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Curriculum_vitae", curriculum_vitaes_path ,class:"nav-link #{'active' if params[:controller] == 'curriculum_vitaes'}"%>
+      </li>
+    </ul>
 
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav">
-        
-        <li class="nav-item">
-          <%= link_to "Skills", tech_stacks_path %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Projects", projects_path  %>     
-        </li>
-        <li class="nav-item">
-          <%= link_to "Profiles", profiles_path  %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Candidates", candidates_path  %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Curriculum_vitae", curriculum_vitaes_path  %>
-
-        </li>
-      </ul>
-      </div>
-
-    
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto">
-          <% if user_signed_in? %>
-
-          <style>
-          .nav-link btn btn-primary{
-            margin: 10px;
-          }
-          </style>
-          
-          
-          <li class="nav-item">
-        <%= link_to 'edit Details', edit_user_registration_path, class: 'nav-link btn btn-sm btn-outline-info'   %>
-              <!-- def post -->
-          </li>      
-
-              <li class="nav-item">
-                  <!-- <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'nav-link' %> -->
-                  <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'nav-link btn btn-sm btn-outline-danger' %>
-              </li>
-
-          <% else %>
-              <li class="nav-item">
-                  <%= link_to 'Sign In', new_user_session_path, class: 'nav-link' %>
-              </li>
-              <li class="nav-item">
-                  <%= link_to 'Register', new_user_registration_path, class: 'nav-link' %>
-              </li>
-          <% end %>
-      </ul>
+    <div class="form-inline my-2 my-lg-0">
+      <% if user_signed_in? %>
+      <%= link_to 'edit User', edit_user_registration_path, class: ' btn btn-sm btn-primary' , style: "margin-right: 6px;" %>
+      <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: ' btn btn-sm btn-danger', stytle: "margin-right: -11px;"%>
+      <% else %>
+      <%= link_to 'Sign In', new_user_session_path %>
+     <%= link_to 'Register', new_user_registration_path %>
+    <% end %>
     </div>
-  </nav>
+    
+  </div>    
+</nav>
+
+</div>

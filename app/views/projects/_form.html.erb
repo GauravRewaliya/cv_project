@@ -1,56 +1,163 @@
+<style>
+.col-6,.col-4,.col-5
+{
+margin: 0;
+padding-left: 15px;
+padding-right:15px;
+}
+body
+{
+background:#b9d7d7;
+}
+/* .body{
+  background: azure;
+    border-radius: 3%;
+} */
+
+/* .bg-secondry{
+  background-color: white!important;
+  background: white!important;
+} */
+</style>
+
 <%= form_with(model: project) do |form| %>
-  <% if project.errors.any? %>
-    <div style="color: red">
-      <h2>
-        <%= pluralize(project.errors.count, "error" ) %> prohibited this project from being saved:
-      </h2>
 
-      <ul>
-        <% project.errors.each do |error| %>
-          <li>
-            <%= error.full_message %>
-          </li>
-          <% end %>
-      </ul>
-    </div>
-    <% end %>
-
-      <div class="form-group">
-        <%= form.label :title, style: "display: block" ,class: "text-white" %>
+    <div class="form-group">
+        <%= form.label :title, style: "display: block" ,class: "" %>
           <%= form.text_field :title ,class:"form-control" %>
       </div>
 
       <div class="form-group">
-        <%= form.label :desc, style: "display: block" ,class: "text-white" %>
+        <%= form.label :desc, style: "display: block" ,class: "" %>
           <%= form.text_area :desc ,class:"form-control"%>
       </div>
-      <div class="form-group">
-        <%= form.label :core_skill, style: "display: block" ,class: "text-white" %>
-
-          <!-- <%= form.collection_select :core_skill_id, TechStack.order(:title), :id, :title ,{ include_blank: true } ,{ selected: project.core_skill }%> -->
-          <%= form.fields_for :project_core_tech_attributes, @project.project_core_tech do |cs| %>
-            <%= cs.collection_select :tech_stack_id, TechStack.order(:title), :id, :title, { include_blank: true } %>
-              <% end %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :supportive_skill , style: "display: block" ,class: "text-white" %>
-          <div style="margin-left: 25% ; margin-right: 25%">
-            <div>
-              <%= form.collection_select(:supportive_skill_ids, TechStack.all, :id, :title , {}, { multiple: true,
-                include_blank: false ,id: 'selectgr' }) %>
-
-                </select>
-                <script>
-                  new MultiSelectTag('selectgr')  // id
-                </script>
-
-
-            </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= form.label :domain, style: "display: block" ,class: "" %>
+            <!-- nested form for by 3rd table -->
+             <%= form.fields_for :project_domain_attributes, @project.project_domain do |f| %>
+                <%= f.collection_select :domain_id, Domain.all, :id, :title, { include_blank: true  } ,{ class: "form-control"}%>
+             <% end %>
           </div>
+
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <!-- team_size -->
+            <%= form.label :team_size, style: "display: block" ,class: "" %>
+              <%= form.number_field :team_size ,class:"form-control"%>
+          </div>
+
+        </div>
       </div>
+     
+      <!-- roles_responsability -->
+      <!-- <div class="form-group">
+        <%= form.label "Roles & Responsibilities", style: "display: block" ,class: "" %>
+          <%= form.text_area :role ,class:"form-control"%>
+      </div> -->
+
+      <div class="form-group">
+      <div class="row">
+        <div class="col-6">
+        <%= form.label :start_date, style: "display: block" ,class: "" %>
+        <%= form.date_field :start_date , max: Date.today ,class: 'form-control  container' ,id: "start_date_id"%>
+        </div>
+        <div class="col-6">
+        <%= form.label :end_date, style: "display: block" ,class: "" %>
+        <%= form.date_field :end_date , max: Date.today ,class: 'form-control  container',id: "end_date_id"%>
+        </div>
+      </div>
+      </div>
+      <div style="padding-left: 4%;" class="form-inline">
+        <input type="checkbox" id="inprogress_id">
+        <p style="margin-bottom: 0px;color: #657079;">currently running</p>
+      </div>
+
+
+
+      <script>
+        // its seem i can do without using getElementById
+        e = document.getElementById("end_date_id")
+        function updateEndDate()
+         {
+        end_date_id.value = end_date_id.min = start_date_id.value
+         }
+      start_date_id.addEventListener('change', updateEndDate);
+
+        //  check box disabled , blank
+        function endDateDisable()
+        {
+          if( inprogress_id.checked == true)
+          {
+            e.value = ""
+            e.disabled = true;
+          }
+          else
+          {
+            e.disabled = false ;
+            updateEndDate()
+          }
+        } 
+        inprogress_id.addEventListener('change', endDateDisable);
+        
+      </script>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= form.label :core_skill, style: "display: block" ,class: "" %>
+          
+             <%= form.fields_for :project_core_tech_attributes, @project.project_core_tech do |cs| %>
+                <%= cs.collection_select :tech_stack_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{class: "form-control" ,style:"height: 45px; margin-top: 7px;"} %>
+              <% end %>
+          </div>
+          
+        </div>
+        <div class="col-md-6">
+
+          <div class="form-group">
+            <%= form.label :supportive_skill , style: "display: block" ,class: "" %>
+                <div>
+                  <%= form.collection_select(:supportive_skill_ids, TechStack.supportive_skills, :id, :title , {}, { multiple: true,
+                    include_blank: false ,id: 'selectgr' }) %>
+    
+                    </select>
+                    <script>
+                      new MultiSelectTag('selectgr')  // id
+                    </script>
+              </div>
+          </div>
+        </div>
+      </div>
+
 
       <div>
         <%= form.submit class: 'btn-primary' %>
       </div>
+
+      <!-- new error message by js -->
+      <% if project.errors.any? %>
+      <% project.errors.each do |error| %>
+      <script>
+        inputf = document.getElementsByName('project[<%=error.attribute.to_s %>]')[0];
+        if(inputf != null )
+       {
+        if(inputf.type=="text" || inputf.type=="number" || inputf.type == "date")
+        {
+        $(inputf).addClass("is-invalid")
+        $("<div class='invalid-feedback'>  <%= error.full_message %> </div>").insertAfter(inputf)
+        } else
+        {
+          alert(inputf.type+'***** <%= error.message %>');
+        }
+       } else
+       {
+        alert('<%=error.attribute.to_s %> ------- <%= error.message %>');
+       }
+        </script>  
+        <% end %>
+      <% end %>
+
       <% end %>

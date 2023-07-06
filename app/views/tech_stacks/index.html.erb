@@ -1,36 +1,65 @@
-<style>
-  .btn-primary{
-    text-decoration: none;
-    text-color: red;
-  }
-</style>
-<h1>Tech_stack\Skills</h1>
+<%= stylesheet_link_tag  "index" %>
+<div>
+<div class="top_header d-flex justify-content-between">
+  <div>
+<h1 class="pos_l">Skills</h1>
+<%= link_to "New tech_stack", new_tech_stack_path ,class: 'btn btn-primary new_pos_t' %>
+</div>
 
-<div id="tech_stacks" >
-  <table border=1 class="table table-hover table-striped " , style="border: 2px solid black;">
-    <tr style="background-color: darkblue; color:White">
+<!-- <div style="margin-right: 50px;">
+<form action="tech_stacks" >
+    <div style="display: flex;">
+  <input type="text" name="search" placeholder="Search" class="form-control mr-sm-2 form-control-lg">
+  <button type="submit" class="btn btn-lg btn-success">Search</button>
+    </div>
+  <div style="display: flex; margin-top: 3px;">
+    <div><input type="radio" name="tech_type" value="1">Core_skills</div>
+    <div><input type="radio" name="tech_type" value="2">Supportive_skills</div>
+    <div><input type="radio" name="tech_type" value="">All Skills</div>
+  </div>
+</form>
+</div> -->
+
+</div>
+
+
+<div class="table_gr" >
+  <table class="table table-hover table-striped data_table_gr" , style="width:100%;">
+  <thead>
+    <tr style="color:White">
       <th>Title</th>
       <th>Description</th>
+      <th>type</th>
       <th>Edit</th>
       <th>Delete</th>
       <th>Show</th>
     </tr>
-  <% @tech_stacks.each do |tech_stack| %>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+  </thead>
+  <tbody>
+    <% @tech_stacks.each do |tech_stack| %>
   <tr>
     <td ><h6><%= tech_stack.title %></h6></td>
     <td><p><%= tech_stack.desc %></p></td>
-    <td><%= link_to "Edit", edit_tech_stack_path(tech_stack) %></td>
-    <td><%= button_to "Delete" , tech_stack , method: :delete ,class: "btn-primary"%></td>
+    <td><p><%= display_tech_type(tech_stack.tech_type) %></p></td>
+    <td><%= link_to "Edit", edit_tech_stack_path(tech_stack),class: "material-symbols-outlined" %></td>
+    <td><%= button_to "" , tech_stack , method: :delete ,class: "fa-solid fa-trash alert-light "%></td>
     <td>
-    <p>
-      <%= link_to "Show this tech_stack", tech_stack %>
-    </p>
+      <%#<%= link_to "", tech_stack , class: "fa fa-info-circle " , style: "font-size: x-large;"%>
+      <%= link_to (tech_stack) , class: 'material-symbols-outlined' do %>
+       <span>Visibility</span>
+       <%end%>
   </td>
   </tr>
   <% end %>
+  </tbody>
   </table>
 </div>
 
-<%= link_to "New tech_stack", new_tech_stack_path ,class: 'btn-primary' %>
-<%= link_to "Home" ,  home_index_path ,class: 'btn-primary'  ,style: 'text-decoration: none;
-text-color: red;' %>
+<script>
+  new DataTable('.data_table_gr',{
+    columnDefs: [
+      {target: 2,visible: false}
+    ]
+  });
+</script>

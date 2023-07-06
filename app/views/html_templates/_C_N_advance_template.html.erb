@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<head>
+    <title>PDF</title>
+   <!-- <%= stylesheet_link_tag 'http://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css'%> -->
+    <!-- <%= stylesheet_link_tag 'http://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css' %>  -->
+    <link data-require="bootstrap@3.3.7" data-semver="3.3.7" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+</head>
+<body>
+    
+
+<% gr_path = 'http://127.0.0.1:3000/assets/' %>
+
+        
+       
+   <style>
+    .footer_in p {
+    padding: 1%;
+}
+    body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+
+.header {
+  background-color: #0a1b39;;
+}
+
+.main_header {
+  display: flex;
+  display: -webkit-box;
+  gap: 70px;
+  align-items: center;
+  padding: 35px 0px;
+}
+
+.main_header .logo img {
+  width: 50%;
+}
+
+.logo {
+  border-right: 1px solid #acaeaf;
+  max-width: 30%;
+}
+
+.main_header .header_text h4 {
+  color: #3bc065;
+  font-size: 18px;
+  font-family: sans-serif;
+  font-weight: 600;
+}
+
+/* Logo area Section */
+.logo_area .logo_in img {
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+section.logo_area {
+  margin-top: -18px;
+  margin-bottom: 40px;
+}
+
+.logo_bg {
+  background: #f9faf7;
+  padding: 10px 30px;
+  text-align: center;
+  display: flex;
+  width: 100%;
+}
+.logo_in{
+    width: 23%;
+}
+
+.main_logo {
+  display: flex;
+  display: -webkit-box;
+  display: inline-flex;
+  width: 100%;
+}
+
+.main_logo .logo_star img {
+  width: 40% !important;
+}
+
+.logo_star {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo_star h5 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0a1b39;
+}
+
+section.education_area {
+  page-break-after: always;
+}
+
+/*education area */
+.education_main {
+  display: flex;
+  display: -webkit-box;
+  width: 100%;
+}
+
+.education_in {
+  width: 65%;
+}
+
+.education_in_second {
+  width: 35%;
+  padding: 0px 0px 0px 10px;
+  border-left: 2px solid  #acaeaf;
+}
+
+.education_in h1 {
+  font-family: inherit;
+  font-size: 50px;
+  font-weight: 700;
+}
+
+.education_in h3 {
+  font-size: 20px;
+  font-weight: 800;
+  padding: 15px 0px;
+}
+
+.border {
+  border-bottom: 2px solid  #a9cf03 !important;
+  width: 15%;
+  margin-bottom: 40px;
+}
+
+.education_in p {
+  font-size: 16px;
+  font-weight: 500;
+  width: 95%;
+  color: #444344;
+  margin-bottom: 40px;
+}
+
+.education_in p span {
+  color:  #212121;
+  font-weight: 600;
+}
+
+.education_in_sub h6 {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 5px;
+  margin-bottom: 20px;
+}
+
+.education_in_sub p {
+  font-size: 18px;
+  font-weight: 700;
+  color: #444344;
+  margin-bottom: 35px;
+}
+
+span.dot {
+  height: 8px;
+  width: 8px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.educational_sub {
+  display: flex;
+  display: -webkit-box;
+  align-items: center;
+  gap: 10px;
+}
+
+.educational_sub h4 {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 7px;
+}
+
+.education_in_sub span {
+  font-size: 18px;
+  font-weight: 600;
+  color: #444344;
+}
+
+.education_in_sub {
+  margin-bottom: 30px;
+  width: 95%;
+}
+
+.educs_fs {
+  font-size: 14px !important;
+  font-weight: 400 !important;
+}
+
+.educational_sub_se {
+  gap: 10px;
+  display: flex;
+  display: -webkit-box;
+}
+
+.educational_sub_se h4 {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 7px;
+}
+
+/* TECHNOLOGY STACK START */
+.technology_stack_in h2 {
+  font-size: 22px;
+  font-weight: 700;
+  padding: 0px 0px 20px;
+}
+
+section.technology_stack_area {
+  margin-top: 30px;
+}
+.technology_light {
+  border-left: 3px solid #acaeaf;
+  padding: 10px 0px 10px 25px;
+  margin-bottom: 6px;
+}
+.technology_light h4 {
+  font-size: 18px;
+  font-weight: bold;
+}
+.technology_light p {
+  font-size: 15px;
+  font-weight: 400;
+}
+.technology_green {
+  border-left: 3px solid #a9cf03;
+  padding: 10px 0px 10px 25px;
+  margin-bottom: 6px;
+}
+.technology_green h4 {
+  font-size: 18px;
+  font-weight: bold;
+}
+.technology_green p {
+  font-size: 15px;
+  font-weight: 400;
+}
+.technology_green h4 span{
+  font-size: 15px;
+  font-weight: 400;
+}
+
+
+.tech_main .technology_logo_in img {
+  width: 60% !important;
+}
+.tech_in {
+  display: flex;
+  display: -webkit-box;
+  
+  margin-bottom: 25px;
+  width: 100%;
+}
+
+/* footer */
+.footer {
+  background: #f9faf7;
+}
+.footer_in {
+  display: flex;
+  display: -webkit-box;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0px;
+}
+.footer_in p {
+  font-size: 16px;
+  font-weight: 400;
+}
+.footer_in p span{
+  color:  #3366CC;
+}
+.tech_main{
+    display: flex;
+    display: -webkit-box;
+    width: 20%;
+    text-align: center;
+}
+.technology_stack_main{
+    width: 50%;
+}
+.technology_webkit{
+    display: flex;
+    display: -webkit-box;
+    width: 100%;
+}
+.technology_stack_in{
+    display: flex;
+    display: -webkit-box;
+    width: 100%;
+}
+.technologystack
+{
+    width: 50%;
+}
+.technology_dif
+{
+    display: flex;
+    display: -webkit-box;
+    width: 100%;
+}
+.technology_stack_main h2{
+    margin-bottom:  10px;
+}
+    </style>
+
+    <%= wicked_pdf_stylesheet_link_tag 'https://fonts.cdnfonts.com/css/font' %>
+    
+
+    <section class="header">
+        <div class="container">
+            <div class="main_header">
+                <div class="logo">
+                 <%= image_tag image_url('CnAdvImages/klklkl.png') %>
+                  </div>
+                <div class="header_text">
+                    <h4>Your Digital Engineering and IT Talent Partner</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="logo_area">
+        <div class="container">
+            <div class="logo_bg">
+                <div class="main_logo">
+                    <div class="logo_in">
+                        <%= image_tag image_url('CnAdvImages/image4.png') %>
+                        <div class="logo_star">
+                            <%= image_tag image_url('CnAdvImages/star1.png') %>
+                            <h5>4.8</h5>
+                        </div>
+                    </div>
+                    <div class="logo_in">
+
+                        <%= image_tag image_url('CnAdvImages/image2.png') %>
+                        <div class="logo_star">
+                            <%= image_tag image_url('CnAdvImages/star1.png') %>
+                            <h5>4.9</h5>
+                        </div>
+                    </div>
+                    <div class="logo_in">
+                        <%= image_tag image_url('CnAdvImages/image3.png') %>
+                        <div class="logo_star">
+                            <%= image_tag image_url('CnAdvImages/star1.png') %>
+                            <h5>4.9</h5>
+                        </div>
+                    </div>
+                    <div class="logo_in">
+                        <%= image_tag image_url('CnAdvImages/image1.png') %>
+                        <div class="logo_star">
+                            <%= image_tag image_url('CnAdvImages/star1.png') %>
+                            <h5>4.7</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="education_area">
+        <div class="container">
+            <div class="education_main">
+                <div class="education_in">
+                    <h1><%= curriculum_vitae.candidate&.name %></h1>
+                    <h3>SOFTWARE ENGINEER</h3>
+                    <!-- desc -->
+                    <div class="border"></div>
+                    <p>Have <span><%= curriculum_vitae.experience %>   years</span> of experience working as a
+                        <!--core skill -->
+                        <%= curriculum_vitae.core_skill&.title.to_s + " Developer." %>
+                        
+                        <%= curriculum_vitae.profile_desc %>  
+                    </p>
+
+                    <div class="education_in_sub">
+                        <h6>PROJECT HISTORY</h6>
+
+                        <% curriculum_vitae.projects.each do |project| %>
+
+                        <span>Project: <span class="educs_fs"> <%= project.title %></span></span>
+                        <!-- <%if !project.start_date.blank? %>
+                        ( <%=project.start_date%> ->
+                            <%= project.end_date.blank? ? " inProgerss" : " to " +project.end_date.to_s %>
+                                )
+                                <%end%> -->
+
+                        <div class="educational_sub_se">
+                            <span class="dot"></span>
+                            <h4><%= project.desc %></h4>
+                        </div>
+
+                        <%if !project.domain.blank? %>
+                        <div class="educational_sub_se">
+                            <span class="dot"></span>
+                            <h4> 
+                                Project is based on <%= project.domain&.title %> doamin
+                            </h4>
+                        </div>
+                        <%end%>
+                        
+
+
+
+                        <%if !project.team_size.blank? %>
+                            <div class="educational_sub_se">
+                                <span class="dot"></span>
+                                <h4> 
+                                    Project has Team Size of <%= project.team_size %>
+                                  
+                                </h4>
+                            </div>
+                            <%end%>
+                            
+                            <%if !project.role.blank? %>
+                            <div class="educational_sub_se">
+                                <span class="dot"></span>
+                                <h4>
+                                    Project has specific roles and responcibilites <%= project.role %>
+                                    
+                                    </h4>
+                            </div>
+                            <%end%>
+                            
+                            
+                            <%end%>
+                        </div>
+                </div>
+
+
+                <div class="education_in_second">
+                    <div class="education_in_sub">
+                        <h6>S K I L L S</h6>
+                        <span>Core Skill</span>
+                        <div class="educational_sub">
+                            <span class="dot"></span>
+                            <h4> <%= curriculum_vitae.core_skill&.title %>
+                                <!-- <br>( <%= curriculum_vitae.core_skill&.desc %> ) -->
+                            </h4>
+                        </div>
+                       
+                    </div>
+                    <%if !curriculum_vitae.supportive_skills.blank?%>
+                    <div class="education_in_sub">
+                        <span>Supportive Skill</span>
+                        <div class="educational_sub">
+                            <span class="dot"></span>
+                            <h4>
+                                <% curriculum_vitae.supportive_skills.each do |supportive_skill| %>
+                                    <%= supportive_skill.title %>
+                                <% end %>
+                            </h4>
+                        </div>
+                       
+                    </div>
+                    <%end%>
+                    <div class="education_in_sub">
+                        <span>Scraping</span>
+                        <div class="educational_sub">
+                            <span class="dot"></span>
+                            <h4>Beautifulsoup</h4>
+                        </div>
+                        <div class="educational_sub">
+                            <span class="dot"></span>
+                            <h4>Python requests</h4>
+                        </div>
+                    </div>
+
+                    <div class="education_in_sub">
+                        <span>Python Library</span>
+                        <div class="educational_sub">
+                            <span class="dot"></span>
+                            <h4>Python collections</h4>
+                        </div>
+                        <div class="educational_sub">
+                            <span class="dot"></span>
+                            <h4>Python NumPy</h4>
+                        </div>
+                        <div class="educational_sub">
+                            <span class="dot"></span>
+                            <h4>Pandas</h4>
+                        </div>
+                        <div class="educational_sub">
+                            <span class="dot"></span>
+                            <h4>SQLAlChemy</h4>
+                        </div>
+                    </div>
+
+
+                    <div class="education_in_sub">
+                        <span>Storage</span>
+                        <div class="educational_sub">
+                            <span class="dot"></span>
+                            <h4>Amazon S3</h4>
+                        </div>
+                    </div>
+
+                    <div class="education_in_sub">
+                        <span>Databases</span>
+                        <div class="educational_sub">
+                            <span class="dot"></span>
+                            <h4>MySQL</h4>
+                        </div>
+                        <div class="educational_sub">
+                            <span class="dot"></span>
+                            <h4>MongoDB</h4>
+                        </div>
+                        <div class="educational_sub">
+                            <span class="dot"></span>
+                            <h4>PostgreSQL</h4>
+                        </div>
+                        <div class="educational_sub">
+                            <span class="dot"></span>
+                            <h4>DynamoDB</h4>
+                        </div>
+                        <div class="educational_sub">
+                            <span class="dot"></span>
+                            <h4>Neptune</h4>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Second header -->
+    <section class="header">
+        <div class="container">
+            <div class="main_header">
+                <div class="logo"> <%= image_tag image_url('CnAdvImages/klklkl.png') %>
+                 </div>
+                <div class="header_text">
+                    <h4>Your Digital Engineering and IT Talent Partner</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="technology_stack_area">
+        <div class="container">
+            <div class="technology_webkit">
+                <div class="technology_stack_main">
+
+                
+            <h2>TECHNOLOGY STACK WE USE</h2>
+                 <div class="technology_stack_in">
+                            <div class="technology_dif">
+                                <div class="technologystack">
+
+                           
+                            <div class="education_in_sub">
+                                <span>Backend</span>
+                                <div class="educational_sub">
+                                    <span class="dot"></span>
+                                    <h4>Nodejs</h4>
+                                </div>
+                                <div class="educational_sub">
+                                    <span class="dot"></span>
+                                    <h4>.NET</h4>
+                                </div>
+                                <div class="educational_sub">
+                                    <span class="dot"></span>
+                                    <h4>.NET Core</h4>
+                                </div>
+                                <div class="educational_sub">
+                                    <span class="dot"></span>
+                                    <h4>C#</h4>
+                                </div>
+                                <div class="educational_sub">
+                                    <span class="dot"></span>
+                                    <h4>PHP</h4>
+                                </div>
+                                <div class="educational_sub">
+                                    <span class="dot"></span>
+                                    <h4>Laravel</h4>
+                                </div>
+                                <div class="educational_sub">
+                                    <span class="dot"></span>
+                                    <h4>CodeIgniter</h4>
+                                </div>
+                                <div class="educational_sub">
+                                    <span class="dot"></span>
+                                    <h4>Symfony</h4>
+                                </div>
+                                <div class="educational_sub">
+                                    <span class="dot"></span>
+                                    <h4>Python</h4>
+                                </div>
+                                <div class="educational_sub">
+                                    <span class="dot"></span>
+                                    <h4>Django</h4>
+                                </div>
+                            </div>
+                            <div class="education_in_sub">
+                                <span>Full-Stack</span>
+                                <div class="educational_sub">
+                                    <span class="dot"></span>
+                                    <h4>.NETMean</h4>
+                                </div>
+                                <div class="educational_sub">
+                                    <span class="dot"></span>
+                                    <h4>Mern</h4>
+                                </div>
+                            </div>
+                            <div class="education_in_sub">
+                                <span>Front-End</span>
+                                <div class="educational_sub">
+                                    <span class="dot"></span>
+                                    <h4>Angular</h4>
+                                </div>
+                                <div class="educational_sub">
+                                    <span class="dot"></span>
+                                    <h4>React.js</h4>
+                                </div>
+                                <div class="educational_sub">
+                                    <span class="dot"></span>
+                                    <h4>Vue.jS</h4>
+                                </div>
+                            </div>
+                                </div>
+                        <div class="technologystack">
+                            <div class="education_in_sub">
+                                <span>E-Commerce</span>
+                                <div class="educational_sub">
+                                    <span class="dot"></span>
+                                    <h4>Magento</h4>
+                                </div>
+                                <div class="educational_sub">
+                                    <span class="dot"></span>
+                                    <h4>WooCommerce</h4>
+                                </div>
+                                <div class="educational_sub">
+                                    <span class="dot"></span>
+                                    <h4>Shopify</h4>
+                                </div>
+                            </div>
+                            <div class="education_in_sub">
+                                <span>CMS</span>
+                                <div class="educational_sub">
+                                    <span class="dot"></span>
+                                    <h4>WordPress</h4>
+                                </div>
+                                <div class="educational_sub">
+                                    <span class="dot"></span>
+                                    <h4>Drupal</h4>
+                                </div>
+                            </div>
+                            <div class="education_in_sub">
+                                <span>DevOps</span>
+                                <div class="educational_sub">
+                                    <span class="dot"></span>
+                                    <h4>AWS</h4>
+                                </div>
+                            </div>
+                            <div class="education_in_sub">
+                                <span>Blockchain</span>
+                                <div class="educational_sub">
+                                    <span class="dot"></span>
+                                    <h4>Hyperledger</h4>
+                                </div>
+                                <div class="educational_sub">
+                                    <span class="dot"></span>
+                                    <h4>Ethereum</h4>
+                                </div>
+                                <div class="educational_sub">
+                                    <span class="dot"></span>
+                                    <h4>Solana</h4>
+                                </div>
+                                <div class="educational_sub">
+                                    <span class="dot"></span>
+                                    <h4>Polkadot</h4>
+                                </div>
+                            </div>
+                            <div class="education_in_sub">
+                                <span>Data Analytics</span>
+                                <div class="educational_sub">
+                                    <span class="dot"></span>
+                                    <h4>Tableau</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+          
+                <div class="technology_stack_main">
+                    <div class="technology_stack_de">
+                        <div class="technology_light">
+                            <h4>700+</h4>
+                            <p>Number of Employee</p>
+                        </div>
+                        <div class="technology_green">
+                            <h4>237+</h4>
+                            <p>Clients Worldwide</p>
+                        </div>
+
+                        <div class="technology_light">
+                            <h4>Certifications</h4>
+                            <p>ISO 9001:2008, ISO 27001:2013</p>
+                        </div>
+                        <div class="technology_green">
+                            <h4>150+ <span>Five StarReviews</span></h4>
+                            <p>On Clutch, Google & GoodFirms</p>
+                        </div>
+
+                        <div class="technology_light">
+                            <h4>2012</h4>
+                            <p>Established</p>
+                        </div>
+                        <div class="technology_green">
+                            <h4>25+</h4>
+                            <p>Awards in the Last 10 Years</p>
+                        </div>
+
+                        <div class="technology_light">
+                            <h4>30+%</h4>
+                            <p>YOY Organic Revenue Growth</p>
+                        </div>
+                        <div class="technology_green">
+                            <h4>40+</h4>
+                            <p>Technologies Supported</p>
+                        </div>
+                    </div>
+                </div>
+                        
+             </div>
+        </div>
+    </section>
+
+    <section class="technology_logo">
+        <div class="container">
+            <div class="tech_in">
+                <div class="tech_main">
+                    <div class="technology_logo_in">
+                        <%= image_tag image_url('CnAdvImages/img1.png') %>
+                    </div>
+                </div>
+                <div class="tech_main">
+                    <div class="technology_logo_in">
+                        <%= image_tag image_url('CnAdvImages/img2.png') %>
+                    </div>
+                </div>
+                <div class="tech_main">
+                    <div class="technology_logo_in">
+                        <%= image_tag image_url('CnAdvImages/img3.png') %>
+                    </div>
+                </div>
+                <div class="tech_main">
+                    <div class="technology_logo_in">
+                        <%= image_tag image_url('CnAdvImages/img4.png') %>
+                    </div>
+                </div>
+                <div class="tech_main">
+                    <div class="technology_logo_in">
+                        <%= image_tag image_url('CnAdvImages/img5.png') %>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tech_in">
+                <div class="tech_main">
+                    <div class="technology_logo_in">
+                        <%= image_tag image_url('CnAdvImages/img6.png') %>
+                    </div>
+                </div>
+                <div class="tech_main">
+                    <div class="technology_logo_in">
+                        <%= image_tag image_url('CnAdvImages/img7.png') %>
+                    </div>
+                </div>
+                <div class="tech_main">
+                    <div class="technology_logo_in">
+                        <%= image_tag image_url('CnAdvImages/img8.png') %>
+                    </div>
+                </div>
+                <div class="tech_main">
+                    <div class="technology_logo_in">
+                        <%= image_tag image_url('CnAdvImages/img9.png') %>
+                    </div>
+                </div>
+                <div class="tech_main">
+                    <div class="technology_logo_in">
+                        <%= image_tag image_url('CnAdvImages/img10.png') %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="footer">
+        <div class="container">
+            <div class="footer_in">
+                <p><span>www.capitalnumbers.com</span></p>
+                <p><b>Phone:</b> +91-33-6799-2222</p>
+                <p><b>mail:</b> <span>info@capitalnumbers.com</span></p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

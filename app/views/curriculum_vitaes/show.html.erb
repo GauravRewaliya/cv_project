@@ -1,14 +1,7 @@
-<%= link_to "Save this layout permently", save_layout_data_path(@curriculum_vitae) %>
-
-<%=render "layout", curriculum_vitae: @curriculum_vitae%> 
-<%#
-
-  <%= raw @resume_html %>
-
-
-
-  <%= link_to "Edit this curriculum_vitae", edit_curriculum_vitae_path(@curriculum_vitae) %> |
-  <%= link_to "Back to curriculum_vitaes", curriculum_vitaes_path %>
-  
-  <%= button_to "Destroy this curriculum_vitae", @curriculum_vitae, method: :delete ,class:"btn-sm btn-primary"%>
-  
+<% if !@curriculum_vitae.template_name.blank? %>
+<%= render "html_templates/"+@curriculum_vitae.template_name.sub(/^_/, '') , curriculum_vitae: @curriculum_vitae%>
+<% else %>
+Template Not selected 
+<%= link_to "Edit this curriculum_vitae", edit_curriculum_vitae_path(@curriculum_vitae) %> |
+<%= link_to "Back to curriculum_vitaes", curriculum_vitaes_path %>
+<%end%>

@@ -1,19 +1,23 @@
 Rails.application.routes.draw do
   resources :projects
-  # resources :skills ,:candidates ,:profiles
+  
   devise_for :users
   resources :tech_stacks ,:candidates ,:profiles
-  resources :curriculum_vitaes
-  get 'home/index'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :curriculum_vitaes 
   
-  # post '/save_layout_data', to: 'cv_page#save_layout_data', as: 'save_layout_data'
-  get '/save_layout_data/:id', to: 'curriculum_vitaes#save_layout_data', as: 'save_layout_data'
-  get '/layouts', to: 'curriculum_vitaes#layout_index', as: 'layout_index'
-  get '/show_layout_data/:id', to: 'curriculum_vitaes#show_layout_data', as: 'show_layout_data'
+  # resources :curriculum_vitaes do
+  #   # get 'download', on: :member, format: :pdf
+  #   get 'download', on: :member
+  # end
 
-  delete 'layouts/:id' ,to: 'curriculum_vitaes#layout_destroy' , as: 'layout'       
-  # Defines the root path route ("/")
-  # root "articles#index"
+
+  get 'pdf_html_req/:id' ,to:"curriculum_vitaes#pdf_html_req" , as: :pdf_html_req
+  get 'docx_html_req/:id' ,to:"curriculum_vitaes#docx_html_req" , as: :docx_html_req
+  get 'doc_html_req/:id' ,to:"curriculum_vitaes#doc_html_req" , as: :doc_html_req
+
+
+  resources :domains
+  get 'home/index'
+
   root "home#index"
 end

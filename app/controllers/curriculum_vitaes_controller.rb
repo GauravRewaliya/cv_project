@@ -1,13 +1,98 @@
 class CurriculumVitaesController < ApplicationController
-  before_action :set_curriculum_vitae, only: %i[ show edit update destroy save_layout_data]
+  before_action :set_curriculum_vitae, only: %i[ show edit update destroy save_layout_data download  pdf_html_req docx_html_req doc_html_req]
+  layout 'cv' ,only: %i[ show]
 
   def index
-    @curriculum_vitaes = CurriculumVitae.all
+    if !params['search'].blank?
+      @curriculum_vitaes =  CurriculumVitae.joins(:candidate).where('lower(candidates.name) LIKE ?' ,"%#{params['search'].downcase}%" )
+      else
+      @curriculum_vitaes = CurriculumVitae.all
+      end
   end
 
+ def  pdf_html_req 
+  # pdf_data =   generate_pdf(@curriculum_vitae) #by erb
+
+  pour_html = get_html(@curriculum_vitae)
+  pdf_data = WickedPdf.new.pdf_from_string(pour_html)
+  send_data pdf_data , filename: "grCv.pdf" ,type: "application/pdf" ,disposition: 'attachment'
+ 
+  # grover = Grover.new( pour_html , format: 'A4' ).to_pdf
+  # send_data grover , filename: "grCv.pdf" ,type: "application/pdf" ,disposition: 'attachment'
+
+  # respond_to do |format|  
+  #   format.html { send_data pdf_data, filename: 'curriculum_vitae.pdf', type: 'application/pdf' }
+  # end
+ end
+  def doc_html_req
+
+    pour_html = get_html(@curriculum_vitae)
+    pdf_data = WickedPdf.new.pdf_from_string(pour_html)
+    input_path = "public/tempCv.pdf"
+    File.open(input_path,'wb'){ |file| file << pdf_data}
+
+    system('curl -X POST -F "name=file_ooo" -F "id=testing" -F "file=@public/tempCv.pdf" -H "Content-Type: multipart/form-data" https://pdf2doc.com/upload/h1g4cd1meo1bji1a')
+    system('curl https://pdf2doc.com/convert/h1g4cd1meo1bji1a/testing')
+    system('curl https://pdf2doc.com/status/h1g4cd1meo1bji1a/testing')
+
+    system('wget -O public/tempCv.doc https://pdf2doc.com/download/h1g4cd1meo1bji1a/testing/grCv.doc')
+
+    output_path = "public/tempCv.doc"
+    doc_file = File.read(output_path)
+    send_data doc_file, filename: 'cv.doc', disposition: 'attachment'
+  end
+  def docx_html_req
+    pour_html = get_html(@curriculum_vitae)
+    # docx_file = Htmltoword::Document.create(pour_html) # only give text
+
+    pdf_data = WickedPdf.new.pdf_from_string(pour_html)
+    input_path = "public/tempCv.pdf"
+    File.open(input_path,'wb'){ |file| file << pdf_data}
+    system(" lowriter --headless --infilter='writer_pdf_import' --convert-to doc:'MS Word 97' public/tempCv.pdf --outdir public/")
+    output_path = "public/tempCv.doc"
+    doc_data = File.read(output_path)
+
+    # doc_data = Libreconv.convert(pour_html, 'doc')
+    # Libreconv.convert(out_path, in_path)
+    send_data doc_data, filename: "grCv.doc", type: "application/msword", disposition: 'attachment'
+    
+
+    # # pdf_data = WickedPdf.new.pdf_from_string(pour_html)
+    # # pdf_file = 'output.pdf' # Specify the output PDF file path
+    # # File.binwrite(pdf_file, pdf_data)
+    # # docx_file = 'output.docx' 
+    # # # system("pandoc -s #{pdf_file} -o #{docx_file}")
+    # # system("pandoc -s #{pdf_file} -o #{docx_file} --from=pdf --to=docx")
+
+    # send_data docx_file, filename: 'cv.docx', disposition: 'attachment'
+   
+    # pour_html = get_html(@curriculum_vitae)
+     # docx_data = `pandoc -s -o grCv.docx -f html -t docx #{pour_html}`
+     # send_data File.read('grCv.docx'), filename: "grCv.docx", type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document", disposition: 'attachment'
   
+    
+  end
+
+  def get_html(curriculum_vitae)
+    html_txt = render_to_string(partial: "html_templates/#{curriculum_vitae.template_name.sub(/^_/, '')}" , locals: { curriculum_vitae: curriculum_vitae} ,layout: false)
+    html_txt
+   end
+
+  def html_txt_erb(curriculum_vitae) # by own usig ERB
+    partial_path = Rails.root.join('app', 'views', 'html_templates', curriculum_vitae.template_name+".html.erb")
+    partial_content = File.read(partial_path)
+    
+    layout_path = Rails.root.join('app', 'views', 'layouts', 'cv.html.erb')
+    layout_content = File.read(layout_path)
+  
+    combined_txt = layout_content.sub('<%= yield %>', partial_content)
+    template_erb = ERB.new(combined_txt)
+    pour_html = template_erb.result(binding)
+  end
+
   def show
     # @resume_html = render_to_string(partial: 'layout' , locals: { curriculum_vitae: @curriculum_vitae})
+    # debugger
   end
 
   
@@ -23,20 +108,16 @@ class CurriculumVitaesController < ApplicationController
   def create
 
     @curriculum_vitae = CurriculumVitae.new(curriculum_vitae_params)
-
-    c = nil
-    if !params[:candidate_id].blank?
-    c = Candidate.find(params[:candidate_id])
-    end
-    @curriculum_vitae.candidate = c 
-
+    @curriculum_vitae.created_by = current_user.email
+    @curriculum_vitae.updated_by = current_user.email
     respond_to do |format|
       if @curriculum_vitae.save
         format.html { redirect_to curriculum_vitae_url(@curriculum_vitae), notice: "CurriculumVitae was successfully created." }
         format.json { render :show, status: :created, location: @curriculum_vitae }
-      else
+        else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @curriculum_vitae.errors, status: :unprocessable_entity }
+
       end
     end
   end
@@ -44,17 +125,18 @@ class CurriculumVitaesController < ApplicationController
   
   def update
 
-    c = nil
-    if !params[:candidate_id].blank?
-    c = Candidate.find(params[:candidate_id])
-    end
-    @curriculum_vitae.candidate = c 
-    
+    # c = nil
+    # if !params[:candidate_id].blank?
+    # c = Candidate.find(params[:candidate_id])
+    # end
+    # @curriculum_vitae.candidate = c 
+
+    @curriculum_vitae.updated_by = current_user.email
     respond_to do |format|
       if @curriculum_vitae.update(curriculum_vitae_params)
         format.html { redirect_to curriculum_vitae_url(@curriculum_vitae), notice: "CurriculumVitae was successfully updated." }
         format.json { render :show, status: :ok, location: @curriculum_vitae }
-      else
+     else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @curriculum_vitae.errors, status: :unprocessable_entity }
       end
@@ -70,33 +152,6 @@ class CurriculumVitaesController < ApplicationController
     end
   end
 
-  def save_layout_data
-   puts "////////////////////////////////////////////////////"
-   @resume_html = render_to_string(partial: 'layout' , locals: { curriculum_vitae: @curriculum_vitae})
-    # layout = Layout.new
-    # layout.save_html = @resume_html
-    # layout.save
-    Layout.create(save_html: @resume_html).save
-
-   redirect_to curriculum_vitaes_path, notice: "Layout is saved"   
-  end
-
-  def layout_index
-    @layouts = Layout.all
-  end
-
-  def show_layout_data
-    @layout = Layout.find( params[:id])
-  end
-
-  def layout_destroy
-    Layout.find(params[:id]).destroy
-    respond_to do |format|
-      format.html { redirect_to layout_index_path, notice: "Layout was successfully destroyed." }
-      format.json { head :no_content }
-    end
-  end
-
   private
   
     def set_curriculum_vitae
@@ -105,6 +160,6 @@ class CurriculumVitaesController < ApplicationController
 
     
     def curriculum_vitae_params
-      params.require(:curriculum_vitae).permit(:objective , :profile_desc,project_ids: [])                                                                                #  curriculum_vitae_core_tech me tech_stack_id lega
+      params.require(:curriculum_vitae).permit(:candidate_id ,:template_name,:experience ,:image,:objective ,:profile_desc, curriculum_vitae_core_tech_attributes: [:tech_stack_id] ,supportive_skill_ids:[],project_ids: [] )
     end
 end

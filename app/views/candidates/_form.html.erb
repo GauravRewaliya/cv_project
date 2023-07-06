@@ -1,29 +1,116 @@
-<%= form_with(model: candidate) do |form| %>
-<%= form.hidden_field :authenticity_token, value: form_authenticity_token %>
-  <% if candidate.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(candidate.errors.count, "error") %> errors found , cant be save</h2>
+<style>
+  /* .col-6,.col-4,.col-5
+{
+margin: 0;
+padding-left: 15px;
+padding-right:15px;
+} */
+/* .{
+  color: black!important;
+} */
+</style>
 
-      <ul>
-        <% candidate.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+<!-- <% if @candidate.errors.any? %>
+<div class="alert alert-warning" role="alert">
+
+    <ul>
+      <% @candidate.errors.each do |error| %>
+        <li>
+          <%= error.full_message %>
+        </li>
         <% end %>
       </ul>
+  </div>
+  <% end %> -->
+  <style>
+    table{
+      table-layout:fixed;
+    }
+  </style>
+  <h2>Candidate</h2>
+<%= form_with(model: @candidate) do |form| %>
+  <table class="table">
+  <div class="field">
+    <tr>
+      <td><%= form.label :name %></td>
+    <td><%= form.text_field :name ,class: "form-control"%></td>
+  </tr>
+</div>
+  <div class="field">
+    <tr>
+      <td><%= form.label "Employee ID" %></td>
+    <td><%= form.text_field :employ_id ,class: "form-control"%></td>
+  </tr>
+</div>
+</table>
+
+  <%= form.fields_for :profile do |profile_form| %>
+    <h2>Profile</h2>
+    <table class="table">
+   <div class="field">
+    <tr>   
+      <td><%= profile_form.label :email %></td>
+      <td><%= profile_form.text_field :email ,class: "form-control"%></td>
+    </tr>
     </div>
+    <div class="field">
+      <tr>
+        <td><%= profile_form.label :contact %></td>
+      <td><%= profile_form.number_field :contact ,class: "form-control"%></td>
+    </tr>
+  </div>
+
+   </div>
+    <div class="field">
+      <tr>
+        <td><%= profile_form.label :address %></td>
+       <td><%= profile_form.text_field :address ,class: "form-control"%></td>
+    </tr>
+  </div>
+</div>
+<div class="field">
+  <tr>
+    <td>
+      <%= profile_form.label :gender, style: "display: block" ,class: ""%>
+      </td>
+   <td>
+      <%= profile_form.radio_button :gender, 'Male' %> Male
+      <%= profile_form.radio_button :gender, 'Female' %> Female
+  </td>
+</tr>
+</div>
+    </table>
   <% end %>
 
-  <div class="form-group">
-    <%= form.label :name, style: "display: block" ,class: "text-white" %>
-    <%= form.text_field :name ,style: "width: 100%;text-align: center;" ,class: "form-control"%>
+  <div class="actions">
+    <%= form.submit class: "btn-primary"%>
   </div>
 
-  <div class="form-group">
-    <%= form.label "Employee ID", style: "display: block" ,class: "text-white"%>
-    <%= form.text_field :employ_id ,style: "width: 100%;text-align: center;" ,class: "form-control"%>
-  </div>
- 
- 
-      
-    <%= form.submit class: 'btn-primary'%>
-  
+  <% if candidate.errors.any? %>
+  <% candidate.errors.each do |error| %>
+     <script>
+      // inputf = $(document.getElementsByName('candidate[<%=error.attribute.to_s %>]')[0])
+      inputf = document.getElementsByName('candidate[<%=error.attribute.to_s %>]')[0];
+      if( inputf == null)  // profile.gender = error.attribute.to_s.split('.')[1]
+      inputf = document.getElementsByName('candidate[profile_attributes][<%= error.attribute.to_s.split(".")[1] %>]')[0];
+     
+      if(inputf != null )
+     {
+      if(inputf.type=="text" || inputf.type=="number" || inputf.type == "date")
+      {
+      $(inputf).addClass("is-invalid")
+      $("<div class='invalid-feedback'>  <%= error.full_message %> </div>").insertAfter(inputf)
+      } else      //check box not properly view
+      {
+        alert(inputf.type+'***** <%= error.full_message.to_s %>');
+      }
+     }
+     else
+     {
+      alert('(<%=error.attribute.to_s %>) <%= error.full_message.to_s %>');
+     }
+      </script>  
+    <% end %>
+  <% end %>
+
 <% end %>

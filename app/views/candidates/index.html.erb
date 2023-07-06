@@ -6,7 +6,6 @@
 </div>
 <style>
   @media (max-width: 768px) {
-    /* table-layout: ; */
     table th:not(.needCol) , table td:not(.needCol)
     {
       display: none;
@@ -47,12 +46,10 @@
     <td><p><%= candidate.profile.email %></p></td>
     <td><p><%= candidate.profile.contact %></p></td>
     <td class="hideOnNeed"><p><%= candidate.profile.address %></p></td>
-    <!-- <td><p><%= candidate.profile.gender %></p></td> -->
     
     <td  class="needCol"><%= link_to "Edit", edit_candidate_path(candidate) ,class: "material-symbols-outlined" %></td>
     <td  class="needCol"><%= button_to "" , candidate , method: :delete ,class: "fa-solid fa-trash alert-light "%></td>
     <td  class="needCol">
-      <%#<%= link_to "Show this candidate", candidate %>
     <%= link_to (candidate) , class: 'material-symbols-outlined' do %>
     <span>Visibility</span>
     <%end%>
@@ -63,7 +60,6 @@
   </table>
 </div>
 <script>
-  // $('#example').DataTable();
   new DataTable('.data_table_gr',{
     columnDefs: [
       {target: 1,visible: false}

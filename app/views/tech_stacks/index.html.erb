@@ -5,21 +5,6 @@
 <h1 class="pos_l">Skills</h1>
 <%= link_to "New tech_stack", new_tech_stack_path ,class: 'btn btn-primary new_pos_t' %>
 </div>
-
-<!-- <div style="margin-right: 50px;">
-<form action="tech_stacks" >
-    <div style="display: flex;">
-  <input type="text" name="search" placeholder="Search" class="form-control mr-sm-2 form-control-lg">
-  <button type="submit" class="btn btn-lg btn-success">Search</button>
-    </div>
-  <div style="display: flex; margin-top: 3px;">
-    <div><input type="radio" name="tech_type" value="1">Core_skills</div>
-    <div><input type="radio" name="tech_type" value="2">Supportive_skills</div>
-    <div><input type="radio" name="tech_type" value="">All Skills</div>
-  </div>
-</form>
-</div> -->
-
 </div>
 
 
@@ -34,8 +19,7 @@
       <th>Delete</th>
       <th>Show</th>
     </tr>
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-  </thead>
+     </thead>
   <tbody>
     <% @tech_stacks.each do |tech_stack| %>
   <tr>
@@ -45,7 +29,6 @@
     <td><%= link_to "Edit", edit_tech_stack_path(tech_stack),class: "material-symbols-outlined" %></td>
     <td><%= button_to "" , tech_stack , method: :delete ,class: "fa-solid fa-trash alert-light "%></td>
     <td>
-      <%#<%= link_to "", tech_stack , class: "fa fa-info-circle " , style: "font-size: x-large;"%>
       <%= link_to (tech_stack) , class: 'material-symbols-outlined' do %>
        <span>Visibility</span>
        <%end%>

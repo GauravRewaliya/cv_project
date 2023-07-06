@@ -38,7 +38,7 @@ class DomainsController < ApplicationController
     respond_to do |format|
        if @domain.update(domain_params)
         format.html { redirect_to domains_path, notice: "Domain was successfully updated." }
-        # format.json { render :index, status: :ok, location: @domain }
+        format.json { render :index, status: :ok, location: @domain }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @domain.errors, status: :unprocessable_entity }

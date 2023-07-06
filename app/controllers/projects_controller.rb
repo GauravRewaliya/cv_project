@@ -2,11 +2,7 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: %i[ show edit update destroy ]
 
   def index
-    if !params['search'].blank?
-      @projects = Project.where('lower(title) LIKE ?' ,"%"+params['search']+"%" )
-      else
       @projects = Project.all
-      end
   end
   def show
   end

@@ -3,14 +3,14 @@ class TechStack < ApplicationRecord
     validates :tech_type , :title, presence: true
 
       has_many :project_core_techs
-      has_many :projects, through: :project_core_techs  # dependent destroy??
+      has_many :projects, through: :project_core_techs  
     before_destroy :destroy_with_associations
 
   def destroy_with_associations
     ProjectCoreTech.where(tech_stack_id: self.id).destroy_all
     ProjectSupportiveTech.where(tech_stack_id: self.id).destroy_all
 
-    CurriculumVitaeCoreTech.where(tech_stack_id: self.id).destroy_all  # if i want to delete cv also then??
+    CurriculumVitaeCoreTech.where(tech_stack_id: self.id).destroy_all  
     CurriculumVitaeSupportiveTech.where(tech_stack_id: self.id).destroy_all
   end
 

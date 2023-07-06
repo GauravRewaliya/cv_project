@@ -1,7 +1,8 @@
 class TechStack < ApplicationRecord
 
     validates :tech_type , :title, presence: true
-
+    validates :title, uniqueness: { case_sensitive: false }
+    
       has_many :project_core_techs
       has_many :projects, through: :project_core_techs  
     before_destroy :destroy_with_associations

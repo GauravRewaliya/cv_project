@@ -1,7 +1,7 @@
 class Project < ApplicationRecord
     validate :date_validation
-    validates :title ,:project_domain ,:start_date , presence: true
-
+    validates :project_domain ,:start_date , presence: true
+    validates :title, uniqueness: { case_sensitive: false }
     before_destroy :delete_fun
 
     has_many :project_supportive_techs , dependent: :destroy

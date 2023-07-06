@@ -50,13 +50,45 @@
       <%= profile_form.label :gender, style: "display: block" ,class: ""%>
       </td>
    <td>
-      <%= profile_form.radio_button :gender, 'Male' %> Male
-      <%= profile_form.radio_button :gender, 'Female' %> Female
+    <div class="form-inline">
+     <div class="form-inline">
+       <%= profile_form.radio_button :gender, 'Male' %> 
+       <%= profile_form.label "Male" %>
+      </div>
+      <div class="form-inline">
+        <%= profile_form.radio_button :gender, 'Female' %>
+        <%= profile_form.label "Female" %>
+      </div>
+    </div>
   </td>
 </tr>
 </div>
     </table>
-  <% end %>
+  <% end %> 
+  <!-- profile -->
+  <div class="row">
+
+       
+    <div class="col-md-6">
+      <%= form.label "Core Skill" , style: "display: block" ,class: "" %>
+        <%= form.fields_for :candidate_core_tech_attributes, candidate.candidate_core_tech do  |cs| %>
+          <%= cs.collection_select :tech_stack_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{ id: "core_tech_select_id" ,class: "form-control"}%>
+        <% end %>
+
+        <% candidate.errors[:candidate_core_tech].each do |message| %>
+        <span style="background: cornsilk; color: red; border-radius: 5px;">
+          <%= message %>
+        </span>
+        <%end%>
+    </div>
+    <!-- skills ++ -->
+    <div class="col-md-6">
+         <%= form.label :supportive_skills, style: "display: block" ,class: "" %>
+         <%= form.collection_select(:supportive_tech_ids, TechStack.supportive_skills, :id, :title , {}, {multiple: true ,class: "selectpicker show-menu-arrow form-control"}) %>
+    </div>
+
+    
+  </div>
 
   <div class="actions">
     <%= form.submit class: "btn-primary"%>

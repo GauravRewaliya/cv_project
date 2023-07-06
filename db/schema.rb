@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_19_094727) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_06_084752) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -37,6 +37,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_19_094727) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "candidate_core_teches", force: :cascade do |t|
+    t.integer "candidate_id", null: false
+    t.integer "tech_stack_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["candidate_id"], name: "index_candidate_core_teches_on_candidate_id"
+    t.index ["tech_stack_id"], name: "index_candidate_core_teches_on_tech_stack_id"
+  end
+
+  create_table "candidate_supportive_teches", force: :cascade do |t|
+    t.integer "candidate_id", null: false
+    t.integer "tech_stack_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["candidate_id"], name: "index_candidate_supportive_teches_on_candidate_id"
+    t.index ["tech_stack_id"], name: "index_candidate_supportive_teches_on_tech_stack_id"
   end
 
   create_table "candidates", force: :cascade do |t|
@@ -187,6 +205,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_19_094727) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "candidate_core_teches", "candidates"
+  add_foreign_key "candidate_core_teches", "tech_stacks"
+  add_foreign_key "candidate_supportive_teches", "candidates"
+  add_foreign_key "candidate_supportive_teches", "tech_stacks"
   add_foreign_key "curriculum_vitae_core_teches", "curriculum_vitaes"
   add_foreign_key "curriculum_vitae_core_teches", "tech_stacks"
   add_foreign_key "curriculum_vitae_supportive_teches", "curriculum_vitaes"

@@ -38,7 +38,6 @@ class CandidatesController < ApplicationController
   
   def update
     @candidate.updated_by = current_user.email
-    
     respond_to do |format|
       if @candidate.update(candidate_params)
         format.html { redirect_to candidate_url(@candidate), notice: "Candidate was successfully updated." }
@@ -68,7 +67,7 @@ class CandidatesController < ApplicationController
 
     
     def candidate_params
-        params.require(:candidate).permit(:name, :employ_id, profile_attributes: [:gender,:email, :contact,  :address ,profile_core_tech_attributes: [:tech_stack_id],supportive_skill_ids:[]])
+        params.require(:candidate).permit(:name, :employ_id, profile_attributes: [:id ,:gender,:email, :contact,  :address ,profile_core_tech_attributes: [:tech_stack_id],supportive_skill_ids:[]] ,candidate_core_tech_attributes: [:tech_stack_id] ,supportive_tech_ids:[])
 
     end
 end

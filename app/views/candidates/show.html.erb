@@ -35,6 +35,20 @@
       <th>contact:</th>
       <td>  <%= @candidate.profile.contact %></td>
     </tr>
+    <tr>
+      <th>core Skill:</th>
+      <td>  <%= @candidate.core_tech.title %></td>
+    </tr>
+    <tr>
+      <th>Supportive Skills:</th>
+      <td> 
+      
+         <% @candidate.supportive_techs.each do |skill| %>
+          <%= skill.title.to_s+","%>
+         <%end%>
+      </td>
+    </tr>
+
    </table>
 
   </div>

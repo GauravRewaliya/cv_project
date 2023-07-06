@@ -2,11 +2,7 @@
 <div style="position: relative;">
 <h1 class="pos_l">Candidates</h1>
 
-<form action="candidates" class="form-inline pos_r">
-  <input type="text" name="search" placeholder="Search" class="form-control mr-sm-2 form-control-lg">
-  <button type="submit" class="btn btn-lg btn-success">Search</button>
-</form>
-<%= link_to "New candidate", new_candidate_path ,class: 'btn btn-primary new_pos' %>
+<%= link_to "New candidate", new_candidate_path ,class: 'btn btn-primary new_pos_t' %>
 </div>
 <style>
   @media (max-width: 768px) {
@@ -28,17 +24,21 @@
 
 </style>
 <div class="table_gr" >
-  <table border=1 class="table table-hover table-striped ">
+  <table class="table table-hover table-striped data_table_gr" style="width: 100%;">
+    <thead>
     <tr style=" color: white">
       <th class="needCol">name</th>
       <th class="hideOnNeed">employ_id</th>
       <th >email</th>
       <th >contact</th>
       <th class="hideOnNeed">address</th>
+      <!-- <th>Gender</th> -->
       <th class="needCol">Edit</th>
       <th class="needCol">Delete</th>
       <th class="needCol">Show</th>
     </tr>
+  </thead>
+  <tbody>
   <% @candidates.each do |candidate| %>
   <tr>
     <td  class="needCol"><h6><%= candidate.name %></h6></td>
@@ -47,9 +47,10 @@
     <td><p><%= candidate.profile.email %></p></td>
     <td><p><%= candidate.profile.contact %></p></td>
     <td class="hideOnNeed"><p><%= candidate.profile.address %></p></td>
+    <!-- <td><p><%= candidate.profile.gender %></p></td> -->
     
     <td  class="needCol"><%= link_to "Edit", edit_candidate_path(candidate) ,class: "material-symbols-outlined" %></td>
-    <td  class="needCol"><%= button_to "Delete" , candidate , method: :delete ,class: "btn-primary"%></td>
+    <td  class="needCol"><%= button_to "" , candidate , method: :delete ,class: "fa-solid fa-trash alert-light "%></td>
     <td  class="needCol">
       <%#<%= link_to "Show this candidate", candidate %>
     <%= link_to (candidate) , class: 'material-symbols-outlined' do %>
@@ -58,5 +59,14 @@
   </td>
   </tr>
   <% end %>
+  </tbody>
   </table>
 </div>
+<script>
+  // $('#example').DataTable();
+  new DataTable('.data_table_gr',{
+    columnDefs: [
+      {target: 1,visible: false}
+    ]
+  });
+</script>

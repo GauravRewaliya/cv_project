@@ -2,27 +2,39 @@
 <div class="top_header">
   <h1 class="pos_l">Projects</h1>
 
-<form action="projects" class="form-inline pos_r">
-  <input type="text" name="search" placeholder="Search" class="form-control mr-sm-2 form-control-lg">
-  <button type="submit" class="btn btn-lg btn-success">Search</button>
-</form>
-<%= link_to "New project", new_project_path,class: 'btn btn-primary new_pos' %>
+<%= link_to "New project", new_project_path,class: 'btn btn-primary new_pos_t' %>
 </div>
 <div class="table_gr">
-  <table border=1 class="table table-hover table-striped" id="gr">
+  <table class="table table-hover table-striped data_table_gr" id="gr" style="width: 100%;">
+   <thead>
     <tr style="color:white;">
        <th>Title</th>
        <th>Description</th>
+       <th></th>
+       <th></th>
+       <th></th>
+       <th></th>
        <th>Edit</th>
       <th>Delete</th>
       <th>Show</th>
      </tr>
+    </thead>
+    <tbody>
   <% @projects.each do |project| %>
   <tr>
     <td><p><%= project.title %></p></td>
     <td><p><%= project.desc %></p></td>
+    <td><p><%= project.domain&.title %></p></td>
+    <td><p><%= project.team_size %></p></td>
+    <td><p><%= project.core_skill&.title %></p></td>
+    <td><p>
+      <% project.supportive_skills.each do |s_skill| %>
+          <%= s_skill.title+", " %>
+        <%end%>
+    </p></td>
     <td><%= link_to "Edit", edit_project_path(project),class: "material-symbols-outlined" %></td>
-    <td><%= button_to "Delete" , project , method: :delete ,class: "btn-primary"%></td>
+    <!-- <td><%= button_to "Delete" , project , method: :delete ,class: "btn-primary"%></td> -->
+    <td><%= button_to "" , project , method: :delete ,class: "fa-solid fa-trash alert-light "%></td>
     <td>
       <%#<%= link_to "Show this project", project %>
       <%= link_to (project) , class: 'material-symbols-outlined' do %>
@@ -31,5 +43,17 @@
   </td>
   </tr>
   <% end %>
+    </tbody>
   </table>
 </div>
+
+<script>
+  new DataTable('.data_table_gr',{
+    columnDefs: [
+      {target: 2,visible: false},
+      {target: 3,visible: false},
+      {target: 4,visible: false},
+      {target: 5,visible: false}
+    ]
+  });
+</script>

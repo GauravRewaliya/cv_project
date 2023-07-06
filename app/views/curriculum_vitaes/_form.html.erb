@@ -1,3 +1,9 @@
+<style>
+  .btn-light
+  {
+        border: #373b3f4a solid 2px;
+  }
+</style>
 <%= form_with(model: curriculum_vitae )do |form| %>
 
   <% if curriculum_vitae.errors.any? %>
@@ -19,7 +25,7 @@
     <div class="row">
       <div class="col-md-6">
         <div>
-          <%= form.label "Candidate ID" , style: "display: block" ,class: "text-white" %>
+          <%= form.label "Candidate ID" , style: "display: block" ,class: "" %>
             <%= form.collection_select(:candidate_id, Candidate.all, :id, :name, { include_blank: true ,selected:
               @curriculum_vitae.candidate&.id} ,{required: true ,class: "form-control"})%>
         </div>
@@ -27,7 +33,7 @@
       </div>
       <div class="col-md-6">
         <div>
-          <%= form.label "Role" , style: "display: block" ,class: "text-white" %>
+          <%= form.label "Role" , style: "display: block" ,class: "" %>
             <%= form.text_field :objective ,style: "width: 100%;text-align: center;" ,class: "form-control" %>
         </div>
       </div>
@@ -35,7 +41,7 @@
       
 
     <div>
-      <%= form.label "Profile Description" , style: "display: block" ,class: "text-white" %>
+      <%= form.label "Profile Description" , style: "display: block" ,class: "" %>
         <%= form.text_area :profile_desc ,style: "width: 100%;text-align: center;" ,class: "form-control" %>
     </div>
 
@@ -43,16 +49,22 @@
 
        
       <div class="col-md-6">
-        <%= form.label "Core Skill" , style: "display: block" ,class: "text-white" %>
+        <%= form.label "Core Skill" , style: "display: block" ,class: "" %>
           <!-- <%= collection_select( nil , :core_skill_id, TechStack.all, :id, :title, { include_blank: true ,selected: curriculum_vitae.core_skill&.id } )%> -->
 
           <%= form.fields_for :curriculum_vitae_core_tech_attributes, curriculum_vitae.curriculum_vitae_core_tech do  |cs| %>
             <%= cs.collection_select :tech_stack_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{ id: "core_tech_select_id" ,class: "form-control"}%>
           <% end %>
+
+          <% curriculum_vitae.errors[:curriculum_vitae_core_tech].each do |message| %>
+          <span style="background: cornsilk; color: red; border-radius: 5px;">
+            <%= message %>
+          </span>
+          <%end%>
       </div>
       <!-- skills ++ -->
       <div class="col-md-6">
-        <%= form.label :supportive_skills, style: "display: block" ,class: "text-white" %>
+        <%= form.label :supportive_skills, style: "display: block" ,class: "" %>
           <!-- <%= form.collection_select(:supportive_skill_ids, TechStack.supportive_skills, :id, :title , {}, { multiple: true, include_blank: false ,id: 'supportive_skill' }) %>
             <script>
               new MultiSelectTag('supportive_skill')
@@ -66,13 +78,13 @@
 
      <div class="row">
       <div class="col-md-6">
-        <%= form.label "Experience" , style: "display: block" ,class: "text-white" %>
+        <%= form.label "Experience" , style: "display: block" ,class: "" %>
           <%= form.number_field :experience ,style: "width: 100%;text-align: center;" ,class: "form-control" %>
       </div>
 
       <!-- by using grouped_options_for_select  // at hepler method -->
-       <div class="col-6">
-         <%= form.label "Projects" , style: "display: block" ,class: "text-white" %>
+       <div class="col-md-6">
+         <%= form.label "Projects" , style: "display: block" ,class: "" %>
            <!-- <%= form.select(:project_ids, grouped_options_for_select(helper_grouped_projects_options), {}, { multiple: true, include_blank: false ,class: "selectpicker show-menu-arrow form-control" , 'data-live-search': "true" }) %> -->
            <%= form.select(:project_ids, grouped_options_for_select(helper_grouped_projects_options , selected: curriculum_vitae.project_ids), {}, { multiple: true, include_blank: false ,class: "selectpicker show-menu-arrow form-control" , 'data-live-search': "true" }) %>
              <!-- error message-->
@@ -97,12 +109,12 @@
 
       
       <div class="col-md-6">
-        <%= form.label "select profile image" , style: "display: block", class: "text-white" %>
+        <%= form.label "select profile image" , style: "display: block", class: "" %>
           <%= form.file_field :image %>
       </div>
 
       <div class="col-md-6">
-        <%= form.label "Layout" , style: "display: block" ,class: "text-white" %>
+        <%= form.label "Layout" , style: "display: block" ,class: "" %>
           <% template_files=Dir.glob(Rails.root.join('app', 'views' , 'HTML_templates' , '*.html.erb' )) %>
             <% @template_options=template_files.map { |file| File.basename(file, '.html.erb' ) }%>
 
@@ -120,4 +132,4 @@
     </div>
 
       <%= form.submit class: 'btn-primary' , style: "margin-top: 20px;" %>
-        <% end%>
+ <% end%>

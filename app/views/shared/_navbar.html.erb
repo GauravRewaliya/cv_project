@@ -42,7 +42,9 @@ a.nav-link::after {
   width: 111.11%;
   overflow: hidden;
 }
-
+.active{
+  color: beige;
+}
 </style>
 <div class="fixed_nav">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="padding: 0.2rem 1rem;margin: 0;">
@@ -53,19 +55,19 @@ a.nav-link::after {
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item">
-        <%= link_to "Skills", tech_stacks_path ,class:"nav-link"%>
+        <%= link_to "Skills", tech_stacks_path ,class:"nav-link #{'active' if params[:controller] == 'tech_stacks'}"%>
       </li>
       <li class="nav-item">
-        <%= link_to "Projects", projects_path  ,class:"nav-link"%>
+        <%= link_to "Projects", projects_path  ,class:"nav-link #{'active' if params[:controller] == 'projects'}"%>
       </li>
       <li class="nav-item">
-        <%= link_to "Domains", domains_path  ,class:"nav-link"%>
+        <%= link_to "Domains", domains_path  ,class:"nav-link #{'active' if params[:controller] == 'domains'}"%>
       </li>
       <li class="nav-item">
-        <%= link_to "Candidates", candidates_path ,class:"nav-link"%>
+        <%= link_to "Candidates", candidates_path ,class:"nav-link #{'active' if params[:controller] == 'candidates'}"%>
       </li>
       <li class="nav-item">
-        <%= link_to "Curriculum_vitae", curriculum_vitaes_path ,class:"nav-link"%>
+        <%= link_to "Curriculum_vitae", curriculum_vitaes_path ,class:"nav-link #{'active' if params[:controller] == 'curriculum_vitaes'}"%>
       </li>
     </ul>
 
@@ -79,11 +81,7 @@ a.nav-link::after {
     <% end %>
     </div>
     
-  </div>
-
-
-  
-       
-    
+  </div>    
 </nav>
+
 </div>

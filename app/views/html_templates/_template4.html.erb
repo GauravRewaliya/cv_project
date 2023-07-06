@@ -73,7 +73,7 @@
                           <%if !curriculum_vitae.core_skill.blank?%>
                           <h5>Main Skill</h5>
                           <li class="list-item"><%= curriculum_vitae.core_skill&.title %></li>
-                            ( <%= curriculum_vitae.core_skill&.desc %> )
+                            <%= "("+curriculum_vitae.core_skill.desc.to_s+")" unless curriculum_vitae.core_skill.desc.blank? %> 
                           <%end%>
                           <br>
                           <%if !curriculum_vitae.supportive_skills.blank?%>
@@ -82,7 +82,7 @@
                           <li class="list-item">
                             <%= supportive_skill.title %>
                             <br>
-                            ( <%= supportive_skill.desc %> )
+                            <%= supportive_skill.desc.to_s if !supportive_skill.desc.blank?  %>
                             <%# <%= supportive_skill.desc %>
                            
                           </li>

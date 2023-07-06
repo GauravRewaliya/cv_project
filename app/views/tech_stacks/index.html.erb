@@ -1,25 +1,13 @@
 <%= stylesheet_link_tag  "index" %>
-<style>
-  .btn-primary{
-    text-decoration: none;
-    text-color: red;
-  }
-
-  div input[type=radio] {
-    margin-left: 18px;
-    margin-right: 5px;
-}
-.btn-danger
-{
-  border-color: #9a5e64;
-}
-</style>
-
-
-<div class="top_header">
+<div>
+<div class="top_header d-flex justify-content-between">
+  <div>
 <h1 class="pos_l">Skills</h1>
+<%= link_to "New tech_stack", new_tech_stack_path ,class: 'btn btn-primary new_pos_t' %>
+</div>
 
-<form action="tech_stacks"  class="pos_r">
+<!-- <div style="margin-right: 50px;">
+<form action="tech_stacks" >
     <div style="display: flex;">
   <input type="text" name="search" placeholder="Search" class="form-control mr-sm-2 form-control-lg">
   <button type="submit" class="btn btn-lg btn-success">Search</button>
@@ -30,24 +18,30 @@
     <div><input type="radio" name="tech_type" value="">All Skills</div>
   </div>
 </form>
-<%= link_to "New tech_stack", new_tech_stack_path ,class: 'btn btn-primary new_pos' %>
+</div> -->
+
 </div>
 
 
 <div class="table_gr" >
-  <table border=1 class="table table-hover table-striped " , style="border: 2px solid #626262;">
+  <table class="table table-hover table-striped data_table_gr" , style="width:100%;">
+  <thead>
     <tr style="color:White">
       <th>Title</th>
       <th>Description</th>
+      <th>type</th>
       <th>Edit</th>
       <th>Delete</th>
       <th>Show</th>
     </tr>
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-  <% @tech_stacks.each do |tech_stack| %>
+  </thead>
+  <tbody>
+    <% @tech_stacks.each do |tech_stack| %>
   <tr>
     <td ><h6><%= tech_stack.title %></h6></td>
     <td><p><%= tech_stack.desc %></p></td>
+    <td><p><%= display_tech_type(tech_stack.tech_type) %></p></td>
     <td><%= link_to "Edit", edit_tech_stack_path(tech_stack),class: "material-symbols-outlined" %></td>
     <td><%= button_to "" , tech_stack , method: :delete ,class: "fa-solid fa-trash alert-light "%></td>
     <td>
@@ -58,10 +52,14 @@
   </td>
   </tr>
   <% end %>
+  </tbody>
   </table>
 </div>
 
-<!-- <div style="position: relative;"> -->
-<!-- <%= link_to "New tech_stack", new_tech_stack_path ,class: 'btn btn-primary pos_r' %> -->
-<!-- <%= link_to "Home" ,  home_index_path ,class: 'btn btn-primary pos_l'%> -->
-<!-- </div> -->
+<script>
+  new DataTable('.data_table_gr',{
+    columnDefs: [
+      {target: 2,visible: false}
+    ]
+  });
+</script>

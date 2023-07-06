@@ -1,35 +1,28 @@
 <%= stylesheet_link_tag  "index" %>
 <div style="position: relative;">
 <h1 class="pos_l">Curriculum Vitae</h1>
-<form action="curriculum_vitaes" class="form-inline pos_r">
-  <input type="text" name="search" placeholder="Search by name" class="form-control mr-sm-2 form-control-lg">
-  <button type="submit" class="btn btn-lg btn-success">Search</button>
-</form>
-<%= link_to "New CV", new_curriculum_vitae_path ,class: 'btn btn-primary new_pos' %>
+
+<%= link_to "New CV", new_curriculum_vitae_path ,class: 'btn btn-primary new_pos_t' %>
 </div>
 
-<style>
-  .table td, .table th {
-    /* + */
-    text-align: center;
-}
-.table .l, .table .l {
-    text-align: left;
-}
-</style>
 <div class="table_gr" >
-    <table border=1 class="table table-hover table-striped " >
-      <tr style="color: white;">
+    <!-- <table border=1 class="table table-hover table-striped " > -->
+    <table id="example" class="table table-striped table-bordered  table-hover" style="width:100%">
+      <thead><tr style="color: white;">
+        <th>updated time</th> <!-- just to sort by new to old -->
         <th>name</th>
         <th>projects</th>
-        <th>Edit</th>
-        <th>Delete</th>
-        <th>Show</th>
-        <th>download PDF</th>
-        <th>download DOC</th>
+        <th class="table_button_gr">Edit</th>
+        <th class="table_button_gr">Delete</th>
+        <th class="table_button_gr">Show</th>
+        <th class="table_button_gr">download PDF</th>
+        <th class="table_button_gr">download DOC</th>
       </tr>
+    </thead>
+    <tbody>
       <% @curriculum_vitaes.each do |curriculum_vitae| %>
       <tr>
+      <td ><p><%= curriculum_vitae.updated_at %></p></td>
       <td class="l"><p><%= curriculum_vitae.candidate&.name %></p></td>
       <td>
         <% curriculum_vitae.projects.each do |project| %>
@@ -38,7 +31,7 @@
       </td>
    
       <td><%= link_to "Edit", edit_curriculum_vitae_path(curriculum_vitae) ,class: "material-symbols-outlined"%></td>
-      <td><%= button_to "Delete" , curriculum_vitae , method: :delete ,class: "btn-primary"%></td>
+      <td><%= button_to "" , curriculum_vitae , method: :delete ,class: "fa-solid fa-trash alert-light "%></td>
    
       <td>
         <%#<%= link_to "Show this curriculum_vitae", curriculum_vitae , target: "_blank" %>
@@ -57,12 +50,27 @@
   <!-- <td><%= link_to 'doc by curl download', doc_html_req_path(curriculum_vitae) %></td> -->
     </tr>
     <% end %>
+  </tbody>
+  <!-- <tfoot>
+   <tr style="color: white;">
+      <th>name</th>
+      <th>projects</th>
+      <th>Edit</th>
+      <th>Delete</th>
+      <th>Show</th>
+      <th>download PDF</th>
+      <th>download DOC</th>
+      </tr>
+</tfoot> -->
     </table>
   </div>
-<style>
 
-</style>
+   <script>
+        new DataTable('#example',{
+    columnDefs: [
+      {target: 0,visible: false}
+    ],
+    order: [[0, 'desc']]
+  });
+    </script>
 
-<div style="position: relative;">
-
-</div>

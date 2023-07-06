@@ -5,12 +5,12 @@ margin: 0;
 padding-left: 15px;
 padding-right:15px;
 } */
-/* .text-white{
+/* .{
   color: black!important;
 } */
 </style>
 
-<% if @candidate.errors.any? %>
+<!-- <% if @candidate.errors.any? %>
 <div class="alert alert-warning" role="alert">
 
     <ul>
@@ -21,7 +21,7 @@ padding-right:15px;
         <% end %>
       </ul>
   </div>
-  <% end %>
+  <% end %> -->
   <style>
     table{
       table-layout:fixed;
@@ -71,11 +71,11 @@ padding-right:15px;
 <div class="field">
   <tr>
     <td>
-      <%= profile_form.label :gender, style: "display: block" ,class: "text-white"%>
+      <%= profile_form.label :gender, style: "display: block" ,class: ""%>
       </td>
    <td>
-      <%= profile_form.radio_button :gender, 'Male' %> Male<br />
-      <%= profile_form.radio_button :gender, 'Female' %> Female<br />
+      <%= profile_form.radio_button :gender, 'Male' %> Male
+      <%= profile_form.radio_button :gender, 'Female' %> Female
   </td>
 </tr>
 </div>
@@ -85,4 +85,32 @@ padding-right:15px;
   <div class="actions">
     <%= form.submit class: "btn-primary"%>
   </div>
+
+  <% if candidate.errors.any? %>
+  <% candidate.errors.each do |error| %>
+     <script>
+      // inputf = $(document.getElementsByName('candidate[<%=error.attribute.to_s %>]')[0])
+      inputf = document.getElementsByName('candidate[<%=error.attribute.to_s %>]')[0];
+      if( inputf == null)  // profile.gender = error.attribute.to_s.split('.')[1]
+      inputf = document.getElementsByName('candidate[profile_attributes][<%= error.attribute.to_s.split(".")[1] %>]')[0];
+     
+      if(inputf != null )
+     {
+      if(inputf.type=="text" || inputf.type=="number" || inputf.type == "date")
+      {
+      $(inputf).addClass("is-invalid")
+      $("<div class='invalid-feedback'>  <%= error.full_message %> </div>").insertAfter(inputf)
+      } else      //check box not properly view
+      {
+        alert(inputf.type+'***** <%= error.full_message.to_s %>');
+      }
+     }
+     else
+     {
+      alert('(<%=error.attribute.to_s %>) <%= error.full_message.to_s %>');
+     }
+      </script>  
+    <% end %>
+  <% end %>
+
 <% end %>

@@ -64,10 +64,12 @@ class CurriculumVitaesController < ApplicationController
   
   def new
     @curriculum_vitae = CurriculumVitae.new
+    @curriculum_vitae.company_experiences.build
   end
 
   
   def edit
+    @curriculum_vitae.company_experiences.build if @curriculum_vitae.company_experiences.empty?
   end
 
   
@@ -92,6 +94,7 @@ class CurriculumVitaesController < ApplicationController
   def update
     
     @curriculum_vitae.updated_by = current_user.email
+    @curriculum_vitae.company_experiences.reject(&:persisted?).each(&:destroy)
     respond_to do |format|
       if @curriculum_vitae.update(curriculum_vitae_params)
         format.html { redirect_to curriculum_vitae_url(@curriculum_vitae), notice: "CurriculumVitae was successfully updated." }
@@ -120,6 +123,6 @@ class CurriculumVitaesController < ApplicationController
 
     
     def curriculum_vitae_params
-      params.require(:curriculum_vitae).permit(:candidate_id ,:template_name,:experience ,:image,:objective ,:profile_desc, curriculum_vitae_core_tech_attributes: [:tech_stack_id] ,supportive_skill_ids:[],project_ids: [] )
+      params.require(:curriculum_vitae).permit(:candidate_id ,:template_name,:experience ,:image,:objective ,:profile_desc, curriculum_vitae_core_tech_attributes: [:tech_stack_id] ,supportive_skill_ids:[],project_ids: [] ,company_experiences_attributes: [:id ,:curriculum_vitae_id , :company_name , :experience ,:_destroy])
     end
 end

@@ -82,45 +82,55 @@
     
     <div class="row" style="margin-left: 0px;margin-right: 0px;">
       <div class="col-md-6 repeater" style="padding-right: 0px;padding-left: 0px;">
-        <div class="row" style="margin-left: 0px;">
-          <div class="col-3" style="padding-right: 0px;padding-left: 0px;">
-            <%= form.label "Experience" %>
-          </div>
-          <div class="col-7" style="padding-right: 0px;">
-            <%= form.label "Company Name"  %>
-          </div>
-        </div>
-      <div data-repeater-list="company_experience" >
-        <div class="row" data-repeater-item  style="margin-left: 0px;margin-top: 4px; margin-bottom: 2px;">
-          <div class="col-3" style="padding-right: 0px;padding-left: 0px;">
-            <%= form.number_field :experience ,class: "form-control" %>
-          </div>
-          <div class="col-7" style="padding-right: 0px;">
-            <%= form.text_field :company  ,class: "form-control" %>
-          </div>
-          <div class="col-1" style="padding-left: 0px;padding-right: 0px;">
-            <button type="button" data-repeater-delete="" class="deleteg btn btn-outline-danger btn-sm fa fa-close " style="font-size: 13px;"></button>
-          </div>
-        </div>
-      </div>
-        <div>
-              <button type="button" data-repeater-create class="btn btn-outline-info btn-sm btn-add-g" >+ Add</button>
+        <%= form.fields_for :company_experiences do |company_experience_form| %>
+          <div class="row" style="margin-left: 0px;">
+            <div class="col-7" style="padding-right: 0px;padding-left: 0px;">
+              <%= company_experience_form.label "Company Name"  %>
             </div>
+            <div class="col-3" style="padding-right: 0px;">
+              <%= company_experience_form.label "Experience" %>
+            </div>
+          </div>
+          <div data-repeater-list="curriculum_vitae[company_experiences_attributes]" >
+            <div class="row" data-repeater-item  style="margin-left: 0px;margin-top: 4px; margin-bottom: 2px;">
+              <div class="col-7" style="padding-right: 0px;padding-left: 0px;">
+                <%= company_experience_form.text_field :company_name  ,class: "form-control" %>
+              </div>
+              <div class="col-3" style="padding-right: 0px;">
+                <%= company_experience_form.number_field :experience ,class: "form-control" ,style: "padding-right: 1px;padding-left: 9px;"%>
+              </div>
+              <div class="col-1" style="padding-left: 0px;padding-right: 0px;">
+                <!-- <button type="button" data-repeater-delete="" class="deleteg btn btn-outline-danger btn-sm fa fa-close " style="font-size: 13px;"></button> -->
+                <!-- <button type="button" class="deleteg btn btn-outline-danger btn-sm fa fa-close " style="font-size: 13px;" , onclick="deleteRepeaterItem(this);"></button> -->
+                <button type="button" data-repeater-delete=""  class="deleteg btn btn-outline-danger btn-sm fa fa-close " style="font-size: 13px;" , onclick="deleteRepeaterItem(this);"></button>
+              </div>
+              <%= company_experience_form.hidden_field :_destroy, class: "destroy-field" %>
+            </div>
+            <%end%>
+            </div>
+            <div>
+              <button type="button" data-repeater-create class="btn btn-outline-info btn-sm btn-add-g" >+ Add</button>
+            </div> 
+          </div>
 
-       </div>
-       <script>
-        $('.repeater').repeater();
-        </script>
+          <script>
+           function deleteRepeaterItem(button) {
+            var item = $(button).closest('[data-repeater-item]');
+            var destroyField = item.find('.destroy-field');
+            destroyField.val('true'); 
+            }
+            $('.repeater').repeater();
+            </script>
       <!-- by using grouped_options_for_select  // at hepler method -->
        <div class="col-md-6" style="padding-right: 0px;">
          <%= form.label "Projects" , style: "display: block " ,class: "" %>
-            <%= form.select(:project_ids, grouped_options_for_select(helper_grouped_projects_options , selected: curriculum_vitae.project_ids), {}, { multiple: true, include_blank: false ,class: "selectpicker show-menu-arrow form-control" , 'data-live-search': "true" }) %>
+         <%= form.select(:project_ids, grouped_options_for_select(helper_grouped_projects_options , selected: curriculum_vitae.project_ids), {}, { multiple: true, include_blank: false ,class: "selectpicker show-menu-arrow form-control" , 'data-live-search': "true" }) %>
            <!-- error message-->
            <% curriculum_vitae.errors[:projects].each do |message| %>
              <span style="background: cornsilk; color: red; border-radius: 5px;">
               <%= message %>
              </span>
-           <%end%>
+             <%end%>
        </div>
       
 

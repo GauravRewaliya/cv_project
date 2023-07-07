@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_06_084752) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_07_071413) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -64,6 +64,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_06_084752) do
     t.datetime "updated_at", null: false
     t.string "created_by"
     t.string "updated_by"
+  end
+
+  create_table "company_experiences", force: :cascade do |t|
+    t.integer "curriculum_vitae_id", null: false
+    t.string "company_name"
+    t.integer "experience"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["curriculum_vitae_id"], name: "index_company_experiences_on_curriculum_vitae_id"
   end
 
   create_table "curriculum_vitae_core_teches", force: :cascade do |t|
@@ -209,6 +218,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_06_084752) do
   add_foreign_key "candidate_core_teches", "tech_stacks"
   add_foreign_key "candidate_supportive_teches", "candidates"
   add_foreign_key "candidate_supportive_teches", "tech_stacks"
+  add_foreign_key "company_experiences", "curriculum_vitaes"
   add_foreign_key "curriculum_vitae_core_teches", "curriculum_vitaes"
   add_foreign_key "curriculum_vitae_core_teches", "tech_stacks"
   add_foreign_key "curriculum_vitae_supportive_teches", "curriculum_vitaes"

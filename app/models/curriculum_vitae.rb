@@ -5,8 +5,10 @@ class CurriculumVitae < ApplicationRecord
   validates :experience, numericality: {greater_than_or_equal_to: 0 ,allow_nil: true}
 
     belongs_to :candidate
-     has_many :project_curriculum_vitaes ,dependent: :destroy
-     has_many :projects , through: :project_curriculum_vitaes
+    #  has_many :project_curriculum_vitaes ,dependent: :destroy  xxxx remain
+    #  has_many :projects , through: :project_curriculum_vitaes
+   
+    has_many :cv_projects , dependent: :destroy
     
     has_one_attached :image
     

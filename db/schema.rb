@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_07_071413) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_10_111307) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -106,6 +106,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_07_071413) do
     t.index ["candidate_id"], name: "index_curriculum_vitaes_on_candidate_id"
   end
 
+  create_table "cv_projects", force: :cascade do |t|
+    t.integer "curriculum_vitae_id", null: false
+    t.integer "original_project_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title"
+    t.text "desc"
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "team_size"
+    t.index ["curriculum_vitae_id"], name: "index_cv_projects_on_curriculum_vitae_id"
+    t.index ["original_project_id"], name: "index_cv_projects_on_original_project_id"
+  end
+
   create_table "cv_templates", force: :cascade do |t|
     t.integer "curriculum_vitae_id", null: false
     t.integer "template_format_id", null: false
@@ -178,7 +192,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_07_071413) do
     t.date "start_date"
     t.date "end_date"
     t.integer "team_size"
-    t.text "role"
     t.string "created_by"
     t.string "updated_by"
   end
@@ -224,6 +237,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_07_071413) do
   add_foreign_key "curriculum_vitae_supportive_teches", "curriculum_vitaes"
   add_foreign_key "curriculum_vitae_supportive_teches", "tech_stacks"
   add_foreign_key "curriculum_vitaes", "candidates"
+  add_foreign_key "cv_projects", "curriculum_vitaes"
+  add_foreign_key "cv_projects", "projects", column: "original_project_id"
   add_foreign_key "cv_templates", "curriculum_vitaes"
   add_foreign_key "cv_templates", "template_formats"
   add_foreign_key "profiles", "candidates"

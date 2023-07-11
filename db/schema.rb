@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_10_111307) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_10_132341) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -137,6 +137,26 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_10_111307) do
     t.string "updated_by"
   end
 
+  create_table "linkable_core_teches", force: :cascade do |t|
+    t.integer "tech_stack_id"
+    t.string "connectable_type"
+    t.integer "connectable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["connectable_type", "connectable_id"], name: "index_linkable_core_teches_on_connectable"
+    t.index ["tech_stack_id"], name: "index_linkable_core_teches_on_tech_stack_id"
+  end
+
+  create_table "linkable_supportive_teches", force: :cascade do |t|
+    t.integer "tech_stack_id"
+    t.string "connectable_type"
+    t.integer "connectable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["connectable_type", "connectable_id"], name: "index_linkable_supportive_teches_on_connectable"
+    t.index ["tech_stack_id"], name: "index_linkable_supportive_teches_on_tech_stack_id"
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.string "email"
     t.string "contact"
@@ -241,6 +261,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_10_111307) do
   add_foreign_key "cv_projects", "projects", column: "original_project_id"
   add_foreign_key "cv_templates", "curriculum_vitaes"
   add_foreign_key "cv_templates", "template_formats"
+  add_foreign_key "linkable_core_teches", "tech_stacks"
+  add_foreign_key "linkable_supportive_teches", "tech_stacks"
   add_foreign_key "profiles", "candidates"
   add_foreign_key "project_core_teches", "projects"
   add_foreign_key "project_core_teches", "tech_stacks"

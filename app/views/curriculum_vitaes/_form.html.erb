@@ -80,8 +80,9 @@
       
     </div>
     
-    <div class="row" style="margin-left: 0px;margin-right: 0px;">
-      <div class="col-md-6 repeater" style="padding-right: 0px;padding-left: 0px;">
+    <!-- <div class="row" style="margin-left: 0px;margin-right: 0px;"> -->
+
+      <div class="repeater" >
         <%= form.fields_for :company_experiences do |company_experience_form| %>
           <div class="row" style="margin-left: 0px;">
             <div class="col-7" style="padding-right: 0px;padding-left: 0px;">
@@ -121,8 +122,9 @@
             }
             $('.repeater').repeater();
             </script>
+
       <!-- by using grouped_options_for_select  // at hepler method -->
-       <div class="col-md-6" style="padding-right: 0px;">
+       <div>
          <%= form.label "Projects" , style: "display: block " ,class: "" %>
          <%= form.select(:project_ids, grouped_options_for_select(helper_grouped_projects_options , selected: curriculum_vitae.project_ids), {}, { multiple: true, include_blank: false ,class: "selectpicker show-menu-arrow form-control" , 'data-live-search': "true" }) %>
            <!-- error message-->
@@ -135,7 +137,7 @@
       
 
 
-     </div>
+     <!-- </div> -->
 
       <div class="row">
 

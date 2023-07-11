@@ -32,7 +32,7 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    if project_params[:project_core_tech_attributes][:tech_stack_id].blank?
+    if project_params[:linkable_core_tech_attributes][:tech_stack_id].blank?
       @project.core_skill = nil
     end
     
@@ -64,6 +64,6 @@ class ProjectsController < ApplicationController
       @project = Project.find(params[:id])
     end
     def project_params
-      params.require(:project).permit(:team_size , :role ,  :title, :desc,:start_date ,:end_date, project_domain_attributes: [:domain_id],project_core_tech_attributes: [:tech_stack_id],supportive_skill_ids:[])
+      params.require(:project).permit(:team_size , :role ,  :title, :desc,:start_date ,:end_date, project_domain_attributes: [:domain_id],linkable_core_tech_attributes: [:tech_stack_id],supportive_skill_ids:[])
     end
 end

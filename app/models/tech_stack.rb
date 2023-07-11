@@ -3,13 +3,17 @@ class TechStack < ApplicationRecord
     validates :tech_type , :title, presence: true
     validates :title, uniqueness: { case_sensitive: false }
     
-      has_many :project_core_techs
-      has_many :projects, through: :project_core_techs  
+      has_many :linkable_core_techs
+      has_many :projects, through: :linkable_core_techs, source: :connectable, source_type: 'Project'
+
     before_destroy :destroy_with_associations
 
   def destroy_with_associations
     ProjectCoreTech.where(tech_stack_id: self.id).destroy_all
     ProjectSupportiveTech.where(tech_stack_id: self.id).destroy_all
+
+    # LinkableCoreTech.where(tech_stack_id: self.id).destroy_all
+    # LinkableSupportiveTech.where(tech_stack_id: self.id).destroy_all
 
     CurriculumVitaeCoreTech.where(tech_stack_id: self.id).destroy_all  
     CurriculumVitaeSupportiveTech.where(tech_stack_id: self.id).destroy_all

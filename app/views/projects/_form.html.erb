@@ -100,7 +100,7 @@ background:#b9d7d7;
           <div class="form-group">
             <%= form.label :core_skill, style: "display: block" ,class: "" %>
           
-             <%= form.fields_for :project_core_tech_attributes, @project.project_core_tech do |cs| %>
+             <%= form.fields_for :linkable_core_tech_attributes, @project.linkable_core_tech do |cs| %>
                 <%= cs.collection_select :tech_stack_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{class: "form-control" ,style:"height: 45px; margin-top: 7px;"} %>
               <% end %>
           </div>
@@ -112,12 +112,12 @@ background:#b9d7d7;
             <%= form.label :supportive_skill , style: "display: block" ,class: "" %>
                 <div>
                   <%= form.collection_select(:supportive_skill_ids, TechStack.supportive_skills, :id, :title , {}, { multiple: true,
-                    include_blank: false ,id: 'selectgr' }) %>
+                    include_blank: false,class: "selectpicker show-menu-arrow form-control" }) %>
     
                     </select>
-                    <script>
+                    <!-- <script>
                       new MultiSelectTag('selectgr')  // id
-                    </script>
+                    </script> -->
               </div>
           </div>
         </div>

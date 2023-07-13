@@ -24,7 +24,7 @@
       <td ><p><%= curriculum_vitae.updated_at %></p></td>
       <td class="l"><p><%= curriculum_vitae.candidate&.name %></p></td>
       <td>
-        <% curriculum_vitae.projects.each do |project| %>
+        <% curriculum_vitae.cv_projects.each do |project| %>
           <%= project.title+", " %>
         <%end%>
       </td>

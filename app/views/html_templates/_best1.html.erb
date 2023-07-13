@@ -61,7 +61,7 @@
         <div>
             <h4>PROJECT HISTORY</h4>
 
-            <% curriculum_vitae.projects.each do |project| %>
+            <% curriculum_vitae.cv_projects.each do |project| %>
                 <div style="position: relative;">
                     <h6><b>Project:</b>
                         <%= project.title %>
@@ -78,18 +78,18 @@
                             <%= project.desc %>
                         </li>
 
-                        <%if !project.domain.blank? %>
-                            <li>Project is based on <%= project.domain&.title %> doamin</li>
-                            <%end%>
-                                <%if !project.team_size.blank? %>
-                                    <li>Project has Team Size of <%= project.team_size %>
-                                    </li>
-                                    <%end%>
-                                        <%if !project.role.blank? %>
-                                            <li>Project has specific roles and responcibilites <br>
-                                                <%= project.role %>
-                                            </li>
-                                            <%end%>
+                    <%if !Project.find(project.original_project_id).domain.blank? %>
+                        <li>Project is based on <%= Project.find(project.original_project_id).domain&.title %> doamin</li>
+                    <%end%>
+                    <%if !project.team_size.blank? %>
+                        <li>Project has Team Size of <%= project.team_size %>
+                        </li>
+                    <%end%>
+                    <!-- <%#if !project.role.blank? %>
+                        <li>Project has specific roles and responcibilites <br>
+                            <%#= project.role %>
+                        </li>
+                    <%#end%> -->
 
                     </ul>
                 </div>

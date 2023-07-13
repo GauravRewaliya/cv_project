@@ -2,12 +2,10 @@
 
 <h1>Editing domain</h1>
 
-<div style="position: relative;">
-  <%= link_to "arrow_back", domains_path ,class:"pos_l material-symbols-outlined" %>
-</div>
 
 <div >
   <div class="card-body bg-secondary col-7 container">
+    <%= link_to "arrow_back", domains_path ,class:"pos_card_l material-symbols-outlined" %>
     <%= render "form", domain: @domain %></div>
 </div>
 <br>

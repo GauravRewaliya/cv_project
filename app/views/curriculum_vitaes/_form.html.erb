@@ -129,76 +129,83 @@
             <h3>Projects</h3>
             <div data-repeater-list="curriculum_vitae[cv_projects_attributes]" >
               <%= form.fields_for :cv_projects do |project_form| %>
-              <div class="row" data-repeater-item  style="margin-left: 0px;margin-top: 4px; margin-bottom: 2px;">
-                <div class="col-3" style="padding-right: 0px;padding-left: 0px;">
-                  <%= project_form.select(:original_project_id, grouped_options_for_select(helper_grouped_projects_options , selected: curriculum_vitae.cv_project_ids), {prompt: "Select a project"}, {class: "form-control" ,onchange: "project_select(this)"}) %>
-                </div>
-                <div class="col-7" hidden="true" id="cloned_content">
-                  <!-- container ......... -->
-                  <div class="form-group">
-                    <%= project_form.label :title, style: "display: block" ,class: "" %>
-                    <%= project_form.text_field :title ,class:"form-control" %>
+                <div class="row" data-repeater-item  style="margin-left: 0px;margin-top: 4px; margin-bottom: 2px;">
+                  <div class="col-3" style="padding-right: 0px;padding-left: 0px;">
+                    <%= project_form.select(:original_project_id, grouped_options_for_select(helper_grouped_projects_options , selected: curriculum_vitae.cv_project_ids), {prompt: "Select a project"}, {class: "form-control" ,onchange: "project_select(this)"}) %>
                   </div>
-                  <div class="form-group">
-                    <%= project_form.label :desc, style: "display: block" ,class: "" %>
-                    <%= project_form.text_area :desc ,class:"form-control"%>
-                  </div>
-                  <div class="form-group">
-                    <%= project_form.label :team_size, style: "display: block" ,class: "" %>
-                    <%= project_form.number_field :team_size ,class:"form-control"%>
-                  </div>
-                  <div>
+                  <div class="col-7" hidden="true" id="cloned_content">
+                    <!-- container ......... -->
                     <div class="form-group">
-                      <div class="row">
-                        <div class="col-6">
-                          <%= project_form.label :start_date, style: "display: block" ,class: "" %>
-                          <%= project_form.date_field :start_date , max: Date.today ,class: 'form-control  container' ,id: "start_date_id"%>
-                        </div>
-                        <div class="col-6">
-                          <%= project_form.label :end_date, style: "display: block" ,class: "" %>
-                          <%= project_form.date_field :end_date , max: Date.today ,class: 'form-control  container',id: "end_date_id"%>
+                      <%= project_form.label :title, style: "display: block" ,class: "" %>
+                      <%= project_form.text_field :title ,class:"form-control" %>
+                    </div>
+                    <div class="form-group">
+                      <%= project_form.label :desc, style: "display: block" ,class: "" %>
+                      <%= project_form.text_area :desc ,class:"form-control"%>
+                    </div>
+                    <div class="form-group">
+                      <%= project_form.label :team_size, style: "display: block" ,class: "" %>
+                      <%= project_form.number_field :team_size ,class:"form-control"%>
+                    </div>
+                    <div>
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-6">
+                            <%= project_form.label :start_date, style: "display: block" ,class: "" %>
+                            <%= project_form.date_field :start_date , max: Date.today ,class: 'form-control  container' ,id: "start_date_id"%>
+                          </div>
+                          <div class="col-6">
+                            <%= project_form.label :end_date, style: "display: block" ,class: "" %>
+                            <%= project_form.date_field :end_date , max: Date.today ,class: 'form-control  container',id: "end_date_id"%>
+                          </div>
                         </div>
                       </div>
+                      <div style="padding-left: 4%;" class="form-inline">
+                        <input type="checkbox" id="inprogress_id">
+                        <p style="margin-bottom: 0px;color: #657079;">currently running</p>
+                      </div>
                     </div>
-                    <div style="padding-left: 4%;" class="form-inline">
-                      <input type="checkbox" id="inprogress_id">
-                      <p style="margin-bottom: 0px;color: #657079;">currently running</p>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <!-- <div class="form-group">
+                          <%= project_form.label :core_skill, style: "display: block" ,class: "" %>
+                          <%= project_form.fields_for :linkable_core_tech_attributes do |cs| %>
+                            <%= cs.collection_select :tech_stack_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{class: "form-control" ,style:"height: 45px; margin-top: 7px;"} %>
+                          <%end%>
+                        </div> -->
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <%= project_form.label :supportive_skill , style: "display: block" ,class: "" %>
+                          <div>
+                            <!-- <%= project_form.collection_select(:proj_supportive_skill_ids, TechStack.supportive_skills, :id, :title , {}, { multiple: true,
+                          include_blank: false,class: "selectpicker show-menu-arrow form-control" }) %> -->
+                            <script>
+                              $(function(){
+                                // $('.selectpicker').selectpicker();
+                              })
+                            </script>
+
+
+                                <%= project_form.collection_select(:proj_supportive_skill_ids, TechStack.supportive_skills, :id, :title , {}, { multiple: true,id: 'selectgr' }) %>
+
+                                  </select>
+                                  <script>
+                                    // new MultiSelectTag('selectgr')  // id
+                                  </script>
+                              </div>
+                        </div>
+                        </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <%= project_form.label :core_skill, style: "display: block" ,class: "" %>
-                        <%= project_form.fields_for :linkable_core_tech_attributes do |cs| %>
-                          <%= cs.collection_select :tech_stack_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{class: "form-control" ,style:"height: 45px; margin-top: 7px;"} %>
-                        <%end%>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <%= project_form.label :supportive_skill , style: "display: block" ,class: "" %>
-                        <div>
-                          <%= project_form.collection_select(:supportive_skill_ids, TechStack.supportive_skills, :id, :title , {}, { multiple: true,
-                        include_blank: false,class: "selectpicker show-menu-arrow form-control" }) %>
-                          </select>
-                          <script>
-                            $(function(){
-                              $('.selectpicker').selectpicker();
-                            })
-                          </script>
-                            </div>
-                      </div>
-                      </div>
+                  <div class="col-2" style="padding: 0; height: 37px;display: inline-flex;">
+                    <!-- - -->
+                    <button type="button"  class="g_sm_btn g btn btn-outline-danger  fa fa-close " , onclick="deleteRepeaterItem(this);" ></button>
+                    <button type="button" class="btn btn-outline-info fa fa-eye-slash g_sm_btn" , onclick="showHide(this);" ></button>
+                    <!-- fa-eye-slash -->
                   </div>
+                  <%= project_form.hidden_field :_destroy, class: "destroy-field" %>
                 </div>
-                <div class="col-2" style="padding: 0; height: 37px;display: inline-flex;">
-                  <!-- - -->
-                  <button type="button"  class="g_sm_btn g btn btn-outline-danger  fa fa-close " , onclick="deleteRepeaterItem(this);" ></button>
-                  <button type="button" class="btn btn-outline-info fa fa-eye-slash g_sm_btn" , onclick="showHide(this);" ></button>
-                  <!-- fa-eye-slash -->
-                </div>
-                <%= project_form.hidden_field :_destroy, class: "destroy-field" %>
-              </div>
               <%end%>
             </div>
             <div>

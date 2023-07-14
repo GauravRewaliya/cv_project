@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :tech_stacks ,:candidates ,:profiles
   resources :curriculum_vitaes 
   
+  # post 'curriculum_vitaes/:id' , to: "curriculum_vitaes#update"
   # resources :curriculum_vitaes do
   #   # get 'download', on: :member, format: :pdf
   #   get 'download', on: :member

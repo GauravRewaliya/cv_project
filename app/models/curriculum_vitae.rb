@@ -2,7 +2,7 @@ class CurriculumVitae < ApplicationRecord
   validates :candidate , :template_name , presence: true
   validates :curriculum_vitae_core_tech, presence: true
   validates :experience, numericality: {greater_than_or_equal_to: 0 ,allow_nil: true}
-
+  before_destroy :delete_fun
     belongs_to :candidate
     
     #  has_many :project_curriculum_vitaes ,dependent: :destroy  #xxxx remain
@@ -24,5 +24,13 @@ class CurriculumVitae < ApplicationRecord
     accepts_nested_attributes_for :cv_projects , allow_destroy: true , reject_if: :all_blank
 
     accepts_nested_attributes_for :curriculum_vitae_core_tech , reject_if: :all_blank
+
+    def delete_fun
+      CurriculumVitaeCoreTech.where(curriculum_vitae: self.id).destroy_all
+      CvProject.where(curriculum_vitae_id: self.id).destroy_all
+      CompanyExperience.where(curriculum_vitae_id: self.id).destroy_all
+
+      ProjectCurriculumVitae.where(curriculum_vitae_id: self.id).destroy_all
+    end
   
 end

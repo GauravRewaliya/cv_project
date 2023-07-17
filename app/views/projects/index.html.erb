@@ -10,10 +10,10 @@
     <tr style="color:white;">
        <th>Title</th>
        <th>Description</th>
-       <th></th>
-       <th></th>
-       <th></th>
-       <th></th>
+       <th>Domain</th>
+       <th>team_size</th>
+       <th>core_skill</th>
+       <th>supportive_skill</th>
        <th>Edit</th>
       <th>Delete</th>
       <th>Show</th>
@@ -48,9 +48,9 @@
 <script>
   new DataTable('.data_table_gr',{
     columnDefs: [
-      {target: 2,visible: false},
+      // {target: 2,visible: false}, // domain visible
       {target: 3,visible: false},
-      {target: 4,visible: false},
+      // {target: 4,visible: false}, // core_skill visible
       {target: 5,visible: false}
     ]
   });

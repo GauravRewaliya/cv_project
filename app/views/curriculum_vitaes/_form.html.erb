@@ -38,8 +38,9 @@
       <div class="col-md-6">
         <div>
           <%= form.label "Candidate" , style: "display: block" ,class: "" %>
-            <%= form.collection_select(:candidate_id, Candidate.all, :id, :name, { include_blank: true ,selected:
-              @curriculum_vitae.candidate&.id} ,{required: true ,class: "form-control"})%>
+            <%#= form.collection_select(:candidate_id, Candidate.all, :id, :name, { include_blank: true ,selected:   @curriculum_vitae.candidate&.id} ,{required: true ,class: "form-control"})%>
+            <%#= form.collection_select(:candidate_id, Candidate.all, :id, :name, { include_blank: true } ,{required: true ,class: "form-control"})%>
+            <%= form.collection_select(:candidate_id, Candidate.all, :id,->(candidate){"#{candidate.name} , #{candidate.profile.email}"}, { include_blank: true } ,{required: true ,class: "form-control"})%>
         </div>
   
       </div>
@@ -122,7 +123,13 @@
           <%= form.fields_for :cv_projects do |project_form| %>
             <div class="row" data-repeater-item  style="margin-left: 0px;margin-top: 4px; margin-bottom: 2px;">
               <div class="col-3" style="padding-right: 0px;padding-left: 0px;">
-                <%= project_form.select(:original_project_id, grouped_options_for_select(helper_grouped_projects_options , selected: curriculum_vitae.cv_project_ids), {prompt: "Select a project"}, {class: "form-control" ,onchange: "project_select(this)"}) %>
+                <%#= project_form.select(:original_project_id, grouped_options_for_select(helper_grouped_projects_options , selected: curriculum_vitae.cv_project_ids), {prompt: "Select a project"}, {class: "form-control" ,onchange: "project_select(this)"}) %>
+                <%#= project_form.select(:original_project_id, grouped_options_for_select(helper_grouped_projects_options), {}, {class: "form-control" ,onchange: "project_select(this)"}) %>
+                
+                <%= project_form.collection_select(:original_project_id, Project.all, :id, :title, {prompt: "Select a project"} ,{required: true ,class: "form-control",onchange: "project_select(this)"})%>
+                <%#= project_form.collection_select(:original_project_id,grouped_options_for_select(helper_grouped_projects_options), {} ,{required: true ,class: "form-control",onchange: "project_select(this)"})%>
+                <!-- <div class="form-group"> -->
+              <!-- </div> -->
               </div>
               <div class="col-7" hidden="true" id="cloned_content">
                 <!-- container ......... -->
@@ -176,8 +183,7 @@
                     <div class="form-group">
                       <%= project_form.label :proj_supportive_skills , style: "display: block" ,class: "" %>
                       <div>
-                        <%#= project_form.collection_select(:proj_supportive_skill_ids, TechStack.supportive_skills, :id, :title ,{}, { multiple: true ,onclick:"supportive_skills_fix()"}) %>
-                        <%= project_form.collection_select(:proj_supportive_skill_ids, TechStack.supportive_skills, :id, :title ,{}, { multiple: true ,class:"picker" ,onclick:"supportive_skills_fix()"}) %>
+                        <%= project_form.collection_select(:proj_supportive_skill_ids, TechStack.supportive_skills, :id, :title ,{}, { multiple: true ,class:"selectpicker" ,onclick:"supportive_skills_fix()"}) %>
                         
                       </div>
                     </div>
@@ -223,8 +229,6 @@
    button.closest('[data-repeater-item]').hidden = true;
    }
    
-   
-  
       function showHide(curr_obj) {
         d = curr_obj.closest("[data-repeater-item]");
         // debugger
@@ -277,16 +281,15 @@
       }
       function select_picker_refresh()
       {
-      $('select').selectpicker('refresh');
+      $('.selectpicker').selectpicker('refresh');
       }
-
-      
           //  on load
       supportive_skills_fix();  
 
       $('.repeater_experience').repeater();
       $('.repeater_proj').repeater();
-      $('select').selectpicker(
+      // $('select').selectpicker(
+      $('.selectpicker').selectpicker(
         { liveSearch: true}
       );
 

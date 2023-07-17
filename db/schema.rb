@@ -108,14 +108,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_10_132341) do
 
   create_table "cv_projects", force: :cascade do |t|
     t.integer "curriculum_vitae_id", null: false
-    t.integer "original_project_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "original_project_id"
     t.string "title"
     t.text "desc"
     t.date "start_date"
     t.date "end_date"
     t.integer "team_size"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["curriculum_vitae_id"], name: "index_cv_projects_on_curriculum_vitae_id"
     t.index ["original_project_id"], name: "index_cv_projects_on_original_project_id"
   end

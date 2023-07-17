@@ -10,7 +10,8 @@ class CurriculumVitae < ApplicationRecord
    
     has_many :cv_projects , dependent: :destroy
     
-    has_one_attached :image
+    # has_one_attached :image 
+    has_one_attached :image , dependent: :destroy
     
     has_many :curriculum_vitae_supportive_techs ,dependent: :destroy
     has_many :supportive_skills, through: :curriculum_vitae_supportive_techs, source: :tech_stack

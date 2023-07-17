@@ -32,6 +32,10 @@ class Project < ApplicationRecord
 
     def delete_fun
         ProjectCurriculumVitae.where(project_id: self.id).destroy_all
+        CvProject.where(original_project_id: self.id).each  do |cv_project|
+            cv_project.update(original_project_id: nil)
+            cv_project.save
+        end
     end
            
 end

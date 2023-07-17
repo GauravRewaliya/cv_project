@@ -61,13 +61,6 @@ class ProjectsController < ApplicationController
   # clone the proj
   def cv_project_details
     @project = Project.find(params[:proj_id])
-    # @cv = CurriculumVitae.find(params[:cv_id])
-    # @cv_p = CvProject.new
-    # @cv_p.assign_attributes(@project.attributes.except("id","created_at","updated_at","created_by","updated_by"))
-
-    # @cv_p.original_project_id = @project.id
-    # @cv_p.curriculum_vitae_id = @cv.id
-
     render json: {project: @project  , core_skill_id: @project.core_skill.id , supportive_skill_ids: @project.supportive_skill_ids}  
   end
 

@@ -97,11 +97,11 @@
                             <li>Project has Team Size of <%= project.team_size %>
                             </li>
                         <%end%>
-                        <!-- <%#if !project.role.blank? %>
-                            <li>Project has specific roles and responcibilites <br>
-                                <%#= project.role %>
+                        <%if !project.role.blank? %>
+                            <li> Role- <br>
+                                <%= project.role %>
                             </li>
-                        <%#end%> -->
+                        <%end%>
 
                     </ul>
                 </div>
@@ -169,6 +169,7 @@
                     </ul>
                 </div> -->                
             </div>
+            <%if !curriculum_vitae.company_experiences.blank?%>
             <div>
                 <h4>Experiences</h4>
                 <table>
@@ -204,5 +205,6 @@
                     </ul>
                 </div> -->                
             </div>
+            <%end%>
     </div>
 </div>

@@ -1,11 +1,13 @@
 body{
-    background: linear-gradient(60deg , transparent , #209aa3 ,#723af5  );
+    /* background: linear-gradient(60deg , transparent , #209aa3 ,#723af5  );
     background-repeat: no-repeat;
     height: 100vh;
+    */
+    background: linear-gradient(60deg , transparent , #209aa3 ,#723af5 );
     display: flex;
     justify-content: center;
-    
     align-items: center;
+    min-height: 100vh;
 }
 p{
     position: relative;
@@ -22,7 +24,7 @@ p{
     bottom: 40px;
 }
 .formBox {
-    margin: 6%;
+    /* margin: 6%; */
     padding: 80px;
     height: 70%;
     width: 400px;

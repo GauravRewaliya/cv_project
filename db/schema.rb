@@ -116,6 +116,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_10_132341) do
     t.integer "team_size"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "role"
     t.index ["curriculum_vitae_id"], name: "index_cv_projects_on_curriculum_vitae_id"
     t.index ["original_project_id"], name: "index_cv_projects_on_original_project_id"
   end

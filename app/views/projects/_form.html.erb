@@ -117,15 +117,15 @@ background:#b9d7d7;
         <% end %>
       <% end %>
 
-   <script>
-       ///// update date
+   <script>         /// date field handlar js
+   
        function updateEndDate()
        { 
          if(inprogress_id.checked != true)
          end_date_id.value = end_date_id.min = start_date_id.value
        }
 
-        e = document.getElementById("end_date_id")
+        e = document.getElementById("end_date_id");
         start_date_id.addEventListener('change', updateEndDate);
 
         //  check box disabled , blank

@@ -32,7 +32,7 @@
           <% end %>
       </ul>
     </div>
-    <% end %>
+  <% end %>
 
     <div class="row">
       <div class="col-md-6">
@@ -46,7 +46,7 @@
       </div>
       <div class="col-md-6">
         <div>
-          <%= form.label "Role" , style: "display: block" ,class: "" %>
+          <%= form.label "Designation" , style: "display: block" ,class: "" %>
             <%= form.text_field :objective ,style: "width: 100%;text-align: center;" ,class: "form-control" %>
         </div>
       </div>
@@ -115,8 +115,6 @@
        
       </div>
 
-          
-
       <div class="repeater_proj" >
         <h3>Projects</h3>
         <div data-repeater-list="curriculum_vitae[cv_projects_attributes]" >
@@ -150,16 +148,16 @@
                     <div class="row">
                       <div class="col-6">
                         <%= project_form.label :start_date, style: "display: block" ,class: "" %>
-                        <%= project_form.date_field :start_date , max: Date.today ,class: 'form-control  container' ,id: "start_date_id"%>
+                        <%= project_form.date_field :start_date , max: Date.today ,class: 'form-control proj_start_date container' ,id: "start_date_id" ,onchange:"updateEndDate(this)"%>
                       </div>
                       <div class="col-6">
                         <%= project_form.label :end_date, style: "display: block" ,class: "" %>
-                        <%= project_form.date_field :end_date , max: Date.today ,class: 'form-control  container',id: "end_date_id"%>
+                        <%= project_form.date_field :end_date , max: Date.today ,class: 'form-control proj_end_date container',id: "end_date_id"%>
                       </div>
                     </div>
                   </div>
                   <div style="padding-left: 4%;" class="form-inline">
-                    <input type="checkbox" id="inprogress_id">
+                    <input type="checkbox" id="inprogress_id" class="proj_checkbox" onchange="endDateDisable(this)">
                     <p style="margin-bottom: 0px;color: #657079;">currently running</p>
                   </div>
                 </div>
@@ -171,20 +169,13 @@
                         <%= cs.collection_select :tech_stack_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{class: "form-control" ,style:"height: 45px; margin-top: 7px;"} %>
                         <%end%> -->
                         <%= project_form.collection_select :proj_core_skill_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{class: "form-control" ,style:"height: 45px; margin-top: 7px;"} %>
-                      <!-- <select class="form-control" style="height: 45px; margin-top: 7px;" name="[linkable_core_tech_attributes][tech_stack_id]" id="project_linkable_core_tech_attributes_tech_stack_id"><option value="" label=" "></option>
-                        <option value="1">Java</option>
-                        <option value="7">Node Js</option>
-                        <option selected="selected" value="4">Python</option>
-                        <option value="8">ror</option>
-                      </select> -->
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <%= project_form.label :proj_supportive_skills , style: "display: block" ,class: "" %>
                       <div>
-                        <%= project_form.collection_select(:proj_supportive_skill_ids, TechStack.supportive_skills, :id, :title ,{}, { multiple: true ,class:"selectpicker" ,onclick:"supportive_skills_fix()"}) %>
-                        
+                        <%= project_form.collection_select(:proj_supportive_skill_ids, TechStack.supportive_skills, :id, :title ,{}, { multiple: true ,class:"selectpicker" ,onclick:"supportive_skills_fix()"}) %> 
                       </div>
                     </div>
                   </div>
@@ -221,13 +212,15 @@
       <%= form.submit class: 'btn-primary' , style: "margin-top: 20px;" %>
  <% end%>
 
- <script>
-   function deleteRepeaterItem(button) {
-   var item = $(button).closest('[data-repeater-item]');
-   var destroyField = item.find('.destroy-field');
-   destroyField.val('true'); 
-   button.closest('[data-repeater-item]').hidden = true;
-   }
+ <!-- repeater , select picker js -->
+  <script>
+
+      function deleteRepeaterItem(button) {
+      var item = $(button).closest('[data-repeater-item]');
+      var destroyField = item.find('.destroy-field');
+      destroyField.val('true'); 
+      button.closest('[data-repeater-item]').hidden = true;
+      }
    
       function showHide(curr_obj) {
         d = curr_obj.closest("[data-repeater-item]");
@@ -296,4 +289,43 @@
       // $('select[name*="proj_supportive_skill_ids"]').each(function(index, element) {
       //     new  MultiSelectTag(element.id);
       // });
-    </script>
+  </script>
+    
+  <script>
+      ///// update date
+      function updateEndDate(curr_obj)
+      { 
+        // debugger
+        d = curr_obj.closest("[data-repeater-item]");
+        inprogress_id = $(d).find('.proj_checkbox')[0];
+        start_date_id = $(d).find('.proj_start_date')[0];
+        end_date_id = $(d).find('.proj_end_date')[0];
+        if(inprogress_id.checked != true)
+        end_date_id.value = end_date_id.min = start_date_id.value
+      }
+
+      //  check box disabled , blank
+      function endDateDisable(curr_obj)
+      {
+        d = curr_obj.closest("[data-repeater-item]");
+        inprogress_id = $(d).find('.proj_checkbox')[0];
+        start_date_id = $(d).find('.proj_start_date')[0];
+        end_date_id = $(d).find('.proj_end_date')[0];
+        if( inprogress_id.checked == true)
+        {
+          end_date_id.value = ""
+          end_date_id.disabled = true;
+        }
+        else
+        {
+          end_date_id.disabled = false ;
+          updateEndDate(curr_obj)
+        }
+      } 
+      // endDateDisable();
+          // loading
+      
+  </script>   
+
+    <!--  date field js -->
+    

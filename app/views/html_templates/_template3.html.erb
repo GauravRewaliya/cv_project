@@ -99,52 +99,54 @@
               </div>
         </div>
         </div>
-        <div class="col-7" style="z-index: -2;">
-          <div class="resume-experience">
-          
-            <div class="timeline-box mt-4">
-              <div class="jobster-candidate-timeline">
-                <div class="card" style="margin-bottom: 10px;">
-                  <div class="card-header text-dark" style="background-color: #ebebeb";>
-                    <h5 class="resume-experience-title">Projects</h5>
-                  </div>
-                  <div class="card-body text-dark">
-                  
-                    <% curriculum_vitae.cv_projects.each do |project| %>
-                      <div class="project-items" style="padding-top: 20px;">           
-                        <div class="jobster-timeline-info">
-                            <h6 class="mb-2"style="font-size: large;font-weight: 600;"><%= project.title %></h6>
-                            <%if !project.start_date.blank? %>
-                            <span class="jobster-timeline-time"><%=project.start_date%> 
-                            <%= project.end_date.blank? ? " inProgerss" : "to "+project.end_date.to_s %>
-                            </span>
-                            <%end%>
-                            <div style="text-align: left;padding-right: 8%;padding-left: 8%;">
-                            <p class="mt-2 mb-0">Description- <%= project.desc %></p>
+        <%if !curriculum_vitae.cv_projects.blank? %>
+          <div class="col-7" style="z-index: -2;">
+            <div class="resume-experience">
+              
+              <div class="timeline-box mt-4">
+                <div class="jobster-candidate-timeline">
+                  <div class="card" style="margin-bottom: 10px;">
+                    <div class="card-header text-dark" style="background-color: #ebebeb";>
+                      <h5 class="resume-experience-title">Projects</h5>
+                    </div>
+                    <div class="card-body text-dark">
+                    
+                      <% curriculum_vitae.cv_projects.each do |project| %>
+                        <div class="project-items" style="padding-top: 20px;">           
+                          <div class="jobster-timeline-info">
+                              <h6 class="mb-2"style="font-size: large;font-weight: 600;"><%= project.title %></h6>
+                              <%if !project.start_date.blank? %>
+                              <span class="jobster-timeline-time"><%=project.start_date%> 
+                              <%= project.end_date.blank? ? " inProgerss" : "to "+project.end_date.to_s %>
+                              </span>
+                              <%end%>
+                              <div style="text-align: left;padding-right: 8%;padding-left: 8%;">
+                              <p class="mt-2 mb-0">Description- <%= project.desc %></p>
 
-                            <p class="mt-0 mb-0">Domain- <%= Project.find(project.original_project_id).domain&.title %></p>
-                            <p class="mt-0 mb-0">Role- <%= project.role %></p>
-                            <p class="mt-0 mb-0">Team Size- <%= project.team_size %> Members </p>
-                            <p class="mt-0 mb-0">Duration- <%= project.start_date %> <%= project.end_date.blank? ? 'Currently Running': ' to '+project.end_date.to_s %></p>
-                            <p class="mt-0 mb-0">Core Skill- <%= project.proj_core_skill.title%></p>
-                            <p class="mt-0 mb-0">
-                              Supportive Skill- 
-                                              <% project.proj_supportive_skills.each do |supportive_skill| %>
-                                                  <%= supportive_skill.title %>,
-                                              <% end %>
-                            </p>
+                              <p class="mt-0 mb-0">Domain- <%= Project.find(project.original_project_id).domain&.title %></p>
+                              <p class="mt-0 mb-0">Role- <%= project.role %></p>
+                              <p class="mt-0 mb-0">Team Size- <%= project.team_size %> Members </p>
+                              <p class="mt-0 mb-0">Duration- <%= project.start_date %> <%= project.end_date.blank? ? 'Currently Running': ' to '+project.end_date.to_s %></p>
+                              <p class="mt-0 mb-0">Core Skill- <%= project.proj_core_skill.title%></p>
+                              <p class="mt-0 mb-0">
+                                Supportive Skill- 
+                                                <% project.proj_supportive_skills.each do |supportive_skill| %>
+                                                    <%= supportive_skill.title %>,
+                                                <% end %>
+                              </p>
 
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    <% end %>
+                      <% end %>
+                    </div>
                   </div>
                 </div>
               </div>
+            
             </div>
-          
           </div>
-        </div>
+        <%end%>
       </div>
     </div>
   </div>

@@ -108,14 +108,14 @@
                 <%#= company_experience_form.number_field :experience ,class: "form-control" ,style: "padding-right: 1px;padding-left: 9px;"%>
                       <div class="row">
                         <div class="col-6" style="padding-right: 2px;">
-                          <%= company_experience_form.date_field :start_date , max: Date.today ,class: 'form-control proj_start_date container' ,onchange:"updateEndDate(this)"%>
+                          <%= company_experience_form.date_field :start_date , max: Date.today ,class: 'form-control start_date container' ,onchange:"updateEndDate(this)"%>
                         </div>
                         <div class="col-6" style="padding-left: 2px;">
-                          <%= company_experience_form.date_field :end_date , max: Date.today ,class: 'form-control proj_end_date container' , onchange: "checkboxTogle(this)"%>
+                          <%= company_experience_form.date_field :end_date , max: Date.today ,class: 'form-control end_date container' , onchange: "checkboxTogle(this)"%>
                         </div>
                       </div>
                       <div style="padding-left: 4%;" class="form-inline">
-                        <input type="checkbox" class="proj_checkbox" onchange="endDateDisable(this)">
+                        <input type="checkbox" class="inprogress_checkbox" onchange="endDateDisable(this)">
                         <p style="margin-bottom: 0px;color: #657079;">currently running</p>
                       </div>
               </div>
@@ -169,16 +169,16 @@
                     <div class="row">
                       <div class="col-6">
                         <%= project_form.label :start_date, style: "display: block" %>
-                        <%= project_form.date_field :start_date , max: Date.today ,class: 'form-control proj_start_date container' ,onchange:"updateEndDate(this)"%>
+                        <%= project_form.date_field :start_date , max: Date.today ,class: 'form-control start_date container' ,onchange:"updateEndDate(this)"%>
                       </div>
                       <div class="col-6">
                         <%= project_form.label :end_date, style: "display: block"  %>
-                        <%= project_form.date_field :end_date , max: Date.today ,class: 'form-control proj_end_date container',onchange:"checkboxTogle(this)"%>
+                        <%= project_form.date_field :end_date , max: Date.today ,class: 'form-control end_date container',onchange:"checkboxTogle(this)"%>
                       </div>
                     </div>
                   </div>
                   <div style="padding-left: 4%;" class="form-inline">
-                    <input type="checkbox" id="inprogress_id" class="proj_checkbox" onchange="endDateDisable(this)">
+                    <input type="checkbox" id="inprogress_id" class="inprogress_checkbox" onchange="endDateDisable(this)">
                     <p style="margin-bottom: 0px;color: #657079;">currently running</p>
                   </div>
                 </div>
@@ -318,9 +318,9 @@
       { 
         // debugger
         d = curr_obj.closest("[data-repeater-item]");
-        inprogress_id = $(d).find('.proj_checkbox')[0];
-        start_date_id = $(d).find('.proj_start_date')[0];
-        end_date_id = $(d).find('.proj_end_date')[0];
+        inprogress_id = $(d).find('.inprogress_checkbox')[0];
+        start_date_id = $(d).find('.start_date')[0];
+        end_date_id = $(d).find('.end_date')[0];
         if(inprogress_id.checked != true)
         end_date_id.value = end_date_id.min = start_date_id.value
       }
@@ -329,9 +329,9 @@
       function endDateDisable(curr_obj)
       {
         d = curr_obj.closest("[data-repeater-item]");
-        inprogress_id = $(d).find('.proj_checkbox')[0];
-        start_date_id = $(d).find('.proj_start_date')[0];
-        end_date_id = $(d).find('.proj_end_date')[0];
+        inprogress_id = $(d).find('.inprogress_checkbox')[0];
+        start_date_id = $(d).find('.start_date')[0];
+        end_date_id = $(d).find('.end_date')[0];
         if( inprogress_id.checked == true)
         {
           end_date_id.value = ""
@@ -344,12 +344,19 @@
       function checkboxTogle(curr_obj)
         {  
           d = curr_obj.closest("[data-repeater-item]");
-          inprogress_id = $(d).find('.proj_checkbox')[0];
+          inprogress_id = $(d).find('.inprogress_checkbox')[0];
           inprogress_id.checked = false;
         }
       // endDateDisable();
           // loading
-      
+          document.querySelectorAll('.end_date').forEach( e => { 
+            if(e.value == '')
+            {
+                d = e.closest("[data-repeater-item]");
+                inprogress_id = $(d).find('.inprogress_checkbox')[0];
+                inprogress_id.checked = true;
+            }
+          });
   </script>   
 
     <!--  date field js -->

@@ -86,21 +86,38 @@
 
       <div class="repeater_experience" >
         <div class="row" style="margin-left: 0px;">
-          <div class="col-7" style="padding-right: 0px;padding-left: 0px;">
+          <div class="col-6" style="padding-right: 0px;padding-left: 0px;">
             <%=form.label "Company Name"  %>
           </div>
-          <div class="col-3" style="padding-right: 0px;">
-            <%=form.label "Experience" %>
+          <div class="col-5" style="padding-right: 0px;">
+            <%#=form.label "Experience" %>
+            <div class="row">
+              <div class="col-6"><%=form.label :start_date, style: "display: block" %></div>
+              <div class="col-6"><%=form.label :end_date, style: "display: block" %></div>
+            </div>
           </div>
         </div>
         <div data-repeater-list="curriculum_vitae[company_experiences_attributes]" >
             <%= form.fields_for :company_experiences do |company_experience_form| %>
             <div class="row" data-repeater-item  style="margin-left: 0px;margin-top: 4px; margin-bottom: 2px;">
-              <div class="col-7" style="padding-right: 0px;padding-left: 0px;">
+              <div class="col-6" style="padding-right: 0px;padding-left: 0px;">
                 <%= company_experience_form.text_field :company_name  ,class: "form-control" %>
               </div>
-              <div class="col-3" style="padding-right: 0px;">
-                <%= company_experience_form.number_field :experience ,class: "form-control" ,style: "padding-right: 1px;padding-left: 9px;"%>
+              <div class="col-5" style="padding-right: 0px;">
+                
+                <%#= company_experience_form.number_field :experience ,class: "form-control" ,style: "padding-right: 1px;padding-left: 9px;"%>
+                      <div class="row">
+                        <div class="col-6" style="padding-right: 2px;">
+                          <%= company_experience_form.date_field :start_date , max: Date.today ,class: 'form-control proj_start_date container' ,onchange:"updateEndDate(this)"%>
+                        </div>
+                        <div class="col-6" style="padding-left: 2px;">
+                          <%= company_experience_form.date_field :end_date , max: Date.today ,class: 'form-control proj_end_date container' , onchange: "checkboxTogle(this)"%>
+                        </div>
+                      </div>
+                      <div style="padding-left: 4%;" class="form-inline">
+                        <input type="checkbox" class="proj_checkbox" onchange="endDateDisable(this)">
+                        <p style="margin-bottom: 0px;color: #657079;">currently running</p>
+                      </div>
               </div>
               <div class="col-1" style="padding-left: 0px;padding-right: 0px;">
                 <!-- <button type="button" data-repeater-delete="" class="deleteg btn btn-outline-danger btn-sm fa fa-close " style="font-size: 13px;"></button> -->
@@ -151,12 +168,12 @@
                   <div class="form-group">
                     <div class="row">
                       <div class="col-6">
-                        <%= project_form.label :start_date, style: "display: block" ,class: "" %>
-                        <%= project_form.date_field :start_date , max: Date.today ,class: 'form-control proj_start_date container' ,id: "start_date_id" ,onchange:"updateEndDate(this)"%>
+                        <%= project_form.label :start_date, style: "display: block" %>
+                        <%= project_form.date_field :start_date , max: Date.today ,class: 'form-control proj_start_date container' ,onchange:"updateEndDate(this)"%>
                       </div>
                       <div class="col-6">
-                        <%= project_form.label :end_date, style: "display: block" ,class: "" %>
-                        <%= project_form.date_field :end_date , max: Date.today ,class: 'form-control proj_end_date container',id: "end_date_id"%>
+                        <%= project_form.label :end_date, style: "display: block"  %>
+                        <%= project_form.date_field :end_date , max: Date.today ,class: 'form-control proj_end_date container',onchange:"checkboxTogle(this)"%>
                       </div>
                     </div>
                   </div>
@@ -318,14 +335,18 @@
         if( inprogress_id.checked == true)
         {
           end_date_id.value = ""
-          end_date_id.disabled = true;
         }
         else
         {
-          end_date_id.disabled = false ;
           updateEndDate(curr_obj)
         }
       } 
+      function checkboxTogle(curr_obj)
+        {  
+          d = curr_obj.closest("[data-repeater-item]");
+          inprogress_id = $(d).find('.proj_checkbox')[0];
+          inprogress_id.checked = false;
+        }
       // endDateDisable();
           // loading
       

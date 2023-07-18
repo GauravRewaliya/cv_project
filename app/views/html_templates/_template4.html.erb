@@ -94,8 +94,16 @@
                         <% curriculum_vitae.company_experiences.each do |exp| %>
                         <h5 style="text-align: left;padding-left: 54px;margin-bottom: 0px;"><%= exp.company_name %></h5>
                         <ul class="list text-white-50 ml-3 py-2 text-left text-capitalize">
-                              <li class="list-item">Duration- ( 2023-06-06 to 2023-06-30 )</li>
-                              <li class="list-item"><%= exp.experience %> Years of Experience</li>
+                              <li class="list-item">Duration- ( <%= exp.start_date %> <%= exp.end_date.blank? ? ' , Currently Running': ' to '+exp.end_date.to_s %> )
+                              </li>
+                                <% end_date = ( exp.end_date.blank? ? Time.now : exp.end_date)%>
+                                <%if end_date.year - exp.start_date.year !=0 || end_date.month - exp.start_date.month !=0%>
+                                  <li class="list-item">
+                                    <%= (y=(end_date.year - exp.start_date.year)) == 0 ? ' ' : y.to_s+' Year, '%>
+                                    <%= (m=(end_date.month - exp.start_date.month)) == 0 ? ' ' : m.to_s+' Month '%>
+                                    of Experience
+                                  </li>
+                                <%end%>
                         </ul>
                           <%end%> 
                         </div>

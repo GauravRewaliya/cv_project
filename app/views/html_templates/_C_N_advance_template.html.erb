@@ -218,7 +218,8 @@
         }
 
         .educs_fs {
-        font-size: 14px !important;
+        /* font-size: 14px !important; */
+        color: #626262!important;
         font-weight: 400 !important;
         }
 
@@ -406,6 +407,35 @@
                         <%= curriculum_vitae.core_skill&.title.to_s + " Developer." %> -->  
                         <%= curriculum_vitae.profile_desc %>  
                     </p>
+                    <%if !curriculum_vitae.company_experiences.blank?%>
+                        <div class="education_in_sub">
+                            <h6>Experience</h6>
+
+                            <% curriculum_vitae.company_experiences.each do |exp| %>
+
+                                    <span>Componey Name: <span class="educs_fs"> <%= exp.company_name %></span></span>
+                                    <div class="educational_sub_se">
+                                        <span class="dot"></span>
+                                        <h4>
+                                            Duration-  <%= exp.start_date %> <%= exp.end_date.blank? ? ' , Currently Running': ' to '+exp.end_date.to_s %>
+                                        </h4>
+                                    </div>
+                                    <div class="educational_sub_se">
+                                        <span class="dot"></span>
+                                        <h4>
+                                            <% end_date = ( exp.end_date.blank? ? Time.now : exp.end_date)%>
+                                            <%if end_date.year - exp.start_date.year !=0 || end_date.month - exp.start_date.month !=0%>
+                                              <li class="list-item">
+                                                <%= (y=(end_date.year - exp.start_date.year)) == 0 ? ' ' : y.to_s+' Year, '%>
+                                                <%= (m=(end_date.month - exp.start_date.month)) == 0 ? ' ' : m.to_s+' Month '%>
+                                                of Experience
+                                              </li>
+                                            <%end%>
+                                        </h4>
+                                    </div>
+                            <%end%>
+                        </div>
+                    <%end%>
 
                     <div class="education_in_sub">
                         <h6>PROJECT HISTORY</h6>

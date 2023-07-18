@@ -4,7 +4,8 @@ class CreateCompanyExperiences < ActiveRecord::Migration[7.0]
       t.references :curriculum_vitae, null: false, foreign_key: true
       t.string :company_name
       t.integer :experience
-
+      t.date :start_date
+      t.date :end_date
       t.timestamps
     end
   end

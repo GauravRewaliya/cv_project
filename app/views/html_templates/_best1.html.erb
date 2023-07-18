@@ -76,7 +76,7 @@
                     </p>
                     <ul>
                         <li>
-                            <%= project.desc %>
+                            Description- <%= project.desc %>
                         </li>
 
                         <%if !Project.find(project.original_project_id).domain.blank? %>
@@ -98,7 +98,7 @@
                             </li>
                         <%end%>
                         <%if !project.role.blank? %>
-                            <li> Role- <br>
+                            <li> Role-
                                 <%= project.role %>
                             </li>
                         <%end%>
@@ -175,24 +175,26 @@
                 <table>
                     <tr>
                         <th>Componey Name</th>
-                        <th></th>
                         <th>Experience</th>
                     </tr>
 
                  <% curriculum_vitae.company_experiences.each do |exp| %>
                     <tr>
                         <td>
-                        <ul>
-                            <li>
-                            <div>
-                                <div><%= exp.company_name %></div>
-                                <div style="font-weight: 200;">( 2023-06-06 to 2023-06-30 )</div>
-                            </div>
-                        </li>
-                        </ul>
+                            <ul>
+                                <li>
+                                    <div>
+                                        <div><%= exp.company_name %></div>
+                                        <div style="font-weight: 200;">( <%= exp.start_date %> <%= exp.end_date.blank? ? ' , Currently Running': ' to '+exp.end_date.to_s %> )</div>
+                                    </div>
+                                </li>
+                            </ul>
                         </td>
-                        <td></td>
-                        <td><%= exp.experience %></td>
+                        <td>
+                            <%#= exp.experience %>
+                            <% end_date = ( exp.end_date.blank? ? Time.now : exp.end_date)%>
+                            <%= (y=(end_date.year - exp.start_date.year)) == 0 ? ' ' : y.to_s+' Year'%>
+                        </td>
                     </tr>
                   <% end %> 
                 </table>

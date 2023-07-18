@@ -127,21 +127,23 @@ background:#b9d7d7;
 
         e = document.getElementById("end_date_id");
         start_date_id.addEventListener('change', updateEndDate);
-
+        e.addEventListener('change', checkboxTogle);
         //  check box disabled , blank
         function endDateDisable()
         {
           if( inprogress_id.checked == true)
           {
             e.value = ""
-            e.disabled = true;
           }
           else
           {
-            e.disabled = false ;
             updateEndDate()
           }
         } 
+        function checkboxTogle()
+        {
+          inprogress_id.checked = false;
+        }
         endDateDisable();
         inprogress_id.addEventListener('change', endDateDisable);
     

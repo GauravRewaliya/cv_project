@@ -9,21 +9,12 @@ body
 {
 background:#b9d7d7;
 }
-/* .body{
-  background: azure;
-    border-radius: 3%;
-} */
-
-/* .bg-secondry{
-  background-color: white!important;
-  background: white!important;
-} */
 </style>
 
 <%= form_with(model: project) do |form| %>
 
-    <div class="form-group">
-        <%= form.label :title, style: "display: block" ,class: "" %>
+      <div class="form-group">
+          <%= form.label :title, style: "display: block" ,class: "" %>
           <%= form.text_field :title ,class:"form-control" %>
       </div>
 
@@ -71,45 +62,15 @@ background:#b9d7d7;
       </div>
       </div>
       <div style="padding-left: 4%;" class="form-inline">
-        <input type="checkbox" id="inprogress_id">
+        <input type="checkbox" <%= (project.end_date == nil ) && (project.end_date!= nil)  ? 'checked' : '' %> id="inprogress_id">
         <p style="margin-bottom: 0px;color: #657079;">currently running</p>
       </div>
-
-
-
-      <script>
-        // its seem i can do without using getElementById
-        e = document.getElementById("end_date_id")
-        function updateEndDate()
-         {
-        end_date_id.value = end_date_id.min = start_date_id.value
-         }
-      start_date_id.addEventListener('change', updateEndDate);
-
-        //  check box disabled , blank
-        function endDateDisable()
-        {
-          if( inprogress_id.checked == true)
-          {
-            e.value = ""
-            e.disabled = true;
-          }
-          else
-          {
-            e.disabled = false ;
-            updateEndDate()
-          }
-        } 
-        inprogress_id.addEventListener('change', endDateDisable);
-        
-      </script>
-
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
             <%= form.label :core_skill, style: "display: block" ,class: "" %>
           
-             <%= form.fields_for :project_core_tech_attributes, @project.project_core_tech do |cs| %>
+             <%= form.fields_for :linkable_core_tech_attributes, @project.linkable_core_tech do |cs| %> 
                 <%= cs.collection_select :tech_stack_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{class: "form-control" ,style:"height: 45px; margin-top: 7px;"} %>
               <% end %>
           </div>
@@ -118,16 +79,11 @@ background:#b9d7d7;
         <div class="col-md-6">
 
           <div class="form-group">
-            <%= form.label :supportive_skill , style: "display: block" ,class: "" %>
+                 <%= form.label :supportive_skill , style: "display: block" ,class: "" %>
                 <div>
                   <%= form.collection_select(:supportive_skill_ids, TechStack.supportive_skills, :id, :title , {}, { multiple: true,
-                    include_blank: false ,id: 'selectgr' }) %>
-    
-                    </select>
-                    <script>
-                      new MultiSelectTag('selectgr')  // id
-                    </script>
-              </div>
+                    include_blank: false,class: "selectpicker show-menu-arrow form-control" }) %>
+                 </div>
           </div>
         </div>
       </div>
@@ -136,28 +92,59 @@ background:#b9d7d7;
       <div>
         <%= form.submit class: 'btn-primary' %>
       </div>
+<% end %>
 
       <!-- new error message by js -->
       <% if project.errors.any? %>
-      <% project.errors.each do |error| %>
-      <script>
-        inputf = document.getElementsByName('project[<%=error.attribute.to_s %>]')[0];
-        if(inputf != null )
-       {
-        if(inputf.type=="text" || inputf.type=="number" || inputf.type == "date")
-        {
-        $(inputf).addClass("is-invalid")
-        $("<div class='invalid-feedback'>  <%= error.full_message %> </div>").insertAfter(inputf)
-        } else
-        {
-          alert(inputf.type+'***** <%= error.message %>');
-        }
-       } else
-       {
-        alert('<%=error.attribute.to_s %> ------- <%= error.message %>');
-       }
-        </script>  
+        <% project.errors.each do |error| %>
+          <script>
+            inputf = document.getElementsByName('project[<%=error.attribute.to_s %>]')[0];
+            if(inputf != null )
+          {
+            if(inputf.type=="text" || inputf.type=="number" || inputf.type == "date")
+            {
+            $(inputf).addClass("is-invalid")
+            $("<div class='invalid-feedback'>  <%= error.full_message %> </div>").insertAfter(inputf)
+            } else
+            {
+              alert(inputf.type+'***** <%= error.message %>');
+            }
+          } else
+          {
+            alert('<%=error.attribute.to_s %> ------- <%= error.message %>');
+          }
+          </script>
         <% end %>
       <% end %>
 
-      <% end %>
+   <script>         /// date field handlar js
+   
+       function updateEndDate()
+       { 
+         if(inprogress_id.checked != true)
+         end_date_id.value = end_date_id.min = start_date_id.value
+       }
+
+        e = document.getElementById("end_date_id");
+        start_date_id.addEventListener('change', updateEndDate);
+        e.addEventListener('change', checkboxTogle);
+        //  check box disabled , blank
+        function endDateDisable()
+        {
+          if( inprogress_id.checked == true)
+          {
+            e.value = ""
+          }
+          else
+          {
+            updateEndDate()
+          }
+        } 
+        function checkboxTogle()
+        {
+          inprogress_id.checked = false;
+        }
+        endDateDisable();
+        inprogress_id.addEventListener('change', endDateDisable);
+    
+   </script>   

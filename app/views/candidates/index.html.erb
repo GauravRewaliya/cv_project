@@ -6,7 +6,6 @@
 </div>
 <style>
   @media (max-width: 768px) {
-    /* table-layout: ; */
     table th:not(.needCol) , table td:not(.needCol)
     {
       display: none;
@@ -27,12 +26,15 @@
   <table class="table table-hover table-striped data_table_gr" style="width: 100%;">
     <thead>
     <tr style=" color: white">
+      <th>update_at</th>
       <th class="needCol">name</th>
       <th class="hideOnNeed">employ_id</th>
       <th >email</th>
       <th >contact</th>
       <th class="hideOnNeed">address</th>
       <!-- <th>Gender</th> -->
+      <th>core_skill</th>
+      <th>supportive_skill</th>
       <th class="needCol">Edit</th>
       <th class="needCol">Delete</th>
       <th class="needCol">Show</th>
@@ -41,18 +43,22 @@
   <tbody>
   <% @candidates.each do |candidate| %>
   <tr>
+    <td><%=candidate.updated_at%></td>
     <td  class="needCol"><h6><%= candidate.name %></h6></td>
     <td class="hideOnNeed"><p><%= candidate.employ_id %></p></td>
     
     <td><p><%= candidate.profile.email %></p></td>
     <td><p><%= candidate.profile.contact %></p></td>
     <td class="hideOnNeed"><p><%= candidate.profile.address %></p></td>
-    <!-- <td><p><%= candidate.profile.gender %></p></td> -->
-    
+    <td><%= candidate.core_tech&.title %></td>
+    <td>
+      <% candidate.supportive_techs.each do |skill| %>
+      <%= skill.title.to_s+","%>
+     <%end%>
+    </td>
     <td  class="needCol"><%= link_to "Edit", edit_candidate_path(candidate) ,class: "material-symbols-outlined" %></td>
     <td  class="needCol"><%= button_to "" , candidate , method: :delete ,class: "fa-solid fa-trash alert-light "%></td>
     <td  class="needCol">
-      <%#<%= link_to "Show this candidate", candidate %>
     <%= link_to (candidate) , class: 'material-symbols-outlined' do %>
     <span>Visibility</span>
     <%end%>
@@ -63,10 +69,13 @@
   </table>
 </div>
 <script>
-  // $('#example').DataTable();
   new DataTable('.data_table_gr',{
     columnDefs: [
-      {target: 1,visible: false}
-    ]
+      {target: 0,visible: false},
+      {target: 2,visible: false},
+      {target: 6,visible: false},
+      {target: 7,visible: false}
+    ],
+    order: [[0, 'desc']]
   });
 </script>

@@ -9,10 +9,7 @@
     <div class="row">
       <div class="col-3">
         <% if @curriculum_vitae.image.attached? %>
-      <%# <%= image_tag curriculum_vitae.image.variant(resize_to_limit:[nil,120]) if curriculum_vitae.image.attached?%>
-        
-        <img src="<%= url_for(@curriculum_vitae.image.variant(resize_to_limit: [nil, 120])) %>" alt="Curriculum Vitae Image">
-          <!-- it works   -->
+      <img src="<%= url_for(@curriculum_vitae.image.variant(resize_to_limit: [nil, 120])) %>" alt="Curriculum Vitae Image">
         <%end%>
       </div>
       <div class="col text-center">

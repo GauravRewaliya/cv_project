@@ -3,26 +3,13 @@ class CurriculumVitaesController < ApplicationController
   layout 'cv' ,only: %i[ show]
 
   def index
-    if !params['search'].blank?
-      @curriculum_vitaes =  CurriculumVitae.joins(:candidate).where('lower(candidates.name) LIKE ?' ,"%#{params['search'].downcase}%" )
-      else
       @curriculum_vitaes = CurriculumVitae.all
-      end
   end
 
  def  pdf_html_req 
-  # pdf_data =   generate_pdf(@curriculum_vitae) #by erb
-
   pour_html = get_html(@curriculum_vitae)
   pdf_data = WickedPdf.new.pdf_from_string(pour_html)
   send_data pdf_data , filename: "grCv.pdf" ,type: "application/pdf" ,disposition: 'attachment'
- 
-  # grover = Grover.new( pour_html , format: 'A4' ).to_pdf
-  # send_data grover , filename: "grCv.pdf" ,type: "application/pdf" ,disposition: 'attachment'
-
-  # respond_to do |format|  
-  #   format.html { send_data pdf_data, filename: 'curriculum_vitae.pdf', type: 'application/pdf' }
-  # end
  end
   def doc_html_req
 
@@ -43,8 +30,6 @@ class CurriculumVitaesController < ApplicationController
   end
   def docx_html_req
     pour_html = get_html(@curriculum_vitae)
-    # docx_file = Htmltoword::Document.create(pour_html) # only give text
-
     pdf_data = WickedPdf.new.pdf_from_string(pour_html)
     input_path = "public/tempCv.pdf"
     File.open(input_path,'wb'){ |file| file << pdf_data}
@@ -52,24 +37,7 @@ class CurriculumVitaesController < ApplicationController
     output_path = "public/tempCv.doc"
     doc_data = File.read(output_path)
 
-    # doc_data = Libreconv.convert(pour_html, 'doc')
-    # Libreconv.convert(out_path, in_path)
     send_data doc_data, filename: "grCv.doc", type: "application/msword", disposition: 'attachment'
-    
-
-    # # pdf_data = WickedPdf.new.pdf_from_string(pour_html)
-    # # pdf_file = 'output.pdf' # Specify the output PDF file path
-    # # File.binwrite(pdf_file, pdf_data)
-    # # docx_file = 'output.docx' 
-    # # # system("pandoc -s #{pdf_file} -o #{docx_file}")
-    # # system("pandoc -s #{pdf_file} -o #{docx_file} --from=pdf --to=docx")
-
-    # send_data docx_file, filename: 'cv.docx', disposition: 'attachment'
-   
-    # pour_html = get_html(@curriculum_vitae)
-     # docx_data = `pandoc -s -o grCv.docx -f html -t docx #{pour_html}`
-     # send_data File.read('grCv.docx'), filename: "grCv.docx", type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document", disposition: 'attachment'
-  
     
   end
 
@@ -91,17 +59,19 @@ class CurriculumVitaesController < ApplicationController
   end
 
   def show
-    # @resume_html = render_to_string(partial: 'layout' , locals: { curriculum_vitae: @curriculum_vitae})
-    # debugger
   end
 
   
   def new
     @curriculum_vitae = CurriculumVitae.new
+    @curriculum_vitae.company_experiences.build
+    @curriculum_vitae.cv_projects.build
   end
 
   
   def edit
+    @curriculum_vitae.company_experiences.build if @curriculum_vitae.company_experiences.empty?
+    @curriculum_vitae.cv_projects.build if @curriculum_vitae.cv_projects.empty?
   end
 
   
@@ -124,14 +94,11 @@ class CurriculumVitaesController < ApplicationController
 
   
   def update
-
-    # c = nil
-    # if !params[:candidate_id].blank?
-    # c = Candidate.find(params[:candidate_id])
-    # end
-    # @curriculum_vitae.candidate = c 
-
+    
     @curriculum_vitae.updated_by = current_user.email
+    @curriculum_vitae.company_experiences.reject(&:persisted?).each(&:destroy)
+    @curriculum_vitae.cv_projects.reject(&:persisted?).each(&:destroy)
+    # debugger
     respond_to do |format|
       if @curriculum_vitae.update(curriculum_vitae_params)
         format.html { redirect_to curriculum_vitae_url(@curriculum_vitae), notice: "CurriculumVitae was successfully updated." }
@@ -160,6 +127,8 @@ class CurriculumVitaesController < ApplicationController
 
     
     def curriculum_vitae_params
-      params.require(:curriculum_vitae).permit(:candidate_id ,:template_name,:experience ,:image,:objective ,:profile_desc, curriculum_vitae_core_tech_attributes: [:tech_stack_id] ,supportive_skill_ids:[],project_ids: [] )
+      # params.require(:curriculum_vitae).permit(:candidate_id ,:template_name,:experience ,:image,:objective ,:profile_desc, curriculum_vitae_core_tech_attributes: [:tech_stack_id] ,supportive_skill_ids:[],project_ids: [] ,company_experiences_attributes: [:id ,:curriculum_vitae_id , :company_name , :experience ,:_destroy])
+      # params.require(:curriculum_vitae).permit(:candidate_id ,:template_name,:experience ,:image,:objective ,:profile_desc, curriculum_vitae_core_tech_attributes: [:tech_stack_id] ,supportive_skill_ids:[],company_experiences_attributes: [:id ,:curriculum_vitae_id , :company_name , :experience ,:_destroy] ,cv_projects_attributes:[:id,:original_project_id,:title,:desc,:role,:start_date,:end_date, :team_size ,:_destroy,:proj_core_skill_id,proj_supportive_skill_ids:[] ])
+      params.require(:curriculum_vitae).permit(:candidate_id ,:template_name,:experience ,:image,:objective ,:profile_desc, curriculum_vitae_core_tech_attributes: [:tech_stack_id] ,supportive_skill_ids:[],company_experiences_attributes: [:id ,:curriculum_vitae_id , :company_name , :start_date , :end_date ,:_destroy] ,cv_projects_attributes:[:id,:original_project_id,:title,:desc,:role,:start_date,:end_date, :team_size ,:_destroy,:proj_core_skill_id,proj_supportive_skill_ids:[] ])
     end
 end

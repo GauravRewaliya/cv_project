@@ -2,167 +2,182 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <div style="text-align: center">
-<style>
-  
-</style>
-<div class="container">
-  <div>
-    <div class="row ">
-      <div class="col-5">
-        <div class="resume-base bg-primary user-dashboard-info-box p-4" style=" z-index: -1; position: absolute;">
-          <div class="profile">
-            <div class="jobster-user-info">
-              <!-- <div class="profile-avatar"> -->
-                <!-- <div> -->
-                  <%= image_tag @curriculum_vitae.image.variant(resize_to_limit: [nil, 120]) , style: " width: 150px; height: 150px ; border-radius: 50%;     position: relative; z-index: 2;" if curriculum_vitae.image.attached? %>
-                  <!--  object-fit: cover; object-position: center;-->
-
-                  <!-- <img src="<%= url_for(@curriculum_vitae.image.variant(resize_to_limit: [nil, 120])) %>"
-                  alt="Curriculum Vitae Image" style=" width: 250px;  border-radius: 50%;"> -->
-              <!-- </div> -->
-              <div class="profile-avatar-info mt-3">
-                <h5 class="text-white">
-                  <%= curriculum_vitae.candidate&.name %>
-                </h5>
-                <h6 class="text-white">
-                  <%= curriculum_vitae.profile_desc %>
-                </h6>
+  <div class="container">
+    <div>
+      <div class="row ">
+        <div class="col-5">
+          <div class="resume-base bg-primary user-dashboard-info-box p-4" style=" z-index: -1; position: absolute;">
+            <div class="profile">
+              <div class="jobster-user-info">
+                    <%= image_tag @curriculum_vitae.image.variant(resize_to_limit: [nil, 120]) , style: " width: 150px; height: 150px ; border-radius: 50%;     position: relative; z-index: 2;" if curriculum_vitae.image.attached? %>
+                    <!--  object-fit: cover; object-position: center;-->
+                <div class="profile-avatar-info mt-3">
+                  <h5 class="text-white">
+                    <%= curriculum_vitae.candidate&.name %>
+                  </h5>
+                  <h6 class="text-white">
+                    <%= curriculum_vitae.profile_desc %>
+                  </h6>
+                </div>
               </div>
             </div>
-          </div>
 
-          <% profile=curriculum_vitae.candidate.profile %>
-             <div class="about-candidate border-top">
-              <ul class="list-unstyled text-left">
-                <style>
-                  body{
-                    font-family: Arial, sans-serif;
-                    /* font-family: Helvetica, Arial, sans-serif; */
-                  }
-                  .icon{
-                    fill: white;
-                    width: 1em;
-                  height: 1em;
-                  }
-                  svg{
-                    margin-right: 12px;
-                    margin-left: 8px;
-                  }
-                </style>
-                <li class="list-item">
-                    <!-- <i class="fas fa-mobile-alt mx-4"></i><%= profile.contact %> -->
-                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M272 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM160 480c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm112-108c0 6.6-5.4 12-12 12H60c-6.6 0-12-5.4-12-12V60c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v312z"/></svg>
-                    <%= profile.contact %> 
-                </li>
-                <li class="list-item">
-                    <!-- <i class="fas fa-envelope-open-text mx-4"></i> <%= profile.email %> -->
-                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M215.4 96H144 107.8 96v8.8V144v40.4 89L.2 202.5c1.6-18.1 10.9-34.9 25.7-45.8L48 140.3V96c0-26.5 21.5-48 48-48h76.6l49.9-36.9C232.2 3.9 243.9 0 256 0s23.8 3.9 33.5 11L339.4 48H416c26.5 0 48 21.5 48 48v44.3l22.1 16.4c14.8 10.9 24.1 27.7 25.7 45.8L416 273.4v-89V144 104.8 96H404.2 368 296.6 215.4zM0 448V242.1L217.6 403.3c11.1 8.2 24.6 12.7 38.4 12.7s27.3-4.4 38.4-12.7L512 242.1V448v0c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64v0zM176 160H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H176c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H176c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg>
-                    <%= profile.email %>
-                </li>
-                <li class="list-item">
-                  <!-- <i class="fas fa-map-marker-alt mx-4"></i> -->
-                  <svg class="icon" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
-                    <path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
-                  </svg>
-                  <%= profile.address %>
-                </li>
-                <li class="list-item">
-                    <!-- <i class="fas fa-solid fa-user mx-4"></i><%= profile.gender %> -->
-                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
-                    <%= profile.gender %>
-                </li>
-            </ul>
-              </div>
-            <div class="mt-0">
-              <% if curriculum_vitae.core_skill %>
-                <div class="card-header">
-                  <h4>Core Skill:</h4>
+                      <% profile=curriculum_vitae.candidate.profile %>
+              <div class="about-candidate border-top">
+                  <ul class="list-unstyled text-left">
+                    <li class="list-item">
+                        <!-- <i class="fas fa-mobile-alt mx-4"></i><%= profile.contact %> -->
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M272 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM160 480c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm112-108c0 6.6-5.4 12-12 12H60c-6.6 0-12-5.4-12-12V60c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v312z"/></svg>
+                        <%= profile.contact %> 
+                    </li>
+                    <li class="list-item">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M215.4 96H144 107.8 96v8.8V144v40.4 89L.2 202.5c1.6-18.1 10.9-34.9 25.7-45.8L48 140.3V96c0-26.5 21.5-48 48-48h76.6l49.9-36.9C232.2 3.9 243.9 0 256 0s23.8 3.9 33.5 11L339.4 48H416c26.5 0 48 21.5 48 48v44.3l22.1 16.4c14.8 10.9 24.1 27.7 25.7 45.8L416 273.4v-89V144 104.8 96H404.2 368 296.6 215.4zM0 448V242.1L217.6 403.3c11.1 8.2 24.6 12.7 38.4 12.7s27.3-4.4 38.4-12.7L512 242.1V448v0c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64v0zM176 160H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H176c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H176c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg>
+                        <%= profile.email %>
+                    </li>
+                    <li class="list-item">
+                      <svg class="icon" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
+                        <path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
+                      </svg>
+                      <%= profile.address %>
+                    </li>
+                    <li class="list-item">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
+                        <%= profile.gender %>
+                    </li>
+                  </ul>
                 </div>
-                <div class="card-body">
-                  <p>
-                    <%= curriculum_vitae.core_skill.title %>
-                  </p>
-                </div>
+              <div class="mt-0">
+                <% if curriculum_vitae.core_skill %>
+                  <div class="card-header">
+                    <h4>Core Skill:</h4>
+                  </div>
+                  <div class="card-body">
+                    <p>
+                      <%= curriculum_vitae.core_skill.title %>
+                    </p>
+                  </div>
                 <% end %>
 
                   <div class="card-header">
                     <h4>Supportive Skills:</h4>
                   </div>
                   <div class="card-body">
-                    <% curriculum_vitae.supportive_skills.each do |supportive_skill| %>
-                      <h5>Title:<%= supportive_skill.title %>
-                      </h5>
-                      <p>
-                        <%= supportive_skill.desc %>
-                      </p>
+                      <% curriculum_vitae.supportive_skills.each do |supportive_skill| %>
+                          <h5>Title:<%= supportive_skill.title %>
+                          </h5>
+                          <p>
+                            <%= supportive_skill.desc %>
+                          </p>
                       <% end %>
                   </div>
-            </div>
-        <style>
-       
-        </style>
-      </div>
-    </div>
-    <div class="col" style="z-index: -2;">
-      <div class="resume-experience">
-       
-        <div class="timeline-box mt-4">
-         
-          
-
-          <div class="jobster-candidate-timeline">
-
-            <!--  -->
-            <div class="card" style="margin-bottom: 10px;">
-              <div class="card-header text-dark" style="background-color: #ebebeb";>
-                <h5 class="resume-experience-title">Projects</h5>
-              </div>
-              <div class="card-body text-dark">
-               
-                <% curriculum_vitae.projects.each do |project| %>
-            <div class="jobster-timeline-item">           
-              <div class="jobster-timeline-info">
-                <div class="dashboard-timeline-info">
-                  <%if !project.start_date.blank? %>
-                  <span class="jobster-timeline-time"><%=project.start_date%> 
-                  <%= project.end_date.blank? ? " inProgerss" : "to "+project.end_date.to_s %>
-                  </span>
+                  
+                  <%if !curriculum_vitae.company_experiences.blank?%>
+                    <div class="card-header">
+                      <h4>Experience:</h4>
+                    </div>
+                    <div class="card-body" style="text-align: left;">
+                       <ul>
+                        <% curriculum_vitae.company_experiences.each do |exp| %>
+                            <li>
+                                <h5> <%= exp.company_name %>
+                                </h5>
+                                  <p style="margin-bottom: 0px;">Duration-  <%= exp.start_date %> <%= exp.end_date.blank? ? ' , Currently Running': ' to '+exp.end_date.to_s %>
+                                  </p>
+                                  <% end_date = ( exp.end_date.blank? ? Time.now : exp.end_date)%>
+                                  <%if end_date.year - exp.start_date.year !=0 || end_date.month - exp.start_date.month !=0%>
+                                    <p>
+                                      <%= (y=(end_date.year - exp.start_date.year)) == 0 ? ' ' : y.to_s+' Year, '%>
+                                      <%= (m=(end_date.month - exp.start_date.month)) == 0 ? ' ' : m.to_s+' Month '%>
+                                      of Experience
+                                    </p>
+                                  <%end%>
+                              </li>  
+                        <% end %>
+                      </ul>
+                    </div>
                   <%end%>
-                  <h6 class="mb-2"><%= project.title %></h6>
-                  <p class="mt-2"><%= project.desc %></p>
+              </div>
+        </div>
+        </div>
+        <%if !curriculum_vitae.cv_projects.blank? %>
+          <div class="col-7" style="z-index: -2;">
+            <div class="resume-experience">
+              
+              <div class="timeline-box mt-4">
+                <div class="jobster-candidate-timeline">
+                  <div class="card" style="margin-bottom: 10px;">
+                    <div class="card-header text-dark" style="background-color: #ebebeb";>
+                      <h5 class="resume-experience-title">Projects</h5>
+                    </div>
+                    <div class="card-body text-dark">
+                    
+                      <% curriculum_vitae.cv_projects.each do |project| %>
+                        <div class="project-items" style="padding-top: 20px;">           
+                          <div class="jobster-timeline-info">
+                              <h6 class="mb-2"style="font-size: large;font-weight: 600;"><%= project.title %></h6>
+                              <%if !project.start_date.blank? %>
+                              <span class="jobster-timeline-time"><%=project.start_date%> 
+                              <%= project.end_date.blank? ? " inProgerss" : "to "+project.end_date.to_s %>
+                              </span>
+                              <%end%>
+                              <div style="text-align: left;padding-right: 8%;padding-left: 8%;">
+                              <p class="mt-2 mb-0">Description- <%= project.desc %></p>
+
+                              <p class="mt-0 mb-0">Domain- <%= Project.find(project.original_project_id).domain&.title %></p>
+                              <p class="mt-0 mb-0">Role- <%= project.role %></p>
+                              <p class="mt-0 mb-0">Team Size- <%= project.team_size %> Members </p>
+                              <p class="mt-0 mb-0">Duration- <%= project.start_date %> <%= project.end_date.blank? ? 'Currently Running': ' to '+project.end_date.to_s %></p>
+                              <p class="mt-0 mb-0">Core Skill- <%= project.proj_core_skill.title%></p>
+                              <p class="mt-0 mb-0">
+                                Supportive Skill- 
+                                                <% project.proj_supportive_skills.each do |supportive_skill| %>
+                                                    <%= supportive_skill.title %>,
+                                                <% end %>
+                              </p>
+
+                            </div>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <% end %>
-              </div>
-            </div>
             
-            <!--  -->
+            </div>
           </div>
-        </div>
-       
+        <%end%>
       </div>
     </div>
   </div>
 </div>
-</div>
+
 <style>
+  body{
+    font-family: Arial, sans-serif;
+    /* font-family: Helvetica, Arial, sans-serif; */
+  }
+  .icon{
+    fill: white;
+    width: 1em;
+  height: 1em;
+  }
+  svg{
+    margin-right: 12px;
+    margin-left: 8px;
+  }
 
 .card-header , .card-body
-          {
-            color: white;
-          }
-  .card-header {
-    margin-bottom: 0;
-    background-color: rgb(102 150 201 / 92%);
-    /* background-color: mediumaquamarine; */
-    /* background-color: #729ecd!important; */
-    /* background-color: transparent; */
-    background-color: #1072dd;
-    /* background-color: #00000014; */
-    /* border-bottom: 1px solid rgba(0,0,0,.125); */
-    border-bottom: 0;
-}      
+  {
+    color: white;
+  }
+.card-header {
+  margin-bottom: 0;
+  background-color: rgb(102 150 201 / 92%);
+  background-color: #1072dd;
+  /* border-bottom: 1px solid rgba(0,0,0,.125); */
+  border-bottom: 0;
+  }      
   .profile {
     margin-bottom: 25px;
   }
@@ -232,12 +247,12 @@
     .secondary-menu ul li a {}
   }
 
-  .jobster-candidate-timeline .jobster-timeline-item .jobster-timeline-info h6 {
+  .jobster-candidate-timeline .project-items .jobster-timeline-info h6 {
     color: #21c87a;
     margin: 5px 0 0px;
   }
 
-  .jobster-candidate-timeline .jobster-timeline-item .jobster-timeline-info span {
+  .jobster-candidate-timeline .project-items .jobster-timeline-info span {
     color: #212529;
     font-size: 13px;
     font-weight: 500;
@@ -248,4 +263,3 @@
   
 </style>
 
-</div>

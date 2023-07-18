@@ -1,4 +1,3 @@
-<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
 <%= wicked_pdf_stylesheet_link_tag  "https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" %>
 <style>
     * {
@@ -37,9 +36,14 @@
     .date_p {
         font-size: 12px;
     }
+    th,td {
+        padding-left: 17px;
+        font-size: 17px;
+         padding-bottom: 5px;
+    }
 </style>
 
-    <%= image_tag image_url('golden_eagle_h.jpg'), width: "100%"%>  
+<%= image_tag image_url('golden_eagle_h.jpg'), width: "100%"%>  
 <!-- <div style="display: flex;justify-content: center;position: relative;top: -15px"> -->
 <div style="text-align: center; margin-top: -15px;">
     <%= image_tag image_url('banner.png'), width: "90%"%>  
@@ -48,57 +52,63 @@
 
 
     <div class="col-7 paddingL">
-        <h1 style="font-size: 50px;">
-            <%= curriculum_vitae.candidate&.name %>
-        </h1>
+        <h1 style="font-size: 50px;"><%= curriculum_vitae.candidate&.name %></h1>
         <div>
             <h5>SOFTWARE ENGINEER</h5>
             <div style="border-bottom: 3px solid lightgreen; width: 120px;"></div>
-            <p>
-                <%= curriculum_vitae.profile_desc %>
-            </p>
+            <p><%= curriculum_vitae.profile_desc %></p>
         </div>
 
         <div>
             <h4>PROJECT HISTORY</h4>
 
-            <% curriculum_vitae.projects.each do |project| %>
+            <% curriculum_vitae.cv_projects.each do |project| %>
                 <div style="position: relative;">
                     <h6><b>Project:</b>
                         <%= project.title %>
                     </h6>
                     <p class="date_p">
                         <%if !project.start_date.blank? %>
-                            ( <%=project.start_date%> ->
-                                <%= project.end_date.blank? ? " inProgerss" : " to " +project.end_date.to_s %>
+                            ( <%=project.start_date%>
+                    <%= project.end_date.blank? ? " inProgerss" : " to " +project.end_date.to_s %>
                                     )
-                                    <%end%>
+                        <%end%>
                     </p>
                     <ul>
                         <li>
-                            <%= project.desc %>
+                            Description- <%= project.desc %>
                         </li>
 
-                        <%if !project.domain.blank? %>
-                            <li>Project is based on <%= project.domain&.title %> doamin</li>
-                            <%end%>
-                                <%if !project.team_size.blank? %>
-                                    <li>Project has Team Size of <%= project.team_size %>
-                                    </li>
-                                    <%end%>
-                                        <%if !project.role.blank? %>
-                                            <li>Project has specific roles and responcibilites <br>
-                                                <%= project.role %>
-                                            </li>
-                                            <%end%>
+                        <%if !Project.find(project.original_project_id).domain.blank? %>
+                            <li>Project is based on <%= Project.find(project.original_project_id).domain&.title %> doamin</li>
+                        <%end%>
+                        <%if !project.proj_core_skill.blank? %>
+                        <li>project is mainly depend on <%= project.proj_core_skill.title %></li>
+                        <%end%>
+                        <%if !project.proj_supportive_skills.blank? %>
+                        <li>project also required
+                            <% project.proj_supportive_skills.each do |supportive_skill| %>
+                                <%= supportive_skill.title %>,
+                            <% end %>
+                            Skills.
+                        </li>
+                        <%end%>
+                        <%if !project.team_size.blank? %>
+                            <li>Project has Team Size of <%= project.team_size %>
+                            </li>
+                        <%end%>
+                        <%if !project.role.blank? %>
+                            <li> Role-
+                                <%= project.role %>
+                            </li>
+                        <%end%>
 
                     </ul>
                 </div>
-                <%end%>
+            <%end%>
         </div>
     </div>
     <div class="col-5 paddingL" style="border-left: 3px solid darkgray;padding-left: 20px;">
-
         <% profile=curriculum_vitae.candidate.profile %>
             <div>
                 <h4>Profile</h4>
@@ -118,19 +128,10 @@
                         <td><%= profile.gender %></td>
                     </tr>
                     <tr>
-                        <th><A></A>ddress</th>
+                        <th>Address</th>
                         <td><%= profile.address %></td>
                     </tr>
                 </table>
-                <style>
-                    th,
-                    td {
-                        padding-left: 17px;
-    font-size: 17px;
-    padding-bottom: 5px;
-
-                    }
-                </style>
             </div>
 
             <div>
@@ -146,30 +147,66 @@
 
                         </ul>
                     </div>
-                    <%end%>
+                <%end%>
 
-                        <%if !curriculum_vitae.supportive_skills.blank?%>
-                            <div>
-                                <h6>Supportive Skills</h6>
-                                <ul>
-                                    <% curriculum_vitae.supportive_skills.each do |supportive_skill| %>
-                                        <li>
-                                            <%= supportive_skill.title %>
-                                        </li>
-                                        <% end %>
-                                </ul>
-                            </div>
-                            <%end%>
-                                <!-- <div>
-                                    <h6>Scraping</h6>
-                                    <ul>
-                                        <li>Beautifulsoup
-                                            Python requests</li>
-                                    </ul>
-                                </div> -->
-
-                               
+                <%if !curriculum_vitae.supportive_skills.blank?%>
+                    <div>
+                        <h6>Supportive Skills</h6>
+                        <ul>
+                            <% curriculum_vitae.supportive_skills.each do |supportive_skill| %>
+                                <li>
+                                    <%= supportive_skill.title %>
+                                </li>
+                                <% end %>
+                        </ul>
+                    </div>
+                <%end%>
+                <!-- <div>
+                    <h6>Scraping</h6>
+                    <ul>
+                        <li>Beautifulsoup
+                            Python requests</li>
+                    </ul>
+                </div> -->                
             </div>
+            <%if !curriculum_vitae.company_experiences.blank?%>
+            <div>
+                <h4>Experiences</h4>
+                <table>
+                    <tr>
+                        <th>Componey Name</th>
+                        <th>Experience</th>
+                    </tr>
 
+                 <% curriculum_vitae.company_experiences.each do |exp| %>
+                    <tr>
+                        <td>
+                            <ul>
+                                <li>
+                                    <div>
+                                        <div><%= exp.company_name %></div>
+                                        <div style="font-weight: 200;">( <%= exp.start_date %> <%= exp.end_date.blank? ? ' , Currently Running': ' to '+exp.end_date.to_s %> )</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </td>
+                        <td>
+                            <%#= exp.experience %>
+                            <% end_date = ( exp.end_date.blank? ? Time.now : exp.end_date)%>
+                            <%= (y=(end_date.year - exp.start_date.year)) == 0 ? ' ' : y.to_s+' Year'%>
+                        </td>
+                    </tr>
+                  <% end %> 
+                </table>
+
+                <!-- <div>
+                    <h6>Scraping</h6>
+                    <ul>
+                        <li>Beautifulsoup
+                            Python requests</li>
+                    </ul>
+                </div> -->                
+            </div>
+            <%end%>
     </div>
 </div>

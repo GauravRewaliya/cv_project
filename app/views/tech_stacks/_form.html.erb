@@ -28,10 +28,6 @@
   <div class="form-group">
     <%= form.label :title  %>
     <%= form.text_field :title  ,class: "form-control"%>
-    <%#  <%= form.error_message_on :title, class: 'error-message' %>
-    <%#  <%= error_message_on "tech_stack", "title" %>
-
-    <%#  <%= form.error :title %>
   </div>
  
     
@@ -44,11 +40,10 @@
   <div>
     <%= form.submit class: 'btn-primary'%>
   </div>
-
+<!-- error messages  -->
   <% if tech_stack.errors.any? %>
       <% tech_stack.errors.each do |error| %>
          <script>
-          // inputf = $(document.getElementsByName('tech_stack[<%=error.attribute.to_s %>]')[0])
           inputf = document.querySelector('input[name="tech_stack[<%=error.attribute.to_s %>]"][type=text]')
          if(inputf != null)
          {
@@ -57,7 +52,7 @@
          }
          else
          {
-          
+          alert('<%=error.attribute.to_s %> ------- <%= error.full_message %>');
          }
           </script>  
         <% end %>

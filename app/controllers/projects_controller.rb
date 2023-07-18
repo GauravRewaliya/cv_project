@@ -2,11 +2,7 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: %i[ show edit update destroy ]
 
   def index
-    if !params['search'].blank?
-      @projects = Project.where('lower(title) LIKE ?' ,"%"+params['search']+"%" )
-      else
       @projects = Project.all
-      end
   end
   def show
   end
@@ -36,7 +32,7 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    if project_params[:project_core_tech_attributes][:tech_stack_id].blank?
+    if project_params[:linkable_core_tech_attributes][:tech_stack_id].blank?
       @project.core_skill = nil
     end
     
@@ -62,12 +58,18 @@ class ProjectsController < ApplicationController
     end
   end
 
+  # clone the proj
+  def cv_project_details
+    @project = Project.find(params[:proj_id])
+    render json: {project: @project  , core_skill_id: @project.core_skill.id , supportive_skill_ids: @project.supportive_skill_ids}  
+  end
+
   private
 
   def set_project
       @project = Project.find(params[:id])
     end
     def project_params
-      params.require(:project).permit(:team_size , :role ,  :title, :desc,:start_date ,:end_date, project_domain_attributes: [:domain_id],project_core_tech_attributes: [:tech_stack_id],supportive_skill_ids:[])
+      params.require(:project).permit(:team_size , :role ,  :title, :desc,:start_date ,:end_date, project_domain_attributes: [:domain_id],linkable_core_tech_attributes: [:tech_stack_id],supportive_skill_ids:[])
     end
 end

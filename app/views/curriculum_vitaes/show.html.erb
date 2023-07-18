@@ -1,4 +1,5 @@
 <% if !@curriculum_vitae.template_name.blank? %>
+<%= link_to "arrow_back", curriculum_vitaes_path ,class: "material-symbols-outlined" %>
 <%= render "html_templates/"+@curriculum_vitae.template_name.sub(/^_/, '') , curriculum_vitae: @curriculum_vitae%>
 <% else %>
 Template Not selected 

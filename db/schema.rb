@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_19_094727) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_10_132341) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -39,6 +39,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_19_094727) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "candidate_core_teches", force: :cascade do |t|
+    t.integer "candidate_id", null: false
+    t.integer "tech_stack_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["candidate_id"], name: "index_candidate_core_teches_on_candidate_id"
+    t.index ["tech_stack_id"], name: "index_candidate_core_teches_on_tech_stack_id"
+  end
+
+  create_table "candidate_supportive_teches", force: :cascade do |t|
+    t.integer "candidate_id", null: false
+    t.integer "tech_stack_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["candidate_id"], name: "index_candidate_supportive_teches_on_candidate_id"
+    t.index ["tech_stack_id"], name: "index_candidate_supportive_teches_on_tech_stack_id"
+  end
+
   create_table "candidates", force: :cascade do |t|
     t.string "name"
     t.string "employ_id"
@@ -46,6 +64,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_19_094727) do
     t.datetime "updated_at", null: false
     t.string "created_by"
     t.string "updated_by"
+  end
+
+  create_table "company_experiences", force: :cascade do |t|
+    t.integer "curriculum_vitae_id", null: false
+    t.string "company_name"
+    t.integer "experience"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date "start_date"
+    t.date "end_date"
+    t.index ["curriculum_vitae_id"], name: "index_company_experiences_on_curriculum_vitae_id"
   end
 
   create_table "curriculum_vitae_core_teches", force: :cascade do |t|
@@ -79,6 +108,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_19_094727) do
     t.index ["candidate_id"], name: "index_curriculum_vitaes_on_candidate_id"
   end
 
+  create_table "cv_projects", force: :cascade do |t|
+    t.integer "curriculum_vitae_id", null: false
+    t.integer "original_project_id"
+    t.string "title"
+    t.text "desc"
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "team_size"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "role"
+    t.index ["curriculum_vitae_id"], name: "index_cv_projects_on_curriculum_vitae_id"
+    t.index ["original_project_id"], name: "index_cv_projects_on_original_project_id"
+  end
+
   create_table "cv_templates", force: :cascade do |t|
     t.integer "curriculum_vitae_id", null: false
     t.integer "template_format_id", null: false
@@ -94,6 +138,26 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_19_094727) do
     t.datetime "updated_at", null: false
     t.string "created_by"
     t.string "updated_by"
+  end
+
+  create_table "linkable_core_teches", force: :cascade do |t|
+    t.integer "tech_stack_id"
+    t.string "connectable_type"
+    t.integer "connectable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["connectable_type", "connectable_id"], name: "index_linkable_core_teches_on_connectable"
+    t.index ["tech_stack_id"], name: "index_linkable_core_teches_on_tech_stack_id"
+  end
+
+  create_table "linkable_supportive_teches", force: :cascade do |t|
+    t.integer "tech_stack_id"
+    t.string "connectable_type"
+    t.integer "connectable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["connectable_type", "connectable_id"], name: "index_linkable_supportive_teches_on_connectable"
+    t.index ["tech_stack_id"], name: "index_linkable_supportive_teches_on_tech_stack_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -151,7 +215,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_19_094727) do
     t.date "start_date"
     t.date "end_date"
     t.integer "team_size"
-    t.text "role"
     t.string "created_by"
     t.string "updated_by"
   end
@@ -187,13 +250,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_19_094727) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "candidate_core_teches", "candidates"
+  add_foreign_key "candidate_core_teches", "tech_stacks"
+  add_foreign_key "candidate_supportive_teches", "candidates"
+  add_foreign_key "candidate_supportive_teches", "tech_stacks"
+  add_foreign_key "company_experiences", "curriculum_vitaes"
   add_foreign_key "curriculum_vitae_core_teches", "curriculum_vitaes"
   add_foreign_key "curriculum_vitae_core_teches", "tech_stacks"
   add_foreign_key "curriculum_vitae_supportive_teches", "curriculum_vitaes"
   add_foreign_key "curriculum_vitae_supportive_teches", "tech_stacks"
   add_foreign_key "curriculum_vitaes", "candidates"
+  add_foreign_key "cv_projects", "curriculum_vitaes"
+  add_foreign_key "cv_projects", "projects", column: "original_project_id"
   add_foreign_key "cv_templates", "curriculum_vitaes"
   add_foreign_key "cv_templates", "template_formats"
+  add_foreign_key "linkable_core_teches", "tech_stacks"
+  add_foreign_key "linkable_supportive_teches", "tech_stacks"
   add_foreign_key "profiles", "candidates"
   add_foreign_key "project_core_teches", "projects"
   add_foreign_key "project_core_teches", "tech_stacks"

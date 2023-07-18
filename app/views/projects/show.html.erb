@@ -17,22 +17,6 @@
 
     <div class="formBox">
         <div class="formContainer">
-
-          <!-- <div class="row justify-content-md-center">
-            <div class="col-5">
-            <h5 >Created by</h5>
-            <p >
-              <%= @project.created_by %>
-            </p>
-          </div>
-          <div class="col-5">
-            <h5 >Updated By</h5>
-            <p >
-              <%= @project.updated_by %>
-            </p>
-          </div>
-          </div> -->
-
     <h5 >Description</h5>
     <p >
       <%= @project.desc %>
@@ -51,12 +35,12 @@
       <%= @project.team_size %>
     </p>
     <%end%>
-    <%if !@project.role.blank?%>
-    <h5 >Roles & Responsability</h5>
+
+    <!-- <h5 >Roles & Responsability</h5>
     <p >
-      <%= @project.role %>
-    </p>
-    <%end%>
+      <%#= @project.role %>
+    </p> -->
+  
     <div class="row justify-content-md-center">
     <div class="col-5">
     <h5 >Start Date</h5>
@@ -76,17 +60,21 @@
   </div>
   </div>
   <br>
+  <% if !@project.core_skill.blank? %>
     <h5 >Core Skill</h5>
     <p >
       <%= @project.core_skill&.title %>
     </p>
+    <%end%>
 
-    <h5 >TechStacks</h5>
+    <% if !@project.supportive_skills.blank? %>
+    <h5 >Supportive Skills</h5>
     <p >
       <% @project.supportive_skills.each do |supportive_skill| %>
      <%= supportive_skill.title+"," %>
     <%end%>
     </p>
+    <%end%>
     </div>
     </div>
   </div>

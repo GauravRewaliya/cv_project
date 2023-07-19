@@ -84,23 +84,15 @@
     
     <!-- <div class="row" style="margin-left: 0px;margin-right: 0px;"> -->
 
-      <div class="repeater_experience" >
-        <div class="row" style="margin-left: 0px;">
-          <div class="col-6" style="padding-right: 0px;padding-left: 0px;">
-            <%=form.label "Company Name"  %>
-          </div>
-          <div class="col-5" style="padding-right: 0px;">
-            <%#=form.label "Experience" %>
-            <div class="row">
-              <div class="col-6"><%=form.label :start_date, style: "display: block" %></div>
-              <div class="col-6"><%=form.label :end_date, style: "display: block" %></div>
-            </div>
-          </div>
-        </div>
+      <div class="repeater_experience" style="margin-top: 10px;margin-bottom: 8px;" >
+        <h3>Experience</h3>
         <div data-repeater-list="curriculum_vitae[company_experiences_attributes]" >
             <%= form.fields_for :company_experiences do |company_experience_form| %>
-            <div class="row" data-repeater-item  style="margin-left: 0px;margin-top: 4px; margin-bottom: 2px;">
+            <div class="row" data-repeater-item  style="margin-left: 0px;margin-top: 10px; margin-bottom: 2px;">
               <div class="col-6" style="padding-right: 0px;padding-left: 0px;">
+                <%=form.label "Company Name"  %>
+                <%= company_experience_form.text_field :company_name  ,class: "form-control" %>
+                <%=form.label "Role" ,style:"margin-top: 0px;" %>
                 <%= company_experience_form.text_field :company_name  ,class: "form-control" %>
               </div>
               <div class="col-5" style="padding-right: 0px;">
@@ -108,9 +100,11 @@
                 <%#= company_experience_form.number_field :experience ,class: "form-control" ,style: "padding-right: 1px;padding-left: 9px;"%>
                       <div class="row">
                         <div class="col-6" style="padding-right: 2px;">
+                          <%=form.label :start_date, style: "display: block" %>
                           <%= company_experience_form.date_field :start_date , max: Date.today ,class: 'form-control start_date container' ,onchange:"updateEndDate(this)"%>
                         </div>
                         <div class="col-6" style="padding-left: 2px;">
+                          <%=form.label :end_date, style: "display: block" %>
                           <%= company_experience_form.date_field :end_date , max: Date.today ,class: 'form-control end_date container' , onchange: "checkboxTogle(this)"%>
                         </div>
                       </div>
@@ -141,7 +135,8 @@
                 <%#= project_form.select(:original_project_id, grouped_options_for_select(helper_grouped_projects_options , selected: curriculum_vitae.cv_project_ids), {prompt: "Select a project"}, {class: "form-control" ,onchange: "project_select(this)"}) %>
                 <%#= project_form.select(:original_project_id, grouped_options_for_select(helper_grouped_projects_options), {}, {class: "form-control" ,onchange: "project_select(this)"}) %>
                 
-                <%= project_form.collection_select(:original_project_id, Project.all, :id, :title, {prompt: "Select a project"} ,{required: true ,class: "form-control",onchange: "project_select(this)"})%>
+                <%= project_form.collection_select(:original_project_id, Project.all, :id, :title, {prompt: "Select a project"} ,{class: "form-control",onchange: "project_select(this)"})%>
+                <!-- <%#= project_form.collection_select(:original_project_id, Project.all, :id, :title, {prompt: "Select a project"} ,{required: true ,class: "form-control",onchange: "project_select(this)"})%> -->
                 <%#= project_form.collection_select(:original_project_id,grouped_options_for_select(helper_grouped_projects_options), {} ,{required: true ,class: "form-control",onchange: "project_select(this)"})%>
                 <!-- <div class="form-group"> -->
               <!-- </div> -->
@@ -269,15 +264,7 @@
           method: 'GET',
           dataType: 'json',
           success: function(response){
-            // debugger
-            // $(obj_content).html(response);
-
-            // $(obj_content).find("[name*='title']").val(response.project.title);
-            // $(obj_content).find("[name*='desc']").val(response.project.desc);
-            // $(obj_content).find("[name*='team_size']").val(response.project.team_size);
-            // $(obj_content).find("[name*='start_date']").val(response.project.start_date);
-            // $(obj_content).find("[name*='end_date']").val(response.project.end_date);
-            
+             // $(obj_content).find("[name*='end_date']").val(response.project.end_date); 
             for( prop in response.project)
             {
               if( $(obj_content).find("[name*='["+prop+"]']").length > 0  )

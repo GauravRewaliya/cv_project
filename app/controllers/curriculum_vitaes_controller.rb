@@ -46,22 +46,9 @@ class CurriculumVitaesController < ApplicationController
     html_txt
    end
 
-  def html_txt_erb(curriculum_vitae) # by own usig ERB
-    partial_path = Rails.root.join('app', 'views', 'html_templates', curriculum_vitae.template_name+".html.erb")
-    partial_content = File.read(partial_path)
-    
-    layout_path = Rails.root.join('app', 'views', 'layouts', 'cv.html.erb')
-    layout_content = File.read(layout_path)
-  
-    combined_txt = layout_content.sub('<%= yield %>', partial_content)
-    template_erb = ERB.new(combined_txt)
-    pour_html = template_erb.result(binding)
-  end
-
   def show
   end
 
-  
   def new
     @curriculum_vitae = CurriculumVitae.new
     @curriculum_vitae.company_experiences.build
@@ -127,8 +114,6 @@ class CurriculumVitaesController < ApplicationController
 
     
     def curriculum_vitae_params
-      # params.require(:curriculum_vitae).permit(:candidate_id ,:template_name,:experience ,:image,:objective ,:profile_desc, curriculum_vitae_core_tech_attributes: [:tech_stack_id] ,supportive_skill_ids:[],project_ids: [] ,company_experiences_attributes: [:id ,:curriculum_vitae_id , :company_name , :experience ,:_destroy])
-      # params.require(:curriculum_vitae).permit(:candidate_id ,:template_name,:experience ,:image,:objective ,:profile_desc, curriculum_vitae_core_tech_attributes: [:tech_stack_id] ,supportive_skill_ids:[],company_experiences_attributes: [:id ,:curriculum_vitae_id , :company_name , :experience ,:_destroy] ,cv_projects_attributes:[:id,:original_project_id,:title,:desc,:role,:start_date,:end_date, :team_size ,:_destroy,:proj_core_skill_id,proj_supportive_skill_ids:[] ])
       params.require(:curriculum_vitae).permit(:candidate_id ,:template_name,:experience ,:image,:objective ,:profile_desc, curriculum_vitae_core_tech_attributes: [:tech_stack_id] ,supportive_skill_ids:[],company_experiences_attributes: [:id ,:curriculum_vitae_id , :company_name , :start_date , :end_date ,:_destroy] ,cv_projects_attributes:[:id,:original_project_id,:title,:desc,:role,:start_date,:end_date, :team_size ,:_destroy,:proj_core_skill_id,proj_supportive_skill_ids:[] ])
     end
 end

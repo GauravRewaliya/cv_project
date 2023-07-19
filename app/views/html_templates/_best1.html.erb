@@ -59,6 +59,7 @@
             <p><%= curriculum_vitae.profile_desc %></p>
         </div>
 
+        <% if !curriculum_vitae.cv_projects.blank? %>
         <div>
             <h4>PROJECT HISTORY</h4>
 
@@ -107,6 +108,8 @@
                 </div>
             <%end%>
         </div>
+        <%end%>
+        
     </div>
     <div class="col-5 paddingL" style="border-left: 3px solid darkgray;padding-left: 20px;">
         <% profile=curriculum_vitae.candidate.profile %>
@@ -197,15 +200,7 @@
                         </td>
                     </tr>
                   <% end %> 
-                </table>
-
-                <!-- <div>
-                    <h6>Scraping</h6>
-                    <ul>
-                        <li>Beautifulsoup
-                            Python requests</li>
-                    </ul>
-                </div> -->                
+                </table>       
             </div>
             <%end%>
     </div>

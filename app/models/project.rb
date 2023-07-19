@@ -11,10 +11,10 @@ class Project < ApplicationRecord
     # has_one :core_skill, through: :project_core_tech, source: :tech_stack   
     
     has_many :linkable_supportive_techs , as: :connectable , class_name: "LinkableSupportiveTech" , dependent: :destroy
-  has_many :supportive_skills, through: :linkable_supportive_techs, source: :tech_stack
+    has_many :supportive_skills, through: :linkable_supportive_techs, source: :tech_stack
   
-  has_one :linkable_core_tech , as: :connectable , class_name: "LinkableCoreTech" , dependent: :destroy
-  has_one :core_skill, through: :linkable_core_tech, source: :tech_stack  
+    has_one :linkable_core_tech , as: :connectable , class_name: "LinkableCoreTech" , dependent: :destroy
+    has_one :core_skill, through: :linkable_core_tech, source: :tech_stack  
 
     has_one :project_domain , dependent: :destroy 
     has_one :domain, through: :project_domain

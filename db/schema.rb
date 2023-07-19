@@ -171,15 +171,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_10_132341) do
     t.index ["candidate_id"], name: "index_profiles_on_candidate_id"
   end
 
-  create_table "project_core_teches", force: :cascade do |t|
-    t.integer "project_id", null: false
-    t.integer "tech_stack_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["project_id"], name: "index_project_core_teches_on_project_id"
-    t.index ["tech_stack_id"], name: "index_project_core_teches_on_tech_stack_id"
-  end
-
   create_table "project_curriculum_vitaes", force: :cascade do |t|
     t.integer "project_id", null: false
     t.integer "curriculum_vitae_id", null: false
@@ -196,15 +187,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_10_132341) do
     t.datetime "updated_at", null: false
     t.index ["domain_id"], name: "index_project_domains_on_domain_id"
     t.index ["project_id"], name: "index_project_domains_on_project_id"
-  end
-
-  create_table "project_supportive_techs", force: :cascade do |t|
-    t.integer "project_id", null: false
-    t.integer "tech_stack_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["project_id"], name: "index_project_supportive_techs_on_project_id"
-    t.index ["tech_stack_id"], name: "index_project_supportive_techs_on_tech_stack_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -267,12 +249,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_10_132341) do
   add_foreign_key "linkable_core_teches", "tech_stacks"
   add_foreign_key "linkable_supportive_teches", "tech_stacks"
   add_foreign_key "profiles", "candidates"
-  add_foreign_key "project_core_teches", "projects"
-  add_foreign_key "project_core_teches", "tech_stacks"
   add_foreign_key "project_curriculum_vitaes", "curriculum_vitaes"
   add_foreign_key "project_curriculum_vitaes", "projects"
   add_foreign_key "project_domains", "domains"
   add_foreign_key "project_domains", "projects"
-  add_foreign_key "project_supportive_techs", "projects"
-  add_foreign_key "project_supportive_techs", "tech_stacks"
 end

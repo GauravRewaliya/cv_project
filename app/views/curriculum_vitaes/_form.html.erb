@@ -132,14 +132,8 @@
           <%= form.fields_for :cv_projects do |project_form| %>
             <div class="row" data-repeater-item  style="margin-left: 0px;margin-top: 4px; margin-bottom: 2px;">
               <div class="col-3" style="padding-right: 0px;padding-left: 0px;">
-                <%#= project_form.select(:original_project_id, grouped_options_for_select(helper_grouped_projects_options , selected: curriculum_vitae.cv_project_ids), {prompt: "Select a project"}, {class: "form-control" ,onchange: "project_select(this)"}) %>
-                <%#= project_form.select(:original_project_id, grouped_options_for_select(helper_grouped_projects_options), {}, {class: "form-control" ,onchange: "project_select(this)"}) %>
-                
-                <%= project_form.collection_select(:original_project_id, Project.all, :id, :title, {prompt: "Select a project"} ,{class: "form-control",onchange: "project_select(this)"})%>
-                <!-- <%#= project_form.collection_select(:original_project_id, Project.all, :id, :title, {prompt: "Select a project"} ,{required: true ,class: "form-control",onchange: "project_select(this)"})%> -->
-                <%#= project_form.collection_select(:original_project_id,grouped_options_for_select(helper_grouped_projects_options), {} ,{required: true ,class: "form-control",onchange: "project_select(this)"})%>
-                <!-- <div class="form-group"> -->
-              <!-- </div> -->
+                <%= project_form.select(:original_project_id, grouped_options_for_select(helper_grouped_projects_options , selected: project_form.object.original_project_id), {prompt: "Select a project"}, {class: "form-control" ,onchange: "project_select(this)"}) %>
+                 <!-- <%= project_form.collection_select(:original_project_id, Project.all, :id, :title, {prompt: "Select a project"} ,{class: "form-control",onchange: "project_select(this)"})%> -->
               </div>
               <div class="col-7" hidden="true" id="cloned_content">
                 <!-- container ......... -->
@@ -228,6 +222,8 @@
       <%= form.submit class: 'btn-primary' , style: "margin-top: 20px;" %>
  <% end%>
 
+ <!-- hidden button // refresh selector -->
+ <!-- <button onclick="select_picker_refresh();"></button> -->
  <!-- repeater , select picker js -->
   <script>
 
@@ -235,7 +231,12 @@
       var item = $(button).closest('[data-repeater-item]');
       var destroyField = item.find('.destroy-field');
       destroyField.val('true'); 
-      button.closest('[data-repeater-item]').hidden = true;
+      // debugger
+      var i = item.index();
+      if($('#curriculum_vitae_company_experiences_attributes_'+i+'_id')[0] != undefined)
+        item[0].hidden = true;
+      else
+        item.remove();
       }
    
       function showHide(curr_obj) {

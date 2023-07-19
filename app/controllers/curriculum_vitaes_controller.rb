@@ -42,7 +42,7 @@ class CurriculumVitaesController < ApplicationController
   end
 
   def get_html(curriculum_vitae)
-    html_txt = render_to_string(partial: "html_templates/#{curriculum_vitae.template_name.sub(/^_/, '')}" , locals: { curriculum_vitae: curriculum_vitae} ,layout: false)
+    html_txt = render_to_string(partial: "html_templates/#{curriculum_vitae.template_name}" , locals: { curriculum_vitae: curriculum_vitae} ,layout: false)
     html_txt
    end
 

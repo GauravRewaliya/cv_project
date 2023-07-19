@@ -26,7 +26,12 @@
         <ul>
             <li>6+ years of Software Development experience</li>
             <li>Education:<br> Bachelors in Engineering in Computer Science With RGPV University</li>
+            
             <li> <%= curriculum_vitae.profile_desc %>  </li>
+
+            <%if !curriculum_vitae.core_skill.blank? %> 
+            <li>Strong Technical knowledge in <%= curriculum_vitae.core_skill %>  </li>
+            <%end%>
         </ul>
     </div>
 
@@ -122,4 +127,14 @@
         </ul>
     </div>
     <%end%>
+
+    <div class="head_part">
+        <h5>Contact</h5>
+        <% profile=curriculum_vitae.candidate.profile %>
+       <ul>
+           <li>Email - <%= profile.email %></li>
+           <li>Contact No.- <%= profile.contact %></li>
+           <li>Address - <%= profile.address %></li>
+       </ul>
+   </div>
 </div>

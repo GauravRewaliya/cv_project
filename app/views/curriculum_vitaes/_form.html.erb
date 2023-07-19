@@ -113,7 +113,7 @@
                         <p style="margin-bottom: 0px;color: #657079;">currently running</p>
                       </div>
               </div>
-              <div class="col-1" style="padding-left: 0px;padding-right: 0px;">
+              <div class="col-1" style="padding-left: 0px;padding-right: 0px;padding-top: 28px;">
                 <!-- <button type="button" data-repeater-delete="" class="deleteg btn btn-outline-danger btn-sm fa fa-close " style="font-size: 13px;"></button> -->
                 <!-- <button type="button" class="deleteg btn btn-outline-danger btn-sm fa fa-close " style="font-size: 13px;" , onclick="deleteRepeaterItem(this);"></button> -->
                 <button type="button"  class="deleteg btn btn-outline-danger btn-sm fa fa-close " style="font-size: 13px;" , onclick="deleteRepeaterItem(this);"></button>
@@ -135,7 +135,7 @@
                 <%= project_form.select(:original_project_id, grouped_options_for_select(helper_grouped_projects_options , selected: project_form.object.original_project_id), {prompt: "Select a project"}, {class: "form-control" ,onchange: "project_select(this)"}) %>
                  <!-- <%= project_form.collection_select(:original_project_id, Project.all, :id, :title, {prompt: "Select a project"} ,{class: "form-control",onchange: "project_select(this)"})%> -->
               </div>
-              <div class="col-7" hidden="true" id="cloned_content">
+              <div class="col-7" id="cloned_content">
                 <!-- container ......... -->
                 <div class="form-group">
                   <%= project_form.label :title, style: "display: block" ,class: "" %>
@@ -208,14 +208,14 @@
       <div class="row">      
       <div class="col-md-6">
         <%= form.label "select profile image" , style: "display: block", class: "" %>
-          <%= form.file_field :image %>
+        <%= form.file_field :image %>
       </div>
 
       <div class="col-md-6">
         <%= form.label "Cv Layout" , style: "display: block" ,class: "" %>
-          <% template_files=Dir.glob(Rails.root.join('app', 'views' , 'HTML_templates' , '*.html.erb' )) %>
-            <% @template_options=template_files.map { |file| File.basename(file, '.html.erb' ) }%>
-              <%= form.select(:template_name, @template_options , {}, {class: "form-control"}) %>
+        <% template_files=Dir.glob(Rails.root.join('app', 'views' , 'HTML_templates' , '*.html.erb' )) %>
+        <% @template_options=template_files.map { |file| File.basename(file, '.html.erb' )[1..] }%>
+        <%= form.select(:template_name, @template_options , {}, {class: "form-control"}) %>
       </div>
     </div>
 
@@ -223,15 +223,11 @@
  <% end%>
 
  <!-- hidden button // refresh selector -->
- <!-- <button onclick="select_picker_refresh();"></button> -->
- <!-- repeater , select picker js -->
   <script>
-
       function deleteRepeaterItem(button) {
       var item = $(button).closest('[data-repeater-item]');
       var destroyField = item.find('.destroy-field');
       destroyField.val('true'); 
-      // debugger
       var i = item.index();
       if($('#curriculum_vitae_company_experiences_attributes_'+i+'_id')[0] != undefined)
         item[0].hidden = true;
@@ -241,16 +237,15 @@
    
       function showHide(curr_obj) {
         d = curr_obj.closest("[data-repeater-item]");
-        // debugger
         if(d.children[1].hidden == true)
-        {
-          $(curr_obj).removeClass("fa-eye-slash")
-          $(curr_obj).addClass("fa-eye")
-          d.children[1].hidden = false;
-        } else
         {
           $(curr_obj).removeClass("fa-eye")
           $(curr_obj).addClass("fa-eye-slash")
+          d.children[1].hidden = false;
+        } else
+        {
+          $(curr_obj).removeClass("fa-eye-slash")
+          $(curr_obj).addClass("fa-eye")
           d.children[1].hidden =true;
         }
         select_picker_refresh();
@@ -283,7 +278,7 @@
       }
       function select_picker_refresh()
       {
-      $('.selectpicker').selectpicker('refresh');
+        setTimeout(() =>{$('.selectpicker').selectpicker('refresh');}, "100")
       }
           //  on load
       supportive_skills_fix();  

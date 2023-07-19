@@ -69,11 +69,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_10_132341) do
   create_table "company_experiences", force: :cascade do |t|
     t.integer "curriculum_vitae_id", null: false
     t.string "company_name"
-    t.integer "experience"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "start_date"
     t.date "end_date"
+    t.string "role"
     t.index ["curriculum_vitae_id"], name: "index_company_experiences_on_curriculum_vitae_id"
   end
 

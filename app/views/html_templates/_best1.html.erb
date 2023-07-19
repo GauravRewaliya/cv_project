@@ -189,6 +189,9 @@
                                     <div>
                                         <div><%= exp.company_name %></div>
                                         <div style="font-weight: 200;">( <%= exp.start_date %> <%= exp.end_date.blank? ? ' , Currently Running': ' to '+exp.end_date.to_s %> )</div>
+                                        <%if !exp.role.blank? %>
+                                        <div>Role:- <%= exp.role%></div>
+                                        <%end%>
                                     </div>
                                 </li>
                             </ul>

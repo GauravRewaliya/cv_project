@@ -81,16 +81,21 @@
                             <li>
                                 <h5> <%= exp.company_name %>
                                 </h5>
-                                  <p style="margin-bottom: 0px;">Duration-  <%= exp.start_date %> <%= exp.end_date.blank? ? ' , Currently Running': ' to '+exp.end_date.to_s %>
-                                  </p>
-                                  <% end_date = ( exp.end_date.blank? ? Time.now : exp.end_date)%>
-                                  <%if end_date.year - exp.start_date.year !=0 || end_date.month - exp.start_date.month !=0%>
-                                    <p>
-                                      <%= (y=(end_date.year - exp.start_date.year)) == 0 ? ' ' : y.to_s+' Year, '%>
-                                      <%= (m=(end_date.month - exp.start_date.month)) == 0 ? ' ' : m.to_s+' Month '%>
-                                      of Experience
-                                    </p>
-                                  <%end%>
+                                <ul style="padding-left: 15px;">
+                                    <li >Duration-  <%= exp.start_date %> <%= exp.end_date.blank? ? ' , Currently Running': ' to '+exp.end_date.to_s %>
+                                    </li>
+                                    <% end_date = ( exp.end_date.blank? ? Time.now : exp.end_date)%>
+                                    <%if end_date.year - exp.start_date.year !=0 || end_date.month - exp.start_date.month !=0%>
+                                      <li>
+                                        <%= (y=(end_date.year - exp.start_date.year)) == 0 ? ' ' : y.to_s+' Year, '%>
+                                        <%= (m=(end_date.month - exp.start_date.month)) == 0 ? ' ' : m.to_s+' Month '%>
+                                        of Experience
+                                      </li>
+                                    <%end%>
+                                      <%if !exp.role.blank? %>
+                                      <li>Role:- <%= exp.role%></li>
+                                      <%end%>
+                                </ul> 
                               </li>  
                         <% end %>
                       </ul>

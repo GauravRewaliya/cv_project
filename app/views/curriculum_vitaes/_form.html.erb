@@ -93,7 +93,7 @@
                 <%=form.label "Company Name"  %>
                 <%= company_experience_form.text_field :company_name  ,class: "form-control" %>
                 <%=form.label "Role" ,style:"margin-top: 0px;" %>
-                <%= company_experience_form.text_field :company_name  ,class: "form-control" %>
+                <%= company_experience_form.text_field :role  ,class: "form-control" %>
               </div>
               <div class="col-5" style="padding-right: 0px;">
                 
@@ -101,7 +101,7 @@
                       <div class="row">
                         <div class="col-6" style="padding-right: 2px;">
                           <%=form.label :start_date, style: "display: block" %>
-                          <%= company_experience_form.date_field :start_date , max: Date.today ,class: 'form-control start_date container' ,onchange:"updateEndDate(this)"%>
+                          <%= company_experience_form.date_field :start_date , max: Date.today ,class: 'form-control start_date container' ,required: "true" ,onchange:"updateEndDate(this)"%>
                         </div>
                         <div class="col-6" style="padding-left: 2px;">
                           <%=form.label :end_date, style: "display: block" %>
@@ -218,7 +218,7 @@
       </div>
 
       <div class="col-md-6">
-        <%= form.label "Layout" , style: "display: block" ,class: "" %>
+        <%= form.label "Cv Layout" , style: "display: block" ,class: "" %>
           <% template_files=Dir.glob(Rails.root.join('app', 'views' , 'HTML_templates' , '*.html.erb' )) %>
             <% @template_options=template_files.map { |file| File.basename(file, '.html.erb' ) }%>
               <%= form.select(:template_name, @template_options , {}, {class: "form-control"}) %>

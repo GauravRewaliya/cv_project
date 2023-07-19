@@ -104,6 +104,10 @@
                                     of Experience
                                   </li>
                                 <%end%>
+
+                                <%if !exp.role.blank? %>
+                                <li>Role:- <%= exp.role%></li>
+                                <%end%>
                         </ul>
                           <%end%> 
                         </div>

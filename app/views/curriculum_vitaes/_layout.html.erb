@@ -34,8 +34,7 @@
 
       <div class="col">
         <% if curriculum_vitae.candidate&.profile %>
-
-          <% profile=curriculum_vitae.candidate.profile %>
+              <% profile=curriculum_vitae.candidate.profile %>
             <div class="card" style="background: lavende;margin-bottom: 10px;">
               <div class="card-header">
                 <h4>Profile: </h4>
@@ -96,15 +95,13 @@
                       <% end %>
                   </div>
             </div>
-            <% end %>
+        <% end %>
       </div>
     </div>
 
     <div class="col">
       <h3>Projects:</h3>
-
       <% curriculum_vitae.projects.each do |project| %>
-
         <div class="card" style="background: lightcyan;margin-bottom: 10px;">
           <div class="card-header">
             <h4>Title: <%= project.title %>
@@ -117,9 +114,8 @@
             </p>
           </div>
         </div>
-        <% end %>
+      <% end %>
     </div>
-
   </div>
 
 </div>

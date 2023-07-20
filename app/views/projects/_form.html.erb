@@ -1,14 +1,12 @@
 <style>
-.col-6,.col-4,.col-5
-{
-margin: 0;
-padding-left: 15px;
-padding-right:15px;
-}
-body
-{
-background:#b9d7d7;
-}
+  .col-6,.col-4,.col-5{
+  margin: 0;
+  padding-left: 15px;
+  padding-right:15px;
+  }
+  body{
+  background:#b9d7d7;
+  }
 </style>
 
 <%= form_with(model: project) do |form| %>
@@ -19,7 +17,7 @@ background:#b9d7d7;
       </div>
 
       <div class="form-group">
-        <%= form.label :desc %>
+          <%= form.label :desc %>
           <%= form.text_area :desc ,class:"form-control"%>
       </div>
       <div class="row">
@@ -44,22 +42,22 @@ background:#b9d7d7;
       </div>
      
       <!-- roles_responsability -->
-      <!-- <div class="form-group">
-        <%= form.label "Roles & Responsibilities" %>
-          <%= form.text_area :role ,class:"form-control"%>
+  <!--<div class="form-group">
+          <%#= form.label "Roles & Responsibilities" %>
+          <%#= form.text_area :role ,class:"form-control"%>
       </div> -->
 
       <div class="form-group">
-      <div class="row">
-        <div class="col-6">
-        <%= form.label :start_date %>
-        <%= form.date_field :start_date , max: Date.today ,class: 'form-control  container' ,id: "start_date_id"%>
+        <div class="row">
+          <div class="col-6">
+            <%= form.label :start_date %>
+            <%= form.date_field :start_date , max: Date.today ,class: 'form-control  container' ,id: "start_date_id"%>
+          </div>
+          <div class="col-6">
+            <%= form.label :end_date %>
+            <%= form.date_field :end_date , max: Date.today ,class: 'form-control  container',id: "end_date_id"%>
+          </div>
         </div>
-        <div class="col-6">
-        <%= form.label :end_date %>
-        <%= form.date_field :end_date , max: Date.today ,class: 'form-control  container',id: "end_date_id"%>
-        </div>
-      </div>
       </div>
       <div style="padding-left: 4%;" class="form-inline">
         <input type="checkbox" <%= (project.end_date == nil ) && (project.end_date!= nil)  ? 'checked' : '' %> id="inprogress_id">
@@ -69,7 +67,6 @@ background:#b9d7d7;
         <div class="col-md-6">
           <div class="form-group">
             <%= form.label :core_skill %>
-          
              <%= form.fields_for :linkable_core_tech_attributes, @project.linkable_core_tech do |cs| %> 
                 <%= cs.collection_select :tech_stack_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{class: "form-control" ,style:"height: 45px; margin-top: 7px;"} %>
               <% end %>
@@ -111,7 +108,7 @@ background:#b9d7d7;
             }
           } else
           {
-            alert('<%=error.attribute.to_s %> ------- <%= error.message %>');
+            alert('<%=error.attribute.to_s %> ------- <%= error.full_message %>');
           }
           </script>
         <% end %>
@@ -124,10 +121,10 @@ background:#b9d7d7;
          if(inprogress_id.checked != true)
          end_date_id.value = end_date_id.min = start_date_id.value
        }
-
         e = document.getElementById("end_date_id");
         start_date_id.addEventListener('change', updateEndDate);
         e.addEventListener('change', checkboxTogle);
+
         //  check box disabled , blank
         function endDateDisable()
         {

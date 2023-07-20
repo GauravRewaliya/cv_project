@@ -1,84 +1,80 @@
-  <style>
-    table{
-      table-layout:fixed;
-    }
-  </style>
-  <h2>Candidate</h2>
+<style>
+  table{
+    table-layout:fixed;
+  }
+</style>
+ 
+<h2>Candidate</h2>
 <%= form_with(model: @candidate) do |form| %>
   <table class="table">
-  <div class="field">
-    <tr>
-      <td><%= form.label :name %></td>
-    <td><%= form.text_field :name ,class: "form-control"%></td>
-  </tr>
-</div>
-  <div class="field">
-    <tr>
-      <td><%= form.label "Employee ID" %></td>
-    <td><%= form.text_field :employ_id ,class: "form-control"%></td>
-  </tr>
-</div>
+    <div class="field">
+      <tr>
+        <td><%= form.label :name %></td>
+        <td><%= form.text_field :name ,class: "form-control"%></td>
+      </tr>
+    </div>
+    <div class="field">
+      <tr>
+        <td><%= form.label "Employee ID" %></td>
+        <td><%= form.text_field :employ_id ,class: "form-control"%></td>
+      </tr>
+    </div>
 </table>
 
   <%= form.fields_for :profile do |profile_form| %>
     <h2>Profile</h2>
     <table class="table">
-   <div class="field">
-    <tr>   
-      <td><%= profile_form.label :email %></td>
-      <td><%= profile_form.text_field :email ,class: "form-control"%></td>
-    </tr>
-    </div>
-    <div class="field">
-      <tr>
-        <td><%= profile_form.label :contact %></td>
-      <td><%= profile_form.number_field :contact ,class: "form-control"%></td>
-    </tr>
-  </div>
-
-   </div>
-    <div class="field">
-      <tr>
-        <td><%= profile_form.label :address %></td>
-       <td><%= profile_form.text_field :address ,class: "form-control"%></td>
-    </tr>
-  </div>
-</div>
-<div class="field">
-  <tr>
-    <td>
-      <%= profile_form.label :gender%>
-      </td>
-   <td>
-    <div class="form-inline">
-     <div class="form-inline">
-       <%= profile_form.radio_button :gender, 'Male' %> 
-       <%= profile_form.label "Male" %>
+      <div class="field">
+          <tr>   
+            <td><%= profile_form.label :email %></td>
+            <td><%= profile_form.text_field :email ,class: "form-control"%></td>
+          </tr>
       </div>
-      <div class="form-inline">
-        <%= profile_form.radio_button :gender, 'Female' %>
-        <%= profile_form.label "Female" %>
-      </div>
-    </div>
-  </td>
-</tr>
-</div>
+        <div class="field">
+          <tr>
+            <td><%= profile_form.label :contact %></td>
+            <td><%= profile_form.number_field :contact ,class: "form-control"%></td>
+          </tr>
+        </div>
+        <div class="field">
+          <tr>
+            <td><%= profile_form.label :address %></td>
+            <td><%= profile_form.text_field :address ,class: "form-control"%></td>
+          </tr>
+        </div>
+        <div class="field">
+          <tr>
+            <td>
+              <%= profile_form.label :gender%>
+            </td>
+            <td>
+              <div class="form-inline">
+                <div class="form-inline">
+                  <%= profile_form.radio_button :gender, 'Male' %> 
+                  <%= profile_form.label "Male" %>
+                </div>
+                <div class="form-inline">
+                  <%= profile_form.radio_button :gender, 'Female' %>
+                  <%= profile_form.label "Female" %>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </div>
     </table>
   <% end %> 
   <!-- profile -->
   <div class="row">
-
-       
     <div class="col-md-6">
       <%= form.label "Core Skill"  %>
         <%= form.fields_for :candidate_core_tech_attributes, candidate.candidate_core_tech do  |cs| %>
-          <%= cs.collection_select :tech_stack_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{ id: "core_tech_select_id" ,class: "form-control"}%>
-        <% end %>
+        <%= cs.collection_select :tech_stack_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{ id: "core_tech_select_id" ,class: "form-control"}%>
+      <% end %>
 
         <% candidate.errors[:candidate_core_tech].each do |message| %>
-        <span style="background: cornsilk; color: red; border-radius: 5px;">
-          <%= message %>
-        </span>
+          <span style="background: cornsilk; color: red; border-radius: 5px;">
+            <%= message %>
+          </span>
         <%end%>
     </div>
     <!-- skills ++ -->
@@ -86,15 +82,14 @@
          <%= form.label :supportive_skills %>
          <%= form.collection_select(:supportive_tech_ids, TechStack.supportive_skills, :id, :title , {}, {multiple: true ,class: "selectpicker show-menu-arrow form-control"}) %>
     </div>
-
-    
   </div>
 
   <div class="actions">
     <%= form.submit class: "btn-primary"%>
   </div>
-
-  <% if candidate.errors.any? %>
+<% end %>  
+<!-- error by js -->
+<% if candidate.errors.any? %>
   <% candidate.errors.each do |error| %>
      <script>
       // inputf = $(document.getElementsByName('candidate[<%=error.attribute.to_s %>]')[0])
@@ -112,13 +107,13 @@
       {
         alert(inputf.type+'***** <%= error.full_message.to_s %>');
       }
-     }
-     else
-     {
+    }
+    else
+    {
       alert('(<%=error.attribute.to_s %>) <%= error.full_message.to_s %>');
-     }
-      </script>  
-    <% end %>
+    }
+    </script>  
   <% end %>
-
 <% end %>
+    
+    

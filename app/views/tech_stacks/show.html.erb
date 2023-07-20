@@ -1,6 +1,5 @@
 <%= stylesheet_link_tag  "show" %>
 
-
 <div class="card text-center" >
   <div class="card-header">
     <%= link_to "arrow_back", tech_stacks_path ,class:"pos_l material-symbols-outlined"  %>
@@ -8,36 +7,35 @@
     <h3>
       <strong>Skill</strong>
     </h3>
-  <div class="card-body">
-<div class="formBox">
-  <div class="formContainer">
+    <div class="card-body">
+      <div class="formBox">
+        <div class="formContainer">
 
-    <p><strong>Title:</strong>
-  <%= @tech_stack.title %></p>
+          <p>
+            <strong>Title:</strong>
+            <%= @tech_stack.title %>
+          </p>
 
-  <p>
-    <strong>Desc:</strong>
-    <%= @tech_stack.desc %>
-  </p>
-  <p>
-    <strong>Tech_type:</strong>
-    <%= @tech_stack.tech_type == 1 ? "core Skill" : "supportive skill" %>
-  </p>
-  
-  
-  <p>
-    <strong>Updated_by:</strong>
-    <%= @tech_stack.updated_by %>
-  </p>
-  
-</div>
-</div>
-</div>
+          <p>
+            <strong>Desc:</strong>
+            <%= @tech_stack.desc %>
+          </p>
+          <p>
+            <strong>Tech_type:</strong>
+            <%= @tech_stack.tech_type == 1 ? "core Skill" : "supportive skill" %>
+          </p>
+        
+          <p>
+            <strong>Updated_by:</strong>
+            <%= @tech_stack.updated_by %>
+          </p>
+        </div>
+      </div>
+    </div>
 
-<div class="card-footer text-muted" style="position: relative;">
-    
-  <%= link_to "Edit this tech_stack", edit_tech_stack_path(@tech_stack) %>
-  
-   <%= button_to "Destroy this tech_stack", @tech_stack, method: :delete ,class:"btn btn-outline-danger pos_r"%>
-</div>
-</div>
+    <div class="card-footer text-muted" style="position: relative;">
+      <%= link_to "Edit this tech_stack", edit_tech_stack_path(@tech_stack) %>
+      <%= button_to "Destroy this tech_stack", @tech_stack, method: :delete ,class:"btn btn-outline-danger pos_r"%>
+    </div>
+  </div>
+</div>  

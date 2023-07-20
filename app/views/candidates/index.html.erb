@@ -1,9 +1,4 @@
 <%= stylesheet_link_tag  "index" %>
-<div style="position: relative;">
-<h1 class="pos_l">Candidates</h1>
-
-<%= link_to "New candidate", new_candidate_path ,class: 'btn btn-primary new_pos_t' %>
-</div>
 <style>
   @media (max-width: 768px) {
     table th:not(.needCol) , table td:not(.needCol)
@@ -20,8 +15,12 @@
   table 
     { width: 100%;
     }
-
 </style>
+
+<div style="position: relative;">
+<h1 class="pos_l">Candidates</h1>
+<%= link_to "New candidate", new_candidate_path ,class: 'btn btn-primary new_pos_t' %>
+</div>
 <div class="table_gr" >
   <table class="table table-hover table-striped data_table_gr" style="width: 100%;">
     <thead>
@@ -68,6 +67,7 @@
   </tbody>
   </table>
 </div>
+
 <script>
   new DataTable('.data_table_gr',{
     columnDefs: [

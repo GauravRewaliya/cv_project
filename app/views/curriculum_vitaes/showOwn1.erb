@@ -3,17 +3,15 @@
 <%=render "layout", curriculum_vitae: @curriculum_vitae%>
 
 <% if params[:template_format_id] == nil%>
-\\\\ no template select 
-<%=render "layout", curriculum_vitae: @curriculum_vitae%> 
+  \\\\ no template select 
+  <%=render "layout", curriculum_vitae: @curriculum_vitae%> 
 <%else %>
-<% if @resultCv.present? %>
-<%= raw @resultCv %>
-<%#<%= @resultCv.html_safe%>
+  <% if @resultCv.present? %>
+    <%= raw @resultCv %>
+    <%#<%= @resultCv.html_safe%>
   <% end %>
- <%end%> 
+<%end%> 
 
-  <br>
-  <br>
   <%= link_to "Edit this curriculum_vitae", edit_curriculum_vitae_path(@curriculum_vitae) %> |
   <%= link_to "Back to curriculum_vitaes", curriculum_vitaes_path %>
   

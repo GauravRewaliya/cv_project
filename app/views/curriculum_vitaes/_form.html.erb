@@ -1,21 +1,27 @@
 <style>
-  .btn-light
-  {
-        border: #373b3f4a solid 2px;
-  }
-          .deleteg , .g_sm_btn {
-            margin-left: 5px;
-            margin-top: 5px;
-    font-size: 13px;
-    padding-right: 10px;
-    padding-left: 10px;
-          }
+        .btn-light{
+              border: #373b3f4a solid 2px;
+        }
+        .deleteg , .g_sm_btn {
+          margin-left: 5px;
+          margin-top: 5px;
+          font-size: 13px;
+          padding-right: 10px;
+          padding-left: 10px;
+        }
 
-          .btn-add-g
-          {
-            font-size: 13px;margin-top: 4px;padding-left: 13px;padding-top: 6px;padding-bottom: 6px;padding-right: 16px;
-          }
+        .btn-add-g
+        {
+          font-size: 13px;margin-top: 4px;padding-left: 13px;padding-top: 6px;padding-bottom: 6px;padding-right: 16px;
+        }
 </style>
+
+<%= javascript_include_tag "controllers/dependent_date" %>
+<%= javascript_include_tag "controllers/select_picker" %>
+<%= javascript_include_tag "controllers/repeater" %> 
+<%= javascript_include_tag "controllers/cv_ProjectSelect" %>
+<%= javascript_include_tag "controllers/cvJs_load" %>
+
 <%= form_with(model: curriculum_vitae )do |form| %>
 
   <% if curriculum_vitae.errors.any? %>
@@ -58,8 +64,6 @@
     </div>
 
     <div class="row">
-
-       
       <div class="col-md-6">
         <%= form.label "Core Skill"  %>
           <%= form.fields_for :curriculum_vitae_core_tech_attributes, curriculum_vitae.curriculum_vitae_core_tech do  |cs| %>
@@ -67,34 +71,30 @@
           <% end %>
 
           <% curriculum_vitae.errors[:curriculum_vitae_core_tech].each do |message| %>
-          <span style="background: cornsilk; color: red; border-radius: 5px;">
-            <%= message %>
-          </span>
+            <span style="background: cornsilk; color: red; border-radius: 5px;">
+              <%= message %>
+            </span>
           <%end%>
       </div>
       <div class="col-md-6">
         <%= form.label :supportive_skills %>
-           <%= form.collection_select(:supportive_skill_ids, TechStack.supportive_skills, :id, :title , {}, {multiple: true ,class: "selectpicker show-menu-arrow form-control"}) %>
+        <%= form.collection_select(:supportive_skill_ids, TechStack.supportive_skills, :id, :title , {}, {multiple: true ,class: "selectpick show-menu-arrow form-control"}) %>
       </div>
-
-      
     </div>
 
       <div class="repeater_experience" style="margin-top: 10px;margin-bottom: 8px;" >
         <h3>Experience</h3>
         <div data-repeater-list="curriculum_vitae[company_experiences_attributes]" >
             <%= form.fields_for :company_experiences do |company_experience_form| %>
-            <div class="row" data-repeater-item  style="margin-left: 0px;margin-top: 10px; margin-bottom: 2px;">
-              <div class="col-6" style="padding-right: 0px;padding-left: 0px;">
-                <%=form.label "Company Name"  %>
-                <%= company_experience_form.text_field :company_name  ,class: "form-control" %>
-                <%=form.label "Role" ,style:"margin-top: 0px;" %>
-                <%= company_experience_form.text_field :role  ,class: "form-control" %>
-              </div>
-              <div class="col-5" style="padding-right: 0px;">
-                
-                <%#= company_experience_form.number_field :experience ,class: "form-control" ,style: "padding-right: 1px;padding-left: 9px;"%>
-                      <div class="row">
+              <div class="row" data-repeater-item  style="margin-left: 0px;margin-top: 10px; margin-bottom: 2px;">
+                <div class="col-6" style="padding-right: 0px;padding-left: 0px;">
+                  <%=form.label "Company Name"  %>
+                  <%= company_experience_form.text_field :company_name  ,class: "form-control" %>
+                  <%=form.label "Role" ,style:"margin-top: 0px;" %>
+                  <%= company_experience_form.text_field :role  ,class: "form-control" %>
+                </div>
+                <div class="col-5" style="padding-right: 0px;">
+                    <div class="row">
                         <div class="col-6" style="padding-right: 2px;">
                           <%=form.label :start_date %>
                           <%= company_experience_form.date_field :start_date , max: Date.today ,class: 'form-control start_date container' ,required: "true" ,onchange:"updateEndDate(this)"%>
@@ -103,21 +103,21 @@
                           <%=form.label :end_date %>
                           <%= company_experience_form.date_field :end_date , max: Date.today ,class: 'form-control end_date container' , onchange: "checkboxTogle(this)"%>
                         </div>
-                      </div>
-                      <div style="padding-left: 4%;" class="form-inline">
-                        <input type="checkbox" class="inprogress_checkbox" onchange="endDateDisable(this)">
-                        <p style="margin-bottom: 0px;color: #657079;">currently running</p>
-                      </div>
+                    </div>
+
+                    <div style="padding-left: 4%;" class="form-inline">
+                      <input type="checkbox" class="inprogress_checkbox" onchange="endDateDisable(this)">
+                      <p style="margin-bottom: 0px;color: #657079;">currently running</p>
+                    </div>
+                </div>
+                <div class="col-1" style="padding-left: 0px;padding-right: 0px;padding-top: 28px;">
+                  <!-- <button type="button" data-repeater-delete="" class="deleteg btn btn-outline-danger btn-sm fa fa-close " style="font-size: 13px;"></button> -->
+                  <button type="button"  class="deleteg btn btn-outline-danger btn-sm fa fa-close " style="font-size: 13px;" , onclick="deleteRepeaterItem(this);"></button>
+                </div>
+                <%= company_experience_form.hidden_field :_destroy, class: "destroy-field" %>
               </div>
-              <div class="col-1" style="padding-left: 0px;padding-right: 0px;padding-top: 28px;">
-                <!-- <button type="button" data-repeater-delete="" class="deleteg btn btn-outline-danger btn-sm fa fa-close " style="font-size: 13px;"></button> -->
-                <!-- <button type="button" class="deleteg btn btn-outline-danger btn-sm fa fa-close " style="font-size: 13px;" , onclick="deleteRepeaterItem(this);"></button> -->
-                <button type="button"  class="deleteg btn btn-outline-danger btn-sm fa fa-close " style="font-size: 13px;" , onclick="deleteRepeaterItem(this);"></button>
-              </div>
-              <%= company_experience_form.hidden_field :_destroy, class: "destroy-field" %>
-            </div>
             <%end%>
-          </div>
+        </div>
        <button type="button" data-repeater-create class="btn btn-outline-info btn-sm btn-add-g" >+ Add</button>
        
       </div>
@@ -129,7 +129,6 @@
             <div class="row" data-repeater-item  style="margin-left: 0px;margin-top: 4px; margin-bottom: 2px;">
               <div class="col-3" style="padding-right: 0px;padding-left: 0px;">
                 <%= project_form.select(:original_project_id, grouped_options_for_select(helper_grouped_projects_options , selected: project_form.object.original_project_id), {prompt: "Select a project"}, {class: "form-control" ,onchange: "project_select(this)"}) %>
-                 <!-- <%= project_form.collection_select(:original_project_id, Project.all, :id, :title, {prompt: "Select a project"} ,{class: "form-control",onchange: "project_select(this)"})%> -->
               </div>
               <div class="col-7" id="cloned_content">
                 <div class="form-group">
@@ -184,7 +183,7 @@
                     <div class="form-group">
                       <%= project_form.label :proj_supportive_skills  %>
                       <div>
-                        <%= project_form.collection_select(:proj_supportive_skill_ids, TechStack.supportive_skills, :id, :title ,{}, { multiple: true ,class:"selectpicker" ,onclick:"supportive_skills_fix()"}) %> 
+                        <%= project_form.collection_select(:proj_supportive_skill_ids, TechStack.supportive_skills, :id, :title ,{}, { multiple: true ,class:"selectpick" ,onclick:"supportive_skills_fix()"}) %> 
                       </div>
                     </div>
                   </div>
@@ -202,9 +201,10 @@
           <button type="button" data-repeater-create class="btn btn-outline-info btn-sm btn-add-g" , onclick="select_picker_refresh()">+ Add</button>
         </div>
       </div>
+
       <div class="row">      
       <div class="col-md-6">
-        <%= form.label "select profile image" , class: "" %>
+        <%= form.label "select profile image" %>
         <%= form.file_field :image %>
       </div>
 
@@ -214,121 +214,8 @@
         <% @template_options=template_files.map { |file| File.basename(file, '.html.erb' )[1..] }%>
         <%= form.select(:template_name, @template_options , {}, {class: "form-control"}) %>
       </div>
-    </div>
+      </div>
 
       <%= form.submit class: 'btn-primary' , style: "margin-top: 20px;" %>
  <% end%>
-
- <!-- hidden button // refresh selector -->
-  <script>
-      function deleteRepeaterItem(button) {
-      var item = $(button).closest('[data-repeater-item]');
-      var destroyField = item.find('.destroy-field');
-      destroyField.val('true'); 
-      var i = item.index();
-      if($('#curriculum_vitae_company_experiences_attributes_'+i+'_id')[0] != undefined)
-        item[0].hidden = true;
-      else
-        item.remove();
-      }
-   
-      function showHide(curr_obj) {
-        d = curr_obj.closest("[data-repeater-item]");
-        if(d.children[1].hidden == true)
-        {
-          $(curr_obj).removeClass("fa-eye")
-          $(curr_obj).addClass("fa-eye-slash")
-          d.children[1].hidden = false;
-        } else
-        {
-          $(curr_obj).removeClass("fa-eye-slash")
-          $(curr_obj).addClass("fa-eye")
-          d.children[1].hidden =true;
-        }
-        select_picker_refresh();
-      }
-
-      function project_select(curr_obj)
-      { 
-        var projId = $(curr_obj).val();
-        obj_content = curr_obj.closest("[data-repeater-item]").children[1];
-        $.ajax({
-          url: '/projects/'+projId+'/cv_project_details.json',
-          method: 'GET',
-          dataType: 'json',
-          success: function(response){
-             // $(obj_content).find("[name*='end_date']").val(response.project.end_date); 
-            for( prop in response.project)
-            {
-              if( $(obj_content).find("[name*='["+prop+"]']").length > 0  )
-                $(obj_content).find("[name*='["+prop+"]']").val(response.project[prop]);
-            }
-            $(obj_content).find("[name*='[proj_core_skill_id]']").val(response.core_skill_id);
-            $(obj_content).find("[name*='[proj_supportive_skill_ids]']").val(response.supportive_skill_ids);
-            select_picker_refresh();
-          }
-        })
-      }
-      function supportive_skills_fix()
-      {
-      $('input[name*="proj_supportive_skill_ids"]').remove();
-      }
-      function select_picker_refresh()
-      {
-        setTimeout(() =>{$('.selectpicker').selectpicker('refresh');}, "100")
-      }
-          //  on load
-      supportive_skills_fix();  
-
-      $('.repeater_experience').repeater();
-      $('.repeater_proj').repeater();
-      $('.selectpicker').selectpicker(
-        { liveSearch: true}
-      );
-  </script>
-    
-  <script>
-      ///// update date
-      function updateEndDate(curr_obj)
-      { 
-        d = curr_obj.closest("[data-repeater-item]");
-        inprogress_id = $(d).find('.inprogress_checkbox')[0];
-        start_date_id = $(d).find('.start_date')[0];
-        end_date_id = $(d).find('.end_date')[0];
-        if(inprogress_id.checked != true)
-        end_date_id.value = end_date_id.min = start_date_id.value
-      }
-
-      //  check box disabled , blank
-      function endDateDisable(curr_obj)
-      {
-        d = curr_obj.closest("[data-repeater-item]");
-        inprogress_id = $(d).find('.inprogress_checkbox')[0];
-        start_date_id = $(d).find('.start_date')[0];
-        end_date_id = $(d).find('.end_date')[0];
-        if( inprogress_id.checked == true)
-        {
-          end_date_id.value = ""
-        }
-        else
-        {
-          updateEndDate(curr_obj)
-        }
-      } 
-      function checkboxTogle(curr_obj)
-        {  
-          d = curr_obj.closest("[data-repeater-item]");
-          inprogress_id = $(d).find('.inprogress_checkbox')[0];
-          inprogress_id.checked = false;
-        }
-          // loading
-          document.querySelectorAll('.end_date').forEach( e => { 
-            if(e.value == '')
-            {
-                d = e.closest("[data-repeater-item]");
-                inprogress_id = $(d).find('.inprogress_checkbox')[0];
-                inprogress_id.checked = true;
-            }
-          });
-  </script>  
     

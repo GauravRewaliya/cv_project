@@ -6,17 +6,17 @@
         <th>id</th>
       </tr>
       <% @layouts.each do |layout| %>
-      <tr>
-      <td>
-          <%= link_to layout.id, show_layout_data_path(layout.id) %>
-      </td>
-   
-      <td>
-        <%# <%= button_to "Delete" , layout , method: :delete ,class: "btn-primary"%>
-      </td>
-    </tr>
-    <% end %>
+        <tr>
+          <td>
+              <%= link_to layout.id, show_layout_data_path(layout.id) %>
+          </td>
+      
+          <td>
+            <%# <%= button_to "Delete" , layout , method: :delete ,class: "btn-primary"%>
+          </td>
+        </tr>
+      <% end %>
     </table>
-  </div>
+</div>
 
 <%= link_to "Home" ,  home_index_path ,class: "btn btn-sm btn-outline-secondary" %>

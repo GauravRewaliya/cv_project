@@ -1,13 +1,10 @@
 <%= stylesheet_link_tag  "edit" %>
 
 
-<div class="card" style="margin: 0% 20% 0% 20%">
+<div class="card">
   <%= link_to "arrow_back", candidates_path ,class:"pos_card_l material-symbols-outlined"%>
-  <div class="card-body bg-secondary">
+  <div class="card-body">
     <%= render "form", candidate: @candidate %>
   </div>
-
 </div>
-
-<br>
 

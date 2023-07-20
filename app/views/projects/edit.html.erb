@@ -3,17 +3,11 @@
 <h1>Editing project</h1>
 <div style="position: relative;">
 </div>
-<!-- <div style="text-align: center"> -->
-  
-  <!-- <div > -->
     <div class="card" style="margin: 0% 15% 0% 15%">
       <a class="pos_card_l material-symbols-outlined" href="/projects">arrow_back</a>
       <%= link_to "Show this project", @project ,class: "pos_card_r" %>
-  <div class="card-body bg-secondary">
-    <%= render "form", project: @project %>
-  </div>
-</div>
-<br>
-
-<!-- </div> -->
+      <div class="card-body">
+        <%= render "form", project: @project %>
+      </div>
+    </div>
 </div>

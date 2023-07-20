@@ -17,65 +17,65 @@
 
     <div class="formBox">
         <div class="formContainer">
-    <h5 >Description</h5>
-    <p >
-      <%= @project.desc %>
-    </p>
+          <h5 >Description</h5>
+          <p >
+            <%= @project.desc %>
+          </p>
 
-    <%if !@project.domain.blank?%>
-    <h5 >Domain</h5>
-    <p >
-      <%= @project.domain.title %>
-    </p>
-    <%end%>
+          <%if !@project.domain.blank?%>
+            <h5 >Domain</h5>
+            <p >
+              <%= @project.domain.title %>
+            </p>
+          <%end%>
 
-    <%if !@project.team_size.blank?%>
-    <h5 >Team Size</h5>
-    <p >
-      <%= @project.team_size %>
-    </p>
-    <%end%>
+          <%if !@project.team_size.blank?%>
+            <h5 >Team Size</h5>
+            <p >
+              <%= @project.team_size %>
+            </p>
+          <%end%>
 
-    <!-- <h5 >Roles & Responsability</h5>
-    <p >
-      <%#= @project.role %>
-    </p> -->
+          <!-- <h5 >Roles & Responsability</h5>
+          <p >
+            <%#= @project.role %>
+          </p> -->
   
-    <div class="row justify-content-md-center">
-    <div class="col-5">
-    <h5 >Start Date</h5>
-    <p >
-      <%= @project.start_date %>
-    </p>
-  </div>
-  <div class="col-5">
-    <h5 >End Date</h5>
-    <p >
-      <%if !@project.end_date.blank?%>
-      <%= @project.end_date %>
-      <%else %>
-       Project is still running
-       <%end%>
-    </p>
-  </div>
-  </div>
-  <br>
-  <% if !@project.core_skill.blank? %>
-    <h5 >Core Skill</h5>
-    <p >
-      <%= @project.core_skill&.title %>
-    </p>
-    <%end%>
+          <div class="row justify-content-md-center">
+            <div class="col-5">
+            <h5 >Start Date</h5>
+            <p >
+              <%= @project.start_date %>
+            </p>
+            </div>
+            <div class="col-5">
+              <h5 >End Date</h5>
+              <p >
+                <%if !@project.end_date.blank?%>
+                <%= @project.end_date %>
+                <%else %>
+                Project is still running
+                <%end%>
+              </p>
+            </div>
+          </div>
+            <br>
+          <% if !@project.core_skill.blank? %>
+            <h5 >Core Skill</h5>
+            <p >
+              <%= @project.core_skill&.title %>
+            </p>
+          <%end%>
 
-    <% if !@project.supportive_skills.blank? %>
-    <h5 >Supportive Skills</h5>
-    <p >
-      <% @project.supportive_skills.each do |supportive_skill| %>
-     <%= supportive_skill.title+"," %>
-    <%end%>
-    </p>
-    <%end%>
-    </div>
+          <% if !@project.supportive_skills.blank? %>
+            <h5 >Supportive Skills</h5>
+            <p >
+              <% @project.supportive_skills.each do |supportive_skill| %>
+                <%= supportive_skill.title+"," %>
+              <%end%>
+            </p>
+          <%end%>
+        </div>
     </div>
   </div>
   <div class="card-footer text-muted" style="position: relative;">

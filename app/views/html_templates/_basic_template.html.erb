@@ -30,7 +30,7 @@
             <li> <%= curriculum_vitae.profile_desc %>  </li>
 
             <%if !curriculum_vitae.core_skill.blank? %> 
-            <li>Strong Technical knowledge in <%= curriculum_vitae.core_skill %>  </li>
+            <li>Strong Technical knowledge in <%= curriculum_vitae.core_skill.title %>  </li>
             <%end%>
         </ul>
     </div>
@@ -56,12 +56,11 @@
         <%end%>
     </div>
 
-    <div class="head_part">
-        <h5>Projects</h5>
-        <% if !curriculum_vitae.cv_projects.blank? %>
+    <% if !curriculum_vitae.cv_projects.blank? %>
+        <div class="head_part">
+              <h5>Projects</h5>
             <% curriculum_vitae.cv_projects.each do |project| %>
-                                   
-                 <table>
+                <table>
                    <tr>
                     <th>Project Name</th>
                     <td><%= project.title %></td>
@@ -100,6 +99,13 @@
                     <th>Role</th>
                     <td><%= project.role %></td>
                    </tr> 
+                   
+                   <% if !project.responsibility.blank? %>
+                   <tr>
+                    <th>Role & Responsibility</th>
+                    <td><%= project.responsibility %></td>
+                   </tr> 
+                   <%end%>
 
                    <tr>
                     <th>Team Size</th>
@@ -108,8 +114,9 @@
                    <!-- roles & Responsibility -->
                 </table>
             <% end %>
-        <% end%>
-    </div>
+        </div>
+    <% end%>
+
     <%if !curriculum_vitae.company_experiences.blank?%>
     <div class="head_part">
          <h5>Experience</h5>

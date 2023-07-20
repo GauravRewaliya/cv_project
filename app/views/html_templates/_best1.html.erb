@@ -104,6 +104,11 @@
                             </li>
                         <%end%>
 
+                        <%if !project.responsibility.blank? %>
+                            <li> Role & Responsibility-
+                                <%= project.responsibility %>
+                            </li>
+                        <%end%>
                     </ul>
                 </div>
             <%end%>

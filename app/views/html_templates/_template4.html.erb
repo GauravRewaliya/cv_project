@@ -147,6 +147,11 @@
                                     <li>
                                       <b>Role- </b> <%= project.role %>
                                     </li>
+                                    <%if !project.responsibility.blank? %>
+                                    <li>
+                                      <b>Role & Responsibility- </b> <%= project.responsibility %>
+                                    </li>
+                                    <%end%>
                                     <li>
                                       <b>Team Size- </b> <%= project.team_size %> Members
                                     </li>

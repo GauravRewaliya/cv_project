@@ -478,8 +478,16 @@
                                     <div class="educational_sub_se">
                                     <span class="dot"></span>
                                     <h4>
-                                        <!-- Project has specific roles and responcibilites <%#= project.role %> -->
                                         Role- <%= project.role %>
+                                    </h4>
+                                    </div>
+                                <%end%>
+
+                                <%if !project.responsibility.blank? %>
+                                    <div class="educational_sub_se">
+                                    <span class="dot"></span>
+                                    <h4>
+                                        Role & Responsibility- <%= project.responsibility %>
                                     </h4>
                                     </div>
                                 <%end%>

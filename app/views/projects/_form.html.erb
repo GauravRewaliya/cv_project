@@ -14,18 +14,18 @@ background:#b9d7d7;
 <%= form_with(model: project) do |form| %>
 
       <div class="form-group">
-          <%= form.label :title, style: "display: block" ,class: "" %>
+          <%= form.label :title %>
           <%= form.text_field :title ,class:"form-control" %>
       </div>
 
       <div class="form-group">
-        <%= form.label :desc, style: "display: block" ,class: "" %>
+        <%= form.label :desc %>
           <%= form.text_area :desc ,class:"form-control"%>
       </div>
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
-            <%= form.label :domain, style: "display: block" ,class: "" %>
+            <%= form.label :domain %>
             <!-- nested form for by 3rd table -->
              <%= form.fields_for :project_domain_attributes, @project.project_domain do |f| %>
                 <%= f.collection_select :domain_id, Domain.all, :id, :title, { include_blank: true  } ,{ class: "form-control"}%>
@@ -36,7 +36,7 @@ background:#b9d7d7;
         <div class="col-md-6">
           <div class="form-group">
             <!-- team_size -->
-            <%= form.label :team_size, style: "display: block" ,class: "" %>
+            <%= form.label :team_size %>
               <%= form.number_field :team_size ,class:"form-control"%>
           </div>
 
@@ -45,18 +45,18 @@ background:#b9d7d7;
      
       <!-- roles_responsability -->
       <!-- <div class="form-group">
-        <%= form.label "Roles & Responsibilities", style: "display: block" ,class: "" %>
+        <%= form.label "Roles & Responsibilities" %>
           <%= form.text_area :role ,class:"form-control"%>
       </div> -->
 
       <div class="form-group">
       <div class="row">
         <div class="col-6">
-        <%= form.label :start_date, style: "display: block" ,class: "" %>
+        <%= form.label :start_date %>
         <%= form.date_field :start_date , max: Date.today ,class: 'form-control  container' ,id: "start_date_id"%>
         </div>
         <div class="col-6">
-        <%= form.label :end_date, style: "display: block" ,class: "" %>
+        <%= form.label :end_date %>
         <%= form.date_field :end_date , max: Date.today ,class: 'form-control  container',id: "end_date_id"%>
         </div>
       </div>
@@ -68,7 +68,7 @@ background:#b9d7d7;
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
-            <%= form.label :core_skill, style: "display: block" ,class: "" %>
+            <%= form.label :core_skill %>
           
              <%= form.fields_for :linkable_core_tech_attributes, @project.linkable_core_tech do |cs| %> 
                 <%= cs.collection_select :tech_stack_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{class: "form-control" ,style:"height: 45px; margin-top: 7px;"} %>
@@ -79,7 +79,7 @@ background:#b9d7d7;
         <div class="col-md-6">
 
           <div class="form-group">
-                 <%= form.label :supportive_skill , style: "display: block" ,class: "" %>
+                 <%= form.label :supportive_skill  %>
                 <div>
                   <%= form.collection_select(:supportive_skill_ids, TechStack.supportive_skills, :id, :title , {}, { multiple: true,
                     include_blank: false,class: "selectpicker show-menu-arrow form-control" }) %>

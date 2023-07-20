@@ -2,6 +2,7 @@ class CvProject < ApplicationRecord
   belongs_to :curriculum_vitae
   belongs_to :original_project , class_name: 'Project' ,optional: true
 
+  validates :title ,:desc , :role ,:team_size , :start_date ,:proj_core_skill , presence: true
   #  Project.last.attributes.except("id","created_at","updated_at","created_by","updated_by")   \\\\
 
   has_many :linkable_supportive_techs , as: :connectable , class_name: "LinkableSupportiveTech"

@@ -7,4 +7,5 @@ $(document).ready(function() {
     //     { liveSearch: true}
     //   );
     select_picker_refresh();
+    ckeditor_load();
 });

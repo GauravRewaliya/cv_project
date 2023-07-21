@@ -16,7 +16,7 @@
                     <%= curriculum_vitae.candidate&.name %>
                   </h5>
                   <h6 class="text-white">
-                    <%= curriculum_vitae.profile_desc %>
+                    <%= curriculum_vitae.profile_desc.html_safe %>
                   </h6>
                 </div>
               </div>
@@ -131,7 +131,7 @@
                               <p class="mt-0 mb-0">Domain- <%= Project.find(project.original_project_id).domain&.title %></p>
                               <p class="mt-0 mb-0">Role- <%= project.role %></p>
                               <%if !project.responsibility.blank? %>
-                              <p class="mt-0 mb-0">Responsibility- <%= project.responsibility %></p>
+                              <p class="mt-0 mb-0">Responsibility- <%= project.responsibility.html_safe %></p>
                               <%end%>
                               <p class="mt-0 mb-0">Team Size- <%= project.team_size %> Members </p>
                               <p class="mt-0 mb-0">Duration- <%= project.start_date %> <%= project.end_date.blank? ? 'Currently Running': ' to '+project.end_date.to_s %></p>
@@ -161,6 +161,9 @@
 </div>
 
 <style>
+  p{
+    margin-bottom: 0px;
+  }
   body{
     font-family: Arial, sans-serif;
     /* font-family: Helvetica, Arial, sans-serif; */

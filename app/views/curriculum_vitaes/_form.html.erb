@@ -1,7 +1,4 @@
 <style>
-        .btn-light{
-              border: #373b3f4a solid 2px;
-        }
         .deleteg , .g_sm_btn {
           margin-left: 5px;
           margin-top: 5px;
@@ -12,12 +9,14 @@
 
         .btn-add-g
         {
-          font-size: 13px;margin-top: 4px;padding-left: 13px;padding-top: 6px;padding-bottom: 6px;padding-right: 16px;
+          font-size: 13px;margin-top: 4px;
+          padding: 13px 6px 16px 6px;
         }
 </style>
 
-<%= javascript_include_tag "controllers/dependent_date" %>
+<%= javascript_include_tag "controllers/repeater_dependent_date" %>
 <%= javascript_include_tag "controllers/select_picker" %>
+<%= javascript_include_tag "controllers/ckeditor" %>
 <%= javascript_include_tag "controllers/repeater" %> 
 <%= javascript_include_tag "controllers/cv_ProjectSelect" %>
 <%= javascript_include_tag "controllers/cvJs_load" %>
@@ -60,7 +59,8 @@
 
     <div>
       <%= form.label "Profile Description"  %>
-        <%= form.text_area :profile_desc ,style: "width: 100%;text-align: center;" ,class: "form-control" %>
+        <%#= form.text_area :profile_desc ,style: "width: 100%;text-align: center;" ,class: "form-control" %>
+        <%= form.text_area :profile_desc ,class: "ckeditor_g" %>
     </div>
 
     <div class="row">
@@ -145,7 +145,10 @@
                 </div>
                 <div class="form-group">
                   <%= project_form.label :responsibility %>
-                  <%= project_form.text_field :responsibility ,class:"form-control"%>
+                  <!-- <%= project_form.text_field :responsibility ,class:"form-control"%> -->
+                  <%#= project_form.text_field :responsibility, as: :ckeditor, input_html: { ckeditor: { toolbar: 'Full' } } %>
+                  <%#=project_form.cktext_area :responsibility, class: 'someclass', ckeditor: {uiColor: '#AADC6E', language: 'uk'} %>
+                  <%= project_form.text_area :responsibility, class: "ckeditor_g" %>
                 </div>
                 <div class="form-group">
                   <%= project_form.label :team_size %>
@@ -198,7 +201,7 @@
           <%end%>
         </div>
         <div>
-          <button type="button" data-repeater-create class="btn btn-outline-info btn-sm btn-add-g" , onclick="select_picker_refresh()">+ Add</button>
+          <button type="button" data-repeater-create class="btn btn-outline-info btn-sm btn-add-g" , onclick="repeater_refresh()">+ Add</button>
         </div>
       </div>
 

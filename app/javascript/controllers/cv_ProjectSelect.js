@@ -1,5 +1,4 @@
-function project_select(curr_obj)
-{ 
+function project_select(curr_obj) { 
     var projId = $(curr_obj).val();
     obj_content = curr_obj.closest("[data-repeater-item]").children[1];
     $.ajax({

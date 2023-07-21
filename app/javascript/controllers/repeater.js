@@ -1,4 +1,5 @@
                 /// req select_picker
+                //ckeditor
       function supportive_skills_fix()
       {
       $('input[name*="proj_supportive_skill_ids"]').remove();
@@ -29,5 +30,11 @@
             d.children[1].hidden =true;
           }
           select_picker_refresh();
-        }
+        } 
+      function repeater_refresh() {
+        select_picker_refresh();
+        setTimeout(() =>{
+          ckeditor_load();
+        }, "100");
+      }
       

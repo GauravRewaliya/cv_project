@@ -29,6 +29,7 @@
     }
 
     p {
+        margin-bottom: 0px;
         font-size: 18px;
         color: #1f2a2a;
     }
@@ -56,7 +57,7 @@
         <div>
             <h5>SOFTWARE ENGINEER</h5>
             <div style="border-bottom: 3px solid lightgreen; width: 120px;"></div>
-            <p><%= curriculum_vitae.profile_desc %></p>
+            <p><%= curriculum_vitae.profile_desc.html_safe %></p>
         </div>
 
         <% if !curriculum_vitae.cv_projects.blank? %>
@@ -106,7 +107,7 @@
 
                         <%if !project.responsibility.blank? %>
                             <li> Role & Responsibility-
-                                <%= project.responsibility %>
+                                <%= project.responsibility.html_safe %>
                             </li>
                         <%end%>
                     </ul>

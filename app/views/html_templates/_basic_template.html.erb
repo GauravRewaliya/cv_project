@@ -16,7 +16,10 @@
     table tr td{
         border: 2px solid;
         padding: 20px;
-    }               
+    }     
+    p{
+        margin-bottom: 0px;
+    }          
 </style>   
 <div class="container">
     <h2>Name- <%= curriculum_vitae.candidate&.name %></h2>
@@ -27,7 +30,7 @@
             <li>6+ years of Software Development experience</li>
             <li>Education:<br> Bachelors in Engineering in Computer Science With RGPV University</li>
             
-            <li> <%= curriculum_vitae.profile_desc %>  </li>
+            <li> <%= curriculum_vitae.profile_desc.html_safe %>  </li>
 
             <%if !curriculum_vitae.core_skill.blank? %> 
             <li>Strong Technical knowledge in <%= curriculum_vitae.core_skill.title %>  </li>
@@ -103,7 +106,7 @@
                    <% if !project.responsibility.blank? %>
                    <tr>
                     <th>Role & Responsibility</th>
-                    <td><%= project.responsibility %></td>
+                    <td><%= project.responsibility.html_safe %></td>
                    </tr> 
                    <%end%>
 

@@ -1,0 +1,32 @@
+
+[class^="col-"] 
+{
+   margin: 0;
+}
+
+* {
+  margin: 2px;
+}
+
+
+.bg-secondary {
+  background-color: white!important;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #0750a0;
+}
+.fa-trash
+{
+  color: red;
+border: none;
+}
+.material-symbols-outlined
+{
+  color: #6446e3de;
+}
+.content
+{
+  margin-top: 60px; 
+}   

@@ -11,23 +11,7 @@ class CurriculumVitaesController < ApplicationController
   pdf_data = WickedPdf.new.pdf_from_string(pour_html)
   send_data pdf_data , filename: "grCv.pdf" ,type: "application/pdf" ,disposition: 'attachment'
  end
-  def doc_html_req
-
-    pour_html = get_html(@curriculum_vitae)
-    pdf_data = WickedPdf.new.pdf_from_string(pour_html)
-    input_path = "public/tempCv.pdf"
-    File.open(input_path,'wb'){ |file| file << pdf_data}
-
-    system('curl -X POST -F "name=file_ooo" -F "id=testing" -F "file=@public/tempCv.pdf" -H "Content-Type: multipart/form-data" https://pdf2doc.com/upload/h1g4cd1meo1bji1a')
-    system('curl https://pdf2doc.com/convert/h1g4cd1meo1bji1a/testing')
-    system('curl https://pdf2doc.com/status/h1g4cd1meo1bji1a/testing')
-
-    system('wget -O public/tempCv.doc https://pdf2doc.com/download/h1g4cd1meo1bji1a/testing/grCv.doc')
-
-    output_path = "public/tempCv.doc"
-    doc_file = File.read(output_path)
-    send_data doc_file, filename: 'cv.doc', disposition: 'attachment'
-  end
+ 
   def docx_html_req
     pour_html = get_html(@curriculum_vitae)
     pdf_data = WickedPdf.new.pdf_from_string(pour_html)
@@ -37,8 +21,7 @@ class CurriculumVitaesController < ApplicationController
     output_path = "public/tempCv.doc"
     doc_data = File.read(output_path)
 
-    send_data doc_data, filename: "grCv.doc", type: "application/msword", disposition: 'attachment'
-    
+    send_data doc_data, filename: "grCv.doc", type: "application/msword", disposition: 'attachment' 
   end
 
   def get_html(curriculum_vitae)
@@ -85,7 +68,6 @@ class CurriculumVitaesController < ApplicationController
     @curriculum_vitae.updated_by = current_user.email
     @curriculum_vitae.company_experiences.reject(&:persisted?).each(&:destroy)
     @curriculum_vitae.cv_projects.reject(&:persisted?).each(&:destroy)
-    # debugger
     respond_to do |format|
       if @curriculum_vitae.update(curriculum_vitae_params)
         format.html { redirect_to curriculum_vitae_url(@curriculum_vitae), notice: "CurriculumVitae was successfully updated." }
@@ -114,6 +96,6 @@ class CurriculumVitaesController < ApplicationController
 
     
     def curriculum_vitae_params
-      params.require(:curriculum_vitae).permit(:candidate_id ,:template_name,:experience ,:image,:objective ,:profile_desc, curriculum_vitae_core_tech_attributes: [:tech_stack_id] ,supportive_skill_ids:[],company_experiences_attributes: [:id ,:curriculum_vitae_id , :company_name , :start_date , :end_date ,:role ,:_destroy] ,cv_projects_attributes:[:id,:original_project_id,:title,:desc,:role ,:responsibility,:start_date,:end_date, :team_size ,:_destroy,:proj_core_skill_id,proj_supportive_skill_ids:[] ])
+      params.require(:curriculum_vitae).permit(:candidate_id ,:template_name,:experience ,:image,:objective ,:profile_desc, linkable_core_tech_attributes: [:tech_stack_id] ,supportive_skill_ids:[],company_experiences_attributes: [:id ,:curriculum_vitae_id , :company_name , :start_date , :end_date ,:role ,:_destroy] ,cv_projects_attributes:[:id,:original_project_id,:title,:desc,:role ,:responsibility,:start_date,:end_date, :team_size ,:_destroy,:proj_core_skill_id,proj_supportive_skill_ids:[] ])
     end
 end

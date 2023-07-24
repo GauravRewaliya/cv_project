@@ -1,13 +1,4 @@
-<style>
-.col-6,.col-4,.col-5
-{
-margin: 0;
-padding-left: 15px;
-padding-right:15px;
-}
-</style>
-
-  <%= form_with(model: domain) do |form| %>
+ <%= form_with(model: domain) do |form| %>
       <div class="form-group">
           <%= form.label :title, style: "display: block" ,class: "text-white" %>
           <%= form.text_field :title ,class:"form-control" , required: true%>

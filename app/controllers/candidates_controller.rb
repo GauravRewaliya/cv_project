@@ -67,7 +67,6 @@ class CandidatesController < ApplicationController
 
     
     def candidate_params
-        params.require(:candidate).permit(:name, :employ_id, profile_attributes: [:id ,:gender,:email, :contact,  :address ,profile_core_tech_attributes: [:tech_stack_id],supportive_skill_ids:[]] ,candidate_core_tech_attributes: [:tech_stack_id] ,supportive_tech_ids:[])
-
+        params.require(:candidate).permit(:name, :employ_id, profile_attributes: [:id ,:gender,:email, :contact,  :address ,profile_core_tech_attributes: [:tech_stack_id],supportive_skill_ids:[]] ,linkable_core_tech_attributes: [:tech_stack_id] ,supportive_tech_ids:[])
     end
 end

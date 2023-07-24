@@ -11,12 +11,6 @@ class TechStack < ApplicationRecord
   def destroy_with_associations
     LinkableCoreTech.where(tech_stack_id: self.id).destroy_all
     LinkableSupportiveTech.where(tech_stack_id: self.id).destroy_all
-
-    CurriculumVitaeCoreTech.where(tech_stack_id: self.id).destroy_all  
-    CurriculumVitaeSupportiveTech.where(tech_stack_id: self.id).destroy_all
-    
-    CandidateCoreTech.where(tech_stack_id: self.id).destroy_all  
-    CandidateSupportiveTech.where(tech_stack_id: self.id).destroy_all
   end
 
   def  self.core_skills

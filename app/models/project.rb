@@ -4,12 +4,6 @@ class Project < ApplicationRecord
     validates :title, uniqueness: { case_sensitive: false }
     before_destroy :delete_fun
 
-    # has_many :project_supportive_techs , dependent: :destroy
-    # has_many :supportive_skills, through: :project_supportive_techs, source: :tech_stack
-    
-    # has_one :project_core_tech , dependent: :destroy
-    # has_one :core_skill, through: :project_core_tech, source: :tech_stack   
-    
     has_many :linkable_supportive_techs , as: :connectable , class_name: "LinkableSupportiveTech" , dependent: :destroy
     has_many :supportive_skills, through: :linkable_supportive_techs, source: :tech_stack
   

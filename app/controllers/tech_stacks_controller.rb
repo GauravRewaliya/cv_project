@@ -2,23 +2,9 @@ class TechStacksController < ApplicationController
   before_action :set_tech_stack, only: %i[ show edit update destroy ]
 
   def index  
-    # if !params['tech_type'].blank?
-    #   if params['tech_type'] == '1'
-    #     @tech_stacks = TechStack.core_skills
-    #   else
-    #     @tech_stacks = TechStack.supportive_skills
-    #   end
-    # else
-    #    @tech_stacks = TechStack.all
-    #   end
-      
-    #   if !params['search'].blank?
-    #     @tech_stacks = @tech_stacks.where('lower(title) LIKE ?' ,"%"+params['search']+"%" )
-    #   end
       @tech_stacks = TechStack.all
   end
 
-  
   def show
   end
 
@@ -36,6 +22,7 @@ class TechStacksController < ApplicationController
 
     @tech_stack.created_by = current_user.email
     @tech_stack.updated_by = current_user.email
+    
     respond_to do |format|
       if @tech_stack.save
         format.html { redirect_to tech_stack_url(@tech_stack), notice: "Tech_stack was successfully created." }

@@ -18,7 +18,7 @@ function ckeditor_create(){
           });
 }
 function ckeditor_destroy(){
-    // destpoy instance
+    // destroy instance
     for (const instanceName in CKEDITOR.instances) {
         const instance = CKEDITOR.instances[instanceName];
       instance.destroy()

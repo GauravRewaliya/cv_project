@@ -67,11 +67,11 @@
   <div class="row">
     <div class="col-md-6">
       <%= form.label "Core Skill"  %>
-        <%= form.fields_for :candidate_core_tech_attributes, candidate.candidate_core_tech do  |cs| %>
+        <%= form.fields_for :linkable_core_tech_attributes, candidate.linkable_core_tech do  |cs| %>
         <%= cs.collection_select :tech_stack_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{ id: "core_tech_select_id" ,class: "form-control"}%>
       <% end %>
 
-        <% candidate.errors[:candidate_core_tech].each do |message| %>
+        <% candidate.errors[:linkable_core_tech].each do |message| %>
           <span style="background: cornsilk; color: red; border-radius: 5px;">
             <%= message %>
           </span>

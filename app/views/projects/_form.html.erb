@@ -28,16 +28,16 @@
         <div class="row form-group">
           <div class="col-6">
             <%= form.label :start_date %>
-            <%= form.date_field :start_date , max: Date.today ,class: 'form-control  container' ,id: "start_date_id"%>
+            <%= form.date_field :start_date , max: Date.today ,class: 'form-control  container' ,id: "start_date_id" , onchange: "updateEndDate()"%>
           </div>
           <div class="col-6">
             <%= form.label :end_date %>
-            <%= form.date_field :end_date , max: Date.today ,class: 'form-control  container',id: "end_date_id"%>
+            <%= form.date_field :end_date , max: Date.today ,class: 'form-control  container',id: "end_date_id" ,onchange: "checkboxTogle()"%>
           </div>
         </div>
        
         <div style="padding-left: 4%;" class="form-inline">
-          <input type="checkbox" <%= (project.end_date == nil ) && (project.end_date!= nil)  ? 'checked' : '' %> id="inprogress_id">
+          <input type="checkbox" <%= (project.end_date == nil ) && (project.end_date!= nil)  ? 'checked' : '' %> id="inprogress_id" onchange="endDateDisable()">
           <p style="margin-bottom: 0px;color: #657079;">currently running</p>
         </div>
       </div>
@@ -87,35 +87,4 @@
         <% end %>
       <% end %>
 
-   <script>         /// date field handlar js
-   
-       function updateEndDate()
-       { 
-         if(inprogress_id.checked != true)
-         end_date_id.value = end_date_id.min = start_date_id.value
-       }
-       
-        e = document.getElementById("end_date_id");
-        start_date_id.addEventListener('change', updateEndDate);
-        e.addEventListener('change', checkboxTogle);
-
-        //  check box disabled , blank
-        function endDateDisable()
-        {
-          if( inprogress_id.checked == true)
-          {
-            e.value = ""
-          }
-          else
-          {
-            updateEndDate()
-          }
-        } 
-        function checkboxTogle()
-        {
-          inprogress_id.checked = false;
-        }
-        endDateDisable();
-        inprogress_id.addEventListener('change', endDateDisable);
-    
-   </script>   
+      <%#= javascript_include_tag 'controllers/js_project' %>

@@ -37,13 +37,18 @@
       
       <!-- ckeditor -->
       <%= javascript_include_tag Ckeditor.cdn_url %>
-
+      
     </head>
     
     <body>
+      
+      <%= stylesheet_link_tag  "main_application" %>
 
-    <%= stylesheet_link_tag  "main_application" %>
-  
+      <!-- controller specific js -->
+      <%#= javascript_include_tag "controllers/js_"+params['controller'] %>
+      <script src="/assets/controllers/js_<%=params['controller'] %>" ></script>
+   
+      <!-- common action css -->
     <%case params['action'] %>
       <%when "edit", "new" then %>
         <%= stylesheet_link_tag  'edit' %>

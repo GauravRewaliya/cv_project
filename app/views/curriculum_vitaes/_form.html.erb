@@ -14,13 +14,6 @@
         }
 </style>
 
-<%= javascript_include_tag "controllers/repeater_dependent_date" %>
-<%= javascript_include_tag "controllers/select_picker" %>
-<%= javascript_include_tag "controllers/ckeditor" %>
-<%= javascript_include_tag "controllers/repeater" %> 
-<%= javascript_include_tag "controllers/cv_ProjectSelect" %>
-<%= javascript_include_tag "controllers/cvJs_load" %>
-
 <%= form_with(model: curriculum_vitae )do |form| %>
 
   <% if curriculum_vitae.errors.any? %>
@@ -43,7 +36,6 @@
       <div class="col-md-6">
         <div>
           <%= form.label "Candidate"  %>
-            <%#= form.collection_select(:candidate_id, Candidate.all, :id, :name, { include_blank: true ,selected:   @curriculum_vitae.candidate&.id} ,{required: true ,class: "form-control"})%>
             <%= form.collection_select(:candidate_id, Candidate.all, :id,->(candidate){"#{candidate.name} , #{candidate.profile.email}"}, { include_blank: true } ,{required: true ,class: "form-control"})%>
         </div>
   
@@ -59,7 +51,6 @@
 
     <div>
       <%= form.label "Profile Description"  %>
-        <%#= form.text_area :profile_desc ,style: "width: 100%;text-align: center;" ,class: "form-control" %>
         <%= form.text_area :profile_desc ,class: "ckeditor_g" %>
     </div>
 

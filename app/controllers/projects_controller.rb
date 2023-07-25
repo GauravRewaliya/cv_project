@@ -62,7 +62,7 @@ class ProjectsController < ApplicationController
   # clone the proj
   def cv_project_details
     @project = Project.find(params[:proj_id])
-    render json: {project: @project  , core_skill_id: @project.core_skill.id , supportive_skill_ids: @project.supportive_skill_ids}  
+    render json: {project: @project ,domain_id: @project.domain&.id , core_skill_id: @project.core_skill&.id , supportive_skill_ids: @project.supportive_skill_ids}  
   end
 
   private
@@ -71,6 +71,6 @@ class ProjectsController < ApplicationController
       @project = Project.find(params[:id])
     end
     def project_params
-      params.require(:project).permit(:team_size , :role ,  :title, :desc,:start_date ,:end_date, project_domain_attributes: [:domain_id],linkable_core_tech_attributes: [:tech_stack_id],supportive_skill_ids:[])
+      params.require(:project).permit(:team_size , :role ,  :title, :desc,:start_date ,:end_date, linkable_domain_attributes: [:domain_id],linkable_core_tech_attributes: [:tech_stack_id],supportive_skill_ids:[])
     end
 end

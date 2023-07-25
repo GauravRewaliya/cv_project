@@ -96,6 +96,6 @@ class CurriculumVitaesController < ApplicationController
 
     
     def curriculum_vitae_params
-      params.require(:curriculum_vitae).permit(:candidate_id ,:template_name,:experience ,:image,:objective ,:profile_desc, linkable_core_tech_attributes: [:tech_stack_id] ,supportive_skill_ids:[],company_experiences_attributes: [:id ,:curriculum_vitae_id , :company_name , :start_date , :end_date ,:role ,:_destroy] ,cv_projects_attributes:[:id,:original_project_id,:title,:desc,:role ,:responsibility,:start_date,:end_date, :team_size ,:_destroy,:proj_core_skill_id,proj_supportive_skill_ids:[] ])
+      params.require(:curriculum_vitae).permit(:candidate_id ,:template_name,:experience ,:image,:objective ,:profile_desc, linkable_core_tech_attributes: [:tech_stack_id] ,supportive_skill_ids:[],company_experiences_attributes: [:id ,:curriculum_vitae_id , :company_name , :start_date , :end_date ,:role ,:_destroy] ,cv_projects_attributes:[:id,:original_project_id,:title,:desc,:role ,:responsibility,:start_date,:end_date, :team_size ,:domain_id ,:_destroy,:proj_core_skill_id,proj_supportive_skill_ids:[] ])
     end
 end

@@ -13,6 +13,7 @@ function project_select(curr_obj) {
             $(obj_content).find("[name*='["+prop+"]']").val(response.project[prop]);
         }
         $(obj_content).find("[name*='[proj_core_skill_id]']").val(response.core_skill_id);
+        $(obj_content).find("[name*='[domain_id]']").val(response.domain_id);
         $(obj_content).find("[name*='[proj_supportive_skill_ids]']").val(response.supportive_skill_ids);
         select_picker_refresh();
     }

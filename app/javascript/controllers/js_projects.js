@@ -21,11 +21,7 @@ function updateEndDate()
    inprogress_id.checked = false;
  }
 
- $(document).ready(function() {
-    if(end_date_id.value =='')
-        inprogress_id.checked = true;
-    endDateDisable();
-    
+ $(document).ready(function() { 
     new DataTable('.data_table_gr',{
       columnDefs: [
         // {target: 2,visible: false}, // domain visible
@@ -34,4 +30,14 @@ function updateEndDate()
         {target: 5,visible: false}
       ]
     });
+    try
+    {
+      if(end_date_id.value =='')
+      inprogress_id.checked = true;
+      endDateDisable();
+    }
+    catch(e)
+    {
+      
+    }
   });

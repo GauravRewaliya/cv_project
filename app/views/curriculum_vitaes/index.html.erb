@@ -32,7 +32,6 @@
             <td><%= button_to "" , curriculum_vitae , method: :delete ,class: "fa-solid fa-trash alert-light "%></td>
         
             <td>
-              <%#<%= link_to "Show this curriculum_vitae", curriculum_vitae , target: "_blank" %>
               <%= link_to curriculum_vitae ,target: '_blank' , class: 'material-symbols-outlined' do %>
               <span>Visibility</span>
               <%end%>
@@ -50,11 +49,3 @@
       </tbody>
     </table>
 </div>
-
-   <script>
-        new DataTable('#example',{
-            columnDefs: [ {target: 0,visible: false}],
-            order: [[0, 'desc']]
-            });
-    </script>
-

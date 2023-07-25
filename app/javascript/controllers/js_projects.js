@@ -25,4 +25,13 @@ function updateEndDate()
     if(end_date_id.value =='')
         inprogress_id.checked = true;
     endDateDisable();
-});
+    
+    new DataTable('.data_table_gr',{
+      columnDefs: [
+        // {target: 2,visible: false}, // domain visible
+        {target: 3,visible: false},
+        // {target: 4,visible: false}, // core_skill visible
+        {target: 5,visible: false}
+      ]
+    });
+  });

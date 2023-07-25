@@ -1,8 +1,9 @@
-<%= form_with(model: tech_stack) do |form| %>
+<%#= form_with(model: tech_stack ,validate: false) do |form| %>
+<%#= form_with(model: tech_stack , data: { validate: false }) do |form| %>
+<%= form_with(model: tech_stack ) do |form| %>
   <% if tech_stack.errors.any? %>
     <div class="alert alert-warning" role="alert">
       <h2><%= pluralize(tech_stack.errors.count, "error") %> errors found , cant be save</h2>
-
       <ul>
         <% tech_stack.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -21,12 +22,14 @@
         <div class="form-inline">
           <%= form.radio_button :tech_type, 2 %>
           <%= form.label "supportive Tech" %>
-        </div>
+        </div>       
+        <%= custom_error( form , :tech_type) %> 
       </div>
     </div>
     <div class="form-group">
       <%= form.label :title  %>
-      <%= form.text_field :title  ,class: "form-control"%>
+      <%= form.text_field :title  ,class: "form-control"%>    
+      <%= custom_error( form , :title) %> 
     </div>
    
     <div class="form-group">
@@ -37,22 +40,4 @@
     <div>
       <%= form.submit class: 'btn-primary'%>
     </div>
-<% end %>    
-<!-- error messages  -->
-  <% if tech_stack.errors.any? %>
-      <% tech_stack.errors.each do |error| %>
-         <script>
-          inputf = document.querySelector('input[name="tech_stack[<%=error.attribute.to_s %>]"][type=text]')
-         if(inputf != null)
-         {
-          $(inputf).addClass("is-invalid")
-          $("<div class='invalid-feedback'>  <%= error.full_message %> </div>").insertAfter(inputf)
-         }
-         else
-         {
-          alert('<%=error.attribute.to_s %> ------- <%= error.full_message %>');
-         }
-          </script>  
-      <% end %>
-  <% end %>
-
+<% end %>

@@ -3,11 +3,13 @@
       <div class="form-group">
           <%= form.label :title %>
           <%= form.text_field :title ,class:"form-control" %>
-      </div>
-
-      <div class="form-group">
+          <%= custom_error( form , :title) %> 
+        </div>
+        
+        <div class="form-group">
           <%= form.label :desc %>
           <%= form.text_area :desc ,class:"form-control"%>
+          <%= custom_error( form , :desc) %> 
       </div>
 
       <div class="row">
@@ -16,6 +18,7 @@
              <%= form.fields_for :project_domain_attributes, @project.project_domain do |f| %>
                 <%= f.collection_select :domain_id, Domain.all, :id, :title, { include_blank: true  } ,{ class: "form-control"}%>
              <% end %>
+             <%= custom_error( form , :project_domain) %> 
         </div>
 
         <div class="col-md-6 form-group">
@@ -29,13 +32,15 @@
           <div class="col-6">
             <%= form.label :start_date %>
             <%= form.date_field :start_date , max: Date.today ,class: 'form-control  container' ,id: "start_date_id" , onchange: "updateEndDate()"%>
+            <%= custom_error( form , :start_date) %> 
           </div>
           <div class="col-6">
             <%= form.label :end_date %>
             <%= form.date_field :end_date , max: Date.today ,class: 'form-control  container',id: "end_date_id" ,onchange: "checkboxTogle()"%>
+            <%= custom_error( form , :date_validation) %> 
           </div>
         </div>
-       
+        
         <div style="padding-left: 4%;" class="form-inline">
           <input type="checkbox" <%= (project.end_date == nil ) && (project.end_date!= nil)  ? 'checked' : '' %> id="inprogress_id" onchange="endDateDisable()">
           <p style="margin-bottom: 0px;color: #657079;">currently running</p>
@@ -43,10 +48,11 @@
       </div>
       <div class="row">
         <div class="col-md-6 form-group">
-            <%= form.label :core_skill %>
-            <%= form.fields_for :linkable_core_tech_attributes, @project.linkable_core_tech do |cs| %> 
-              <%= cs.collection_select :tech_stack_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{class: "form-control" ,style:"height: 45px; margin-top: 7px;"} %>
-            <% end %>
+          <%= form.label :core_skill %>
+          <%= form.fields_for :linkable_core_tech_attributes, @project.linkable_core_tech do |cs| %> 
+            <%= cs.collection_select :tech_stack_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{class: "form-control" ,style:"height: 45px; margin-top: 7px;"} %>
+          <% end %>
+          <%= custom_error( form , :linkable_core_tech) %> 
         </div>
 
         <div class="col-md-6 form-group">
@@ -63,28 +69,3 @@
         <%= form.submit class: 'btn-primary' %>
       </div>
 <% end %>
-
-      <!-- new error message by js -->
-      <% if project.errors.any? %>
-        <% project.errors.each do |error| %>
-          <script>
-            inputf = document.getElementsByName('project[<%=error.attribute.to_s %>]')[0];
-            if(inputf != null )
-          {
-            if(inputf.type=="text" || inputf.type=="number" || inputf.type == "date")
-            {
-            $(inputf).addClass("is-invalid")
-            $("<div class='invalid-feedback'>  <%= error.full_message %> </div>").insertAfter(inputf)
-            } else
-            {
-              alert(inputf.type+'***** <%= error.message %>');
-            }
-          } else
-          {
-            alert('<%=error.attribute.to_s %> ------- <%= error.full_message %>');
-          }
-          </script>
-        <% end %>
-      <% end %>
-
-      <%#= javascript_include_tag 'controllers/js_project' %>

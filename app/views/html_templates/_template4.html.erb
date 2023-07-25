@@ -112,11 +112,13 @@
               </div> 
   
               <div class="col-7 bg-light text-dark py-4 px-5">
+                  <% if !curriculum_vitae.profile_desc.blank? %>
                   <div class="header-right">
                       <h4 class="text-uppercase">profile</h4>
                       <hr>
                       <p><%= curriculum_vitae.profile_desc.html_safe %></p>
                   </div>
+                  <%end%>
                   <div>
                       <% if !curriculum_vitae.cv_projects.blank? %>
                         <h4 class="text-uppercase">Project</h4>
@@ -129,9 +131,11 @@
                                     <li>
                                       <b>Description-</b> <%= project.desc %>
                                     </li>
+                                    <%if !project.original_project_id.blank? %> 
                                     <li>
                                       <b>Domain-</b> <%= Project.find(project.original_project_id).domain&.title %>
                                     </li>
+                                    <%end%>
                                     <%if !project.role.blank? %>
                                     <li>
                                       <b>Role- </b> <%= project.role %>

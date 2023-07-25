@@ -1,4 +1,5 @@
-new DataTable('.data_table_gr',{
+$(document).ready(function() {
+  new DataTable('.data_table_gr',{
     columnDefs: [
       {target: 0,visible: false},
       {target: 2,visible: false},
@@ -7,3 +8,4 @@ new DataTable('.data_table_gr',{
     ],
     order: [[0, 'desc']]
   });
+});

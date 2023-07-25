@@ -50,7 +50,7 @@
    
       <!-- common action css -->
     <%case params['action'] %>
-      <%when "edit", "new" then %>
+      <%when "edit", "new" ,"create" ,"update" then %>
         <%= stylesheet_link_tag  'edit' %>
       <%when "index" then %>
         <%= stylesheet_link_tag  'index' %>

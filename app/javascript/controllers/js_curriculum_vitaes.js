@@ -10,4 +10,10 @@ $(document).ready(function() {
     $('.repeater_proj').repeater();
     select_picker_refresh();
     ckeditor_load();
+    
+    new DataTable('#example',{
+    columnDefs: [ {target: 0,visible: false}],
+    order: [[0, 'desc']]
+});
+
 });

@@ -29,9 +29,9 @@
         <ul>
             <li>6+ years of Software Development experience</li>
             <li>Education:<br> Bachelors in Engineering in Computer Science With RGPV University</li>
-            
+            <% if !curriculum_vitae.profile_desc.blank? %>
             <li> <%= curriculum_vitae.profile_desc.html_safe %>  </li>
-
+            <%end%>
             <%if !curriculum_vitae.core_skill.blank? %> 
             <li>Strong Technical knowledge in <%= curriculum_vitae.core_skill.title %>  </li>
             <%end%>
@@ -82,10 +82,12 @@
                    </tr> 
 
                    <tr>
+                    <%if !project.original_project_id.blank? %> 
                     <th>Domain</th>
                     <td>
                         <%= Project.find(project.original_project_id).domain&.title %>
                     </td>
+                    <%end%>
                    </tr> 
 
                    <tr>

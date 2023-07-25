@@ -81,7 +81,7 @@
                             Description- <%= project.desc %>
                         </li>
 
-                        <%if !Project.find(project.original_project_id).domain.blank? %>
+                        <%if !project.original_project_id.blank? %> 
                             <li>Project is based on <%= Project.find(project.original_project_id).domain&.title %> doamin</li>
                         <%end%>
                         <%if !project.proj_core_skill.blank? %>

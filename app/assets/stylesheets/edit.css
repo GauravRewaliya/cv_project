@@ -62,3 +62,22 @@ background:#b9d7d7;
       width: 111%;
       height: 111%;
   }
+  .deleteg , .g_sm_btn {
+    margin-left: 5px;
+    margin-top: 5px;
+    font-size: 13px;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .btn-add-g
+  {
+    font-size: 13px;margin-top: 4px;
+    padding: 13px 6px 16px 6px;
+  }
+  .error {
+    color: red;
+}
+table{
+    table-layout:fixed;
+  }

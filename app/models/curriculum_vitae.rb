@@ -27,7 +27,7 @@ class CurriculumVitae < ApplicationRecord
       CvProject.where(curriculum_vitae_id: self.id).destroy_all
       CompanyExperience.where(curriculum_vitae_id: self.id).destroy_all
 
-      ProjectCurriculumVitae.where(curriculum_vitae_id: self.id).destroy_all
+      # ProjectCurriculumVitae.where(curriculum_vitae_id: self.id).destroy_all
     end
   
 end

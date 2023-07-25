@@ -122,10 +122,17 @@
                   <%= project_form.label :responsibility %>
                   <%= project_form.text_area :responsibility, class: "ckeditor_g" %>
                 </div>
-                <div class="form-group">
-                  <%= project_form.label :team_size %>
-                  <%= project_form.number_field :team_size ,class:"form-control"%>
-                  <%= custom_error( project_form , :team_size) %> 
+                <div class="row">
+                  <div class="form-group col-6">
+                    <%= project_form.label :team_size %>
+                    <%= project_form.number_field :team_size ,class:"form-control"%>
+                    <%= custom_error( project_form , :team_size) %> 
+                  </div>
+                  <div class="form-group col-6">
+                    <%= project_form.label :domain %>
+                    <%= project_form.collection_select :domain_id, Domain.order(:title), :id, :title, { include_blank: true } ,{class: "form-control" ,style:"height: 45px; margin-top: 7px;"} %>
+                    <%= custom_error( project_form , :domain) %> 
+                  </div>
                 </div>
                 <div>
                   <div class="form-group">

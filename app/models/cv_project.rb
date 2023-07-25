@@ -13,7 +13,9 @@ class CvProject < ApplicationRecord
   has_one :proj_core_skill, through: :linkable_core_tech, source: :tech_stack   
   
   # has_one :domain, through: :project_domain
-  
+  has_one :linkable_domain , as: :connectable , class_name: "LinkableDomain" , dependent: :destroy
+  has_one :domain, through: :linkable_domain, source: :domain   
+   
   accepts_nested_attributes_for :linkable_core_tech , reject_if: :all_blank
   accepts_nested_attributes_for :proj_supportive_skills , reject_if: :all_blank
 
@@ -26,6 +28,18 @@ class CvProject < ApplicationRecord
       self.proj_core_skill = TechStack.find(value)
     else 
       self.proj_core_skill = nil
+    end
+  end
+
+  def domain_id
+    self.domain&.id
+  end
+
+  def domain_id=(value)
+    if !value.blank?
+      self.domain = Domain.find(value)
+    else 
+      self.domain = nil
     end
   end
 end

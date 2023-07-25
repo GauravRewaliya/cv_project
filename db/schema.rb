@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_10_132341) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_25_115750) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -106,6 +106,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_10_132341) do
     t.index ["tech_stack_id"], name: "index_linkable_core_teches_on_tech_stack_id"
   end
 
+  create_table "linkable_domains", force: :cascade do |t|
+    t.integer "domain_id", null: false
+    t.string "connectable_type", null: false
+    t.integer "connectable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["connectable_type", "connectable_id"], name: "index_linkable_domains_on_connectable"
+    t.index ["domain_id"], name: "index_linkable_domains_on_domain_id"
+  end
+
   create_table "linkable_supportive_teches", force: :cascade do |t|
     t.integer "tech_stack_id"
     t.string "connectable_type"
@@ -125,15 +135,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_10_132341) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["candidate_id"], name: "index_profiles_on_candidate_id"
-  end
-
-  create_table "project_domains", force: :cascade do |t|
-    t.integer "project_id", null: false
-    t.integer "domain_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["domain_id"], name: "index_project_domains_on_domain_id"
-    t.index ["project_id"], name: "index_project_domains_on_project_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -177,8 +178,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_10_132341) do
   add_foreign_key "cv_projects", "curriculum_vitaes"
   add_foreign_key "cv_projects", "projects", column: "original_project_id"
   add_foreign_key "linkable_core_teches", "tech_stacks"
+  add_foreign_key "linkable_domains", "domains"
   add_foreign_key "linkable_supportive_teches", "tech_stacks"
   add_foreign_key "profiles", "candidates"
-  add_foreign_key "project_domains", "domains"
-  add_foreign_key "project_domains", "projects"
 end

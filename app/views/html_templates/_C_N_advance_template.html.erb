@@ -468,11 +468,11 @@
                                         </h4>
                                     </div>
                                         <!--  domain ...  -->
-                                        <%if !project.original_project_id.blank? %> 
+                                        <%if !project.domain.blank? %> 
                                     <div class="educational_sub_se">
                                         <span class="dot"></span>
                                         <h4> 
-                                            Domain- <%= Project.find(project.original_project_id).domain&.title %>
+                                            Domain- <%=project.domain&.title %>
                                         </h4>
                                     </div>
                                     <%end%>

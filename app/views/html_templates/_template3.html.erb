@@ -57,19 +57,20 @@
                     </p>
                   </div>
                 <% end %>
-
-                  <div class="card-header">
-                    <h4>Supportive Skills:</h4>
-                  </div>
-                  <div class="card-body">
-                      <% curriculum_vitae.supportive_skills.each do |supportive_skill| %>
-                          <h5>Title:<%= supportive_skill.title %>
-                          </h5>
-                          <p>
-                            <%= supportive_skill.desc %>
-                          </p>
-                      <% end %>
-                  </div>
+                  <% if !curriculum_vitae.supportive_skills.blank? %>
+                    <div class="card-header">
+                      <h4>Supportive Skills:</h4>
+                    </div>
+                    <div class="card-body">
+                        <% curriculum_vitae.supportive_skills.each do |supportive_skill| %>
+                            <h5>Title:<%= supportive_skill.title %>
+                            </h5>
+                            <p>
+                              <%= supportive_skill.desc %>
+                            </p>
+                        <% end %>
+                    </div>
+                  <%end%>
                   
                   <%if !curriculum_vitae.company_experiences.blank?%>
                     <div class="card-header">
@@ -127,8 +128,8 @@
                               <%end%>
                               <div style="text-align: left;padding-right: 8%;padding-left: 8%;">
                               <p class="mt-2 mb-0">Description- <%= project.desc %></p>
-                              <%if !project.original_project_id.blank? %> 
-                              <p class="mt-0 mb-0">Domain- <%= Project.find(project.original_project_id).domain&.title %></p>
+                              <%if !project.domain.blank? %> 
+                              <p class="mt-0 mb-0">Domain- <%= project.domain&.title %></p>
                               <%end%>
                               <p class="mt-0 mb-0">Role- <%= project.role %></p>
                               <%if !project.responsibility.blank? %>

@@ -6,9 +6,9 @@ class TechStack < ApplicationRecord
       has_many :linkable_core_techs
       has_many :projects, through: :linkable_core_techs, source: :connectable, source_type: 'Project'
 
-    before_destroy :destroy_with_associations
+    before_destroy :destroy_fun
 
-  def destroy_with_associations
+  def destroy_fun
     LinkableCoreTech.where(tech_stack_id: self.id).destroy_all
     LinkableSupportiveTech.where(tech_stack_id: self.id).destroy_all
   end

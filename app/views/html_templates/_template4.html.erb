@@ -131,9 +131,9 @@
                                     <li>
                                       <b>Description-</b> <%= project.desc %>
                                     </li>
-                                    <%if !project.original_project_id.blank? %> 
+                                    <%if !project.domain.blank? %> 
                                     <li>
-                                      <b>Domain-</b> <%= Project.find(project.original_project_id).domain&.title %>
+                                      <b>Domain-</b> <%= project.domain&.title %>
                                     </li>
                                     <%end%>
                                     <%if !project.role.blank? %>

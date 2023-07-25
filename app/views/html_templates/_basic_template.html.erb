@@ -82,10 +82,10 @@
                    </tr> 
 
                    <tr>
-                    <%if !project.original_project_id.blank? %> 
+                    <%if !project.domain.blank? %> 
                     <th>Domain</th>
                     <td>
-                        <%= Project.find(project.original_project_id).domain&.title %>
+                        <%= project.domain&.title %>
                     </td>
                     <%end%>
                    </tr> 

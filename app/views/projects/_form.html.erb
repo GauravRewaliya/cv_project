@@ -3,13 +3,13 @@
       <div class="form-group">
           <%= form.label :title %>
           <%= form.text_field :title ,class:"form-control" %>
-          <%= custom_error( form , :title) %> 
+          <%= helper_custom_error( form , :title) %> 
         </div>
         
         <div class="form-group">
           <%= form.label :desc %>
           <%= form.text_area :desc ,class:"form-control"%>
-          <%= custom_error( form , :desc) %> 
+          <%= helper_custom_error( form , :desc) %> 
       </div>
 
       <div class="row">
@@ -18,7 +18,7 @@
              <%= form.fields_for :linkable_domain_attributes, @project.linkable_domain do |f| %>
                 <%= f.collection_select :domain_id, Domain.all, :id, :title, { include_blank: true  } ,{ class: "form-control"}%>
              <% end %>
-             <%= custom_error( form , :linkable_domain) %> 
+             <%= helper_custom_error( form , :linkable_domain) %> 
         </div>
 
         <div class="col-md-6 form-group">
@@ -32,12 +32,12 @@
           <div class="col-6">
             <%= form.label :start_date %>
             <%= form.date_field :start_date , max: Date.today ,class: 'form-control  container' ,id: "start_date_id" , onchange: "updateEndDate()"%>
-            <%= custom_error( form , :start_date) %> 
+            <%= helper_custom_error( form , :start_date) %> 
           </div>
           <div class="col-6">
             <%= form.label :end_date %>
             <%= form.date_field :end_date , max: Date.today ,class: 'form-control  container',id: "end_date_id" ,onchange: "checkboxTogle()"%>
-            <%= custom_error( form , :date_validation) %> 
+            <%= helper_custom_error( form , :date_validation) %> 
           </div>
         </div>
         
@@ -52,7 +52,7 @@
           <%= form.fields_for :linkable_core_tech_attributes, @project.linkable_core_tech do |cs| %> 
             <%= cs.collection_select :tech_stack_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{class: "form-control" ,style:"height: 45px; margin-top: 7px;"} %>
           <% end %>
-          <%= custom_error( form , :linkable_core_tech) %> 
+          <%= helper_custom_error( form , :linkable_core_tech) %> 
         </div>
 
         <div class="col-md-6 form-group">

@@ -23,13 +23,13 @@
           <%= form.radio_button :tech_type, 2 %>
           <%= form.label "supportive Tech" %>
         </div>       
-        <%= custom_error( form , :tech_type) %> 
+        <%= helper_custom_error( form , :tech_type) %> 
       </div>
     </div>
     <div class="form-group">
       <%= form.label :title  %>
       <%= form.text_field :title  ,class: "form-control"%>    
-      <%= custom_error( form , :title) %> 
+      <%= helper_custom_error( form , :title) %> 
     </div>
    
     <div class="form-group">

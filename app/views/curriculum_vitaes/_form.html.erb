@@ -44,7 +44,7 @@
           <%= form.fields_for :linkable_core_tech_attributes, curriculum_vitae.linkable_core_tech do  |cs| %>
             <%= cs.collection_select :tech_stack_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{ id: "core_tech_select_id" ,class: "form-control"}%>
           <% end %>
-          <%= custom_error( form , :linkable_core_tech) %> 
+          <%= helper_custom_error( form , :linkable_core_tech) %> 
       </div>
       <div class="col-md-6">
         <%= form.label :supportive_skills %>
@@ -60,10 +60,10 @@
                 <div class="col-6" style="padding-right: 0px;padding-left: 0px;">
                   <%=form.label "Company Name"  %>
                   <%= company_experience_form.text_field :company_name  ,class: "form-control" %>
-                  <%= custom_error( company_experience_form , :company_name) %> 
+                  <%= helper_custom_error( company_experience_form , :company_name) %> 
                   <%=form.label "Role" ,style:"margin-top: 0px;" %>
                   <%= company_experience_form.text_field :role  ,class: "form-control" %>
-                  <%= custom_error( company_experience_form , :role) %> 
+                  <%= helper_custom_error( company_experience_form , :role) %> 
                 </div>
                 <div class="col-5" style="padding-right: 0px;">
                     <div class="row">
@@ -106,32 +106,32 @@
                 <div class="form-group">
                   <%= project_form.label :title %>
                   <%= project_form.text_field :title ,class:"form-control" %>
-                  <%= custom_error( project_form , :title) %> 
+                  <%= helper_custom_error( project_form , :title) %> 
                 </div>
                 <div class="form-group">
                   <%= project_form.label :desc %>
                   <%= project_form.text_area :desc ,class:"form-control"%>
-                  <%= custom_error( project_form , :desc) %> 
+                  <%= helper_custom_error( project_form , :desc) %> 
                 </div>
                 <div class="form-group">
                   <%= project_form.label :role %>
                   <%= project_form.text_field :role ,class:"form-control"%>
-                  <%= custom_error( project_form , :role) %> 
+                  <%= helper_custom_error( project_form , :role) %> 
                 </div>
                 <div class="form-group">
                   <%= project_form.label :responsibility %>
                   <%= project_form.text_area :responsibility, class: "ckeditor_g" %>
                 </div>
                 <div class="row">
-                  <div class="form-group col-6">
+                  <div class="col-6">
                     <%= project_form.label :team_size %>
                     <%= project_form.number_field :team_size ,class:"form-control"%>
-                    <%= custom_error( project_form , :team_size) %> 
+                    <%= helper_custom_error( project_form , :team_size) %> 
                   </div>
-                  <div class="form-group col-6">
+                  <div class="col-6">
                     <%= project_form.label :domain %>
-                    <%= project_form.collection_select :domain_id, Domain.order(:title), :id, :title, { include_blank: true } ,{class: "form-control" ,style:"height: 45px; margin-top: 7px;"} %>
-                    <%= custom_error( project_form , :domain) %> 
+                    <%= project_form.collection_select :domain_id, Domain.order(:title), :id, :title, { include_blank: true } ,{class: "form-control"} %>
+                    <%= helper_custom_error( project_form , :domain) %> 
                   </div>
                 </div>
                 <div>
@@ -140,7 +140,7 @@
                       <div class="col-6">
                         <%= project_form.label :start_date %>
                         <%= project_form.date_field :start_date , max: Date.today ,class: 'form-control start_date container' ,onchange:"updateEndDate(this)"%>
-                        <%= custom_error( project_form , :start_date) %> 
+                        <%= helper_custom_error( project_form , :start_date) %> 
                       </div>
                       <div class="col-6">
                         <%= project_form.label :end_date  %>
@@ -161,7 +161,7 @@
                         <%= cs.collection_select :tech_stack_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{class: "form-control" ,style:"height: 45px; margin-top: 7px;"} %>
                         <%end%> -->
                         <%= project_form.collection_select :proj_core_skill_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{class: "form-control" ,style:"height: 45px; margin-top: 7px;"} %>
-                        <%= custom_error( project_form , :proj_core_skill) %> 
+                        <%= helper_custom_error( project_form , :proj_core_skill) %> 
                       </div>
                   </div>
                   <div class="col-md-6">

@@ -6,7 +6,7 @@
       <tr>
         <td><%= form.label :name %></td>
         <td><%= form.text_field :name ,class: "form-control"%>
-          <%= custom_error( form , :name) %> 
+          <%= helper_custom_error( form , :name) %> 
         </td>
       </tr>
     </div>
@@ -14,7 +14,7 @@
       <tr>
         <td><%= form.label "Employee ID" %></td>
         <td><%= form.text_field :employ_id ,class: "form-control"%>
-          <%= custom_error( form , :employ_id) %> 
+          <%= helper_custom_error( form , :employ_id) %> 
         </td>
       </tr>
     </div>
@@ -27,7 +27,7 @@
           <tr>   
             <td><%= profile_form.label :email %></td>
             <td><%= profile_form.text_field :email ,class: "form-control"%>
-              <%= custom_error( profile_form , :email) %> </td>
+              <%= helper_custom_error( profile_form , :email) %> </td>
           </tr>
       </div>
         <div class="field">
@@ -35,7 +35,7 @@
             <td><%= profile_form.label :contact %></td>
             <td>
               <%= profile_form.number_field :contact ,class: "form-control"%>
-              <%= custom_error( profile_form , :contact) %> 
+              <%= helper_custom_error( profile_form , :contact) %> 
             </td>
           </tr>
         </div>
@@ -43,7 +43,7 @@
           <tr>
             <td><%= profile_form.label :address %></td>
             <td><%= profile_form.text_field :address ,class: "form-control"%>
-              <%= custom_error( profile_form , :address) %> 
+              <%= helper_custom_error( profile_form , :address) %> 
             </td>
           </tr>
         </div>
@@ -62,7 +62,7 @@
                   <%= profile_form.label "Female" %>
                   <%= profile_form.radio_button :gender, 'Female' %>
                 </div>
-                <%= custom_error( profile_form , :gender) %> 
+                <%= helper_custom_error( profile_form , :gender) %> 
             </td>
           </tr>
         </div>
@@ -74,7 +74,7 @@
         <%= form.fields_for :linkable_core_tech_attributes, candidate.linkable_core_tech do  |cs| %>
           <%= cs.collection_select :tech_stack_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{ id: "core_tech_select_id" ,class: "form-control"}%>
         <% end %>
-        <%= custom_error( form , :linkable_core_tech) %> 
+        <%= helper_custom_error( form , :linkable_core_tech) %> 
     </div>
     <div class="col-md-6">
          <%= form.label :supportive_skills %>

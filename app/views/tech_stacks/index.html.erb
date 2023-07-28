@@ -12,7 +12,7 @@
       <tr style="color:White">
         <th>Title</th>
         <th>Description</th>
-        <th>type</th>
+        <th class="hideOnNeed2">type</th>
         <th class="table_button_gr">Edit</th>
         <th class="table_button_gr">Delete</th>
         <th class="table_button_gr">Show</th>
@@ -23,7 +23,7 @@
         <tr>
           <td ><h6><%= tech_stack.title %></h6></td>
           <td><p><%= tech_stack.desc %></p></td>
-          <td><p><%= display_tech_type(tech_stack.tech_type) %></p></td>
+          <td class="hideOnNeed2"><p><%= display_tech_type(tech_stack.tech_type) %></p></td>
           <td><%= link_to "Edit", edit_tech_stack_path(tech_stack),class: "material-symbols-outlined" %></td>
           <td><%= button_to "" , tech_stack , method: :delete ,class: "fa-solid fa-trash alert-light "%></td>
           <td>

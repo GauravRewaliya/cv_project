@@ -2,8 +2,6 @@
 [class^="col-"] 
 {
    margin: 0;
-   padding-right: 7px;
-   padding-left: 7px;
 }
 
 * {
@@ -24,14 +22,10 @@ a:hover {
   color: red;
 border: none;
 }
-.material-symbols-outlined
-{
-  color: #6446e3de;
+.material-symbols-outlined {
+  color: #43a5b0;
 }
 .content
 {
   margin-top: 60px; 
 }   
-.row{
-  
-}

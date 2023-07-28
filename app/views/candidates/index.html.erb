@@ -10,12 +10,12 @@
     <tr style=" color: white">
       <th>update_at</th>
       <th class="needCol">name</th>
-      <th class="hideOnNeed">employ_id</th>
-      <th >email</th>
-      <th >contact</th>
-      <th class="hideOnNeed">address</th>
+      <th class="hideOnNeed2">employ_id</th>
+      <th class="hideOnNeed1">email</th>
+      <th class="hideOnNeed1">contact</th>
+      <th class="hideOnNeed2">address</th>
       <!-- <th>Gender</th> -->
-      <th>core_skill</th>
+      <th class="hideOnNeed2">core_skill</th>
       <th>supportive_skill</th>
       <th class="needCol table_button_gr">Edit</th>
       <th class="needCol table_button_gr">Delete</th>
@@ -27,13 +27,13 @@
   <tr>
     <td><%=candidate.updated_at%></td>
     <td  class="needCol"><h6><%= candidate.name %></h6></td>
-    <td class="hideOnNeed"><p><%= candidate.employ_id %></p></td>
+    <td class="hideOnNeed2"><p><%= candidate.employ_id %></p></td>
     
-    <td><p><%= candidate.profile.email %></p></td>
-    <td><p><%= candidate.profile.contact %></p></td>
-    <td class="hideOnNeed"><p><%= candidate.profile.address %></p></td>
-    <td><%= candidate.core_tech&.title %></td>
-    <td>
+    <td class="hideOnNeed1"><p><%= candidate.profile.email %></p></td>
+    <td class="hideOnNeed1"><p><%= candidate.profile.contact %></p></td>
+    <td class="hideOnNeed2"><p><%= candidate.profile.address %></p></td>
+    <td class="hideOnNeed2"><%= candidate.core_tech&.title %></td>
+    <td >
       <% candidate.supportive_techs.each do |skill| %>
       <%= skill.title.to_s+","%>
      <%end%>

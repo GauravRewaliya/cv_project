@@ -22,20 +22,20 @@ p{
 .topHeader{
     font-size: 30px;
     
-    position: relative;
-    left: 10px;
-    bottom: 40px;
+    /* position: relative;
+    left: 10px; */
+    text-align: center;
 }
 .formBox {
     /* margin: 6%; */
-    padding: 80px;
-    height: 70%;
-    width: 400px;
+    padding: 56px;
+    /* height: 25%; */
+    width: 399px;
     background: #f8f8f875;
     justify-content: center;
     border: 2px solid white;
     border-radius: 20px;
-    backdrop-filter: blur(3px);
+    /* backdrop-filter: blur(3px); */
 }
 .formContainer{
     display: flex;
@@ -69,6 +69,7 @@ i{
     background-color: black;
     color: white;
     font-family: Comic Sans MS;
+    font-size: 20px;
 }
 #forgotPW
 {
@@ -89,3 +90,10 @@ i{
     margin-top: 15px;
     margin-bottom: 15px;
 }
+body
+  {
+      transform: scale(0.9);
+      transform-origin: top left;
+      width: 111%;
+      height: 111%;
+  }

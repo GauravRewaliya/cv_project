@@ -1,9 +1,10 @@
-<div class="top_header d-flex justify-content-between">
-  <div>
-    <h1 class="pos_l">Skills</h1>
-    <%= link_to "New Skill", new_tech_stack_path ,class: 'btn btn-primary new_pos_t' %>
+<div class="card" >
+  <div class="card-body">
+  <div class="index_top_header">
+    <h1 >Skills</h1>
+    <%= link_to "+ Add Skill", new_tech_stack_path ,class: 'btn btn-primary pos_card_new' %>
   </div>
-</div>
+
 
 <div class="table_gr" >
   <table class="table table-hover table-striped data_table_gr" , style="width:100%;">
@@ -12,9 +13,9 @@
         <th>Title</th>
         <th>Description</th>
         <th>type</th>
-        <th>Edit</th>
-        <th>Delete</th>
-        <th>Show</th>
+        <th class="table_button_gr">Edit</th>
+        <th class="table_button_gr">Delete</th>
+        <th class="table_button_gr">Show</th>
       </tr>
     </thead>
     <tbody>
@@ -34,4 +35,6 @@
       <% end %>
     </tbody>
   </table>
+</div>
+</div>
 </div>

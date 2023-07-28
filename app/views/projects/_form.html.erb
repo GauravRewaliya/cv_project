@@ -50,7 +50,7 @@
         <div class="col-md-6 form-group">
           <%= form.label :core_skill %>
           <%= form.fields_for :linkable_core_tech_attributes, @project.linkable_core_tech do |cs| %> 
-            <%= cs.collection_select :tech_stack_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{class: "form-control" ,style:"height: 45px; margin-top: 7px;"} %>
+            <%= cs.collection_select :tech_stack_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{class: "form-control" ,style:"margin-top: 7px;"} %>
           <% end %>
           <%= helper_custom_error( form , :linkable_core_tech) %> 
         </div>
@@ -66,6 +66,6 @@
       </div>
 
       <div>
-        <%= form.submit class: 'btn-primary' %>
+        <%= form.submit class: 'btn btn-success' %>
       </div>
 <% end %>

@@ -1,72 +1,63 @@
+<div class="container-md">
 <div class="card text-center" >
-  <div class="card-header">
-    
-    
-    <%= link_to "arrow_back", projects_path ,class:"pos_l material-symbols-outlined"  %>
+    <%= link_to "arrow_back", projects_path ,class:"pos_card_l material-symbols-outlined"  %>
     <h3>
-      <strong>Title:</strong>
       <%= @project.title %>
     </h3>
-
-  </div>
-
   <div class="card-body">
-
     <div class="formBox">
         <div class="formContainer">
-          <h5 >Description</h5>
-          <p >
-            <%= @project.desc %>
-          </p>
-
-          <%if !@project.domain.blank?%>
-            <h5 >Domain</h5>
-            <p >
-              <%= @project.domain.title %>
-            </p>
-          <%end%>
-
-          <%if !@project.team_size.blank?%>
-            <h5 >Team Size</h5>
-            <p >
-              <%= @project.team_size %>
-            </p>
-          <%end%>
-  
-          <div class="row justify-content-md-center">
-            <div class="col-5">
-            <h5 >Start Date</h5>
-            <p >
-              <%= @project.start_date %>
-            </p>
-            </div>
-            <div class="col-5">
-              <h5 >End Date</h5>
-              <p >
-                <%if !@project.end_date.blank?%>
-                <%= @project.end_date %>
-                <%else %>
-                Project is still running
+          <table style="text-align: left;">
+            <tr>
+              <th class="show_h">Domain:</th>
+              <td class="show_details"> 
+                <!-- <%if !@project.domain.blank?%> -->
+                <%= @project.domain&.title %>
+                <!-- <%end%> -->
+              </td>
+            </tr>
+            <tr>
+              <th>Team Size:</th>
+            <td> 
+                <%if !@project.team_size.blank?%>
+                <%= @project.team_size %>
                 <%end%>
-              </p>
-            </div>
-          </div>
-    
-          <% if !@project.core_skill.blank? %>
-            <h5 >Core Skill</h5>
-            <p >
-              <%= @project.core_skill&.title %>
-            </p>
-          <%end%>
+              </td>
+            </tr>
+              <tr>
+                <th>Start Date</th>
+                <td><%= @project.start_date %></td>
+              </tr>
+              <tr>
+                <th>End Date</th>
+                <td>
+                  <%if !@project.end_date.blank?%>
+                  <%= @project.end_date %>
+                  <%else %>
+                  Project is still running
+                  <%end%>
+                </td>
+              </tr>
 
-          <% if !@project.supportive_skills.blank? %>
-            <h5 >Supportive Skills</h5>
-            <p >
-              <% @project.supportive_skills.each do |supportive_skill| %>
-                <%= supportive_skill.title+"," %>
-              <%end%>
-            </p>
-          <%end%>
+              <tr>
+                <th>Core Skill</th>
+                <td><%= @project.core_skill&.title %></td>
+              </tr>
+              <tr>
+                <th>Supportive Skills</th>
+                <td>
+                  <% @project.supportive_skills.each do |supportive_skill| %>
+                    <%= supportive_skill.title+"," %>
+                  <%end%>
+                </td>
+              </tr>
+            <tr>
+              <th>Description:</th>
+              <td> 
+                <%= @project.desc %>
+              </td>
+            </tr>
+          </table>
         </div>
     </div>
   </div>
@@ -76,4 +67,5 @@
     <%= link_to "Edit this project", edit_project_path(@project) %>
     <%= button_to "Destroy this project", @project, method: :delete ,class:"btn btn-outline-danger pos_r"%>
   </div>
+</div>
 </div>

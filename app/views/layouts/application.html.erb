@@ -49,14 +49,7 @@
       <script src="/assets/controllers/js_<%=params['controller'] %>" ></script>
    
       <!-- common action css -->
-    <%case params['action'] %>
-      <%when "edit", "new" ,"create" ,"update" then %>
         <%= stylesheet_link_tag  'edit' %>
-      <%when "index" then %>
-        <%= stylesheet_link_tag  'index' %>
-      <%when "show" then %>
-        <%= stylesheet_link_tag  'show' %>
-    <%end%>
 
     <% if user_signed_in? %>
       <%= render 'shared/navbar' %>

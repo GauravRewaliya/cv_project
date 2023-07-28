@@ -1,7 +1,9 @@
-<div class="card">
-  <%= link_to "arrow_back", candidates_path ,class:"pos_card_l material-symbols-outlined"%>
-  <div class="card-body">
-    <%= render "form", candidate: @candidate %>
+<div class="container-md">
+  <div class="card">
+    <h1 >New candidate</h1>
+    <%= link_to "arrow_back", candidates_path ,class:"pos_card_l material-symbols-outlined"%>
+    <div class="card-body">
+      <%= render "form", candidate: @candidate %>
+    </div>
   </div>
 </div>
-

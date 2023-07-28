@@ -1,7 +1,6 @@
-
+<div class="container-md">
 <div class="card text-center" >
-  <div class="card-header">
-    <%= link_to "arrow_back", candidates_path ,class:"pos_l material-symbols-outlined"  %>
+    <%= link_to "arrow_back", candidates_path ,class:"pos_card_l material-symbols-outlined"  %>
     <h3>
       <strong>Candidate</strong>
     </h3>
@@ -25,6 +24,8 @@
                 <th>gender:</th>
                 <td>  <%= @candidate.profile.gender %></td>
               </tr>
+            </table>
+            <table style="text-align: left;">
               <tr>
                 <th>address:</th>
                 <td>  <%= @candidate.profile.address %></td>
@@ -46,7 +47,6 @@
                   <%end%>
                 </td>
               </tr>
-
             </table>
           </div>
       </div>
@@ -55,5 +55,5 @@
       <%= link_to "Edit this candidate", edit_candidate_path(@candidate) %>
       <%= button_to "Destroy this candidate", @candidate, method: :delete ,class:"btn btn-outline-danger pos_r"%>
     </div>
-  </div>
+</div>
 </div>

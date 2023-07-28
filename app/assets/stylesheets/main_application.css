@@ -2,6 +2,8 @@
 [class^="col-"] 
 {
    margin: 0;
+   padding-right: 7px;
+   padding-left: 7px;
 }
 
 * {
@@ -30,3 +32,6 @@ border: none;
 {
   margin-top: 60px; 
 }   
+.row{
+  
+}

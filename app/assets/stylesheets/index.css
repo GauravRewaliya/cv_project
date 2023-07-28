@@ -18,7 +18,7 @@
       margin-top: -4px;
       margin-bottom: 15px;
     }
-    .new_pos_t
+    .add_pos_btn
     {
       margin-top: 0px;
       margin-bottom: 10px;
@@ -57,3 +57,18 @@
 .table_button_gr{
   width: 5%!important;
 }
+@media (max-width: 768px) {
+  table th:not(.needCol) , table td:not(.needCol)
+  {
+    display: none;
+  }
+}
+@media (max-width: 1100px) {
+  table th.hideOnNeed , 
+  table td.hideOnNeed {
+    display: none;
+  }
+}
+table 
+  { width: 100%;
+  }

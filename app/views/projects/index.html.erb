@@ -1,20 +1,22 @@
-<div class="top_header">
-  <h1 class="pos_l">Projects</h1>
-  <%= link_to "New project", new_project_path,class: 'btn btn-primary new_pos_t' %>
-</div>
+<div class="card" >
+  <div class="card-body">
+  <div class="index_top_header">
+    <h1 >Projects</h1>
+    <%= link_to "+ Add project", new_project_path,class: 'btn btn-primary pos_card_new' %>
+  </div>
 <div class="table_gr">
   <table class="table table-hover table-striped data_table_gr" id="gr" style="width: 100%;">
    <thead>
     <tr style="color:white;">
-       <th>Title</th>
-       <th>Description</th>
-       <th>Domain</th>
-       <th>team_size</th>
-       <th>core_skill</th>
-       <th>supportive_skill</th>
-       <th>Edit</th>
-      <th>Delete</th>
-      <th>Show</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Domain</th>
+      <th>team_size</th>
+      <th>core_skill</th>
+      <th>supportive_skill</th>
+      <th class="table_button_gr">Edit</th>
+      <th class="table_button_gr">Delete</th>
+      <th class="table_button_gr">Show</th>
      </tr>
     </thead>
     <tbody>
@@ -41,4 +43,6 @@
   <% end %>
     </tbody>
   </table>
+</div>
+</div>
 </div>

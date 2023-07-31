@@ -93,6 +93,13 @@ background-size: cover;
   width: 100%;
   overflow-x: auto;
 }
+.table_gr table
+{
+  background-image: linear-gradient(36deg,#d4d2dd45 31%,rgb(244 244 255 / 36%) 26%,#fdfdfd4a),linear-gradient(212deg,#bbbabf45 36%,rgb(239 237 237 / 61%) 22%,#dfdde94f);
+}
+.table_gr div{
+  width: 99%;
+}
 thead , tfoot {
   background-color: #43a5b0;
 }
@@ -129,12 +136,12 @@ thead , tfoot {
   background-color: rgb(212 247 255 / 70%) !important;
     box-shadow: inset -4px 1px 16px 0px #5164c187;
 }
-tr.even {   
+/* tr.even {   
    background: #f1edff !important;
 }
 tr.odd {
   background: #f5f4f4 !important;
-}
+} */
 .show_h
 {
     width: 27%;

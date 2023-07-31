@@ -1,5 +1,6 @@
 <% if resource.errors.any? %>
-  <div id="error_explanation" data-turbo-cache="false" style="color: #db1d1d;font-size: 17px;font-weight: 500;">
+  <!-- <div id="error_explanation" data-turbo-cache="false" style="color: #db1d1d;font-size: 17px;font-weight: 500;"> -->
+  <div class="alert alert-warning" role="alert" id="error_explanation" data-turbo-cache="false" style="border-radius: 26px;font-weight: 500;">
     <h2>
       <%= I18n.t("errors.messages.not_saved",
                  count: resource.errors.count,
@@ -13,3 +14,10 @@
     </ul>
   </div>
 <% end %>
+<style>
+  .alert-warning {
+    color: #fb5050;
+    background-color: #fff3cd;
+    border-color: #ffbaba;
+}
+</style>

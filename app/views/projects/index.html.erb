@@ -12,7 +12,7 @@
       <th class="hideOnNeed1">Description</th>
       <th class="hideOnNeed2">Domain</th>
       <th class="hideOnNeed2">team_size</th>
-      <th class="hideOnNeed2">core_skill</th>
+      <th class="hideOnNeed2">Core Skill</th>
       <th>supportive_skill</th>
       <th class="table_button_gr">Edit</th>
       <th class="table_button_gr">Delete</th>
@@ -33,7 +33,7 @@
         <%end%>
     </p></td>
     <td><%= link_to "Edit", edit_project_path(project),class: "material-symbols-outlined" %></td>
-    <td><%= button_to "" , project , method: :delete ,class: "fa-solid fa-trash alert-light "%></td>
+    <td><%= button_to "delete" , project , method: :delete ,class: "material-symbols-outlined symbols_delete"%></td>
     <td>
       <%= link_to (project) , class: 'material-symbols-outlined' do %>
       <span>Visibility</span>

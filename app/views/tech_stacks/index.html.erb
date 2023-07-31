@@ -25,7 +25,7 @@
           <td><p><%= tech_stack.desc %></p></td>
           <td class="hideOnNeed2"><p><%= display_tech_type(tech_stack.tech_type) %></p></td>
           <td><%= link_to "Edit", edit_tech_stack_path(tech_stack),class: "material-symbols-outlined" %></td>
-          <td><%= button_to "" , tech_stack , method: :delete ,class: "fa-solid fa-trash alert-light "%></td>
+          <td><%= button_to "delete" , tech_stack , method: :delete ,class: "material-symbols-outlined symbols_delete"%></td>
           <td>
             <%= link_to (tech_stack) , class: 'material-symbols-outlined' do %>
             <span>Visibility</span>

@@ -1,5 +1,6 @@
 .pos_l{
   margin-left: 16%;
+  /* mostly eleminated */
 }
 .filter-option{
   background: white;
@@ -194,6 +195,6 @@ tbody tr:hover {
 .form-group{
 margin-bottom: 2px;
 } 
-p {
-  margin-top: 1px;
-}
+/* p {
+  padding-top: 1px;
+} */

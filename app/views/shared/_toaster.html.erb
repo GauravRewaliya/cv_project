@@ -1,0 +1,39 @@
+<div class="notifications">
+    <% if notice %>
+      <!-- <p style="color: green" class="notice">
+        <%= notice %>
+      </p> -->
+      <div class="toast success" data-delay="5000">
+          <div class="toast-header">
+              <i class="fa-solid fa-circle-check"></i>
+          <strong class="mr-auto">
+              <%= notice %>
+          </strong>
+          <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close" >
+              <span aria-hidden="true">&times;</span>
+          </button>
+         </div>
+      </div>
+    <% end%>
+
+    <% if alert %>
+      <!-- <p style="color: red" class="alert">
+        <%= alert %>
+      </p> -->
+      <div class="toast error" data-delay="5000">
+          <div class="toast-header">
+              <i class="fa-solid fa-circle-xmark"></i>
+              <strong class="mr-auto">Something Wrong</strong>
+              <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="toast-body">
+              <%= alert %>
+          </div>
+      </div>
+    <% end%>
+
+</div>
+<%= stylesheet_link_tag  'toaster' %>  
+<%= javascript_include_tag "controllers/toaster" %>

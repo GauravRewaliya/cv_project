@@ -30,7 +30,8 @@ p{
     /* margin: 6%; */
     padding: 56px;
     /* height: 25%; */
-    width: 399px;
+    /* width: 399px; */
+    /* width: 30%; */
     background: #f8f8f875;
     justify-content: center;
     border: 2px solid white;
@@ -90,10 +91,10 @@ i{
     margin-top: 15px;
     margin-bottom: 15px;
 }
-body
+/* body
   {
       transform: scale(0.9);
       transform-origin: top left;
       width: 111%;
       height: 111%;
-  }
+  } */

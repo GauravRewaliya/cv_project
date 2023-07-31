@@ -33,7 +33,7 @@
             </td>
         
             <td><%= link_to "Edit", edit_curriculum_vitae_path(curriculum_vitae) ,class: "material-symbols-outlined"%></td>
-            <td><%= button_to "" , curriculum_vitae , method: :delete ,class: "fa-solid fa-trash alert-light "%></td>
+            <td><%= button_to "delete" , curriculum_vitae , method: :delete ,class: "material-symbols-outlined symbols_delete"%></td>
         
             <td>
               <%= link_to curriculum_vitae ,target: '_blank' , class: 'material-symbols-outlined' do %>

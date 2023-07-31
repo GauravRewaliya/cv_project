@@ -1,7 +1,7 @@
 <div class="card" >
   <div class="card-body">
     <div class="index_top_header">
-    <h1 class="pos_l">Candidates</h1>
+    <h1>Candidates</h1>
     <%= link_to "New candidate", new_candidate_path ,class: 'btn btn-primary pos_card_new' %>
     </div>
 <div class="table_gr" >
@@ -15,8 +15,8 @@
       <th class="hideOnNeed1">contact</th>
       <th class="hideOnNeed2">address</th>
       <!-- <th>Gender</th> -->
-      <th class="hideOnNeed2">core_skill</th>
-      <th>supportive_skill</th>
+      <!-- <th class="hideOnNeed2">core_skill</th> -->
+      <!-- <th>supportive_skill</th> -->
       <th class="needCol table_button_gr">Edit</th>
       <th class="needCol table_button_gr">Delete</th>
       <th class="needCol table_button_gr">Show</th>
@@ -32,14 +32,17 @@
     <td class="hideOnNeed1"><p><%= candidate.profile.email %></p></td>
     <td class="hideOnNeed1"><p><%= candidate.profile.contact %></p></td>
     <td class="hideOnNeed2"><p><%= candidate.profile.address %></p></td>
-    <td class="hideOnNeed2"><%= candidate.core_tech&.title %></td>
-    <td >
-      <% candidate.supportive_techs.each do |skill| %>
-      <%= skill.title.to_s+","%>
-     <%end%>
-    </td>
+    <!-- <td class="hideOnNeed2"><%#= candidate.core_tech&.title %></td> -->
+    <!-- <td >
+      <%# candidate.supportive_techs.each do |skill| %>
+      <%#= skill.title.to_s+","%>
+     <%#end%>
+    </td> -->
     <td  class="needCol"><%= link_to "Edit", edit_candidate_path(candidate) ,class: "material-symbols-outlined" %></td>
-    <td  class="needCol"><%= button_to "" , candidate , method: :delete ,class: "fa-solid fa-trash alert-light "%></td>
+    <!-- <td  class="needCol"><%= button_to "" , candidate , method: :delete ,class: "fa-solid fa-trash alert-light "%></td> -->
+    <td  class="needCol">
+      <%= button_to "delete" , candidate , method: :delete ,class: "material-symbols-outlined symbols_delete"%>
+    </td>
     <td  class="needCol">
     <%= link_to (candidate) , class: 'material-symbols-outlined' do %>
     <span>Visibility</span>

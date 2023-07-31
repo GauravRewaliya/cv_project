@@ -18,7 +18,7 @@
         <tr>
           <td><p><%= domain.title %></p></td>
           <td><%= link_to "Edit", edit_domain_path(domain),class: "material-symbols-outlined" %></td>
-          <td><%= button_to "" , domain , method: :delete ,class: "fa-solid fa-trash alert-light "%></td>
+          <td><%= button_to "delete" , domain , method: :delete ,class: "material-symbols-outlined symbols_delete"%></td>
         </tr>
       <% end %>
     </tbody>

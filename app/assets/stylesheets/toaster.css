@@ -1,0 +1,64 @@
+
+:root{
+    --success: green;
+    --error: red;
+    --warning: yellow;
+    }
+    .notifications{
+    position: absolute;
+    right: 0;
+    z-index: 5;
+    }
+    .notifications .toast{
+        border: none;
+        animation: show_toast 0.3s ease forwards;
+    }
+    @keyframes show_toast {
+        0%{
+            transform: translateX(100%);
+        }
+        40%{
+            transform: translateX(-5%);
+        }
+        80%{
+            transform: translateX(0%);
+        }
+        100%{
+            transform: translateX(-10%);
+        }
+    }
+
+    
+.toast::before{
+    position: absolute;
+    content: "";
+    height: 3px;
+    width: 0%;
+    bottom: 0px;
+    animation: progress 5s linear forwards;
+}
+@keyframes progress {
+    100% {
+        width: 100%;
+    }
+}
+.toast.success i{
+    /* color: var(--success); */
+    color: #18aa18;
+}
+.toast.error i{
+    /* color: var(--error); */
+    color: #ee4242;;
+}
+.toast.success::before {
+    background: var(--success);
+}
+.toast.error::before {
+    background: var(--error);
+}
+.toast.success {
+    background: springgreen;
+}
+.toast.error {
+    background: rgb(247, 224, 222);
+}

@@ -1,8 +1,9 @@
-<%= stylesheet_link_tag  "edit" %>
-<h1>New curriculum vitae</h1>
-<div class="card" style="margin: 0% 20% 0% 20%">
-  <%= link_to "arrow_back", curriculum_vitaes_path ,class:"pos_card_l material-symbols-outlined"%>
-  <div class="card-body bg-secondary">
-    <%= render "form", curriculum_vitae: @curriculum_vitae %>
+<div class="container-md">
+  <div class="card" >
+    <h1>New curriculum vitae</h1>
+    <%= link_to "arrow_back", curriculum_vitaes_path ,class:"pos_card_l material-symbols-outlined"%>
+    <div class="card-body">
+      <%= render "form", curriculum_vitae: @curriculum_vitae %>
+    </div>
   </div>
 </div>

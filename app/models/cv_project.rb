@@ -1,4 +1,6 @@
 class CvProject < ApplicationRecord
+  validates :title ,:desc , :role ,:team_size , :start_date ,:proj_core_skill , presence: true
+  
   belongs_to :curriculum_vitae
   belongs_to :original_project , class_name: 'Project' ,optional: true
 
@@ -10,19 +12,34 @@ class CvProject < ApplicationRecord
   has_one :linkable_core_tech , as: :connectable , class_name: "LinkableCoreTech"
   has_one :proj_core_skill, through: :linkable_core_tech, source: :tech_stack   
   
-  # has_one :project_domain , dependent: :destroy 
   # has_one :domain, through: :project_domain
-  
+  has_one :linkable_domain , as: :connectable , class_name: "LinkableDomain" , dependent: :destroy
+  has_one :domain, through: :linkable_domain, source: :domain   
+   
   accepts_nested_attributes_for :linkable_core_tech , reject_if: :all_blank
   accepts_nested_attributes_for :proj_supportive_skills , reject_if: :all_blank
 
-  # accepts_nested_attributes_for :linkable_domain , reject_if: :all_blank
-  # attr_accessor :proj_core_skill_id   xxx give nil
   def proj_core_skill_id
     self.proj_core_skill&.id
   end
 
   def proj_core_skill_id=(value)
-    self.proj_core_skill = TechStack.find(value)
+    if !value.blank?
+      self.proj_core_skill = TechStack.find(value)
+    else 
+      self.proj_core_skill = nil
+    end
+  end
+
+  def domain_id
+    self.domain&.id
+  end
+
+  def domain_id=(value)
+    if !value.blank?
+      self.domain = Domain.find(value)
+    else 
+      self.domain = nil
+    end
   end
 end

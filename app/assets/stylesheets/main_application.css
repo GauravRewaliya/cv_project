@@ -1,0 +1,41 @@
+
+[class^="col-"] 
+{
+   margin: 0;
+}
+
+* {
+  margin: 2px;
+}
+
+
+.bg-secondary {
+  background-color: white!important;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #0750a0;
+}
+.fa-trash
+{
+  color: red;
+  border: none;
+  background: none;
+}
+.material-symbols-outlined {
+  color: #43a5b0;
+}
+.symbols_delete {
+  color: #e51616;
+  border: none;
+  background: none;
+}
+.symbols_delete:hover {
+  color: #e00000;
+  font-size: 26px;
+}
+.content
+{
+  margin-top: 60px; 
+}   

@@ -58,3 +58,14 @@ p{
     position: absolute;
     left: 0;
 }
+.show_h
+{
+    width: 27%;
+}
+.show_details{
+
+}
+tr:hover {
+    background: #b0d7db;
+    border: #9edae3 solid;
+}

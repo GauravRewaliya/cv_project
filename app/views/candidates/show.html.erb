@@ -1,66 +1,59 @@
-<%= stylesheet_link_tag  "show" %>
-
-
+<div class="container-md">
 <div class="card text-center" >
-  <div class="card-header">
-    <%= link_to "arrow_back", candidates_path ,class:"pos_l material-symbols-outlined"  %>
+    <%= link_to "arrow_back", candidates_path ,class:"pos_card_l material-symbols-outlined"  %>
     <h3>
       <strong>Candidate</strong>
     </h3>
-  <div class="card-body">
-    <div class="formBox">
-        <div class="formContainer">
-   <table style="text-align: left;">
-    <tr>
-      <th>name:</th>
-      <td> <%= @candidate.name %></td>
-    </tr>
-    <tr>
-      <th>employ_id:</th>
-      <td>  <%= @candidate.employ_id %></td>
-    </tr>
-    <tr>
-      <th>email:</th>
-      <td>  <%= @candidate.profile.email %></td>
-    </tr>
-    <tr>
-      <th>gender:</th>
-      <td>  <%= @candidate.profile.gender %></td>
-    </tr>
-    <tr>
-      <th>address:</th>
-      <td>  <%= @candidate.profile.address %></td>
-    </tr>
-    <tr>
-      <th>contact:</th>
-      <td>  <%= @candidate.profile.contact %></td>
-    </tr>
-    <tr>
-      <th>core Skill:</th>
-      <td>  <%= @candidate.core_tech.title %></td>
-    </tr>
-    <tr>
-      <th>Supportive Skills:</th>
-      <td> 
-      
-         <% @candidate.supportive_techs.each do |skill| %>
-          <%= skill.title.to_s+","%>
-         <%end%>
-      </td>
-    </tr>
-
-   </table>
-
-  </div>
-  </div>
-  </div>
-  
-  
-  <div class="card-footer text-muted" style="position: relative;">
-    
-    
-    <%= link_to "Edit this candidate", edit_candidate_path(@candidate) %>
-    
-    <%= button_to "Destroy this candidate", @candidate, method: :delete ,class:"btn btn-outline-danger pos_r"%>
-  </div>
+    <div class="card-body">
+      <div class="formBox">
+          <div class="formContainer">
+            <table style="text-align: left;">
+              <tr>
+                <th>name:</th>
+                <td> <%= @candidate.name %></td>
+              </tr>
+              <tr>
+                <th>employ_id:</th>
+                <td>  <%= @candidate.employ_id %></td>
+              </tr>
+              <tr>
+                <th>email:</th>
+                <td>  <%= @candidate.profile.email %></td>
+              </tr>
+              <tr>
+                <th>gender:</th>
+                <td>  <%= @candidate.profile.gender %></td>
+              </tr>
+            </table>
+            <table style="text-align: left;">
+              <tr>
+                <th>address:</th>
+                <td>  <%= @candidate.profile.address %></td>
+              </tr>
+              <tr>
+                <th>contact:</th>
+                <td>  <%= @candidate.profile.contact %></td>
+              </tr>
+              <tr>
+                <th>core Skill:</th>
+                <td>  <%= @candidate.core_tech&.title %></td>
+              </tr>
+              <tr>
+                <th>Supportive Skills:</th>
+                <td> 
+                
+                  <% @candidate.supportive_techs.each do |skill| %>
+                    <%= skill.title.to_s+","%>
+                  <%end%>
+                </td>
+              </tr>
+            </table>
+          </div>
+      </div>
+    </div>
+    <div class="card-footer text-muted" style="position: relative;">
+      <%= link_to "Edit this candidate", edit_candidate_path(@candidate) %>
+      <%= button_to "Destroy this candidate", @candidate, method: :delete ,class:"btn btn-outline-danger pos_r"%>
+    </div>
+</div>
 </div>

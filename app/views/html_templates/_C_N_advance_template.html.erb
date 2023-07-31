@@ -37,13 +37,12 @@
         text-decoration: none;
         }
 
-        ul,
+        /* ul,
         li {
         margin: 0;
         padding: 0;
         list-style: none;
-        }
-
+        } */
 
         .header {
         background-color: #0a1b39;;
@@ -160,10 +159,10 @@
 
         .education_in p {
         font-size: 16px;
-        font-weight: 500;
+        /* font-weight: 500; */
         width: 95%;
         color: #444344;
-        margin-bottom: 40px;
+        /* margin-bottom: 40px; */
         }
 
         .education_in p span {
@@ -180,9 +179,9 @@
 
         .education_in_sub p {
         font-size: 18px;
-        font-weight: 700;
+        /* font-weight: 700; */
         color: #444344;
-        margin-bottom: 35px;
+        /* margin-bottom: 35px; */
         }
 
         span.dot {
@@ -215,6 +214,7 @@
         .education_in_sub {
         margin-bottom: 30px;
         width: 95%;
+        margin-top: 26px;
         }
 
         .educs_fs {
@@ -338,6 +338,12 @@
         .technology_stack_main h2{
             margin-bottom:  10px;
         }
+        p{
+            margin-bottom: 0px;
+        }
+        td, th {
+            padding: 3px;
+        }
     </style>
 
     <%= wicked_pdf_stylesheet_link_tag 'https://fonts.cdnfonts.com/css/font' %>
@@ -405,7 +411,7 @@
                     <p>
                         <!-- Have<span><%= curriculum_vitae.experience %>   years</span> of experience working as a
                         <%= curriculum_vitae.core_skill&.title.to_s + " Developer." %> -->  
-                        <%= curriculum_vitae.profile_desc %>  
+                        <%= curriculum_vitae.profile_desc.html_safe %>  
                     </p>
                     <%if !curriculum_vitae.company_experiences.blank?%>
                         <div class="education_in_sub">
@@ -420,106 +426,146 @@
                                             Duration-  <%= exp.start_date %> <%= exp.end_date.blank? ? ' , Currently Running': ' to '+exp.end_date.to_s %>
                                         </h4>
                                     </div>
+                                    <% end_date = ( exp.end_date.blank? ? Time.now : exp.end_date)%>
+                                    <%if end_date.year - exp.start_date.year !=0 || end_date.month - exp.start_date.month !=0%>
+                                        <div class="educational_sub_se">
+                                            <span class="dot"></span>
+                                            <h4>
+                                                    <%= (y=(end_date.year - exp.start_date.year)) == 0 ? ' ' : y.to_s+' Year, '%>
+                                                    <%= (m=(end_date.month - exp.start_date.month)) == 0 ? ' ' : m.to_s+' Month '%>
+                                                    of Experience
+                                            </h4>
+                                        </div>
+                                    <%end%>
                                     <div class="educational_sub_se">
                                         <span class="dot"></span>
                                         <h4>
-                                            <% end_date = ( exp.end_date.blank? ? Time.now : exp.end_date)%>
-                                            <%if end_date.year - exp.start_date.year !=0 || end_date.month - exp.start_date.month !=0%>
-                                              <li class="list-item">
-                                                <%= (y=(end_date.year - exp.start_date.year)) == 0 ? ' ' : y.to_s+' Year, '%>
-                                                <%= (m=(end_date.month - exp.start_date.month)) == 0 ? ' ' : m.to_s+' Month '%>
-                                                of Experience
-                                              </li>
+                                            <%if !exp.role.blank? %>
+                                                Role:- <%= exp.role%>
                                             <%end%>
                                         </h4>
                                     </div>
                             <%end%>
                         </div>
                     <%end%>
+                    <%if !curriculum_vitae.cv_projects.blank?%>
+                        <div class="education_in_sub">
+                            <h6>PROJECT HISTORY</h6>
 
-                    <div class="education_in_sub">
-                        <h6>PROJECT HISTORY</h6>
+                            <% curriculum_vitae.cv_projects.each do |project| %>
 
-                        <% curriculum_vitae.cv_projects.each do |project| %>
+                                    <span>Project: <span class="educs_fs"> <%= project.title %></span></span>
+                                    <!-- <%if !project.start_date.blank? %>
+                                    ( <%=project.start_date%> ->
+                                        <%= project.end_date.blank? ? " inProgerss" : " to " +project.end_date.to_s %>
+                                            )
+                                            <%end%> -->
 
-                                <span>Project: <span class="educs_fs"> <%= project.title %></span></span>
-                                <!-- <%if !project.start_date.blank? %>
-                                ( <%=project.start_date%> ->
-                                    <%= project.end_date.blank? ? " inProgerss" : " to " +project.end_date.to_s %>
-                                        )
-                                        <%end%> -->
-
-                                <div class="educational_sub_se">
-                                    <span class="dot"></span>
-                                    <h4>
-                                        Description- <%= project.desc %>
-                                    </h4>
-                                </div>
-                                    <!--  domain ...  -->
-                                <%if !Project.find(project.original_project_id).domain.blank? %>
-                                <div class="educational_sub_se">
-                                    <span class="dot"></span>
-                                    <h4> 
-                                        Domain- <%= Project.find(project.original_project_id).domain&.title %>
-                                    </h4>
-                                </div>
-                                <%end%>
-                                
-                                <%if !project.role.blank? %>
-                                    <div class="educational_sub_se">
-                                    <span class="dot"></span>
-                                    <h4>
-                                        <!-- Project has specific roles and responcibilites <%#= project.role %> -->
-                                        Role- <%= project.role %>
-                                    </h4>
-                                    </div>
-                                <%end%>
-
-                                <%if !project.team_size.blank? %>
                                     <div class="educational_sub_se">
                                         <span class="dot"></span>
-                                        <h4> 
-                                            Team Size- <%= project.team_size %> Members 
+                                        <h4>
+                                            Description- <%= project.desc %>
                                         </h4>
                                     </div>
-                                <%end%>
-                                    
-                                
+                                        <!--  domain ...  -->
+                                        <%if !project.domain.blank? %> 
                                     <div class="educational_sub_se">
                                         <span class="dot"></span>
                                         <h4> 
-                                            Duration- <%= project.start_date %> <%= project.end_date.blank? ? 'Currently Running': ' to '+project.end_date.to_s %>
-                                        </h4>
-                                    </div>
-                                    <%if !project.proj_core_skill.blank? %>
-                                    <div class="educational_sub_se">
-                                        <span class="dot"></span>
-                                        <h4> 
-                                            Core Skill- <%= project.proj_core_skill.title%>
+                                            Domain- <%=project.domain&.title %>
                                         </h4>
                                     </div>
                                     <%end%>
-
-                                    <%if !project.proj_supportive_skills.blank? %>
-                                    <div class="educational_sub_se">
+                                    
+                                    <%if !project.role.blank? %>
+                                        <div class="educational_sub_se">
                                         <span class="dot"></span>
-                                        <h4> 
-                                            Supportive Skill- 
-                                            <% project.proj_supportive_skills.each do |supportive_skill| %>
-                                                 <%= supportive_skill.title %>,
-                                            <% end %>
+                                        <h4>
+                                            Role- <%= project.role %>
                                         </h4>
-                                    </div>
+                                        </div>
                                     <%end%>
-                                 
+
+                                    <%if !project.responsibility.blank? %>
+                                        <div class="educational_sub_se">
+                                            <span class="dot"></span>
+                                            <h4>
+                                                Role & Responsibility- <%= project.responsibility.html_safe %>
+                                            </h4>
+                                        </div>
+                                    <%end%>
+
+                                    <%if !project.team_size.blank? %>
+                                        <div class="educational_sub_se">
+                                            <span class="dot"></span>
+                                            <h4> 
+                                                Team Size- <%= project.team_size %> Members 
+                                            </h4>
+                                        </div>
+                                    <%end%>
+                                        
                                     
+                                        <div class="educational_sub_se">
+                                            <span class="dot"></span>
+                                            <h4> 
+                                                Duration- <%= project.start_date %> <%= project.end_date.blank? ? 'Currently Running': ' to '+project.end_date.to_s %>
+                                            </h4>
+                                        </div>
+                                        <%if !project.proj_core_skill.blank? %>
+                                        <div class="educational_sub_se">
+                                            <span class="dot"></span>
+                                            <h4> 
+                                                Core Skill- <%= project.proj_core_skill.title%>
+                                            </h4>
+                                        </div>
+                                        <%end%>
+
+                                        <%if !project.proj_supportive_skills.blank? %>
+                                        <div class="educational_sub_se">
+                                            <span class="dot"></span>
+                                            <h4> 
+                                                Supportive Skill- 
+                                                <% project.proj_supportive_skills.each do |supportive_skill| %>
+                                                    <%= supportive_skill.title %>,
+                                                <% end %>
+                                            </h4>
+                                        </div>
+                                        <%end%>
                                     
-                        <%end%>
-                    </div>
+                                        
+                                        
+                            <%end%>
+                        </div>
+                    <%end%>
                 </div>
 
 
                 <div class="education_in_second">
+                    <% profile=curriculum_vitae.candidate.profile %>
+                    <div class="education_in_sub">
+                        <h6>Profile</h6>
+                        <table>
+                            <tr>
+                                <th>Email</th>
+                                <td>
+                                    <%= profile.email %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Contact</th>
+                                <td><%= profile.contact %></td>
+                            </tr>
+                            <tr>
+                                <th>Gender</th>
+                                <td><%= profile.gender %></td>
+                            </tr>
+                            <tr>
+                                <th>Address</th>
+                                <td><%= profile.address %></td>
+                            </tr>
+                        </table>
+                    </div>
+
                     <div class="education_in_sub">
                         <h6>S K I L L S</h6>
                         <span>Core Skill</span>
@@ -541,75 +587,9 @@
                                         <%= supportive_skill.title %>
                                     <% end %>
                                 </h4>
-                            </div>
-                        
+                            </div>   
                         </div>
                     <%end%>
-                    <div class="education_in_sub">
-                        <span>Scraping</span>
-                        <div class="educational_sub">
-                            <span class="dot"></span>
-                            <h4>Beautifulsoup</h4>
-                        </div>
-                        <div class="educational_sub">
-                            <span class="dot"></span>
-                            <h4>Python requests</h4>
-                        </div>
-                    </div>
-
-                    <div class="education_in_sub">
-                        <span>Python Library</span>
-                        <div class="educational_sub">
-                            <span class="dot"></span>
-                            <h4>Python collections</h4>
-                        </div>
-                        <div class="educational_sub">
-                            <span class="dot"></span>
-                            <h4>Python NumPy</h4>
-                        </div>
-                        <div class="educational_sub">
-                            <span class="dot"></span>
-                            <h4>Pandas</h4>
-                        </div>
-                        <div class="educational_sub">
-                            <span class="dot"></span>
-                            <h4>SQLAlChemy</h4>
-                        </div>
-                    </div>
-
-
-                    <div class="education_in_sub">
-                        <span>Storage</span>
-                        <div class="educational_sub">
-                            <span class="dot"></span>
-                            <h4>Amazon S3</h4>
-                        </div>
-                    </div>
-
-                    <div class="education_in_sub">
-                        <span>Databases</span>
-                        <div class="educational_sub">
-                            <span class="dot"></span>
-                            <h4>MySQL</h4>
-                        </div>
-                        <div class="educational_sub">
-                            <span class="dot"></span>
-                            <h4>MongoDB</h4>
-                        </div>
-                        <div class="educational_sub">
-                            <span class="dot"></span>
-                            <h4>PostgreSQL</h4>
-                        </div>
-                        <div class="educational_sub">
-                            <span class="dot"></span>
-                            <h4>DynamoDB</h4>
-                        </div>
-                        <div class="educational_sub">
-                            <span class="dot"></span>
-                            <h4>Neptune</h4>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>

@@ -1,0 +1,100 @@
+body{
+    /* background: linear-gradient(60deg , transparent , #209aa3 ,#723af5  );
+    background-repeat: no-repeat;
+    height: 100vh;
+    */
+    background: linear-gradient(60deg , transparent , #209aa3 ,#723af5 );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+a{
+    text-decoration: none;
+}
+p{
+    position: relative;
+    color: black;
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    left: 5px;
+}
+.topHeader{
+    font-size: 30px;
+    
+    /* position: relative;
+    left: 10px; */
+    text-align: center;
+}
+.formBox {
+    /* margin: 6%; */
+    padding: 56px;
+    /* height: 25%; */
+    /* width: 399px; */
+    /* width: 30%; */
+    background: #f8f8f875;
+    justify-content: center;
+    border: 2px solid white;
+    border-radius: 20px;
+    /* backdrop-filter: blur(3px); */
+}
+.formContainer{
+    display: flex;
+    flex-direction: column; 
+}
+.inputText{
+    height: 40px;
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    padding: 0 0 0 20px;
+    opacity: 90%;
+    color: black;
+}
+::-webkit-input-placeholder{
+    color: rbg(49,48,48);
+}
+i{
+    position: relative;
+    top: -29px;
+    right: 20px;
+}
+#submitButton{
+    margin-top: 10px;
+    height: 36px;
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    background-color: black;
+    color: white;
+    font-family: Comic Sans MS;
+    font-size: 20px;
+}
+#forgotPW
+{
+    position: relative;
+    color: #0013ff;
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+#LoginB
+{
+    position: relative;
+    /* color: yellow; */
+    color: blue;
+    font-size: 25px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+/* body
+  {
+      transform: scale(0.9);
+      transform-origin: top left;
+      width: 111%;
+      height: 111%;
+  } */

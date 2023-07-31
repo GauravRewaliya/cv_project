@@ -29,6 +29,7 @@
     }
 
     p {
+        margin-bottom: 0px;
         font-size: 18px;
         color: #1f2a2a;
     }
@@ -56,9 +57,10 @@
         <div>
             <h5>SOFTWARE ENGINEER</h5>
             <div style="border-bottom: 3px solid lightgreen; width: 120px;"></div>
-            <p><%= curriculum_vitae.profile_desc %></p>
+            <p><%= curriculum_vitae.profile_desc.html_safe %></p>
         </div>
 
+        <% if !curriculum_vitae.cv_projects.blank? %>
         <div>
             <h4>PROJECT HISTORY</h4>
 
@@ -79,10 +81,10 @@
                             Description- <%= project.desc %>
                         </li>
 
-                        <%if !Project.find(project.original_project_id).domain.blank? %>
-                            <li>Project is based on <%= Project.find(project.original_project_id).domain&.title %> doamin</li>
+                        <%if !project.domain&.blank? %> 
+                            <li>Project is based on <%= project.domain&.title %> doamin</li>
                         <%end%>
-                        <%if !project.proj_core_skill.blank? %>
+                        <%if !project.proj_core_skill&.blank? %>
                         <li>project is mainly depend on <%= project.proj_core_skill.title %></li>
                         <%end%>
                         <%if !project.proj_supportive_skills.blank? %>
@@ -103,10 +105,17 @@
                             </li>
                         <%end%>
 
+                        <%if !project.responsibility.blank? %>
+                            <li> Role & Responsibility-
+                                <%= project.responsibility.html_safe %>
+                            </li>
+                        <%end%>
                     </ul>
                 </div>
             <%end%>
         </div>
+        <%end%>
+        
     </div>
     <div class="col-5 paddingL" style="border-left: 3px solid darkgray;padding-left: 20px;">
         <% profile=curriculum_vitae.candidate.profile %>
@@ -186,6 +195,9 @@
                                     <div>
                                         <div><%= exp.company_name %></div>
                                         <div style="font-weight: 200;">( <%= exp.start_date %> <%= exp.end_date.blank? ? ' , Currently Running': ' to '+exp.end_date.to_s %> )</div>
+                                        <%if !exp.role.blank? %>
+                                        <div>Role:- <%= exp.role%></div>
+                                        <%end%>
                                     </div>
                                 </li>
                             </ul>
@@ -197,15 +209,7 @@
                         </td>
                     </tr>
                   <% end %> 
-                </table>
-
-                <!-- <div>
-                    <h6>Scraping</h6>
-                    <ul>
-                        <li>Beautifulsoup
-                            Python requests</li>
-                    </ul>
-                </div> -->                
+                </table>       
             </div>
             <%end%>
     </div>

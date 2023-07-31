@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_10_132341) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_25_115750) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -39,24 +39,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_10_132341) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "candidate_core_teches", force: :cascade do |t|
-    t.integer "candidate_id", null: false
-    t.integer "tech_stack_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["candidate_id"], name: "index_candidate_core_teches_on_candidate_id"
-    t.index ["tech_stack_id"], name: "index_candidate_core_teches_on_tech_stack_id"
-  end
-
-  create_table "candidate_supportive_teches", force: :cascade do |t|
-    t.integer "candidate_id", null: false
-    t.integer "tech_stack_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["candidate_id"], name: "index_candidate_supportive_teches_on_candidate_id"
-    t.index ["tech_stack_id"], name: "index_candidate_supportive_teches_on_tech_stack_id"
-  end
-
   create_table "candidates", force: :cascade do |t|
     t.string "name"
     t.string "employ_id"
@@ -69,30 +51,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_10_132341) do
   create_table "company_experiences", force: :cascade do |t|
     t.integer "curriculum_vitae_id", null: false
     t.string "company_name"
-    t.integer "experience"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "start_date"
     t.date "end_date"
+    t.string "role"
     t.index ["curriculum_vitae_id"], name: "index_company_experiences_on_curriculum_vitae_id"
-  end
-
-  create_table "curriculum_vitae_core_teches", force: :cascade do |t|
-    t.integer "curriculum_vitae_id", null: false
-    t.integer "tech_stack_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["curriculum_vitae_id"], name: "index_curriculum_vitae_core_teches_on_curriculum_vitae_id"
-    t.index ["tech_stack_id"], name: "index_curriculum_vitae_core_teches_on_tech_stack_id"
-  end
-
-  create_table "curriculum_vitae_supportive_teches", force: :cascade do |t|
-    t.integer "curriculum_vitae_id", null: false
-    t.integer "tech_stack_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["curriculum_vitae_id"], name: "index_curriculum_vitae_supportive_teches_on_curriculum_vitae_id"
-    t.index ["tech_stack_id"], name: "index_curriculum_vitae_supportive_teches_on_tech_stack_id"
   end
 
   create_table "curriculum_vitaes", force: :cascade do |t|
@@ -119,17 +83,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_10_132341) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "role"
+    t.string "responsibility"
     t.index ["curriculum_vitae_id"], name: "index_cv_projects_on_curriculum_vitae_id"
     t.index ["original_project_id"], name: "index_cv_projects_on_original_project_id"
-  end
-
-  create_table "cv_templates", force: :cascade do |t|
-    t.integer "curriculum_vitae_id", null: false
-    t.integer "template_format_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["curriculum_vitae_id"], name: "index_cv_templates_on_curriculum_vitae_id"
-    t.index ["template_format_id"], name: "index_cv_templates_on_template_format_id"
   end
 
   create_table "domains", force: :cascade do |t|
@@ -148,6 +104,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_10_132341) do
     t.datetime "updated_at", null: false
     t.index ["connectable_type", "connectable_id"], name: "index_linkable_core_teches_on_connectable"
     t.index ["tech_stack_id"], name: "index_linkable_core_teches_on_tech_stack_id"
+  end
+
+  create_table "linkable_domains", force: :cascade do |t|
+    t.integer "domain_id", null: false
+    t.string "connectable_type", null: false
+    t.integer "connectable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["connectable_type", "connectable_id"], name: "index_linkable_domains_on_connectable"
+    t.index ["domain_id"], name: "index_linkable_domains_on_domain_id"
   end
 
   create_table "linkable_supportive_teches", force: :cascade do |t|
@@ -169,42 +135,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_10_132341) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["candidate_id"], name: "index_profiles_on_candidate_id"
-  end
-
-  create_table "project_core_teches", force: :cascade do |t|
-    t.integer "project_id", null: false
-    t.integer "tech_stack_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["project_id"], name: "index_project_core_teches_on_project_id"
-    t.index ["tech_stack_id"], name: "index_project_core_teches_on_tech_stack_id"
-  end
-
-  create_table "project_curriculum_vitaes", force: :cascade do |t|
-    t.integer "project_id", null: false
-    t.integer "curriculum_vitae_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["curriculum_vitae_id"], name: "index_project_curriculum_vitaes_on_curriculum_vitae_id"
-    t.index ["project_id"], name: "index_project_curriculum_vitaes_on_project_id"
-  end
-
-  create_table "project_domains", force: :cascade do |t|
-    t.integer "project_id", null: false
-    t.integer "domain_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["domain_id"], name: "index_project_domains_on_domain_id"
-    t.index ["project_id"], name: "index_project_domains_on_project_id"
-  end
-
-  create_table "project_supportive_techs", force: :cascade do |t|
-    t.integer "project_id", null: false
-    t.integer "tech_stack_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["project_id"], name: "index_project_supportive_techs_on_project_id"
-    t.index ["tech_stack_id"], name: "index_project_supportive_techs_on_tech_stack_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -229,13 +159,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_10_132341) do
     t.string "updated_by"
   end
 
-  create_table "template_formats", force: :cascade do |t|
-    t.string "name"
-    t.text "layout"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -250,29 +173,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_10_132341) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "candidate_core_teches", "candidates"
-  add_foreign_key "candidate_core_teches", "tech_stacks"
-  add_foreign_key "candidate_supportive_teches", "candidates"
-  add_foreign_key "candidate_supportive_teches", "tech_stacks"
   add_foreign_key "company_experiences", "curriculum_vitaes"
-  add_foreign_key "curriculum_vitae_core_teches", "curriculum_vitaes"
-  add_foreign_key "curriculum_vitae_core_teches", "tech_stacks"
-  add_foreign_key "curriculum_vitae_supportive_teches", "curriculum_vitaes"
-  add_foreign_key "curriculum_vitae_supportive_teches", "tech_stacks"
   add_foreign_key "curriculum_vitaes", "candidates"
   add_foreign_key "cv_projects", "curriculum_vitaes"
   add_foreign_key "cv_projects", "projects", column: "original_project_id"
-  add_foreign_key "cv_templates", "curriculum_vitaes"
-  add_foreign_key "cv_templates", "template_formats"
   add_foreign_key "linkable_core_teches", "tech_stacks"
+  add_foreign_key "linkable_domains", "domains"
   add_foreign_key "linkable_supportive_teches", "tech_stacks"
   add_foreign_key "profiles", "candidates"
-  add_foreign_key "project_core_teches", "projects"
-  add_foreign_key "project_core_teches", "tech_stacks"
-  add_foreign_key "project_curriculum_vitaes", "curriculum_vitaes"
-  add_foreign_key "project_curriculum_vitaes", "projects"
-  add_foreign_key "project_domains", "domains"
-  add_foreign_key "project_domains", "projects"
-  add_foreign_key "project_supportive_techs", "projects"
-  add_foreign_key "project_supportive_techs", "tech_stacks"
 end

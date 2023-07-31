@@ -1,16 +1,11 @@
-<%= stylesheet_link_tag  "edit" %>
-<div class="edit_class">
-<h1>Editing curriculum vitae</h1>
-<div style="position: relative;">
-</div>
-<!-- <div style="text-align: center"> -->
-  <div class="card" style="margin: 0% 20% 0% 20%">
-    <%= link_to "arrow_back", curriculum_vitaes_path ,class:"pos_card_l material-symbols-outlined" %>
-    <%= link_to "Show CV", @curriculum_vitae ,class: "pos_card_r"  %>
-    <!-- <%= link_to @curriculum_vitae , class: 'material-symbols-outlined pos_card_r' do %>
-    <span>Visibility</span>
-    <%end%> -->
-  <div class="card-body bg-secondary"><%= render "form", curriculum_vitae: @curriculum_vitae %></div>
-</div>
-</div>
-<!-- </div> -->
+
+  <div class="container-md">
+    <div class="card" >
+        <h1>Editing curriculum vitae</h1>
+          <%= link_to "arrow_back", curriculum_vitaes_path ,class:"pos_card_l material-symbols-outlined" %>
+          <%= link_to "Show CV", @curriculum_vitae ,class: "pos_card_r"  %>
+        <div class="card-body"><%= render "form", curriculum_vitae: @curriculum_vitae %></div>
+      </div>
+  </div>
+
+  

@@ -2,11 +2,7 @@ class DomainsController < ApplicationController
   before_action :set_domain, only: %i[ show edit update destroy ]
 
   def index
-    if !params['search'].blank?
-      @domains = Domain.where('lower(title) LIKE ?' ,"%"+params['search']+"%" )
-      else
-    @domains = Domain.all
-      end
+   @domains = Domain.all
   end
   def show
   end
@@ -19,9 +15,9 @@ class DomainsController < ApplicationController
   end
 
   def create
-    @domain = Domain.new(domain_params)
-    @domain.created_by = current_user.email
-    @domain.updated_by = current_user.email
+      @domain = Domain.new(domain_params)
+      @domain.created_by = current_user.email
+      @domain.updated_by = current_user.email
     respond_to do |format|
       if @domain.save
         format.html {redirect_to domains_path, notice: "Domain was successfully created." }
@@ -34,7 +30,7 @@ class DomainsController < ApplicationController
   end
 
   def update
-    @domain.updated_by = current_user.email
+     @domain.updated_by = current_user.email
     respond_to do |format|
        if @domain.update(domain_params)
         format.html { redirect_to domains_path, notice: "Domain was successfully updated." }
@@ -59,9 +55,9 @@ class DomainsController < ApplicationController
 
   def set_domain
       @domain = Domain.find(params[:id])
-    end
+  end
     
-    def domain_params
-      params.require(:domain).permit(:title, :desc,:start_date ,:end_date, domain_core_tech_attributes: [:tech_stack_id],supportive_skill_ids:[])
-    end
+  def domain_params
+    params.require(:domain).permit(:title, :desc,:start_date ,:end_date, domain_core_tech_attributes: [:tech_stack_id],supportive_skill_ids:[])
+  end
 end

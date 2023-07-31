@@ -10,6 +10,7 @@ class CreateCvProjects < ActiveRecord::Migration[7.0]
       t.date :end_date
       t.integer :team_size
       t.string :role
+      t.string :responsibility
       t.timestamps
     end
   end

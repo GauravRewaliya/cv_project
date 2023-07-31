@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  domain: one
+  connectable: one
+  connectable_type: Connectable
+
+two:
+  domain: two
+  connectable: two
+  connectable_type: Connectable

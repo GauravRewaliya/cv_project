@@ -5,7 +5,7 @@ tasks:
   - name: Install dependency
     init: cd /cv_creater
     command: |
-      bunde install
+      bundle install
       rails db:migrate
 
   - name: Start Server

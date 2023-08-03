@@ -12,5 +12,5 @@ tasks:
     init: cd /cv_creater
     command: rails s -b 0.0.0.0
     openMode: split-right
-    posts:
+    ports:
       - 3000

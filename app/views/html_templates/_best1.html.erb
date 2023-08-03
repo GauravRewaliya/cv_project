@@ -151,7 +151,9 @@
                         <ul>
                             <li>
                                 <%= curriculum_vitae.core_skill&.title %>
-                                    <br>( <%= curriculum_vitae.core_skill&.desc %> )
+                                <% if !curriculum_vitae.core_skill.desc.blank? %>
+                                    <br>( <%= curriculum_vitae.core_skill.desc %> )
+                                <%end%>    
                             </li>
 
                         </ul>

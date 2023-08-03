@@ -83,9 +83,9 @@
                         <p >currently running</p>
                       </div>
                   </div>
-                  <div class="col-1" style="padding-top: 28px;">
+                  <div class="col-1" style="padding-top: 28px;padding-left: 0px;">
                     <!-- <button type="button" data-repeater-delete="" class="deleteg btn btn-outline-danger btn-sm fa fa-close " style="font-size: 13px;"></button> -->
-                    <button type="button"  class="deleteg btn btn-outline-danger btn-sm fa fa-close " style="font-size: 13px;" , onclick="deleteRepeaterItem(this);"></button>
+                    <button type="button"  class="btn btn-outline-danger g_sm_btn fa fa-close " style="font-size: 13px;" , onclick="deleteRepeaterItem(this);"></button>
                   </div>
                   <%= company_experience_form.hidden_field :_destroy, class: "destroy-field" %>
                 </div>
@@ -191,7 +191,7 @@
 
         <div class="col-md-6">
           <%= form.label "Cv Layout"  %>
-          <% template_files=Dir.glob(Rails.root.join('app', 'views' , 'HTML_templates' , '*.html.erb' )) %>
+          <% template_files=Dir.glob(Rails.root.join('app', 'views' , 'html_templates' , '*.html.erb' )) %>
           <% @template_options=template_files.map { |file| File.basename(file, '.html.erb' )[1..] }%>
           <%= form.select(:template_name, @template_options , {}, {class: "form-control"}) %>
         </div>

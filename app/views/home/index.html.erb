@@ -1,9 +1,17 @@
 <!-- <%= stylesheet_link_tag  "index" %> -->
+<style>
+    body
+    {
+    min-height: 88vh;
+    background: url(/assets/home_page.jpg);
+    background-position: center;
+    background-size: cover;
+    }
+</style>
 <div style="display: flex;justify-content: center;">
     <div class="card text-center" style="width: fit-content;" >
         <div class="card-body">
         <% name = current_user.present? ? current_user.email : 'Stranger' %>
-        <!-- <div style="justify-content: center;display: flex;align-items: center;height: 85vh;"> -->
         <div>
             <h2>Welcome, <%= name %> </h2>
         </div>

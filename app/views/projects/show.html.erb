@@ -18,39 +18,39 @@
             </tr>
             <tr>
               <th>Team Size:</th>
-            <td> 
-                <%if !@project.team_size.blank?%>
-                <%= @project.team_size %>
+              <td> 
+                  <%if !@project.team_size.blank?%>
+                  <%= @project.team_size %>
+                  <%end%>
+              </td>
+            </tr>
+            <tr>
+              <th>Start Date</th>
+              <td><%= @project.start_date %></td>
+            </tr>
+            <tr>
+              <th>End Date</th>
+              <td>
+                <%if !@project.end_date.blank?%>
+                <%= @project.end_date %>
+                <%else %>
+                Project is still running
                 <%end%>
               </td>
             </tr>
-              <tr>
-                <th>Start Date</th>
-                <td><%= @project.start_date %></td>
-              </tr>
-              <tr>
-                <th>End Date</th>
-                <td>
-                  <%if !@project.end_date.blank?%>
-                  <%= @project.end_date %>
-                  <%else %>
-                  Project is still running
-                  <%end%>
-                </td>
-              </tr>
 
-              <tr>
-                <th>Core Skill</th>
-                <td><%= @project.core_skill&.title %></td>
-              </tr>
-              <tr>
-                <th>Supportive Skills</th>
-                <td>
-                  <% @project.supportive_skills.each do |supportive_skill| %>
-                    <%= supportive_skill.title+"," %>
-                  <%end%>
-                </td>
-              </tr>
+            <tr>
+              <th>Core Skill</th>
+              <td><%= @project.core_skill&.title %></td>
+            </tr>
+            <tr>
+              <th>Supportive Skills</th>
+              <td>
+                <% @project.supportive_skills.each do |supportive_skill| %>
+                  <%= supportive_skill.title+"," %>
+                <%end%>
+              </td>
+            </tr>
             <tr>
               <th>Description:</th>
               <td> 
@@ -63,7 +63,6 @@
   </div>
   
   <div class="card-footer text-muted" style="position: relative;">
-    
     <%= link_to "Edit this project", edit_project_path(@project) %>
     <%= button_to "Destroy this project", @project, method: :delete ,class:"btn btn-outline-danger pos_r"%>
   </div>

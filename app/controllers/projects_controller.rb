@@ -66,11 +66,10 @@ class ProjectsController < ApplicationController
   end
 
   private
-
   def set_project
       @project = Project.find(params[:id])
-    end
-    def project_params
-      params.require(:project).permit(:team_size , :role ,  :title, :desc,:start_date ,:end_date, linkable_domain_attributes: [:domain_id],linkable_core_tech_attributes: [:tech_stack_id],supportive_skill_ids:[])
-    end
+  end
+  def project_params
+    params.require(:project).permit(:team_size , :role ,  :title, :desc,:start_date ,:end_date, linkable_domain_attributes: [:domain_id],linkable_core_tech_attributes: [:tech_stack_id],supportive_skill_ids:[])
+  end
 end

@@ -2,14 +2,14 @@
 
   <!-- h1 -->
   <!-- <h2>Edit <%= resource_name.to_s.humanize %></h2> -->
-  <h1>Edit <%= resource_name.to_s.humanize %></h1>
-  <div style="position: relative;">
+  <div class="card" style="margin: 0% 20% 0% 20%">
+    <div style="position: relative;">
+      <h1>Edit <%= resource_name.to_s.humanize %></h1>
     <!-- <%= link_to "Back" , :back %> -->
-    <%= link_to "arrow_back" , :back ,class:"pos_l material-symbols-outlined" %>
+    <%= link_to "arrow_back" , :back ,class:"pos_card_l material-symbols-outlined" %>
   </div>
 
 
-  <div class="card" style="margin: 0% 20% 0% 20%">
     <div class="card-body bg-secondary">
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>

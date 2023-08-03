@@ -2,15 +2,15 @@ image:
   file: Dockerfile
 # run commands
 tasks:
-  -name: Install dependency
+  - name: Install dependency
   #  init: cd /cv_creater
-   command: |
-       bundle install 
-       bundle exec rails db:migrate
+    command: |
+      bundle install 
+      bundle exec rails db:migrate
 
-  -name: Start Server
-  # init: cd /cv_creater
-    command: bundle exec rails s -b 0.0.0.0
-    openMode: split-right
-    ports:
-      - 3000
+  # -name: Start Server
+  # # init: cd /cv_creater
+  #   command: bundle exec rails s -b 0.0.0.0
+  #   openMode: split-right
+  #   ports:
+  #     - 3000

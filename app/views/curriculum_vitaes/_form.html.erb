@@ -48,7 +48,7 @@
       </div>
       <div class="col-md-6">
         <%= form.label :supportive_skills %>
-        <%= form.collection_select(:supportive_skill_ids, TechStack.supportive_skills, :id, :title , {}, {multiple: true ,class: "selectpick show-menu-arrow form-control has_many"}) %>
+        <%= form.collection_select(:supportive_skill_ids, TechStack.all, :id, :title , {}, {multiple: true ,class: "selectpick show-menu-arrow form-control has_many"}) %>
       </div>
     </div>
 
@@ -166,7 +166,7 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <%= project_form.label :supportive_skills  %>
-                        <%= project_form.collection_select(:proj_supportive_skill_ids, TechStack.supportive_skills, :id, :title ,{}, { multiple: true ,class:"selectpick has_many" ,onclick:"supportive_skills_fix()"}) %> 
+                        <%= project_form.collection_select(:proj_supportive_skill_ids, TechStack.all, :id, :title ,{}, { multiple: true ,class:"selectpick has_many" ,onclick:"supportive_skills_fix()"}) %> 
                       </div>
                     </div>
                   </div>

@@ -56,12 +56,12 @@
         </div>
 
         <div class="col-md-6 form-group">
-                 <%= form.label :supportive_skill  %>
-                <div>
-                  <%= form.collection_select(:supportive_skill_ids, TechStack.supportive_skills, :id, :title , {}, { multiple: true,
-                    include_blank: false,class: "selectpicker show-menu-arrow form-control" }) %>
-                 </div>
-         </div>
+          <%= form.label :supportive_skill  %>
+          <div>
+            <%= form.collection_select(:supportive_skill_ids, TechStack.all, :id, :title , {}, { multiple: true,
+              include_blank: false,class: "selectpick show-menu-arrow form-control" }) %>
+          </div>
+        </div>
         
       </div>
 

@@ -23,3 +23,20 @@
   right: 2%;
   top: 8px;
 }
+
+table.show_table
+{
+  border-radius: 18px;
+  overflow: hidden;
+}
+table.show_table th {
+    text-align: left;
+    background-color: #ffd8d85e;
+    padding: 8px;
+}
+table.show_table td {
+  padding: 8px;
+}
+table.show_table td:nth-child(1) {
+  min-width: 100px;
+}

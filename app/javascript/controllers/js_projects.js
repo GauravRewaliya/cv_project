@@ -1,3 +1,4 @@
+//= require controllers/select_picker 
 
 function updateEndDate()
 { 
@@ -22,6 +23,7 @@ function updateEndDate()
  }
 
  $(document).ready(function() { 
+    select_picker_refresh();
     new DataTable('.data_table_gr',{
       columnDefs: [
         // {target: 2,visible: false}, // domain visible

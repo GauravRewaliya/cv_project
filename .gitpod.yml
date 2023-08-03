@@ -4,7 +4,9 @@ image:
 tasks:
   - name: Install dependency
     init: cd /cv_creater
-    command: bunde install && rails db:migrate
+    command: |
+      bunde install
+      rails db:migrate
 
   - name: Start Server
     init: cd /cv_creater

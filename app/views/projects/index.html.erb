@@ -1,48 +1,48 @@
 <div class="card" >
   <div class="card-body">
-  <div class="index_top_header">
-    <h1 >Projects</h1>
-    <%= link_to "+ Add project", new_project_path,class: 'btn btn-primary pos_card_new' %>
+    <div class="index_top_header">
+      <h1 >Projects</h1>
+      <%= link_to "+ Add project", new_project_path,class: 'btn btn-primary pos_card_new' %>
+    </div>
+    <div class="table_gr">
+      <table class="table table-hover table-striped data_table_gr" id="gr" style="width: 100%;">
+      <thead>
+        <tr style="color:white;">
+          <th>Title</th>
+          <th class="hideOnNeed1">Description</th>
+          <th class="hideOnNeed2">Domain</th>
+          <th class="hideOnNeed2">team_size</th>
+          <th class="hideOnNeed2">Core Skill</th>
+          <th>supportive_skill</th>
+          <th class="table_button_gr">Edit</th>
+          <th class="table_button_gr">Delete</th>
+          <th class="table_button_gr">Show</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @projects.each do |project| %>
+          <tr>
+            <td><p><%= project.title %></p></td>
+            <td class="hideOnNeed1"><p><%= project.desc %></p></td>
+            <td class="hideOnNeed2"><p><%= project.domain&.title %></p></td>
+            <td class="hideOnNeed2"><p><%= project.team_size %></p></td>
+            <td class="hideOnNeed2"><p><%= project.core_skill&.title %></p></td>
+            <td><p>
+              <% project.supportive_skills.each do |s_skill| %>
+                  <%= s_skill.title+", " %>
+                <%end%>
+            </p></td>
+            <td><%= link_to "Edit", edit_project_path(project),class: "material-symbols-outlined" %></td>
+            <td><%= button_to "delete" , project , method: :delete ,class: "material-symbols-outlined symbols_delete"%></td>
+            <td>
+              <%= link_to (project) , class: 'material-symbols-outlined' do %>
+              <span>Visibility</span>
+              <%end%>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
-<div class="table_gr">
-  <table class="table table-hover table-striped data_table_gr" id="gr" style="width: 100%;">
-   <thead>
-    <tr style="color:white;">
-      <th>Title</th>
-      <th class="hideOnNeed1">Description</th>
-      <th class="hideOnNeed2">Domain</th>
-      <th class="hideOnNeed2">team_size</th>
-      <th class="hideOnNeed2">Core Skill</th>
-      <th>supportive_skill</th>
-      <th class="table_button_gr">Edit</th>
-      <th class="table_button_gr">Delete</th>
-      <th class="table_button_gr">Show</th>
-     </tr>
-    </thead>
-    <tbody>
-  <% @projects.each do |project| %>
-  <tr>
-    <td><p><%= project.title %></p></td>
-    <td class="hideOnNeed1"><p><%= project.desc %></p></td>
-    <td class="hideOnNeed2"><p><%= project.domain&.title %></p></td>
-    <td class="hideOnNeed2"><p><%= project.team_size %></p></td>
-    <td class="hideOnNeed2"><p><%= project.core_skill&.title %></p></td>
-    <td><p>
-      <% project.supportive_skills.each do |s_skill| %>
-          <%= s_skill.title+", " %>
-        <%end%>
-    </p></td>
-    <td><%= link_to "Edit", edit_project_path(project),class: "material-symbols-outlined" %></td>
-    <td><%= button_to "delete" , project , method: :delete ,class: "material-symbols-outlined symbols_delete"%></td>
-    <td>
-      <%= link_to (project) , class: 'material-symbols-outlined' do %>
-      <span>Visibility</span>
-      <%end%>
-  </td>
-  </tr>
-  <% end %>
-    </tbody>
-  </table>
-</div>
-</div>
 </div>

@@ -16,7 +16,6 @@ class TechStacksController < ApplicationController
   def edit
   end
 
-  
   def create
     @tech_stack = TechStack.new(tech_stack_params)
 

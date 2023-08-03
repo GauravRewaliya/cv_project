@@ -12,9 +12,9 @@
                     <%= image_tag @curriculum_vitae.image.variant(resize_to_limit: [nil, 120]) , style: " width: 150px; height: 150px ; border-radius: 50%;     position: relative; z-index: 2;" if curriculum_vitae.image.attached? %>
                     <!--  object-fit: cover; object-position: center;-->
                 <div class="profile-avatar-info mt-3">
-                  <h5 class="text-white">
+                  <h3 class="text-white">
                     <%= curriculum_vitae.candidate&.name %>
-                  </h5>
+                  </h3>
                   <h6 class="text-white">
                     <%= curriculum_vitae.profile_desc.html_safe %>
                   </h6>

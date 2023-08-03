@@ -1,8 +1,4 @@
 body{
-    /* background: linear-gradient(60deg , transparent , #209aa3 ,#723af5  );
-    background-repeat: no-repeat;
-    height: 100vh;
-    */
     background: linear-gradient(60deg , transparent , #209aa3 ,#723af5 );
     display: flex;
     justify-content: center;
@@ -21,22 +17,14 @@ p{
 }
 .topHeader{
     font-size: 30px;
-    
-    /* position: relative;
-    left: 10px; */
     text-align: center;
 }
 .formBox {
-    /* margin: 6%; */
     padding: 56px;
-    /* height: 25%; */
-    /* width: 399px; */
-    /* width: 30%; */
     background: #f8f8f875;
     justify-content: center;
     border: 2px solid white;
     border-radius: 20px;
-    /* backdrop-filter: blur(3px); */
 }
 .formContainer{
     display: flex;
@@ -83,7 +71,6 @@ i{
 #LoginB
 {
     position: relative;
-    /* color: yellow; */
     color: blue;
     font-size: 25px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

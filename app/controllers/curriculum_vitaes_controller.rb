@@ -68,6 +68,7 @@ class CurriculumVitaesController < ApplicationController
     @curriculum_vitae.updated_by = current_user.email
     @curriculum_vitae.company_experiences.reject(&:persisted?).each(&:destroy)
     @curriculum_vitae.cv_projects.reject(&:persisted?).each(&:destroy)
+    @curriculum_vitae.updated_by = current_user.email
     respond_to do |format|
       if @curriculum_vitae.update(curriculum_vitae_params)
         format.html { redirect_to curriculum_vitae_url(@curriculum_vitae), notice: "CurriculumVitae was successfully updated." }
@@ -88,12 +89,10 @@ class CurriculumVitaesController < ApplicationController
     end
   end
 
-  private
-  
+  private  
     def set_curriculum_vitae
       @curriculum_vitae = CurriculumVitae.find(params[:id])
     end
-
     
     def curriculum_vitae_params
       params.require(:curriculum_vitae).permit(:candidate_id ,:template_name,:experience ,:image,:objective ,:profile_desc, linkable_core_tech_attributes: [:tech_stack_id] ,supportive_skill_ids:[],company_experiences_attributes: [:id ,:curriculum_vitae_id , :company_name , :start_date , :end_date ,:role ,:_destroy] ,cv_projects_attributes:[:id,:original_project_id,:title,:desc,:role ,:responsibility,:start_date,:end_date, :team_size ,:domain_id ,:_destroy,:proj_core_skill_id,proj_supportive_skill_ids:[] ])

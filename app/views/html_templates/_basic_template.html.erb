@@ -73,6 +73,11 @@
                     <td>
                         <%= project.start_date %> 
                         <%= project.end_date.blank? ? 'Currently Running': ' to '+project.end_date.to_s %>
+                          <% end_date = ( project.end_date.blank? ? Time.now : project.end_date)%>
+                            <%if end_date.year - project.start_date.year !=0 || end_date.month - project.start_date.month !=0%>
+                               ( <%= (y=(end_date.year - project.start_date.year)) == 0 ? ' ' : y.to_s+' Year '%>
+                                <%= (m=(end_date.month - project.start_date.month)) == 0 ? ' ' : m.to_s+' Month '%> )
+                            <%end%>
                     </td>
                    </tr> 
 
@@ -128,12 +133,12 @@
         <ul>
             <% curriculum_vitae.company_experiences.each do |exp| %>
             <li>Working as <%= exp.role%> with <%= exp.company_name %> from 
-                <%= exp.start_date %> <%= exp.end_date.blank? ? ' to till now.': ' to '+exp.end_date.to_s %> 
-                    <!-- <% end_date = ( exp.end_date.blank? ? Time.now : exp.end_date)%>
+                <%= exp.start_date %> <%= exp.end_date.blank? ? '': ' to '+exp.end_date.to_s %> 
+                <% end_date = ( exp.end_date.blank? ? Time.now : exp.end_date)%>
                 <%if end_date.year - exp.start_date.year !=0 || end_date.month - exp.start_date.month !=0%>
-                    <%= (y=(end_date.year - exp.start_date.year)) == 0 ? ' ' : y.to_s+' Year, '%>
-                    <%= (m=(end_date.month - exp.start_date.month)) == 0 ? ' ' : m.to_s+' Month '%>
-                <%end%> -->
+                    with <%= (y=(end_date.year - exp.start_date.year)) == 0 ? ' ' : y.to_s+' Year, '%>
+                    <%= (m=(end_date.month - exp.start_date.month)) == 0 ? ' ' : m.to_s+' Month '%> Experience.
+                <%end%>
             </li>
             <%end%>
         </ul>

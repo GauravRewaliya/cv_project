@@ -4,6 +4,7 @@ class DomainsController < ApplicationController
   def index
    @domains = Domain.all
   end
+  
   def show
   end
 

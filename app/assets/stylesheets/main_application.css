@@ -39,3 +39,90 @@ a:hover {
 {
   margin-top: 60px; 
 }   
+.card{
+  box-shadow: inset -4px 1px 16px 0px #7adeeb87;
+  padding-left: 12px;
+  padding-right: 12px;
+  background-color: #f6f9ff;
+  border-radius: 13px;
+  padding-top: 7px;
+  box-shadow: 1px 1px 19px 2px #62a7a7;
+}
+.body
+{
+    transform: scale(0.9);
+    transform-origin: top left;
+    width: 111%;
+    height: 111%;
+}
+.btn-success{
+  margin-top: 8px;
+}
+.pos_card_l
+{
+  position: absolute;
+  top: 20px;
+  left: 4px;
+}
+.pos_card_l:hover
+{
+  box-shadow: -1px 0px 20px 0 cyan;
+  border-radius: 50%; 
+}
+.pos_card_r
+{
+  position: absolute;
+  right: 2%;
+  top: 20px;
+}
+
+.table_gr {
+  width: 100%;
+  overflow-x: auto;
+}
+.table_gr table
+{
+  background-image: linear-gradient(36deg,#d4d2dd45 31%,rgb(244 244 255 / 36%) 26%,#fdfdfd4a),linear-gradient(212deg,#bbbabf45 36%,rgb(239 237 237 / 61%) 22%,#dfdde94f);
+}
+.table_gr div{
+  width: 99%;
+}
+thead , tfoot {
+  background-color: #43a5b0;
+}
+.dataTable{
+  border-radius: 20px;
+  overflow: hidden;
+}
+.table_button_gr{
+  width: 5%!important;
+  }
+  @media (max-width: 768px){
+    table th.hideOnNeed1 , 
+  table td.hideOnNeed1 {
+    display: none;
+  }
+  }
+  @media (max-width: 1100px) {
+  table th.hideOnNeed2 , 
+  table td.hideOnNeed2 {
+    display: none;
+  }
+  }
+  table 
+  { 
+    width: 100%;
+  }
+.table-hover tbody tr:hover{
+  background-color: rgb(212 247 255 / 70%) !important;
+    box-shadow: inset -4px 1px 16px 0px #5164c187;
+}
+
+tbody tr:hover {
+  background: #b0d7db;
+}
+h1,h3{
+  margin-top: 8px;
+  margin-bottom: 0px;
+  text-align: center;
+}

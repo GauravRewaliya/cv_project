@@ -21,12 +21,12 @@ Domain.create([
     {title: "marketing"},
     {title: "social sites"}
 ])
-# Project.create( 
-#     title: "GitPod",
-#     desc: "Gitpod is an open source developer platform automating the provisioning of ready-to-code developer environments",
-#     start_date: Thu, 25 Jun 2020,
-#     end_date: Sat, 25 Jun 2022,
-#     team_size: 800,
-#     core_skill: TechStack.core_skills.first,
-#     domain: Domain.first
-# )
+Project.create( 
+    title: "GitPod",
+    desc: "Gitpod is an open source developer platform automating the provisioning of ready-to-code developer environments",
+    start_date: Date.new(2020, 6, 25),
+    end_date: Date.new(2022, 6, 25),
+    team_size: 800,
+    core_skill: TechStack.core_skills.first,
+    domain: Domain.first
+)

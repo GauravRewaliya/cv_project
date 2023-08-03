@@ -127,3 +127,10 @@ h1 , .center_h{
   margin-bottom: 0px;
   text-align: center;
 }
+/* select picker override */
+.dropdown-menu.show {
+  transition: translate3d(0px, 0px, 0px)!important;
+  min-width: -webkit-fill-available !important;
+  top: auto !important;
+  transform: none !important;
+}

@@ -2,13 +2,13 @@
 <div class="card text-center" >
   <%= link_to "arrow_back", tech_stacks_path ,class:"pos_card_l material-symbols-outlined"  %>
 
-  <h3>
+  <h3 class="center_h">
     <strong>Skill</strong>
   </h3>
   <div class="card-body">
-      <div class="formBox">
-        <div class="formContainer">
-          <table style="text-align: left;">
+      <div>
+        <div class="formContainer table_gr">
+          <table class="show_table">
             <tr>
               <th class="show_h">Title:</th>
               <td class="show_details">  <%= @tech_stack.title %> </td>

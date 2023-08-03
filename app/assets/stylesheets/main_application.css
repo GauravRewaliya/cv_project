@@ -119,9 +119,10 @@ thead , tfoot {
 }
 
 tbody tr:hover {
-  background: #b0d7db;
+  /* background: #b0d7db; */
+  background: #bfeef369;
 }
-h1,h3{
+h1 , .center_h{
   margin-top: 8px;
   margin-bottom: 0px;
   text-align: center;

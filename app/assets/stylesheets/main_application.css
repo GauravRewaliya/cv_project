@@ -38,6 +38,7 @@ a:hover {
 .content
 {
   margin-top: 60px; 
+  position: relative;
 }   
 .card{
   box-shadow: inset -4px 1px 16px 0px #7adeeb87;

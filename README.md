@@ -22,3 +22,9 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+* By GR
+ Docker doc 
+ docker build -t div:1.2 .
+ docker run -p 3000:3000 -v "$(pwd)":/cv_creater div:1.2    \\ it run server for current dir file 
+ docker run -p 3000:3000 -it -v "$(pwd)":/cv_creater div:1.2  bash  \\ docker bash

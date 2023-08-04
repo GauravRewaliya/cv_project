@@ -64,6 +64,7 @@ label {
   border: solid 2px;
   border-style: groove;
   padding-bottom: 20px;
+  margin: 6px 2px;
 }
 
 .error {

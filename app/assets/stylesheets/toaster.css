@@ -1,13 +1,14 @@
 
 :root{
-    --success: green;
-    --error: red;
+    --success: #18aa18;
+    --error: #ee4242;
     --warning: yellow;
     }
     .notifications{
     position: absolute;
     right: 0;
     z-index: 5;
+    top: 3%;
     }
     .notifications .toast{
         border: none;
@@ -43,12 +44,10 @@
     }
 }
 .toast.success i{
-    /* color: var(--success); */
-    color: #18aa18;
+    color: var(--success);
 }
 .toast.error i{
-    /* color: var(--error); */
-    color: #ee4242;;
+    color: var(--error);
 }
 .toast.success::before {
     background: var(--success);

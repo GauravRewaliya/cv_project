@@ -4,54 +4,44 @@
     <h1>Candidates</h1>
     <%= link_to "New candidate", new_candidate_path ,class: 'btn btn-primary pos_card_new' %>
     </div>
-<div class="table_gr" >
-  <table class="table table-hover table-striped data_table_gr" style="width: 100%;">
-    <thead>
-    <tr style=" color: white">
-      <th>update_at</th>
-      <th class="needCol">name</th>
-      <th class="hideOnNeed2">employ_id</th>
-      <th class="hideOnNeed1">email</th>
-      <th class="hideOnNeed1">contact</th>
-      <th class="hideOnNeed2">address</th>
-      <!-- <th>Gender</th> -->
-      <!-- <th class="hideOnNeed2">core_skill</th> -->
-      <!-- <th>supportive_skill</th> -->
-      <th class="needCol table_button_gr">Edit</th>
-      <th class="needCol table_button_gr">Delete</th>
-      <th class="needCol table_button_gr">Show</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @candidates.each do |candidate| %>
-  <tr>
-    <td><%=candidate.updated_at%></td>
-    <td  class="needCol"><h6><%= candidate.name %></h6></td>
-    <td class="hideOnNeed2"><p><%= candidate.employ_id %></p></td>
-    
-    <td class="hideOnNeed1"><p><%= candidate.profile.email %></p></td>
-    <td class="hideOnNeed1"><p><%= candidate.profile.contact %></p></td>
-    <td class="hideOnNeed2"><p><%= candidate.profile.address %></p></td>
-    <!-- <td class="hideOnNeed2"><%#= candidate.core_tech&.title %></td> -->
-    <!-- <td >
-      <%# candidate.supportive_techs.each do |skill| %>
-      <%#= skill.title.to_s+","%>
-     <%#end%>
-    </td> -->
-    <td  class="needCol"><%= link_to "Edit", edit_candidate_path(candidate) ,class: "material-symbols-outlined" %></td>
-    <!-- <td  class="needCol"><%= button_to "" , candidate , method: :delete ,class: "fa-solid fa-trash alert-light "%></td> -->
-    <td  class="needCol">
-      <%= button_to "delete" , candidate , method: :delete ,class: "material-symbols-outlined symbols_delete"%>
-    </td>
-    <td  class="needCol">
-    <%= link_to (candidate) , class: 'material-symbols-outlined' do %>
-    <span>Visibility</span>
-    <%end%>
-  </td>
-  </tr>
-  <% end %>
-  </tbody>
-  </table>
-</div>
-</div>
+    <div class="table_gr" >
+      <table class="table table-hover table-striped data_table_gr">
+        <thead>
+        <tr>
+          <th>update_at</th>
+          <th class="needCol">name</th>
+          <th class="hideOnNeed2">employ_id</th>
+          <th class="hideOnNeed1">email</th>
+          <th class="hideOnNeed1">contact</th>
+          <th class="hideOnNeed2">address</th>
+          <th class="needCol table_button_gr">Edit</th>
+          <th class="needCol table_button_gr">Delete</th>
+          <th class="needCol table_button_gr">Show</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @candidates.each do |candidate| %>
+      <tr>
+        <td><%=candidate.updated_at%></td>
+        <td  class="needCol"><h6><%= candidate.name %></h6></td>
+        <td class="hideOnNeed2"><p><%= candidate.employ_id %></p></td>
+        
+        <td class="hideOnNeed1"><p><%= candidate.profile.email %></p></td>
+        <td class="hideOnNeed1"><p><%= candidate.profile.contact %></p></td>
+        <td class="hideOnNeed2"><p><%= candidate.profile.address %></p></td>
+        <td  class="needCol"><%= link_to "Edit", edit_candidate_path(candidate) ,class: "material-symbols-outlined" %></td>
+        <td  class="needCol">
+          <%= button_to "delete" , candidate , method: :delete ,class: "material-symbols-outlined symbols_delete"%>
+        </td>
+        <td  class="needCol">
+        <%= link_to (candidate) , class: 'material-symbols-outlined' do %>
+        <span>Visibility</span>
+        <%end%>
+      </td>
+      </tr>
+      <% end %>
+      </tbody>
+      </table>
+    </div>
+  </div>
 </div>

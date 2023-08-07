@@ -20,3 +20,4 @@ CMD ["rails", "server", "-b", "0.0.0.0", "-p", "3000"]
 # run >> 
 # docker build -t cv_docker:1.3 .   \\ give image
 # docker run -p 3000:3000 -v "$(pwd)":/cv_creater cv_docker:1.3
+# docker run -p 3000:3000 -v "$(pwd)":/cv_creater -it cv_docker:1.3 bash

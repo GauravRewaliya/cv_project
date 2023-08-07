@@ -73,8 +73,8 @@ a.nav-link::after {
 
     <div class="form-inline my-2 my-lg-0">
       <% if user_signed_in? %>
-      <%= link_to 'edit User', edit_user_registration_path, class: ' btn btn-sm btn-primary' , style: "margin-right: 6px;" %>
-      <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: ' btn btn-sm btn-danger', stytle: "margin-right: -11px;"%>
+      <%= link_to 'edit User', edit_user_registration_path, class: ' btn btn-primary' , style: "margin-right: 6px;" %>
+      <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: ' btn btn-danger', stytle: "margin-right: -11px;"%>
       <% else %>
       <%= link_to 'Sign In', new_user_session_path %>
      <%= link_to 'Register', new_user_registration_path %>

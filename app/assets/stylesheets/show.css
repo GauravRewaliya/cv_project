@@ -13,11 +13,6 @@
 {
     width: 27%;
 }
-
-.row{
-  margin-right: -7px;
-  margin-left: -7px;
-}
 .pos_r {
   position: absolute;
   right: 2%;
@@ -39,4 +34,9 @@ table.show_table td {
 }
 table.show_table td:nth-child(1) {
   min-width: 100px;
+}
+.card-footer
+{
+  display: flex;
+  margin-left: auto;
 }

@@ -3,6 +3,6 @@
     <%= render "html_templates/"+@curriculum_vitae.template_name , curriculum_vitae: @curriculum_vitae%>
 <% else %>
     Template Not selected 
-    <%= link_to "Edit this curriculum_vitae", edit_curriculum_vitae_path(@curriculum_vitae) %> |
+    <%= link_to "Edit this curriculum_vitae", edit_curriculum_vitae_path(@curriculum_vitae) ,class: "btn btn-outline-info"%> |
     <%= link_to "Back to curriculum_vitaes", curriculum_vitaes_path %>
 <%end%>

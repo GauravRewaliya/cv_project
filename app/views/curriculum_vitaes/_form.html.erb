@@ -31,7 +31,6 @@
         </div>
       </div>
     </div>
-      
 
     <div>
         <%= form.label "Profile Description"  %>
@@ -52,151 +51,151 @@
       </div>
     </div>
 
-      <div class="repeater_experience div_group">
-        <h3>Experience</h3>
-        <div class="div_sub_group">
-          <div data-repeater-list="curriculum_vitae[company_experiences_attributes]">
-              <%= form.fields_for :company_experiences do |company_experience_form| %>
-                <div class="row g_rep_item" data-repeater-item >
-                  <div class="col-6" >
-                    <%=form.label "Company Name"  %>
-                    <%= company_experience_form.text_field :company_name  ,class: "form-control" %>
-                    <%= helper_custom_error( company_experience_form , :company_name) %> 
-                    <%=form.label "Role" ,style:"margin-top: 0px;" %>
-                    <%= company_experience_form.text_field :role  ,class: "form-control" %>
-                    <%= helper_custom_error( company_experience_form , :role) %> 
-                  </div>
-                  <div class="col-5">
-                      <div class="row">
-                          <div class="col-6">
-                            <%=form.label :start_date %>
-                            <%= company_experience_form.date_field :start_date , max: Date.today ,class: 'form-control start_date container' ,required: "true" ,onchange:"updateEndDate(this)"%>
-                          </div>
-                          <div class="col-6">
-                            <%=form.label :end_date %>
-                            <%= company_experience_form.date_field :end_date , max: Date.today ,class: 'form-control end_date container' , onchange: "checkboxTogle(this)"%>
-                          </div>
-                      </div>
-
-                      <div class="form-inline checkbox_form">
-                        <input type="checkbox" class="inprogress_checkbox" onchange="endDateDisable(this)">
-                        <p >currently running</p>
-                      </div>
-                  </div>
-                  <div class="col-1" style="padding-top: 28px;padding-left: 0px;">
-                    <!-- <button type="button" data-repeater-delete="" class="deleteg btn btn-outline-danger btn-sm fa fa-close " style="font-size: 13px;"></button> -->
-                    <button type="button"  class="btn btn-outline-danger g_sm_btn fa fa-close " style="font-size: 13px;" , onclick="deleteRepeaterItem(this);"></button>
-                  </div>
-                  <%= company_experience_form.hidden_field :_destroy, class: "destroy-field" %>
+    <div class="repeater_experience div_group">
+      <h3>Experience</h3>
+      <div class="div_sub_group">
+        <div data-repeater-list="curriculum_vitae[company_experiences_attributes]">
+            <%= form.fields_for :company_experiences do |company_experience_form| %>
+              <div class="row g_rep_item" data-repeater-item >
+                <div class="col-6" >
+                  <%=form.label "Company Name"  %>
+                  <%= company_experience_form.text_field :company_name  ,class: "form-control" %>
+                  <%= helper_custom_error( company_experience_form , :company_name) %> 
+                  <%=form.label "Role" ,style:"margin-top: 0px;" %>
+                  <%= company_experience_form.text_field :role  ,class: "form-control" %>
+                  <%= helper_custom_error( company_experience_form , :role) %> 
                 </div>
-              <%end%>
-          </div>
-         <button type="button" data-repeater-create class="btn btn-outline-info btn-sm btn-add-g" >+ Add</button>
-        </div>
-      </div>
-
-      <div class="repeater_proj div_group" >
-        <h3>Projects</h3>
-        <div class="div_sub_group">
-          <div data-repeater-list="curriculum_vitae[cv_projects_attributes]" >
-            <%= form.fields_for :cv_projects do |project_form| %>
-              <div class="row g_rep_item p-4"  data-repeater-item  >
-                <div class="col-3" >
-                  <%= project_form.select(:original_project_id, grouped_options_for_select(helper_grouped_projects_options , selected: project_form.object.original_project_id), {prompt: "Select a project"}, {class: "form-control" ,onchange: "project_select(this)"}) %>
-                </div>
-                <div class="col-7" id="cloned_content">
-                  <div class="form-group">
-                    <%= project_form.label :title %>
-                    <%= project_form.text_field :title ,class:"form-control" %>
-                    <%= helper_custom_error( project_form , :title) %> 
-                  </div>
-                  <div class="form-group">
-                    <%= project_form.label :desc %>
-                    <%= project_form.text_area :desc ,class:"form-control"%>
-                    <%= helper_custom_error( project_form , :desc) %> 
-                  </div>
-                  <div class="form-group">
-                    <%= project_form.label :role %>
-                    <%= project_form.text_field :role ,class:"form-control"%>
-                    <%= helper_custom_error( project_form , :role) %> 
-                  </div>
-                  <div class="form-group">
-                    <%= project_form.label :responsibility %>
-                    <%= project_form.text_area :responsibility, class: "ckeditor_g" %>
-                  </div>
-                  <div class="row">
-                    <div class="col-6">
-                      <%= project_form.label :team_size %>
-                      <%= project_form.number_field :team_size ,class:"form-control"%>
-                      <%= helper_custom_error( project_form , :team_size) %> 
-                    </div>
-                    <div class="col-6">
-                      <%= project_form.label :domain %>
-                      <%= project_form.collection_select :domain_id, Domain.order(:title), :id, :title, { include_blank: true } ,{class: "form-control"} %>
-                      <%= helper_custom_error( project_form , :domain) %> 
-                    </div>
-                  </div>
-                  <div>
-                    <div class="form-group">
-                      <div class="row">
+                <div class="col-5">
+                    <div class="row">
                         <div class="col-6">
-                          <%= project_form.label :start_date %>
-                          <%= project_form.date_field :start_date , max: Date.today ,class: 'form-control start_date container' ,onchange:"updateEndDate(this)"%>
-                          <%= helper_custom_error( project_form , :start_date) %> 
+                          <%=form.label :start_date %>
+                          <%= company_experience_form.date_field :start_date , max: Date.today ,class: 'form-control start_date container' ,required: "true" ,onchange:"updateEndDate(this)"%>
                         </div>
                         <div class="col-6">
-                          <%= project_form.label :end_date  %>
-                          <%= project_form.date_field :end_date , max: Date.today ,class: 'form-control end_date container',onchange:"checkboxTogle(this)"%>
+                          <%=form.label :end_date %>
+                          <%= company_experience_form.date_field :end_date , max: Date.today ,class: 'form-control end_date container' , onchange: "checkboxTogle(this)"%>
                         </div>
-                      </div>
                     </div>
+
                     <div class="form-inline checkbox_form">
-                      <input type="checkbox" id="inprogress_id" class="inprogress_checkbox" onchange="endDateDisable(this)">
+                      <input type="checkbox" class="inprogress_checkbox" onchange="endDateDisable(this)">
                       <p >currently running</p>
                     </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <%= project_form.label :core_skill %>
-                        <%= project_form.collection_select :proj_core_skill_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{class: "form-control has_one"} %>
-                        <%= helper_custom_error( project_form , :proj_core_skill) %> 
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <%= project_form.label :supportive_skills  %>
-                        <%= project_form.collection_select(:proj_supportive_skill_ids, TechStack.all, :id, :title ,{}, { multiple: true ,class:"selectpick has_many" ,onclick:"supportive_skills_fix()"}) %> 
-                      </div>
-                    </div>
-                  </div>
                 </div>
-                <div class="col-2" style="height: 37px;display: inline-flex;">
-                  <button type="button"  class="g_sm_btn g btn btn-outline-danger  fa fa-close " , onclick="deleteRepeaterItem(this);" ></button>
-                  <button type="button" class="btn btn-outline-info fa fa-eye-slash g_sm_btn" , onclick="showHide(this);" ></button>
+                <div class="col-1" style="padding-top: 28px;padding-left: 0px;">
+                  <!-- <button type="button" data-repeater-delete="" class="deleteg btn btn-outline-danger btn-sm fa fa-close " style="font-size: 13px;"></button> -->
+                  <button type="button"  class="btn btn-outline-danger g_sm_btn fa fa-close " style="font-size: 13px;" , onclick="deleteRepeaterItem(this);"></button>
                 </div>
-                <%= project_form.hidden_field :_destroy, class: "destroy-field" %>
+                <%= company_experience_form.hidden_field :_destroy, class: "destroy-field" %>
               </div>
             <%end%>
-          </div>
-            <button type="button" data-repeater-create class="btn btn-outline-info btn-sm btn-add-g" , onclick="repeater_refresh()">+ Add</button>
         </div>
+        <button type="button" data-repeater-create class="btn btn-outline-info btn-sm btn-add-g" >+ Add</button>
+      </div>
+    </div>
+
+    <div class="repeater_proj div_group" >
+      <h3>Projects</h3>
+      <div class="div_sub_group">
+        <div data-repeater-list="curriculum_vitae[cv_projects_attributes]" >
+          <%= form.fields_for :cv_projects do |project_form| %>
+            <div class="row g_rep_item p-4"  data-repeater-item  >
+              <div class="col-3" >
+                <%= project_form.select(:original_project_id, grouped_options_for_select(helper_grouped_projects_options , selected: project_form.object.original_project_id), {prompt: "Select a project"}, {class: "form-control" ,onchange: "project_select(this)"}) %>
+              </div>
+              <div class="col-7" id="cloned_content">
+                <div class="form-group">
+                  <%= project_form.label :title %>
+                  <%= project_form.text_field :title ,class:"form-control" %>
+                  <%= helper_custom_error( project_form , :title) %> 
+                </div>
+                <div class="form-group">
+                  <%= project_form.label :desc %>
+                  <%= project_form.text_area :desc ,class:"form-control"%>
+                  <%= helper_custom_error( project_form , :desc) %> 
+                </div>
+                <div class="form-group">
+                  <%= project_form.label :role %>
+                  <%= project_form.text_field :role ,class:"form-control"%>
+                  <%= helper_custom_error( project_form , :role) %> 
+                </div>
+                <div class="form-group">
+                  <%= project_form.label :responsibility %>
+                  <%= project_form.text_area :responsibility, class: "ckeditor_g" %>
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <%= project_form.label :team_size %>
+                    <%= project_form.number_field :team_size ,class:"form-control"%>
+                    <%= helper_custom_error( project_form , :team_size) %> 
+                  </div>
+                  <div class="col-6">
+                    <%= project_form.label :domain %>
+                    <%= project_form.collection_select :domain_id, Domain.order(:title), :id, :title, { include_blank: true } ,{class: "form-control"} %>
+                    <%= helper_custom_error( project_form , :domain) %> 
+                  </div>
+                </div>
+                <div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-6">
+                        <%= project_form.label :start_date %>
+                        <%= project_form.date_field :start_date , max: Date.today ,class: 'form-control start_date container' ,onchange:"updateEndDate(this)"%>
+                        <%= helper_custom_error( project_form , :start_date) %> 
+                      </div>
+                      <div class="col-6">
+                        <%= project_form.label :end_date  %>
+                        <%= project_form.date_field :end_date , max: Date.today ,class: 'form-control end_date container',onchange:"checkboxTogle(this)"%>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-inline checkbox_form">
+                    <input type="checkbox" id="inprogress_id" class="inprogress_checkbox" onchange="endDateDisable(this)">
+                    <p >currently running</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <%= project_form.label :core_skill %>
+                      <%= project_form.collection_select :proj_core_skill_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{class: "form-control has_one"} %>
+                      <%= helper_custom_error( project_form , :proj_core_skill) %> 
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <%= project_form.label :supportive_skills  %>
+                      <%= project_form.collection_select(:proj_supportive_skill_ids, TechStack.all, :id, :title ,{}, { multiple: true ,class:"selectpick has_many" ,onclick:"supportive_skills_fix()"}) %> 
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-2" style="height: 37px;display: inline-flex;">
+                <button type="button"  class="g_sm_btn g btn btn-outline-danger  fa fa-close " , onclick="deleteRepeaterItem(this);" ></button>
+                <button type="button" class="btn btn-outline-info fa fa-eye-slash g_sm_btn" , onclick="showHide(this);" ></button>
+              </div>
+              <%= project_form.hidden_field :_destroy, class: "destroy-field" %>
+            </div>
+          <%end%>
+        </div>
+          <button type="button" data-repeater-create class="btn btn-outline-info btn-sm btn-add-g" , onclick="repeater_refresh()">+ Add</button>
+      </div>
+    </div>
+
+    <div class="row">      
+      <div class="col-md-6">
+        <%= form.label "select profile image" %>
+        <%= form.file_field :image ,class: "btn btn-outline-secondary form-control-file"%>
       </div>
 
-      <div class="row">      
-        <div class="col-md-6">
-          <%= form.label "select profile image" %>
-          <%= form.file_field :image ,class: "btn btn-outline-secondary form-control-file"%>
-        </div>
-
-        <div class="col-md-6">
-          <%= form.label "Cv Layout"  %>
-          <% template_files=Dir.glob(Rails.root.join('app', 'views' , 'html_templates' , '*.html.erb' )) %>
-          <% @template_options=template_files.map { |file| File.basename(file, '.html.erb' )[1..] }%>
-          <%= form.select(:template_name, @template_options , {}, {class: "form-control"}) %>
-        </div>
+      <div class="col-md-6">
+        <%= form.label "Cv Layout"  %>
+        <% template_files=Dir.glob(Rails.root.join('app', 'views' , 'html_templates' , '*.html.erb' )) %>
+        <% @template_options=template_files.map { |file| File.basename(file, '.html.erb' )[1..] }%>
+        <%= form.select(:template_name, @template_options , {}, {class: "form-control"}) %>
       </div>
+    </div>
 
-      <%= form.submit class: 'btn btn-success' %>
+    <%= form.submit class: 'btn btn-success' %>
  <% end%>
     

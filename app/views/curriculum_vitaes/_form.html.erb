@@ -40,18 +40,16 @@
     <div class="row">
       <div class="col-md-6">
         <%= form.label "Core Skill"  %>
+        <%= link_to "+ Add Skill", new_tech_stack_path , remote: true %>
           <%= form.fields_for :linkable_core_tech_attributes, curriculum_vitae.linkable_core_tech do  |cs| %>
-            <%= cs.collection_select :tech_stack_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{ id: "core_tech_select_id" ,class: "form-control has_one"}%>
+            <%= cs.collection_select :tech_stack_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{ id: "core_tech_select_id" ,class: "form-control has_one core_skill_selector"}%>
           <% end %>
           <%= helper_custom_error( form , :linkable_core_tech) %> 
       </div>
       <div class="col-md-6">
         <%= form.label :supportive_skills %>
-        <!-- <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#exampleModal">
-          + Add
-        </button> -->
-        <%= link_to "+ Add", add_tech_stack_cv_path , remote: true %>
-        <%= form.collection_select(:supportive_skill_ids, TechStack.all, :id, :title , {}, {multiple: true ,class: "selectpick show-menu-arrow form-control has_many"}) %>
+        <%= link_to "+ Add Skill", new_tech_stack_path , remote: true %>
+        <%= form.collection_select(:supportive_skill_ids, TechStack.all, :id, :title , {}, {multiple: true ,class: "selectpick show-menu-arrow form-control has_many supportive_skill_selector"}) %>
       </div>
     </div>
 
@@ -135,7 +133,8 @@
                   </div>
                   <div class="col-6">
                     <%= project_form.label :domain %>
-                    <%= project_form.collection_select :domain_id, Domain.order(:title), :id, :title, { include_blank: true } ,{class: "form-control"} %>
+                    <%= link_to "+ Add Domain", new_domain_path , remote: true %>
+                    <%= project_form.collection_select :domain_id, Domain.order(:title), :id, :title, { include_blank: true } ,{class: "form-control domain_selector"} %>
                     <%= helper_custom_error( project_form , :domain) %> 
                   </div>
                 </div>
@@ -162,14 +161,16 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <%= project_form.label :core_skill %>
-                      <%= project_form.collection_select :proj_core_skill_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{class: "form-control has_one"} %>
+                      <%= link_to "+ Add Skill", new_tech_stack_path , remote: true %>
+                      <%= project_form.collection_select :proj_core_skill_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{class: "form-control has_one core_skill_selector"} %>
                       <%= helper_custom_error( project_form , :proj_core_skill) %> 
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <%= project_form.label :supportive_skills  %>
-                      <%= project_form.collection_select(:proj_supportive_skill_ids, TechStack.all, :id, :title ,{}, { multiple: true ,class:"selectpick has_many" ,onclick:"supportive_skills_fix()"}) %> 
+                      <%= link_to "+ Add Skill", new_tech_stack_path , remote: true %>
+                      <%= project_form.collection_select(:proj_supportive_skill_ids, TechStack.all, :id, :title ,{}, { multiple: true ,class:"selectpick has_many supportive_skill_selector" ,onclick:"supportive_skills_fix()"}) %> 
                     </div>
                   </div>
                 </div>

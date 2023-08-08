@@ -23,9 +23,11 @@ class DomainsController < ApplicationController
       if @domain.save
         format.html {redirect_to domains_path, notice: "Domain was successfully created." }
         format.json { render :index, status: :created, location: @domain }
+        format.js
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @domain.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end

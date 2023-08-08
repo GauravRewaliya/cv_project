@@ -1,0 +1,16 @@
+<% if @domain.errors.any? %>
+  $('#exampleModal .modal-body').html('<%= j render(partial: "popup_form", locals: { domain: @domain }) %>');
+<% else %>
+  <%# hide %>
+  $('#exampleModal').modal('hide');
+  <%# put option in option list %>
+  var newDomainTitle = '<%= j @domain.title %>';
+  var newDomainId = '<%= j @domain.id %>';
+  
+  document.querySelectorAll('.domain_selector').forEach( e => { 
+  var option = document.createElement("option");
+  option.text = newDomainTitle;
+  option.value = newDomainId;
+  e.appendChild(option);
+  });
+<% end %>

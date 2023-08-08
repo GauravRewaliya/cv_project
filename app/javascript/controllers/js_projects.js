@@ -1,5 +1,5 @@
 //= require controllers/select_picker 
-
+//= require rails-ujs
 function updateEndDate()
 { 
   if(inprogress_id.checked != true)

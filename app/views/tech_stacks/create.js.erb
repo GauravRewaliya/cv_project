@@ -1,5 +1,5 @@
 <% if @tech_stack.errors.any? %>
-  $('#exampleModal .modal-body').html('<%= j render(partial: "/curriculum_vitaes/add_skill_form", locals: { tech_stack: @tech_stack }) %>');
+  $('#exampleModal .modal-body').html('<%= j render(partial: "popup_form", locals: { tech_stack: @tech_stack }) %>');
 <% else %>
   <%# hide %>
   $('#exampleModal').modal('hide');
@@ -9,14 +9,14 @@
   var newSkillId = '<%= j @tech_stack.id %>';
   if( newSkillTechType == 1)
   {
-  document.querySelectorAll('.has_one').forEach( e => { 
+  document.querySelectorAll('.core_skill_selector').forEach( e => { 
   var option = document.createElement("option");
   option.text = newSkillTitle;
   option.value = newSkillId;
   e.appendChild(option);
   });
   }
-  document.querySelectorAll('.has_many select').forEach( e => { 
+  document.querySelectorAll('.supportive_skill_selector select').forEach( e => { 
   var option = document.createElement("option");
   option.text = newSkillTitle;
   option.value = newSkillId;

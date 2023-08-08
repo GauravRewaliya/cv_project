@@ -1,4 +1,7 @@
 class CurriculumVitaesController < ApplicationController
+  # protect_from_forgery except: :add_skill
+  # skip_after_action :verify_same_origin_request
+  
   before_action :set_curriculum_vitae, only: %i[ show edit update destroy save_layout_data download  pdf_html_req docx_html_req doc_html_req]
   layout 'cv' ,only: %i[ show]
 
@@ -54,10 +57,9 @@ class CurriculumVitaesController < ApplicationController
       if @curriculum_vitae.save
         format.html { redirect_to curriculum_vitae_url(@curriculum_vitae), notice: "CurriculumVitae was successfully created." }
         format.json { render :show, status: :created, location: @curriculum_vitae }
-        else
+      else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @curriculum_vitae.errors, status: :unprocessable_entity }
-
       end
     end
   end
@@ -86,6 +88,14 @@ class CurriculumVitaesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to curriculum_vitaes_url, notice: "CurriculumVitae was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+  # model popup
+  def add_skill
+    @tech_stack = TechStack.new
+    respond_to do |format|
+      format.js
+      # format.json { render json: {html: render_to_string(partial: 'curriculum_vitaes\add_skill_form.html.erb',locals: {})}, status: :ok }
     end
   end
 

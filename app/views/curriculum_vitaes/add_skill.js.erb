@@ -1,0 +1,4 @@
+<%# alert('JavaScript is working'); %>
+  $('#exampleModal .modal-title').text('Add New Skill');
+  $('#exampleModal .modal-body').html('<%= j render(partial: "add_skill_form", locals: { tech_stack: @tech_stack }) %>');
+  $('#exampleModal').modal('show');

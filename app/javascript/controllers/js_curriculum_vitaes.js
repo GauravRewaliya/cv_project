@@ -3,6 +3,7 @@
 //= require controllers/ckeditor 
 //= require controllers/repeater
 //= require controllers/cv_ProjectSelect 
+//= require rails-ujs
 
 $(document).ready(function() {
     supportive_skills_fix();  

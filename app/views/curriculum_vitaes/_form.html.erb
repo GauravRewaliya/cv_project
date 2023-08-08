@@ -47,6 +47,10 @@
       </div>
       <div class="col-md-6">
         <%= form.label :supportive_skills %>
+        <!-- <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#exampleModal">
+          + Add
+        </button> -->
+        <%= link_to "+ Add", add_tech_stack_cv_path , remote: true %>
         <%= form.collection_select(:supportive_skill_ids, TechStack.all, :id, :title , {}, {multiple: true ,class: "selectpick show-menu-arrow form-control has_many"}) %>
       </div>
     </div>

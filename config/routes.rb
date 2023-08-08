@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   get 'pdf_html_req/:id' ,to:"curriculum_vitaes#pdf_html_req" , as: :pdf_html_req
   get 'docx_html_req/:id' ,to:"curriculum_vitaes#docx_html_req" , as: :docx_html_req
+  get 'add_skill_popup' ,to:"curriculum_vitaes#add_skill" , as: :add_tech_stack_cv
 
   get 'projects/:proj_id/cv_project_details' , to: 'projects#cv_project_details'
 

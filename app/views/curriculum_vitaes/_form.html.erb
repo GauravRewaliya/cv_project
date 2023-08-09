@@ -56,7 +56,7 @@
     <div class="repeater_experience div_group">
       <h3>Experience</h3>
       <div class="div_sub_group">
-        <div data-repeater-list="curriculum_vitae[company_experiences_attributes]">
+        <div data-repeater-list="curriculum_vitae[company_experiences_attributes]" class="rep">
             <%= form.fields_for :company_experiences do |company_experience_form| %>
               <div class="row g_rep_item" data-repeater-item >
                 <div class="col-6" >
@@ -99,7 +99,7 @@
     <div class="repeater_proj div_group" >
       <h3>Projects</h3>
       <div class="div_sub_group">
-        <div data-repeater-list="curriculum_vitae[cv_projects_attributes]" >
+        <div data-repeater-list="curriculum_vitae[cv_projects_attributes]" class="rep">
           <%= form.fields_for :cv_projects do |project_form| %>
             <div class="row g_rep_item p-4"  data-repeater-item  >
               <div class="col-3" >
@@ -183,7 +183,8 @@
             </div>
           <%end%>
         </div>
-          <button type="button" data-repeater-create class="btn btn-outline-info btn-sm btn-add-g" , onclick="repeater_refresh()">+ Add</button>
+          <%# <button type="button" data-repeater-create class="btn btn-outline-info btn-sm btn-add-g" , onclick="repeater_refresh()">+ Add</button> %>
+          <button type="button" data-repeater-create class="btn btn-outline-info btn-sm btn-add-g" id="project_repeater_add">+ Add</button>
       </div>
     </div>
 

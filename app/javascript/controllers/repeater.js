@@ -32,9 +32,41 @@
           select_picker_refresh();
         } 
       function repeater_refresh() {
+        setSelectOptions();
         select_picker_refresh();
         setTimeout(() =>{
           ckeditor_load();
         }, "100");
       }
-      
+      function setSelectOptions()
+      {
+        // storedcoreSkills ,storedsupportiveSkills ,storedDomains 
+        var lastChild =$('.repeater_proj .rep').children().last();
+        var coreSkillSelector = lastChild.find('.core_skill_selector');
+        var supportiveSkillSelector = lastChild.find('.supportive_skill_selector');
+        var domainSelector = lastChild.find('.domain_selector');
+        debugger
+        for (var i = 0; i < storedcoreSkills.length; i++) {
+          var option = $('<option>', {
+            value: storedcoreSkills[i].id,
+            text: storedcoreSkills[i].text
+          });
+          coreSkillSelector.append(option);
+          // supportiveSkillSelector.append(option);
+        }
+        for (var i = 0; i < storedsupportiveSkills.length; i++) {
+          var option = $('<option>', {
+            value: storedsupportiveSkills[i].id,
+            text: storedsupportiveSkills[i].text
+          });
+          supportiveSkillSelector.append(option);
+        }
+        for (var i = 0; i < storedDomains.length; i++) {
+          var option = $('<option>', {
+            value: storedDomains[i].id,
+            text: storedDomains[i].text
+          });
+          domainSelector.append(option);
+        }
+        
+      }

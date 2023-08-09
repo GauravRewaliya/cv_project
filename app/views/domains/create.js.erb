@@ -13,4 +13,10 @@
   option.value = newDomainId;
   e.appendChild(option);
   });
+  try {
+  storedDomains.push({ id: newDomainId, text: newDomainTitle });
+  }
+  catch(err) {
+    <%# document.getElementById("demo").innerHTML = err.message; %>
+  }
 <% end %>

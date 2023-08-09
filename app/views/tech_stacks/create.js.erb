@@ -15,6 +15,7 @@
   option.value = newSkillId;
   e.appendChild(option);
   });
+  storedcoreSkills.push({ id: newSkillId, text: newSkillTitle });
   }
   document.querySelectorAll('.supportive_skill_selector select').forEach( e => { 
   var option = document.createElement("option");
@@ -22,5 +23,6 @@
   option.value = newSkillId;
   e.appendChild(option);
   });
+  storedsupportiveSkills.push({ id: newSkillId, text: newSkillTitle });
   select_picker_refresh();
 <% end %>

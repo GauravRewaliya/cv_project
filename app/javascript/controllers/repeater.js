@@ -32,9 +32,28 @@
           select_picker_refresh();
         } 
       function repeater_refresh() {
+        setSelectOptions();
         select_picker_refresh();
         setTimeout(() =>{
           ckeditor_load();
         }, "100");
       }
-      
+      function setSelectOptions()
+      {
+        // storedcoreSkills ,storedsupportiveSkills ,storedDomains 
+        var lastChild =$('.repeater_proj .rep').children().last();
+        var coreSkillSelector = lastChild.find('.core_skill_selector');
+        var supportiveSkillSelector = lastChild.find('.supportive_skill_selector');
+        var domainSelector = lastChild.find('.domain_selector');
+        debugger
+        for (var i = 0; i < storedcoreSkills.length; i++) {
+          coreSkillSelector.append(storedcoreSkills[i]);
+        }
+        for (var i = 0; i < storedsupportiveSkills.length; i++) {
+          supportiveSkillSelector.append(storedsupportiveSkills[i]);
+        }
+        for (var i = 0; i < storedDomains.length; i++) {
+          domainSelector.append(storedDomains[i]);
+        }
+        
+      }

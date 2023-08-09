@@ -1,32 +1,33 @@
 
 :root{
-    --success: green;
-    --error: red;
-    --warning: yellow;
+--success: #18aa18;
+--error: #ee4242;
+--warning: yellow;
+}
+.notifications{
+position: absolute;
+right: 0;
+z-index: 5;
+top: 3%;
+}
+.notifications .toast{
+    border: none;
+    animation: show_toast 0.3s ease forwards;
+}
+@keyframes show_toast {
+    0%{
+        transform: translateX(100%);
     }
-    .notifications{
-    position: absolute;
-    right: 0;
-    z-index: 5;
+    40%{
+        transform: translateX(-5%);
     }
-    .notifications .toast{
-        border: none;
-        animation: show_toast 0.3s ease forwards;
+    80%{
+        transform: translateX(0%);
     }
-    @keyframes show_toast {
-        0%{
-            transform: translateX(100%);
-        }
-        40%{
-            transform: translateX(-5%);
-        }
-        80%{
-            transform: translateX(0%);
-        }
-        100%{
-            transform: translateX(-10%);
-        }
+    100%{
+        transform: translateX(-10%);
     }
+}
 
     
 .toast::before{
@@ -43,12 +44,10 @@
     }
 }
 .toast.success i{
-    /* color: var(--success); */
-    color: #18aa18;
+    color: var(--success);
 }
 .toast.error i{
-    /* color: var(--error); */
-    color: #ee4242;;
+    color: var(--error);
 }
 .toast.success::before {
     background: var(--success);

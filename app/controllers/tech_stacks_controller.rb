@@ -26,9 +26,11 @@ class TechStacksController < ApplicationController
       if @tech_stack.save
         format.html { redirect_to tech_stack_url(@tech_stack), notice: "Tech_stack was successfully created." }
         format.json { render :show, status: :created, location: @tech_stack }
+        format.js
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @tech_stack.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end

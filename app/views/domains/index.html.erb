@@ -1,28 +1,28 @@
 <div class="card" >
   <div class="card-body">
-  <div style="position: relative;">
-    <h1 >Domains</h1>
-    <%= link_to "+ Add domain", new_domain_path,class: 'btn btn-primary pos_card_new' %>
-  </div>
-<div class="table_gr ">
-  <table class="table table-hover table-striped data_table_gr">
-    <thead>
-     <tr style="color:white;">
-       <th>Title</th>
-       <th class="table_button_gr">Edit</th>
-       <th class="table_button_gr">Delete</th>
-     </tr>
-    </thead>
-    <tbody>
-      <% @domains.each do |domain| %>
+    <div style="position: relative;">
+      <h1 >Domains</h1>
+      <%= link_to "+ Add domain", new_domain_path,class: 'btn btn-primary pos_card_new' %>
+    </div>
+    <div class="table_gr ">
+      <table class="table table-hover table-striped data_table_gr">
+        <thead>
         <tr>
-          <td><p><%= domain.title %></p></td>
-          <td><%= link_to "Edit", edit_domain_path(domain),class: "material-symbols-outlined" %></td>
-          <td><%= button_to "delete" , domain , method: :delete ,class: "material-symbols-outlined symbols_delete"%></td>
+          <th>Title</th>
+          <th class="table_button_gr">Edit</th>
+          <th class="table_button_gr">Delete</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
-</div>
+        </thead>
+        <tbody>
+          <% @domains.each do |domain| %>
+            <tr>
+              <td><p><%= domain.title %></p></td>
+              <td><%= link_to "Edit", edit_domain_path(domain),class: "material-symbols-outlined" %></td>
+              <td><%= button_to "delete" , domain , method: :delete ,class: "material-symbols-outlined symbols_delete"%></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

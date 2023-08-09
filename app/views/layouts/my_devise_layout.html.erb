@@ -23,20 +23,9 @@
 </head>
 
 <body>
+  <%= render 'shared/toaster' %>
     <div class="formBox">
         <div>
-          <%= render 'shared/toaster' %>
-            <!-- <% if notice %>
-            <p style="color: green" class="notice">
-              <%= notice %>
-            </p>
-          <% end%>
-          <% if alert %>
-            <p style="color: #d72e2e;" class="alert">
-              <%= alert %>
-            </p>
-          <% end%> -->
-
           <%=yield%>
          </div>
     </div>

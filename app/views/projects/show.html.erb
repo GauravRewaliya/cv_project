@@ -1,70 +1,70 @@
 <div class="container-md">
-<div class="card text-center" >
-    <%= link_to "arrow_back", projects_path ,class:"pos_card_l material-symbols-outlined"  %>
-    <h3 class="center_h">
-      <%= @project.title %>
-    </h3>
-  <div class="card-body">
-    <div >
-        <div class="formContainer table_gr">
-          <table class="show_table">
-            <tr>
-              <th class="show_h">Domain:</th>
-              <td class="show_details"> 
-                <!-- <%if !@project.domain.blank?%> -->
-                <%= @project.domain&.title %>
-                <!-- <%end%> -->
-              </td>
-            </tr>
-            <tr>
-              <th>Team Size:</th>
-              <td> 
-                  <%if !@project.team_size.blank?%>
-                  <%= @project.team_size %>
+  <div class="card text-center" >
+      <%= link_to "arrow_back", projects_path ,class:"pos_card_l material-symbols-outlined"  %>
+      <h3 class="center_h">
+        <%= @project.title %>
+      </h3>
+    <div class="card-body">
+      <div >
+          <div class="formContainer table_gr">
+            <table class="show_table">
+              <tr>
+                <th class="show_h">Domain:</th>
+                <td class="show_details"> 
+                  <!-- <%if !@project.domain.blank?%> -->
+                  <%= @project.domain&.title %>
+                  <!-- <%end%> -->
+                </td>
+              </tr>
+              <tr>
+                <th>Team Size:</th>
+                <td> 
+                    <%if !@project.team_size.blank?%>
+                    <%= @project.team_size %>
+                    <%end%>
+                </td>
+              </tr>
+              <tr>
+                <th>Start Date</th>
+                <td><%= @project.start_date %></td>
+              </tr>
+              <tr>
+                <th>End Date</th>
+                <td>
+                  <%if !@project.end_date.blank?%>
+                  <%= @project.end_date %>
+                  <%else %>
+                  Project is still running
                   <%end%>
-              </td>
-            </tr>
-            <tr>
-              <th>Start Date</th>
-              <td><%= @project.start_date %></td>
-            </tr>
-            <tr>
-              <th>End Date</th>
-              <td>
-                <%if !@project.end_date.blank?%>
-                <%= @project.end_date %>
-                <%else %>
-                Project is still running
-                <%end%>
-              </td>
-            </tr>
+                </td>
+              </tr>
 
-            <tr>
-              <th>Core Skill</th>
-              <td><%= @project.core_skill&.title %></td>
-            </tr>
-            <tr>
-              <th>Supportive Skills</th>
-              <td>
-                <% @project.supportive_skills.each do |supportive_skill| %>
-                  <%= supportive_skill.title+"," %>
-                <%end%>
-              </td>
-            </tr>
-            <tr>
-              <th>Description:</th>
-              <td> 
-                <%= @project.desc %>
-              </td>
-            </tr>
-          </table>
-        </div>
+              <tr>
+                <th>Core Skill</th>
+                <td><%= @project.core_skill&.title %></td>
+              </tr>
+              <tr>
+                <th>Supportive Skills</th>
+                <td>
+                  <% @project.supportive_skills.each do |supportive_skill| %>
+                    <%= supportive_skill.title+"," %>
+                  <%end%>
+                </td>
+              </tr>
+              <tr>
+                <th>Description:</th>
+                <td> 
+                  <%= @project.desc %>
+                </td>
+              </tr>
+            </table>
+          </div>
+      </div>
+    </div>
+    
+    <div class="card-footer text-muted">
+      <%= link_to "Edit this project", edit_project_path(@project) ,class: "btn btn-outline-info"%>
+      <%= button_to "Destroy this project", @project, method: :delete ,class:"btn btn-outline-danger"%>
     </div>
   </div>
-  
-  <div class="card-footer text-muted" style="position: relative;">
-    <%= link_to "Edit this project", edit_project_path(@project) %>
-    <%= button_to "Destroy this project", @project, method: :delete ,class:"btn btn-outline-danger pos_r"%>
-  </div>
-</div>
 </div>

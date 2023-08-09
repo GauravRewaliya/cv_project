@@ -54,10 +54,9 @@ class CurriculumVitaesController < ApplicationController
       if @curriculum_vitae.save
         format.html { redirect_to curriculum_vitae_url(@curriculum_vitae), notice: "CurriculumVitae was successfully created." }
         format.json { render :show, status: :created, location: @curriculum_vitae }
-        else
+      else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @curriculum_vitae.errors, status: :unprocessable_entity }
-
       end
     end
   end

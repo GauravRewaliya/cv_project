@@ -1,40 +1,38 @@
 <div class="card" >
   <div class="card-body">
-  <div class="index_top_header">
-    <h1 >Skills</h1>
-    <%= link_to "+ Add Skill", new_tech_stack_path ,class: 'btn btn-primary pos_card_new' %>
+    <div class="index_top_header">
+      <h1 >Skills</h1>
+      <%= link_to "+ Add Skill", new_tech_stack_path ,class: 'btn btn-primary pos_card_new' %>
+    </div>
+    <div class="table_gr" >
+      <table class="table table-hover table-striped data_table_gr">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th class="hideOnNeed2">type</th>
+            <th class="table_button_gr">Edit</th>
+            <th class="table_button_gr">Delete</th>
+            <th class="table_button_gr">Show</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @tech_stacks.each do |tech_stack| %>
+            <tr>
+              <td ><h6><%= tech_stack.title %></h6></td>
+              <td><p><%= tech_stack.desc %></p></td>
+              <td class="hideOnNeed2"><p><%= display_tech_type(tech_stack.tech_type) %></p></td>
+              <td><%= link_to "Edit", edit_tech_stack_path(tech_stack),class: "material-symbols-outlined" %></td>
+              <td><%= button_to "delete" , tech_stack , method: :delete ,class: "material-symbols-outlined symbols_delete"%></td>
+              <td>
+                <%= link_to (tech_stack) , class: 'material-symbols-outlined' do %>
+                <span>Visibility</span>
+                <%end%>
+            </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
-
-
-<div class="table_gr" >
-  <table class="table table-hover table-striped data_table_gr" , style="width:100%;">
-    <thead>
-      <tr style="color:White">
-        <th>Title</th>
-        <th>Description</th>
-        <th class="hideOnNeed2">type</th>
-        <th class="table_button_gr">Edit</th>
-        <th class="table_button_gr">Delete</th>
-        <th class="table_button_gr">Show</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @tech_stacks.each do |tech_stack| %>
-        <tr>
-          <td ><h6><%= tech_stack.title %></h6></td>
-          <td><p><%= tech_stack.desc %></p></td>
-          <td class="hideOnNeed2"><p><%= display_tech_type(tech_stack.tech_type) %></p></td>
-          <td><%= link_to "Edit", edit_tech_stack_path(tech_stack),class: "material-symbols-outlined" %></td>
-          <td><%= button_to "delete" , tech_stack , method: :delete ,class: "material-symbols-outlined symbols_delete"%></td>
-          <td>
-            <%= link_to (tech_stack) , class: 'material-symbols-outlined' do %>
-            <span>Visibility</span>
-            <%end%>
-        </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
-</div>
 </div>

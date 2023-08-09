@@ -51,9 +51,9 @@
             </div>
         </div>
       </div>
-      <div class="card-footer text-muted" style="position: relative;">
-        <%= link_to "Edit this candidate", edit_candidate_path(@candidate) %>
-        <%= button_to "Destroy this candidate", @candidate, method: :delete ,class:"btn btn-outline-danger pos_r"%>
+      <div class="card-footer text-muted">
+        <%= link_to "Edit this candidate", edit_candidate_path(@candidate) ,class: "btn btn-outline-info" %>
+        <%= button_to "Destroy this candidate", @candidate, method: :delete ,class:"btn btn-outline-danger"%>
       </div>
   </div>
 </div>

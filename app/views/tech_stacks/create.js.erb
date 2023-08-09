@@ -1,0 +1,33 @@
+<% if @tech_stack.errors.any? %>
+  $('#exampleModal .modal-body').html('<%= j render(partial: "popup_form", locals: { tech_stack: @tech_stack }) %>');
+<% else %>
+  <%# hide %>
+  $('#exampleModal').modal('hide');
+  <%# put option in option list %>
+  var newSkillTitle = '<%= j @tech_stack.title %>';
+  var newSkillTechType = '<%= j @tech_stack.tech_type %>';
+  var newSkillId = '<%= j @tech_stack.id %>';
+  
+  var option = document.createElement("option");
+  option.text = newSkillTitle;
+  option.value = newSkillId;
+
+  if( newSkillTechType == 1)
+  {
+  document.querySelectorAll('.core_skill_selector').forEach( e => { 
+  e.appendChild(option);
+  });
+  }
+  document.querySelectorAll('.supportive_skill_selector select').forEach( e => { 
+  e.appendChild(option);
+  });
+  
+  try{
+  if( newSkillTechType == 1)
+  storedcoreSkills.push(option);
+  storedsupportiveSkills.push(option);
+  }
+  catch(e){}
+
+  select_picker_refresh();
+<% end %>

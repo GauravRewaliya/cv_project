@@ -45,7 +45,7 @@ label {
   margin-bottom: 8px;
 }
 .div_group .div_sub_group{
-  padding-left: 15px;
+  /* padding-left: 15px; */
 }
 .has_one
 {
@@ -64,6 +64,7 @@ label {
   border: solid 2px;
   border-style: groove;
   padding-bottom: 20px;
+  margin: 6px 2px;
 }
 
 .error {

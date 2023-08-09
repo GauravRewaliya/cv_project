@@ -15,8 +15,9 @@
       <div class="row">
         <div class="col-md-6 form-group">
             <%= form.label :domain %>
+            <%= link_to "+ Add Domain", new_domain_path , remote: true %>
              <%= form.fields_for :linkable_domain_attributes, @project.linkable_domain do |f| %>
-                <%= f.collection_select :domain_id, Domain.all, :id, :title, { include_blank: true  } ,{ class: "form-control"}%>
+                <%= f.collection_select :domain_id, Domain.all, :id, :title, { include_blank: true  } ,{ class: "form-control domain_selector"}%>
              <% end %>
              <%= helper_custom_error( form , :linkable_domain) %> 
         </div>
@@ -49,17 +50,19 @@
       <div class="row">
         <div class="col-md-6 form-group">
           <%= form.label :core_skill %>
+          <%= link_to "+ Add Skill", new_tech_stack_path , remote: true %>
           <%= form.fields_for :linkable_core_tech_attributes, @project.linkable_core_tech do |cs| %> 
-            <%= cs.collection_select :tech_stack_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{class: "form-control" ,style:"margin-top: 7px;"} %>
+            <%= cs.collection_select :tech_stack_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{class: "form-control core_skill_selector" ,style:"margin-top: 7px;"} %>
           <% end %>
           <%= helper_custom_error( form , :linkable_core_tech) %> 
         </div>
 
         <div class="col-md-6 form-group">
           <%= form.label :supportive_skill  %>
+          <%= link_to "+ Add Skill", new_tech_stack_path , remote: true %>
           <div>
             <%= form.collection_select(:supportive_skill_ids, TechStack.all, :id, :title , {}, { multiple: true,
-              include_blank: false,class: "selectpick show-menu-arrow form-control" }) %>
+              include_blank: false,class: "selectpick show-menu-arrow form-control supportive_skill_selector" }) %>
           </div>
         </div>
         

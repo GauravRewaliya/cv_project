@@ -45,7 +45,6 @@
         var coreSkillSelector = lastChild.find('.core_skill_selector');
         var supportiveSkillSelector = lastChild.find('.supportive_skill_selector');
         var domainSelector = lastChild.find('.domain_selector');
-        debugger
         for (var i = 0; i < storedcoreSkills.length; i++) {
           coreSkillSelector.append(storedcoreSkills[i]);
         }

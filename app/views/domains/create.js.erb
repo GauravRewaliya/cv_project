@@ -7,16 +7,15 @@
   var newDomainTitle = '<%= j @domain.title %>';
   var newDomainId = '<%= j @domain.id %>';
   
-  document.querySelectorAll('.domain_selector').forEach( e => { 
   var option = document.createElement("option");
   option.text = newDomainTitle;
   option.value = newDomainId;
+  
+  document.querySelectorAll('.domain_selector').forEach( e => { 
   e.appendChild(option);
   });
+
   try {
-  storedDomains.push({ id: newDomainId, text: newDomainTitle });
-  }
-  catch(err) {
-    <%# document.getElementById("demo").innerHTML = err.message; %>
-  }
+  storedDomains.push(option);}
+  catch(err) {}
 <% end %>

@@ -47,26 +47,13 @@
         var domainSelector = lastChild.find('.domain_selector');
         debugger
         for (var i = 0; i < storedcoreSkills.length; i++) {
-          var option = $('<option>', {
-            value: storedcoreSkills[i].id,
-            text: storedcoreSkills[i].text
-          });
-          coreSkillSelector.append(option);
-          // supportiveSkillSelector.append(option);
+          coreSkillSelector.append(storedcoreSkills[i]);
         }
         for (var i = 0; i < storedsupportiveSkills.length; i++) {
-          var option = $('<option>', {
-            value: storedsupportiveSkills[i].id,
-            text: storedsupportiveSkills[i].text
-          });
-          supportiveSkillSelector.append(option);
+          supportiveSkillSelector.append(storedsupportiveSkills[i]);
         }
         for (var i = 0; i < storedDomains.length; i++) {
-          var option = $('<option>', {
-            value: storedDomains[i].id,
-            text: storedDomains[i].text
-          });
-          domainSelector.append(option);
+          domainSelector.append(storedDomains[i]);
         }
         
       }

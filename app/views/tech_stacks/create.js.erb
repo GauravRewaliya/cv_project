@@ -7,22 +7,27 @@
   var newSkillTitle = '<%= j @tech_stack.title %>';
   var newSkillTechType = '<%= j @tech_stack.tech_type %>';
   var newSkillId = '<%= j @tech_stack.id %>';
+  
+  var option = document.createElement("option");
+  option.text = newSkillTitle;
+  option.value = newSkillId;
+
   if( newSkillTechType == 1)
   {
   document.querySelectorAll('.core_skill_selector').forEach( e => { 
-  var option = document.createElement("option");
-  option.text = newSkillTitle;
-  option.value = newSkillId;
   e.appendChild(option);
   });
-  storedcoreSkills.push({ id: newSkillId, text: newSkillTitle });
   }
   document.querySelectorAll('.supportive_skill_selector select').forEach( e => { 
-  var option = document.createElement("option");
-  option.text = newSkillTitle;
-  option.value = newSkillId;
   e.appendChild(option);
   });
-  storedsupportiveSkills.push({ id: newSkillId, text: newSkillTitle });
+  
+  try{
+  if( newSkillTechType == 1)
+  storedcoreSkills.push(option);
+  storedsupportiveSkills.push(option);
+  }
+  catch(e){}
+
   select_picker_refresh();
 <% end %>

@@ -11,11 +11,11 @@
   option.text = newDomainTitle;
   option.value = newDomainId;
   
-  document.querySelectorAll('.domain_selector').forEach( e => { 
-  e.appendChild(option);
+  $('.domain_selector').each(function() {
+  $(this).append(option.cloneNode(true));
   });
-
+  
   try {
-  storedDomains.push(option);}
+  storedDomains.push(option.cloneNode(true));}
   catch(err) {}
 <% end %>

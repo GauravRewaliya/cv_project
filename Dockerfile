@@ -13,8 +13,8 @@ RUN apt-get install wkhtmltopdf -y
 RUN apt install libreoffice-writer -y
 RUN apt-get install libvips-dev -y
 EXPOSE 3000
-# CMD ["rails", "server", "-b", "0.0.0.0", "-p", "3000"]
-ENTRYPOINT ["./entrypoint.sh"]
+CMD ["rails", "server", "-b", "0.0.0.0", "-p", "3000"]
+# ENTRYPOINT ["./entrypoint.sh"]
 # wkhtmltopdf|pdf , libreoffice-writer|doc , libvips-dev|image_processing
 # need to configure path wkhtmltopdf
 

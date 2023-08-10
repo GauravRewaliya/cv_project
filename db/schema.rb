@@ -11,6 +11,30 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_07_25_115750) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "btree_gin"
+  enable_extension "btree_gist"
+  enable_extension "citext"
+  enable_extension "cube"
+  enable_extension "dblink"
+  enable_extension "dict_int"
+  enable_extension "dict_xsyn"
+  enable_extension "earthdistance"
+  enable_extension "fuzzystrmatch"
+  enable_extension "hstore"
+  enable_extension "intarray"
+  enable_extension "ltree"
+  enable_extension "pg_stat_statements"
+  enable_extension "pg_trgm"
+  enable_extension "pgcrypto"
+  enable_extension "pgrowlocks"
+  enable_extension "pgstattuple"
+  enable_extension "plpgsql"
+  enable_extension "tablefunc"
+  enable_extension "unaccent"
+  enable_extension "uuid-ossp"
+  enable_extension "xml2"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -42,64 +66,64 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_25_115750) do
   create_table "candidates", force: :cascade do |t|
     t.string "name"
     t.string "employ_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "created_by"
     t.string "updated_by"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "company_experiences", force: :cascade do |t|
-    t.integer "curriculum_vitae_id", null: false
+    t.bigint "curriculum_vitae_id", null: false
     t.string "company_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.date "start_date"
     t.date "end_date"
     t.string "role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["curriculum_vitae_id"], name: "index_company_experiences_on_curriculum_vitae_id"
   end
 
   create_table "curriculum_vitaes", force: :cascade do |t|
+    t.integer "experience"
+    t.string "template_name"
+    t.string "created_by"
+    t.string "updated_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "objective"
     t.string "profile_desc"
-    t.integer "experience"
-    t.string "template_name"
-    t.integer "candidate_id"
-    t.string "created_by"
-    t.string "updated_by"
+    t.bigint "candidate_id"
     t.index ["candidate_id"], name: "index_curriculum_vitaes_on_candidate_id"
   end
 
   create_table "cv_projects", force: :cascade do |t|
-    t.integer "curriculum_vitae_id", null: false
-    t.integer "original_project_id"
+    t.bigint "curriculum_vitae_id", null: false
+    t.bigint "original_project_id"
     t.string "title"
     t.text "desc"
     t.date "start_date"
     t.date "end_date"
     t.integer "team_size"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "role"
     t.string "responsibility"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["curriculum_vitae_id"], name: "index_cv_projects_on_curriculum_vitae_id"
     t.index ["original_project_id"], name: "index_cv_projects_on_original_project_id"
   end
 
   create_table "domains", force: :cascade do |t|
     t.string "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "created_by"
     t.string "updated_by"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "linkable_core_teches", force: :cascade do |t|
-    t.integer "tech_stack_id"
+    t.bigint "tech_stack_id"
     t.string "connectable_type"
-    t.integer "connectable_id"
+    t.bigint "connectable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["connectable_type", "connectable_id"], name: "index_linkable_core_teches_on_connectable"
@@ -107,9 +131,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_25_115750) do
   end
 
   create_table "linkable_domains", force: :cascade do |t|
-    t.integer "domain_id", null: false
+    t.bigint "domain_id", null: false
     t.string "connectable_type", null: false
-    t.integer "connectable_id", null: false
+    t.bigint "connectable_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["connectable_type", "connectable_id"], name: "index_linkable_domains_on_connectable"
@@ -117,9 +141,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_25_115750) do
   end
 
   create_table "linkable_supportive_teches", force: :cascade do |t|
-    t.integer "tech_stack_id"
+    t.bigint "tech_stack_id"
     t.string "connectable_type"
-    t.integer "connectable_id"
+    t.bigint "connectable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["connectable_type", "connectable_id"], name: "index_linkable_supportive_teches_on_connectable"
@@ -131,7 +155,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_25_115750) do
     t.string "contact"
     t.string "gender"
     t.string "address"
-    t.integer "candidate_id"
+    t.bigint "candidate_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["candidate_id"], name: "index_profiles_on_candidate_id"
@@ -140,23 +164,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_25_115750) do
   create_table "projects", force: :cascade do |t|
     t.string "title"
     t.text "desc"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.date "start_date"
     t.date "end_date"
     t.integer "team_size"
     t.string "created_by"
     t.string "updated_by"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tech_stacks", force: :cascade do |t|
     t.string "title"
     t.text "desc"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.integer "tech_type"
     t.string "created_by"
     t.string "updated_by"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

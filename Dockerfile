@@ -6,7 +6,7 @@ RUN apt update
 WORKDIR /cv_creater
 COPY Gemfile .
 RUN gem install bundle && bundle install
-# COPY . . 
+COPY . . 
 RUN apt install sudo
 RUN apt install -f 
 RUN apt-get install wkhtmltopdf -y

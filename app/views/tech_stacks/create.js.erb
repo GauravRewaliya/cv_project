@@ -14,18 +14,19 @@
 
   if( newSkillTechType == 1)
   {
-  document.querySelectorAll('.core_skill_selector').forEach( e => { 
-  e.appendChild(option);
+  $('.core_skill_selector').each(function() {
+  $(this).append(option.cloneNode(true));
   });
   }
-  document.querySelectorAll('.supportive_skill_selector select').forEach( e => { 
-  e.appendChild(option);
+
+  $('.supportive_skill_selector select').each(function() {
+    $(this).append(option.cloneNode(true));
   });
-  
+
   try{
   if( newSkillTechType == 1)
-  storedcoreSkills.push(option);
-  storedsupportiveSkills.push(option);
+  storedcoreSkills.push(option.cloneNode(true));
+  storedsupportiveSkills.push(option.cloneNode(true));
   }
   catch(e){}
 

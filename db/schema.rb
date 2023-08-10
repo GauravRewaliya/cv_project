@@ -42,33 +42,33 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_25_115750) do
   create_table "candidates", force: :cascade do |t|
     t.string "name"
     t.string "employ_id"
-    t.string "created_by"
-    t.string "updated_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "created_by"
+    t.string "updated_by"
   end
 
   create_table "company_experiences", force: :cascade do |t|
     t.integer "curriculum_vitae_id", null: false
     t.string "company_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.date "start_date"
     t.date "end_date"
     t.string "role"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.index ["curriculum_vitae_id"], name: "index_company_experiences_on_curriculum_vitae_id"
   end
 
   create_table "curriculum_vitaes", force: :cascade do |t|
-    t.integer "experience"
-    t.string "template_name"
-    t.string "created_by"
-    t.string "updated_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "objective"
     t.string "profile_desc"
+    t.integer "experience"
+    t.string "template_name"
     t.integer "candidate_id"
+    t.string "created_by"
+    t.string "updated_by"
     t.index ["candidate_id"], name: "index_curriculum_vitaes_on_candidate_id"
   end
 
@@ -80,20 +80,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_25_115750) do
     t.date "start_date"
     t.date "end_date"
     t.integer "team_size"
-    t.string "role"
-    t.string "responsibility"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "role"
+    t.string "responsibility"
     t.index ["curriculum_vitae_id"], name: "index_cv_projects_on_curriculum_vitae_id"
     t.index ["original_project_id"], name: "index_cv_projects_on_original_project_id"
   end
 
   create_table "domains", force: :cascade do |t|
     t.string "title"
-    t.string "created_by"
-    t.string "updated_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "created_by"
+    t.string "updated_by"
   end
 
   create_table "linkable_core_teches", force: :cascade do |t|
@@ -140,23 +140,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_25_115750) do
   create_table "projects", force: :cascade do |t|
     t.string "title"
     t.text "desc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.date "start_date"
     t.date "end_date"
     t.integer "team_size"
     t.string "created_by"
     t.string "updated_by"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "tech_stacks", force: :cascade do |t|
     t.string "title"
     t.text "desc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "tech_type"
     t.string "created_by"
     t.string "updated_by"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

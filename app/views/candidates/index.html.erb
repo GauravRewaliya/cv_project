@@ -5,7 +5,7 @@
     <%= link_to "New candidate", new_candidate_path ,class: 'btn btn-primary pos_card_new' %>
     </div>
     <div class="table_gr" >
-      <table class="table table-hover table-striped data_table_gr">
+      <table class="table table-hover table-striped data_table_gr" id="example" >
         <thead>
         <tr>
           <th>update_at</th>
@@ -35,7 +35,7 @@
         </td>
         <td  class="needCol">
         <%= link_to (candidate) , class: 'material-symbols-outlined' do %>
-        <span>Visibility</span>
+         <span>Visibility</span>
         <%end%>
       </td>
       </tr>

@@ -26,7 +26,8 @@ table.show_table
 }
 table.show_table th {
     text-align: left;
-    background-color: #ffd8d85e;
+    /* background-color: #ffd8d85e; */
+    background-color: #b1b3f05e;
     padding: 8px;
 }
 table.show_table td {
@@ -38,5 +39,6 @@ table.show_table td:nth-child(1) {
 .card-footer
 {
   display: flex;
-  margin-left: auto;
+  /* margin-left: auto; */
+  justify-content: space-around;
 }

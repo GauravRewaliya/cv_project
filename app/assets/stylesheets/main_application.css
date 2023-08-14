@@ -76,12 +76,12 @@ a:hover {
   box-shadow: -1px 0px 20px 0 cyan;
   border-radius: 50%; 
 }
-.pos_card_r
+/* .pos_card_r
 {
   position: absolute;
   right: 2%;
   top: 20px;
-}
+} */
 
 .table_gr #example_wrapper{
   width: 100%;
@@ -110,18 +110,33 @@ thead , tfoot {
 .table_button_gr{
   width: 5%!important;
   }
+  @media (max-width: 1100px) {
+    table th.hideOnNeed2 , 
+    table td.hideOnNeed2 {
+      display: none;
+    }
+  }
+    /* Tablet styles */
   @media (max-width: 768px){
     table th.hideOnNeed1 , 
   table td.hideOnNeed1 {
     display: none;
   }
+  .card-body{
+    padding: 0px;
   }
-  @media (max-width: 1100px) {
-  table th.hideOnNeed2 , 
-  table td.hideOnNeed2 {
-    display: none;
+  h2
+  {
+    font-size: 24px;
   }
   }
+  /* Mobile styles */
+@media (max-width: 480px) {
+  h2
+  {
+    font-size: 24px;
+  }
+}
   table 
   { 
     width: 100%;

@@ -10,8 +10,8 @@
     </div>
   <% end %>
     <div class="row">
-      <%= form.label :Tech_type ,class: " col-2" %>
-      <div class="col-5">
+      <%= form.label :Tech_type %>
+      <div >
         <div class="form-inline">
           <%= form.radio_button :tech_type, 1 %>
           <%= form.label "core Tech"  %>
@@ -24,6 +24,7 @@
         <%= helper_custom_error( form , :tech_type) %> 
       </div>
     </div>
+    
     <div class="form-group">
       <%= form.label :title  %>
       <%= form.text_field :title  ,class: "form-control"%>    

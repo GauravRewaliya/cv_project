@@ -2,7 +2,9 @@
   <div class="card">
     <h3 class="center_h">Editing candidate</h3>
     <%= link_to "arrow_back", candidates_path ,class:"pos_card_l material-symbols-outlined"  %>
-    <%= link_to "Show this candidate", @candidate ,class: "pos_card_r" %>
+    <%= link_to @candidate , class: 'material-symbols-outlined pos_card_r' do %>
+      <span>Visibility</span>
+    <%end%>
     <div class="card-body">
       <%= render "form", candidate: @candidate %>
     </div>

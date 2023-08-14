@@ -52,8 +52,8 @@
         </div>
       </div>
       <div class="card-footer text-muted">
-        <%= link_to "Edit this candidate", edit_candidate_path(@candidate) ,class: "btn btn-outline-info" %>
-        <%= button_to "Destroy this candidate", @candidate, method: :delete ,class:"btn btn-outline-danger"%>
+        <%= link_to "Edit", edit_candidate_path(@candidate) ,class: "material-symbols-outlined" %>
+        <%= button_to "delete" , @candidate , method: :delete ,class: "material-symbols-outlined symbols_delete"%>
       </div>
   </div>
 </div>

@@ -63,8 +63,8 @@
     </div>
     
     <div class="card-footer text-muted">
-      <%= link_to "Edit this project", edit_project_path(@project) ,class: "btn btn-outline-info"%>
-      <%= button_to "Destroy this project", @project, method: :delete ,class:"btn btn-outline-danger"%>
+      <%= link_to "Edit", edit_project_path(@project) ,class: "material-symbols-outlined"%>
+      <%= button_to "Delete", @project, method: :delete ,class:"material-symbols-outlined symbols_delete"%>
     </div>
   </div>
 </div>

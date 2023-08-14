@@ -1,8 +1,15 @@
 .pos_card_new
-{
-  position: absolute;
-  top: 8px;
-  left: 4px;
+ {
+   position: absolute;
+   top: 8px;
+   left: 4px;
+ }
+/* Mobile styles */
+@media (max-width: 480px) {
+  .pos_card_new
+  {
+    position: relative;
+  }
 }
 .index_top_header{ 
   position: relative;

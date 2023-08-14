@@ -27,8 +27,8 @@
     </div>
 
     <div class="card-footer text-muted">
-      <%= link_to "Edit this tech_stack", edit_tech_stack_path(@tech_stack) ,class: "btn btn-outline-info"%>
-      <%= button_to "Destroy this tech_stack", @tech_stack, method: :delete ,class:"btn btn-outline-danger"%>
+      <%= link_to "Edit", edit_tech_stack_path(@tech_stack) ,class: "material-symbols-outlined"%>
+      <%= button_to "Delete", @tech_stack, method: :delete ,class:"material-symbols-outlined symbols_delete"%>
     </div>
   </div>  
 </div>

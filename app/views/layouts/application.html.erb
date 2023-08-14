@@ -36,23 +36,15 @@
     <%= stylesheet_link_tag  "main_application" %>
     
     <!-- controller specific js -->
-    <script src="/assets/controllers/js_<%=params['controller'] %>" ></script>
-    
-    <%case params['action'] %>
-    <%when "edit", "new" ,"create" ,"update" then %>
-    <%= stylesheet_link_tag  'edit' %>
-    <%when "index" then %>
-    <%= stylesheet_link_tag  'index' %>
-    <%when "show" then %>
-    <%= stylesheet_link_tag  'show' %>
-    <%end%>
-    
+    <%= javascript_include_tag "controllers/js_#{params['controller']}" %>
+    <%= stylesheet_link_tag params['action'] if Rails.application.assets.find_asset(params['action']) %>
   </head>
   
   <body>
       <% if user_signed_in? %>
         <%= render 'shared/navbar' %>
       <% end %>
+      <!-- modal popup -->
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">

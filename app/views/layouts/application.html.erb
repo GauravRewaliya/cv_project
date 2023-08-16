@@ -32,13 +32,11 @@
     <!-- ckeditor -->
     <%= javascript_include_tag Ckeditor.cdn_url %>
 
-    
     <%= stylesheet_link_tag  "main_application" %>
     
     <!-- controller specific js -->
     <%= javascript_include_tag "controllers/js_#{params['controller']}" if Rails.application.assets.find_asset("controllers/js_#{params['controller']}")  %>
     <!-- bug at production  Rails.application.assets is nil if .compile =false-->
-    <!-- <script src="/assets/controllers/js_<%=params['controller']%>"></script> -->
     <%= stylesheet_link_tag params['action'] if Rails.application.assets.find_asset(params['action']) %>
   </head>
   

@@ -9,7 +9,8 @@ RUN gem install bundle && bundle install
 COPY . . 
 RUN apt install sudo
 RUN apt install -f 
-RUN apt-get install wkhtmltopdf -y
+RUN apt-get install wkhtmltopdf -y 
+    #may be no need ^
 RUN apt install libreoffice-writer -y
 RUN apt-get install libvips-dev -y
 RUN apt install nodejs -y

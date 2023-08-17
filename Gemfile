@@ -3,11 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.2.0"
 
-# Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4", ">= 7.0.4.3"
 #
 gem 'devise'
-# gem "select2-rails"
 
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
@@ -58,9 +56,12 @@ gem "tzinfo-data"
 gem "bootsnap", require: false
 
 # Use Sass to process CSS
-# gem "sassc-rails"
-gem "yui-compressor"
-gem "terser"
+# gem "sassc-rails" #few error on compiling
+group :production do
+  gem "yui-compressor"
+  gem "terser"
+  # gem "mini_racer" ,"~> 0.8.0" , platforms: :ruby # for not to install nodeJs
+end
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"

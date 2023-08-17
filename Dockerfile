@@ -9,10 +9,11 @@ RUN gem install bundle && bundle install
 COPY . . 
 RUN apt install sudo
 RUN apt install -f 
-RUN apt-get install wkhtmltopdf -y
+RUN apt-get install wkhtmltopdf -y 
+    #may be no need ^
 RUN apt install libreoffice-writer -y
 RUN apt-get install libvips-dev -y
-RUN apt install nodejs -y
+# RUN apt install nodejs -y  # no need i just add >>gem 'mini_racer'
 RUN apt-get install default-jre -y
 EXPOSE 3000
 CMD ["rails", "server", "-b", "0.0.0.0", "-p", "3000"]

@@ -21,7 +21,8 @@
         </tr>
         </thead>
         <tbody>
-        <% @projects.each do |project| %>
+        <%# @projects.each do |project| %>
+        <% @projects.find_each(batch_size: 5000) do |project| %>
           <tr>
             <td><p><%= project.title %></p></td>
             <td class="hideOnNeed1"><p><%= project.desc %></p></td>

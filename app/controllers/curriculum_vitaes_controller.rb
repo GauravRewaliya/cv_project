@@ -3,7 +3,9 @@ class CurriculumVitaesController < ApplicationController
   layout 'cv' ,only: %i[ show]
 
   def index
-      @curriculum_vitaes = CurriculumVitae.all
+      # @curriculum_vitaes = CurriculumVitae.all
+      # @curriculum_vitaes = CurriculumVitae.includes(:candidate ,:cv_projects).all
+      @curriculum_vitaes = CurriculumVitae.eager_load(:candidate ,:cv_projects).all
   end
 
  def  pdf_html_req 

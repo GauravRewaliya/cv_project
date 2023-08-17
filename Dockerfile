@@ -15,6 +15,7 @@ RUN apt install libreoffice-writer -y
 RUN apt-get install libvips-dev -y
 RUN apt install nodejs -y
 RUN apt-get install default-jre -y
+RUN rails assets:precompile
 EXPOSE 3000
 CMD ["rails", "server", "-b", "0.0.0.0", "-p", "3000"]
 # ENTRYPOINT ["./entrypoint.sh"]

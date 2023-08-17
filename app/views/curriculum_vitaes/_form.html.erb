@@ -59,7 +59,7 @@
         <div data-repeater-list="curriculum_vitae[company_experiences_attributes]" class="rep">
             <%= form.fields_for :company_experiences do |company_experience_form| %>
               <div class="row g_rep_item" data-repeater-item >
-                <div class="col-6" >
+                <div class="col-md-6" >
                   <%=form.label "Company Name"  %>
                   <%= company_experience_form.text_field :company_name  ,class: "form-control" %>
                   <%= helper_custom_error( company_experience_form , :company_name) %> 
@@ -67,13 +67,13 @@
                   <%= company_experience_form.text_field :role  ,class: "form-control" %>
                   <%= helper_custom_error( company_experience_form , :role) %> 
                 </div>
-                <div class="col-5">
+                <div class="col-md-5">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-sm-6">
                           <%=form.label :start_date %>
                           <%= company_experience_form.date_field :start_date , max: Date.today ,class: 'form-control start_date container' ,required: "true" ,onchange:"updateEndDate(this)"%>
                         </div>
-                        <div class="col-6">
+                        <div class="col-sm-6">
                           <%=form.label :end_date %>
                           <%= company_experience_form.date_field :end_date , max: Date.today ,class: 'form-control end_date container' , onchange: "checkboxTogle(this)"%>
                         </div>
@@ -84,7 +84,7 @@
                       <p >currently running</p>
                     </div>
                 </div>
-                <div class="col-1" style="padding-top: 28px;padding-left: 0px;">
+                <div class="col-md-1" style="padding-top: 28px;padding-left: 0px;">
                   <!-- <button type="button" data-repeater-delete="" class="deleteg btn btn-outline-danger btn-sm fa fa-close " style="font-size: 13px;"></button> -->
                   <button type="button"  class="btn btn-outline-danger g_sm_btn fa fa-close " style="font-size: 13px;" , onclick="deleteRepeaterItem(this);"></button>
                 </div>
@@ -101,11 +101,11 @@
       <div class="div_sub_group">
         <div data-repeater-list="curriculum_vitae[cv_projects_attributes]" class="rep">
           <%= form.fields_for :cv_projects do |project_form| %>
-            <div class="row g_rep_item p-4"  data-repeater-item  >
-              <div class="col-3" >
+            <div class="row g_rep_item pt-3"  data-repeater-item  >
+              <div class="col-md-3" >
                 <%= project_form.select(:original_project_id, grouped_options_for_select(helper_grouped_projects_options , selected: project_form.object.original_project_id), {prompt: "Select a project"}, {class: "form-control" ,onchange: "project_select(this)"}) %>
               </div>
-              <div class="col-7" id="cloned_content">
+              <div class="col-md-7" id="cloned_content">
                 <div class="form-group">
                   <%= project_form.label :title %>
                   <%= project_form.text_field :title ,class:"form-control" %>
@@ -126,27 +126,27 @@
                   <%= project_form.text_area :responsibility, class: "ckeditor_g" %>
                 </div>
                 <div class="row">
-                  <div class="col-6">
+                  <div class="col-sm-6">
                     <%= project_form.label :team_size %>
                     <%= project_form.number_field :team_size ,class:"form-control"%>
                     <%= helper_custom_error( project_form , :team_size) %> 
                   </div>
-                  <div class="col-6">
+                  <div class="col-sm-6">
                     <%= project_form.label :domain %>
-                    <%= link_to "+ Add Domain", new_domain_path , remote: true %>
                     <%= project_form.collection_select :domain_id, Domain.order(:title), :id, :title, { include_blank: true } ,{class: "form-control domain_selector"} %>
                     <%= helper_custom_error( project_form , :domain) %> 
+                    <%= link_to "+ Add Domain", new_domain_path , remote: true %>
                   </div>
                 </div>
                 <div>
                   <div class="form-group">
                     <div class="row">
-                      <div class="col-6">
+                      <div class="col-sm-6">
                         <%= project_form.label :start_date %>
                         <%= project_form.date_field :start_date , max: Date.today ,class: 'form-control start_date container' ,onchange:"updateEndDate(this)"%>
                         <%= helper_custom_error( project_form , :start_date) %> 
                       </div>
-                      <div class="col-6">
+                      <div class="col-sm-6">
                         <%= project_form.label :end_date  %>
                         <%= project_form.date_field :end_date , max: Date.today ,class: 'form-control end_date container',onchange:"checkboxTogle(this)"%>
                       </div>
@@ -158,19 +158,19 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-sm-6">
                     <div class="form-group">
                       <%= project_form.label :core_skill %>
-                      <%= link_to "+ Add Skill", new_tech_stack_path , remote: true %>
                       <%= project_form.collection_select :proj_core_skill_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{class: "form-control has_one core_skill_selector"} %>
                       <%= helper_custom_error( project_form , :proj_core_skill) %> 
+                      <%= link_to "+ Add Skill", new_tech_stack_path , remote: true %>
                     </div>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-sm-6">
                     <div class="form-group">
                       <%= project_form.label :supportive_skills  %>
-                      <%= link_to "+ Add Skill", new_tech_stack_path , remote: true %>
                       <%= project_form.collection_select(:proj_supportive_skill_ids, TechStack.all, :id, :title ,{}, { multiple: true ,class:"selectpick has_many supportive_skill_selector" ,onclick:"supportive_skills_fix()"}) %> 
+                      <%= link_to "+ Add Skill", new_tech_stack_path , remote: true %>
                     </div>
                   </div>
                 </div>

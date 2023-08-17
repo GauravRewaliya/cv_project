@@ -2,7 +2,9 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: %i[ show edit update destroy ]
 
   def index
-      @projects = Project.all
+      # @projects = Project.all
+      # @projects = Project.includes(:core_skill , :domain,:supportive_skills).all
+      @projects = Project.eager_load(:core_skill , :domain,:supportive_skills).all
   end
   
   def show

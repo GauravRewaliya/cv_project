@@ -2,8 +2,8 @@ class CandidatesController < ApplicationController
   before_action :set_candidate, only: %i[ show edit update destroy ]
 
   def index
-      # @candidates = Candidate.includes(:profile).all#Candidate.all
-      @candidates = Candidate.joins(:profile).all#Candidate.all
+      # @candidates = Candidate.includes(:profile).all
+      @candidates = Candidate.joins(:profile).all
   end
 
   def show

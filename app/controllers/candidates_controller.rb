@@ -3,7 +3,7 @@ class CandidatesController < ApplicationController
 
   def index
       # @candidates = Candidate.includes(:profile).all#Candidate.all
-      @candidates = Candidate.join(:profile).all#Candidate.all
+      @candidates = Candidate.joins(:profile).all#Candidate.all
   end
 
   def show

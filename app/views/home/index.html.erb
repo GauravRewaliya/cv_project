@@ -1,8 +1,12 @@
 <style>
+      :root {
+    --background-image-url: url(<%= asset_path("home_page.jpg") if Rails.application.assets_manifest.assets["home_page.jpg"].present? %>);
+    }
     body
     {
     min-height: 88vh;
-    background: url(/assets/home_page.jpg);
+    /* background: url(/assets/home_page.jpg); */
+    background: var(--background-image-url);
     background-position: center;
     background-size: cover;
     }

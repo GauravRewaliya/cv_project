@@ -6,10 +6,11 @@ Rails.application.configure do
   else
     config.hosts.clear  # allow any host..
   end
-  config.serve_static_assets = true # default
+  # config.serve_static_assets = true # default , rails <5
+  config.serve_static_files = true  #  rails >5
   # Generate digests for assets URLs
   config.assets.digest = true # cashing css js
-  
+  config.assets.enabled = true
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -42,7 +43,8 @@ Rails.application.configure do
   # config.assets.compile = false
   # config.assets.unknown_asset_fallback = false   # cant do any thing
 
-  config.assets.compile = true #+
+  # config.assets.compile = true #+
+  config.assets.compile = false
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.asset_host = "http://assets.example.com"

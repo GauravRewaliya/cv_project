@@ -36,8 +36,8 @@ Rails.application.configure do
   config.public_file_server.enabled  =true
 
   # Compress CSS using a preprocessor.
-  # config.assets.css_compressor = :sass # few compilation error
-  config.assets.css_compressor = :yui #req jre
+  config.assets.css_compressor = :sass # few compilation error
+  # config.assets.css_compressor = :yui #req jre
   config.assets.js_compressor = :terser # req nodeJs or a gem
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   # config.assets.compile = false

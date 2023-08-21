@@ -89,7 +89,7 @@ a:hover {
 }
 .table_gr table
 {
-  background-image: linear-gradient(36deg,#d4d2dd45 31%,rgb(244 244 255 / 36%) 26%,#fdfdfd4a),linear-gradient(212deg,#bbbabf45 36%,rgb(239 237 237 / 61%) 22%,#dfdde94f);
+  background-image: linear-gradient(36deg,#d4d2dd45 31%,rgba(244 ,244, 255, 0.36) 26%,#fdfdfd4a),linear-gradient(212deg,#bbbabf45 36%,rgba(239 ,237, 237, 0.61) 22%,#dfdde94f);
   width: 100% !important;
 }
 .table_gr #example_wrapper div{
@@ -143,7 +143,7 @@ thead , tfoot {
     /* box-shadow: 0px 1px 14px 0px #7b808dbd; */
   }
 .table-hover tbody tr:hover{
-  background-color: rgb(212 247 255 / 70%) !important;
+  background-color: rgba(212, 247, 255 , 0.70) !important;
     box-shadow: inset -4px 1px 16px 0px #5164c187;
 }
 

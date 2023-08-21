@@ -36,7 +36,13 @@
     
     <!-- controller specific js -->
       <%= javascript_include_tag "controllers/js_#{params['controller']}" if  Rails.application.assets_manifest.assets["controllers/js_#{params['controller']}.js"].present?%>
-      <%= stylesheet_link_tag params['action'] if  Rails.application.assets_manifest.assets[params['action']+".css"].present?%> 
+      <%#= stylesheet_link_tag params['action'] if  Rails.application.assets_manifest.assets[params['action']+".css"].present?%> 
+      <% case params['action'] %>
+        <%when "edit" , "new" , "create" ,"update"%>
+          <%= stylesheet_link_tag "edit" %>
+        <% else %>  
+          <%= stylesheet_link_tag params['action'] if  Rails.application.assets_manifest.assets[params['action']+".css"].present?%> 
+      <%end%>  
   </head>
   
   <body>

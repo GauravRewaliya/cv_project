@@ -57,11 +57,12 @@ gem "bootsnap", require: false
 
 # Use Sass to process CSS
 # gem "sassc-rails" #few error on compiling
-group :production do
-  gem "yui-compressor"
+# group :production do
+  # gem "yui-compressor"
+  gem 'sassc-rails'
   gem "terser"
-  # gem "mini_racer" ,"~> 0.8.0" , platforms: :ruby # for not to install nodeJs
-end
+  gem "mini_racer" ,"~> 0.8.0" , platforms: :ruby # for not to install nodeJs
+# end
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"

@@ -7,10 +7,11 @@ WORKDIR /cv_creater
 COPY Gemfile .
 RUN gem install bundle && bundle install
 COPY . . 
-RUN apt install sudo
-RUN apt install -f 
-RUN apt install wkhtmltopdf libreoffice-writer libvips-dev nodejs default-jre -y
-RUN rails assets:precompile
+# RUN apt install sudo
+# RUN apt install -f 
+RUN apt install wkhtmltopdf libreoffice-writer libvips-dev default-jre -y
+RUN RAILS_ENV=production bundle install
+RUN RAILS_ENV=production rails assets:precompile
 EXPOSE 3000
 CMD ["rails", "server", "-b", "0.0.0.0", "-p", "3000"]
 # wkhtmltopdf|pdf , libreoffice-writer|doc , libvips-dev|image_processing

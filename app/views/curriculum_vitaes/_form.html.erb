@@ -20,7 +20,7 @@
       <div class="col-md-6">
         <div>
           <%= form.label "Candidate"  %>
-            <%= form.collection_select(:candidate_id, Candidate.all, :id,->(candidate){"#{candidate.name} , #{candidate.profile.email}"}, { include_blank: true } ,{required: true ,class: "form-control"})%>
+            <%= form.collection_select(:candidate_id, Candidate.includes(:profile), :id,->(candidate){"#{candidate.name} , #{candidate.profile.email}"}, { include_blank: true } ,{required: true ,class: "form-control"})%>
         </div>
   
       </div>
@@ -42,14 +42,14 @@
         <%= form.label "Core Skill"  %>
         <%= link_to "+ Add Skill", new_tech_stack_path , remote: true %>
           <%= form.fields_for :linkable_core_tech_attributes, curriculum_vitae.linkable_core_tech do  |cs| %>
-            <%= cs.collection_select :tech_stack_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{ id: "core_tech_select_id" ,class: "form-control has_one core_skill_selector"}%>
+            <%= cs.collection_select :tech_stack_id, @all_core_skill, :id, :title, { include_blank: true } ,{ id: "core_tech_select_id" ,class: "form-control has_one core_skill_selector"}%>
           <% end %>
           <%= helper_custom_error( form , :linkable_core_tech) %> 
       </div>
       <div class="col-md-6">
         <%= form.label :supportive_skills %>
         <%= link_to "+ Add Skill", new_tech_stack_path , remote: true %>
-        <%= form.collection_select(:supportive_skill_ids, TechStack.all, :id, :title , {}, {multiple: true ,class: "selectpick show-menu-arrow form-control has_many supportive_skill_selector"}) %>
+        <%= form.collection_select(:supportive_skill_ids, @all_supportive_skill, :id, :title , {}, {multiple: true ,class: "selectpick show-menu-arrow form-control has_many supportive_skill_selector"}) %>
       </div>
     </div>
 
@@ -133,7 +133,7 @@
                   </div>
                   <div class="col-sm-6">
                     <%= project_form.label :domain %>
-                    <%= project_form.collection_select :domain_id, Domain.order(:title), :id, :title, { include_blank: true } ,{class: "form-control domain_selector"} %>
+                    <%= project_form.collection_select :domain_id, @all_domain , :id, :title, { include_blank: true } ,{class: "form-control domain_selector"} %>
                     <%= helper_custom_error( project_form , :domain) %> 
                     <%= link_to "+ Add Domain", new_domain_path , remote: true %>
                   </div>
@@ -161,7 +161,7 @@
                   <div class="col-sm-6">
                     <div class="form-group">
                       <%= project_form.label :core_skill %>
-                      <%= project_form.collection_select :proj_core_skill_id, TechStack.core_skills.order(:title), :id, :title, { include_blank: true } ,{class: "form-control has_one core_skill_selector"} %>
+                      <%= project_form.collection_select :proj_core_skill_id, @all_core_skill, :id, :title, { include_blank: true } ,{class: "form-control has_one core_skill_selector"} %>
                       <%= helper_custom_error( project_form , :proj_core_skill) %> 
                       <%= link_to "+ Add Skill", new_tech_stack_path , remote: true %>
                     </div>
@@ -169,7 +169,7 @@
                   <div class="col-sm-6">
                     <div class="form-group">
                       <%= project_form.label :supportive_skills  %>
-                      <%= project_form.collection_select(:proj_supportive_skill_ids, TechStack.all, :id, :title ,{}, { multiple: true ,class:"selectpick has_many supportive_skill_selector" ,onclick:"supportive_skills_fix()"}) %> 
+                      <%= project_form.collection_select(:proj_supportive_skill_ids, @all_supportive_skill, :id, :title ,{}, { multiple: true ,class:"selectpick has_many supportive_skill_selector" ,onclick:"supportive_skills_fix()"}) %> 
                       <%= link_to "+ Add Skill", new_tech_stack_path , remote: true %>
                     </div>
                   </div>
@@ -188,19 +188,7 @@
       </div>
     </div>
 
-    <div class="row">      
-      <div class="col-md-6">
-        <%= form.label "select profile image" %>
-        <%= form.file_field :image ,class: "btn btn-outline-secondary form-control-file"%>
-      </div>
-
-      <div class="col-md-6">
-        <%= form.label "Cv Layout"  %>
-        <% template_files=Dir.glob(Rails.root.join('app', 'views' , 'html_templates' , '*.html.erb' )) %>
-        <% @template_options=template_files.map { |file| File.basename(file, '.html.erb' )[1..] }%>
-        <%= form.select(:template_name, @template_options , {}, {class: "form-control"}) %>
-      </div>
-    </div>
+   
 
     <%= form.submit class: 'btn btn-success' %>
  <% end%>

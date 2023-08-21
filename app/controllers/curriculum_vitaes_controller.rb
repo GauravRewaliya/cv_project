@@ -1,5 +1,5 @@
 class CurriculumVitaesController < ApplicationController
-  before_action :set_curriculum_vitae, only: %i[ show edit update destroy save_layout_data download  pdf_html_req docx_html_req doc_html_req]
+  before_action :set_curriculum_vitae, only: %i[show edit update destroy save_layout_data download  pdf_html_req docx_html_req doc_html_req]
   layout 'cv' ,only: %i[ show]
 
   def index
@@ -38,6 +38,9 @@ class CurriculumVitaesController < ApplicationController
     @curriculum_vitae = CurriculumVitae.new
     @curriculum_vitae.company_experiences.build
     @curriculum_vitae.cv_projects.build
+    @all_supportive_skill = TechStack.all
+    @all_core_skill = TechStack.core_skills.order(:title)
+    @all_domain = Domain.order(:title)
   end
 
   
@@ -92,7 +95,11 @@ class CurriculumVitaesController < ApplicationController
 
   private  
     def set_curriculum_vitae
-      @curriculum_vitae = CurriculumVitae.find(params[:id])
+      # @curriculum_vitae = CurriculumVitae.find(params[:id])
+      @curriculum_vitae = CurriculumVitae.includes(candidate: :profile ,cv_projects: [:domain , :proj_core_skill ,:proj_supportive_skills ] ).find(params[:id])
+      @all_supportive_skill = TechStack.all
+      @all_core_skill = TechStack.core_skills.order(:title)
+      @all_domain = Domain.order(:title)
     end
     
     def curriculum_vitae_params

@@ -35,13 +35,21 @@
     <%= stylesheet_link_tag  "main_application" %>
     
     <!-- controller specific js -->
-      <%= javascript_include_tag "controllers/js_#{params['controller']}" if  Rails.application.assets_manifest.assets["controllers/js_#{params['controller']}.js"].present?%>
-      <%#= stylesheet_link_tag params['action'] if  Rails.application.assets_manifest.assets[params['action']+".css"].present?%> 
+      <%#= javascript_include_tag "controllers/js_#{params['controller']}" if  Rails.application.assets_manifest.assets["controllers/js_#{params['controller']}.js"].present?%>
+      <% begin %>
+        <%= javascript_include_tag "controllers/js_#{params['controller']}"%>
+      <% rescue Sprockets::Rails::Helper::AssetNotFound %>
+      <% end %>
+
       <% case params['action'] %>
         <%when "edit" , "new" , "create" ,"update"%>
           <%= stylesheet_link_tag "edit" %>
         <% else %>  
-          <%= stylesheet_link_tag params['action'] if  Rails.application.assets_manifest.assets[params['action']+".css"].present?%> 
+          <%#= stylesheet_link_tag params['action'] if  Rails.application.assets_manifest.assets[params['action']+".css"].present?%> 
+          <% begin %>
+            <%= stylesheet_link_tag params['action']%> 
+          <% rescue Sprockets::Rails::Helper::AssetNotFound %>
+          <% end %>
       <%end%>  
   </head>
   

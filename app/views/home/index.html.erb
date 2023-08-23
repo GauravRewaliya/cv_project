@@ -1,7 +1,12 @@
+<% begin %>
 <style>
-      :root {
-    --background-image-url: url(<%= asset_path("home_page.jpg") if Rails.application.assets_manifest.assets["home_page.jpg"].present? %>);
+    :root {
+    --background-image-url: url(<%= asset_path("home_page.jpg") %>);
     }
+</style>
+<% rescue Sprockets::Rails::Helper::AssetNotFound %>
+<% end %>
+<style>
     body
     {
     min-height: 88vh;

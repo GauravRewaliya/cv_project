@@ -39,13 +39,25 @@
                   <span>Visibility</span>
                   <%end%>
                 </td>
-                <td><%= link_to pdf_html_req_path(curriculum_vitae), class: 'material-symbols-outlined' do  %>
-                  <span>picture_as_pdf</span>
-                    <%end%>
+                <td>
+                  <!-- <%= link_to pdf_html_req_path(curriculum_vitae), class: 'material-symbols-outlined' do  %>
+                    <span>picture_as_pdf</span>
+                  <%end%> -->
+                    <div class="pdf-button-container">
+                      <a class="cv-ajax-button material-symbols-outlined" href="#" data-cv-id="<%= curriculum_vitae.id %>" onclick="pdf_download(this)">
+                        <span>picture_as_pdf</span>
+                      </a>
+                    </div>
                 </td>
-                <td><%= link_to docx_html_req_path(curriculum_vitae), class: 'material-symbols-outlined' do  %>
-                  <span>edit_document</span>
-                    <%end%>
+                <td>
+                  <!-- <%= link_to docx_html_req_path(curriculum_vitae), class: 'material-symbols-outlined' do  %>
+                    <span>edit_document</span>
+                  <%end%> -->
+                  <div class="doc-button-container">
+                    <a class="cv-ajax-button material-symbols-outlined" href="#" data-cv-id="<%= curriculum_vitae.id %>" onclick="doc_download(this)">
+                      <span>edit_document</span>
+                    </a>
+                  </div>
                 </td>
               </tr>
             <% end %>

@@ -163,3 +163,7 @@ h1 , .center_h{
   top: auto !important;
   transform: none !important;
 }
+.hidden
+{
+  display: none;
+}

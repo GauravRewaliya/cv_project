@@ -31,26 +31,52 @@ catch(e)
 
 }
 });
-// function storeSelectOption()
-// {
-//     var allOptions = $('.supportive_skill_selector')[0].options;
-//     for (var i = 0; i < allOptions.length; i++) {
-//         var skillId = allOptions[i].value;
-//         var skillText = allOptions[i].text;
-//         storedsupportiveSkills.push({ id: skillId, text: skillText });
-//     }
-    
-//     var allOptions = $('.core_skill_selector')[0].options;
-//     for (var i = 0; i < allOptions.length; i++) {
-//     var skillId = allOptions[i].value;
-//     var skillText = allOptions[i].text;
-//     storedcoreSkills.push({ id: skillId, text: skillText });
-//   }
+
+function pdf_download(load_button){
+  var download_container = $(load_button).closest('.pdf-button-container');
+  var processLink = download_container.find('.cv-ajax-button');
+  var cvId = $(load_button).data('cv-id');
+
+  processLink.addClass('hidden');
+  download_container.addClass('loader');
+
+  $.ajax({
+    url: '/pdf_html_req/' + cvId,
+    method: 'POST',
+    xhrFields: {
+      responseType: 'blob'
+    },
+    success: function(blob) {
+      var link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.text='download Now';
+      link.download = 'downloadCv.pdf';
+      $(download_container).append(link);
+      download_container.removeClass('loader');
+    }
+  });
+}
+function doc_download(load_button){
+  var download_container = $(load_button).closest('.doc-button-container');
+  var processLink = download_container.find('.cv-ajax-button');
+  var cvId = $(load_button).data('cv-id');
+
+  processLink.addClass('hidden');
+  download_container.addClass('loader');
   
-//   var allOptions = $('.domain_selector')[0].options;
-//   for (var i = 0; i < allOptions.length; i++) {
-//     var skillId = allOptions[i].value;
-//     var skillText = allOptions[i].text;
-//     storedDomains.push({ id: skillId, text: skillText });
-// }
-// }
+  $.ajax({
+    url: '/docx_html_req/' + cvId,
+    method: 'POST',
+    xhrFields: {
+      responseType: 'blob'
+    },
+    success: function(blob) {
+      var link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.text='download Now';
+      link.download = 'downloadCv.doc';
+      $(download_container).append(link);
+      download_container.removeClass('loader');
+    }
+  });
+}

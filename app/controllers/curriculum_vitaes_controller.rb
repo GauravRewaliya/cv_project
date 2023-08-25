@@ -1,6 +1,7 @@
 class CurriculumVitaesController < ApplicationController
   before_action :set_curriculum_vitae, only: %i[show edit update destroy save_layout_data download  pdf_html_req docx_html_req doc_html_req]
   layout 'cv' ,only: %i[ show]
+  skip_before_action :verify_authenticity_token
 
   def index
       # @curriculum_vitaes = CurriculumVitae.all
@@ -8,17 +9,36 @@ class CurriculumVitaesController < ApplicationController
       @curriculum_vitaes = CurriculumVitae.eager_load(:candidate ,:cv_projects).all
   end
 
- def  pdf_html_req 
-  pour_html = get_html(@curriculum_vitae)
-  pdf_data = WickedPdf.new.pdf_from_string(pour_html)
-  send_data pdf_data , filename: "grCv.pdf" ,type: "application/pdf" ,disposition: 'attachment'
- end
+  def  pdf_html_req 
+    pour_html = get_html(@curriculum_vitae)
+    DocumentWorker.perform_async(pour_html , @curriculum_vitae.id) # pass as stirng ,integer , not obj only
+    # DocumentWorker.perform_in(5.minutes, pour_html, @curriculum_vitae.id) # after 5 min
+    render json: { status: 'processing', cv_id: @curriculum_vitae.id }
+  end
+  def pdf_status
+    cv_id = params[:id]
+    if File::exist?( "public/temp/tempCv_#{cv_id}.pdf")
+      render json: { status: 'ready' }
+    else
+      render json: { status: 'processing' }
+    end
+  end
+  def  pdf_download
+    output_path = "public/temp/tempCv_#{params[:id]}.pdf"
+    pdf_data  = File.read(output_path)
+    send_data pdf_data , filename: "grCv.pdf" ,type: "application/pdf" ,disposition: 'attachment'
+  end
+
+  # pdf_data = WickedPdf.new.pdf_from_string(pour_html)
+  # send_data pdf_data , filename: "grCv.pdf" ,type: "application/pdf" ,disposition: 'attachment'
  
   def docx_html_req
     pour_html = get_html(@curriculum_vitae)
     pdf_data = WickedPdf.new.pdf_from_string(pour_html)
     input_path = "public/tempCv.pdf"
     File.open(input_path,'wb'){ |file| file << pdf_data}
+
+    # PDF req.. 
     system(" lowriter --headless --infilter='writer_pdf_import' --convert-to doc:'MS Word 97' public/tempCv.pdf --outdir public/")
     output_path = "public/tempCv.doc"
     doc_data = File.read(output_path)

@@ -17,7 +17,7 @@ class CurriculumVitae < ApplicationRecord
     has_one :core_skill, through: :linkable_core_tech, source: :tech_stack   
    
     has_many :company_experiences ,dependent: :destroy
-    
+    has_one :cv_downloaded_data, foreign_key: :cv_id , dependent: :destroy
     accepts_nested_attributes_for :company_experiences , allow_destroy: true , reject_if: :all_blank
     accepts_nested_attributes_for :cv_projects , allow_destroy: true , reject_if: :all_blank
 

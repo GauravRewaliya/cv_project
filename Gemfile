@@ -5,6 +5,7 @@ ruby "3.2.0"
 
 gem "rails", "~> 7.0.4", ">= 7.0.4.3"
 gem 'sidekiq', '~> 6.5.5'
+gem 'foreman'
 #
 gem 'devise'
 

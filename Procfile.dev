@@ -1,0 +1,4 @@
+worker: bundle exec sidekiq
+web: rails s -p 3000
+# web: rails assets:clean && rails assets:clobber && rails assets:precompile && rails s -p 3000
+# >> foreman start -f Procfile.dev

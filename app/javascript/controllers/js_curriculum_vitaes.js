@@ -72,7 +72,6 @@ function pdf_preload(load_button){
 }
 function pollForPDFStatus(cvId , load_button ) {
   const interval = setInterval(function() {
-    console.log("check..${cvId}");
     $.post(`/pdf_status/${cvId}`, function(response) {
       if (response.status === 'ready') {
         clearInterval(interval);

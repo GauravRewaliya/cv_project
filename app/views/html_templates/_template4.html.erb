@@ -30,8 +30,8 @@
           <div class=" row">
               <div class="col-5 bg-dark text-white text-center py-4">
                   <div class="header-left">
-                      <% if !@curriculum_vitae.image.blank?%>
-                         <%= image_tag @curriculum_vitae.image.variant(resize_to_limit: [nil, 120]) , class: "img-thumbnail rounded-circle " , style: "height: 130px; width: 150px;" if curriculum_vitae.image.attached? %>
+                      <% if !curriculum_vitae.image.blank?%>
+                         <%= image_tag curriculum_vitae.image.variant(resize_to_limit: [nil, 120]) , class: "img-thumbnail rounded-circle " , style: "height: 130px; width: 150px;" if curriculum_vitae.image.attached? %>
                       <%end%>
                       <h1 class="display-5"> <%= curriculum_vitae.candidate&.name %></h1>
                       <h4 class="lead text-uppercase text-white-50 mb-4"><%= curriculum_vitae.objective %></h4>

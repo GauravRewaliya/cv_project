@@ -31,26 +31,78 @@ catch(e)
 
 }
 });
-// function storeSelectOption()
-// {
-//     var allOptions = $('.supportive_skill_selector')[0].options;
-//     for (var i = 0; i < allOptions.length; i++) {
-//         var skillId = allOptions[i].value;
-//         var skillText = allOptions[i].text;
-//         storedsupportiveSkills.push({ id: skillId, text: skillText });
-//     }
-    
-//     var allOptions = $('.core_skill_selector')[0].options;
-//     for (var i = 0; i < allOptions.length; i++) {
-//     var skillId = allOptions[i].value;
-//     var skillText = allOptions[i].text;
-//     storedcoreSkills.push({ id: skillId, text: skillText });
-//   }
+
+function pdf_download(load_button)
+{
+  var download_container = $(load_button).closest('.pdf-button-container');
+  var processLink = download_container.find('.cv-ajax-button');
+  var cvId = $(load_button).data('cv-id');
+  $.ajax({
+    url: '/pdf_download_req/' + cvId,
+    method: 'POST',
+      xhrFields: {
+            responseType: 'blob'
+          },
+          success: function(blob) {
+            var link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            // link.text='download Now';
+            link.innerHTML = '<span class="cv-ajax-button material-symbols-outlined" style="color: rebeccapurple;">picture_as_pdf</span>';
+            link.download = 'downloadCv.pdf';
+            $(download_container).append(link);
+            download_container.removeClass('loader');
+          }
+  });
+}
+function pdf_preload(load_button){
+  var download_container = $(load_button).closest('.pdf-button-container');
+  var processLink = download_container.find('.cv-ajax-button');
+  var cvId = $(load_button).data('cv-id');
+
+  processLink.addClass('hidden');
+  download_container.addClass('loader');
+  $.ajax({
+    url: '/pdf_html_req/' + cvId,
+    method: 'POST',
+    success: function(response) {
+      console.log("in process");
+      pollForPDFStatus(cvId , load_button );
+    }
+  });
+}
+function pollForPDFStatus(cvId , load_button ) {
+  const interval = setInterval(function() {
+    $.post(`/pdf_status/${cvId}`, function(response) {
+      if (response.status === 'ready') {
+        clearInterval(interval);
+        pdf_download(load_button);
+        console.log("printed");
+      }
+    });
+  }, 3000); // Poll every 3 seconds
+}
+
+function doc_download(load_button){
+  var download_container = $(load_button).closest('.doc-button-container');
+  var processLink = download_container.find('.cv-ajax-button');
+  var cvId = $(load_button).data('cv-id');
+
+  processLink.addClass('hidden');
+  download_container.addClass('loader');
   
-//   var allOptions = $('.domain_selector')[0].options;
-//   for (var i = 0; i < allOptions.length; i++) {
-//     var skillId = allOptions[i].value;
-//     var skillText = allOptions[i].text;
-//     storedDomains.push({ id: skillId, text: skillText });
-// }
-// }
+  $.ajax({
+    url: '/docx_html_req/' + cvId,
+    method: 'POST',
+    xhrFields: {
+      responseType: 'blob'
+    },
+    success: function(blob) {
+      var link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.text='download Now';
+      link.download = 'downloadCv.doc';
+      $(download_container).append(link);
+      download_container.removeClass('loader');
+    }
+  });
+}

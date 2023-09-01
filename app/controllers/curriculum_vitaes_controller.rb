@@ -1,5 +1,6 @@
 class CurriculumVitaesController < ApplicationController
-  before_action :set_curriculum_vitae, only: %i[show edit update destroy save_layout_data download  pdf_html_req docx_html_req doc_html_req]
+  # before_action :set_curriculum_vitae, only: %i[show edit update destroy pdf_html_req docx_html_req]
+  before_action :set_curriculum_vitae, only: %i[show edit update]
   layout 'cv' ,only: %i[ show]
   skip_before_action :verify_authenticity_token
 
@@ -10,11 +11,22 @@ class CurriculumVitaesController < ApplicationController
   end
 
   def  pdf_html_req 
-    pour_html = get_html(@curriculum_vitae)
-    DocumentWorker.perform_async(pour_html , @curriculum_vitae.id) # pass as stirng ,integer , not obj only
-    # DocumentWorker.perform_in(5.minutes, pour_html, @curriculum_vitae.id) # after 5 min
-    render json: { status: 'processing', cv_id: @curriculum_vitae.id }
+    cv_id = params[:id]
+    output_path = "public/temp/tempCv_#{cv_id}.pdf"
+
+    download_cache = CvDownloadedData.find_or_initialize_by(cv_id: cv_id)
+    if download_cache.pdf_downloaded.blank? || !File::exist?(output_path)
+      pour_html = get_html(cv_id)
+      DocumentWorker.perform_async(pour_html , cv_id) # pass as stirng ,integer , not obj only
+      # DocumentWorker.perform_in(5.minutes, pour_html, @curriculum_vitae.id) # after 5 min
+      render json: { status: 'processing', cv_id: cv_id }
+    else 
+      pdf_data = File.read(output_path)
+      pdf_blob = Base64.encode64(pdf_data)
+      render json: { status: 'ready' ,blob: pdf_blob}
+    end
   end
+
   def pdf_status
     cv_id = params[:id]
     if File::exist?( "public/temp/tempCv_#{cv_id}.pdf")
@@ -24,16 +36,26 @@ class CurriculumVitaesController < ApplicationController
     end
   end
   def  pdf_download
-    output_path = "public/temp/tempCv_#{params[:id]}.pdf"
-    pdf_data  = File.read(output_path)
-    send_data pdf_data , filename: "grCv.pdf" ,type: "application/pdf" ,disposition: 'attachment'
+    cv_id = params[:id]
+    output_path = "public/temp/tempCv_#{cv_id}.pdf"
+    if File::exist?(output_path)
+      pdf_data  = File.read(output_path)
+      send_data pdf_data , filename: "grCv.pdf" ,type: "application/pdf" ,disposition: 'attachment'
+    else
+      download_cache = CvDownloadedData.find_by(cv_id: cv_id)
+      if !download_cache.blank?
+        download_cache.update(pdf_downloaded: false)
+      end
+      render json: { status: '404' }
+    end
   end
 
   # pdf_data = WickedPdf.new.pdf_from_string(pour_html)
   # send_data pdf_data , filename: "grCv.pdf" ,type: "application/pdf" ,disposition: 'attachment'
  
   def docx_html_req
-    pour_html = get_html(@curriculum_vitae)
+    cv_id = params[:id]
+    pour_html = get_html(cv_id)
     pdf_data = WickedPdf.new.pdf_from_string(pour_html)
     input_path = "public/tempCv.pdf"
     File.open(input_path,'wb'){ |file| file << pdf_data}
@@ -46,7 +68,8 @@ class CurriculumVitaesController < ApplicationController
     send_data doc_data, filename: "grCv.doc", type: "application/msword", disposition: 'attachment' 
   end
 
-  def get_html(curriculum_vitae)
+  def get_html(cv_id)
+    curriculum_vitae = CurriculumVitae.includes(candidate: :profile ,cv_projects: [:domain , :proj_core_skill ,:proj_supportive_skills ] ).find(cv_id)
     html_txt = render_to_string(partial: "html_templates/#{curriculum_vitae.template_name}" , locals: { curriculum_vitae: curriculum_vitae} ,layout: false)
     html_txt
    end
@@ -58,9 +81,9 @@ class CurriculumVitaesController < ApplicationController
     @curriculum_vitae = CurriculumVitae.new
     @curriculum_vitae.company_experiences.build
     @curriculum_vitae.cv_projects.build
-    @all_supportive_skill = TechStack.all
-    @all_core_skill = TechStack.core_skills.order(:title)
-    @all_domain = Domain.order(:title)
+    # @all_supportive_skill = TechStack.all
+    # @all_core_skill = TechStack.core_skills.order(:title)
+    # @all_domain = Domain.order(:title)
   end
 
   
@@ -88,7 +111,6 @@ class CurriculumVitaesController < ApplicationController
 
   
   def update
-    
     @curriculum_vitae.updated_by = current_user.email
     @curriculum_vitae.company_experiences.reject(&:persisted?).each(&:destroy)
     @curriculum_vitae.cv_projects.reject(&:persisted?).each(&:destroy)
@@ -106,6 +128,7 @@ class CurriculumVitaesController < ApplicationController
 
   
   def destroy
+    @curriculum_vitae = CurriculumVitae.find(params[:id])
     @curriculum_vitae.destroy
     respond_to do |format|
       format.html { redirect_to curriculum_vitaes_url, notice: "CurriculumVitae was successfully destroyed." }
@@ -117,6 +140,7 @@ class CurriculumVitaesController < ApplicationController
     def set_curriculum_vitae
       # @curriculum_vitae = CurriculumVitae.find(params[:id])
       @curriculum_vitae = CurriculumVitae.includes(candidate: :profile ,cv_projects: [:domain , :proj_core_skill ,:proj_supportive_skills ] ).find(params[:id])
+      
       @all_supportive_skill = TechStack.all
       @all_core_skill = TechStack.core_skills.order(:title)
       @all_domain = Domain.order(:title)

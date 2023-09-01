@@ -43,7 +43,7 @@ function pdf_download(load_button)
       xhrFields: {
             responseType: 'blob'
           },
-          success: function(blob) {
+          success: function(blob ,status) {
             var link = document.createElement('a');
             link.href = window.URL.createObjectURL(blob);
             // link.text='download Now';
@@ -51,6 +51,11 @@ function pdf_download(load_button)
             link.download = 'downloadCv.pdf';
             $(download_container).append(link);
             download_container.removeClass('loader');
+          },
+          error: function(response) {
+            console.log("error non");
+            download_container.removeClass('loader');
+            processLink.removeClass('hidden');
           }
   });
 }
@@ -65,8 +70,35 @@ function pdf_preload(load_button){
     url: '/pdf_html_req/' + cvId,
     method: 'POST',
     success: function(response) {
-      console.log("in process");
-      pollForPDFStatus(cvId , load_button );
+      if (response.status === 'ready') {
+        // pdf_download(load_button);
+        console.log("ready");
+       // make download link..
+           // Decode the Base64 data to get the PDF binary data
+            var pdfData = atob(response.blob);
+
+            // Convert the binary data to an array buffer
+            var arrayBuffer = new ArrayBuffer(pdfData.length);
+            var uint8Array = new Uint8Array(arrayBuffer);
+            for (var i = 0; i < pdfData.length; i++) {
+              uint8Array[i] = pdfData.charCodeAt(i);
+            }
+
+            // Create a Blob from the array buffer
+            var pdfBlob = new Blob([arrayBuffer], { type: 'application/pdf' });
+          var link = document.createElement('a');
+          link.href = window.URL.createObjectURL(pdfBlob);
+          // link.text='download Now';
+          link.innerHTML = '<span class="cv-ajax-button material-symbols-outlined" style="color: rebeccapurple;">picture_as_pdf</span>';
+          link.download = 'downloadCv.pdf';
+          $(download_container).append(link);
+          download_container.removeClass('loader');
+      }
+      else 
+      {
+        console.log("in process");
+        pollForPDFStatus(cvId , load_button );
+      }
     }
   });
 }
@@ -76,7 +108,11 @@ function pollForPDFStatus(cvId , load_button ) {
       if (response.status === 'ready') {
         clearInterval(interval);
         pdf_download(load_button);
-        console.log("printed");
+        console.log("ready");
+      }
+      else
+      {
+        console.log("retry");
       }
     });
   }, 3000); // Poll every 3 seconds
@@ -96,13 +132,15 @@ function doc_download(load_button){
     xhrFields: {
       responseType: 'blob'
     },
-    success: function(blob) {
+    success: function(blob ,status) {
       var link = document.createElement('a');
       link.href = window.URL.createObjectURL(blob);
       link.text='download Now';
       link.download = 'downloadCv.doc';
       $(download_container).append(link);
       download_container.removeClass('loader');
+    },
+    error: function(response) {
     }
   });
 }

@@ -3,6 +3,7 @@ class CurriculumVitae < ApplicationRecord
   validates :linkable_core_tech, presence: true
   validates :experience, numericality: {greater_than_or_equal_to: 0 ,allow_nil: true}
   before_destroy :delete_fun
+  before_update :reset_download_cache
     
     belongs_to :candidate
 
@@ -26,8 +27,15 @@ class CurriculumVitae < ApplicationRecord
     def delete_fun
       CvProject.where(curriculum_vitae_id: self.id).destroy_all
       CompanyExperience.where(curriculum_vitae_id: self.id).destroy_all
-
       # ProjectCurriculumVitae.where(curriculum_vitae_id: self.id).destroy_all
+    end
+
+    def reset_download_cache
+      cv_downloaded_data = CvDownloadedData.find_by(cv_id: self.id)
+      if cv_downloaded_data.persisted?
+       cv_downloaded_data.update(pdf_downloaded: false, doc_downloaded: false)
+      #  cv_downloaded_data.save
+      end
     end
   
 end

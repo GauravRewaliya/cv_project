@@ -50,11 +50,8 @@
                     </div>
                 </td>
                 <td>
-                  <!-- <%= link_to docx_html_req_path(curriculum_vitae), class: 'material-symbols-outlined' do  %>
-                    <span>edit_document</span>
-                  <%end%> -->
                   <div class="doc-button-container">
-                    <a class="cv-ajax-button material-symbols-outlined" href="#" data-cv-id="<%= curriculum_vitae.id %>" onclick="doc_download(this)">
+                    <a class="cv-ajax-button material-symbols-outlined" href="#" data-cv-id="<%= curriculum_vitae.id %>" onclick="doc_preload(this)">
                       <span>edit_document</span>
                     </a>
                   </div>

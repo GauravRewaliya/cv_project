@@ -17,8 +17,8 @@ class CurriculumVitaesController < ApplicationController
     download_cache = CvDownloadedData.find_or_initialize_by(cv_id: cv_id)
     if download_cache.pdf_downloaded.blank? || !File::exist?(output_path)
       pour_html = get_html(cv_id)
-      DocumentWorker.perform_async(pour_html , cv_id) # pass as stirng ,integer , not obj only
-      # DocumentWorker.perform_in(5.minutes, pour_html, @curriculum_vitae.id) # after 5 min
+      PdfWorker.perform_async(pour_html , cv_id) # pass as stirng ,integer , not obj only
+      # PdfWorker.perform_in(5.minutes, pour_html, @curriculum_vitae.id) # after 5 min
       render json: { status: 'processing', cv_id: cv_id }
     else 
       pdf_data = File.read(output_path)
@@ -49,23 +49,49 @@ class CurriculumVitaesController < ApplicationController
       render json: { status: '404' }
     end
   end
-
-  # pdf_data = WickedPdf.new.pdf_from_string(pour_html)
-  # send_data pdf_data , filename: "grCv.pdf" ,type: "application/pdf" ,disposition: 'attachment'
- 
-  def docx_html_req
+  
+  def doc_html_req
     cv_id = params[:id]
-    pour_html = get_html(cv_id)
-    pdf_data = WickedPdf.new.pdf_from_string(pour_html)
-    input_path = "public/tempCv.pdf"
-    File.open(input_path,'wb'){ |file| file << pdf_data}
+    output_path = "public/temp/tempCv_#{cv_id}.doc"
+    download_cache = CvDownloadedData.find_or_initialize_by(cv_id: cv_id)
+    if download_cache.doc_downloaded.blank? || !File::exist?(output_path)
+      output_pdf_path = "public/temp/tempCv_#{cv_id}.pdf"
+      if download_cache.pdf_downloaded.blank? || !File::exist?(output_path)
+        pour_html = get_html(cv_id)
+        PdfDocWorker.perform_async(pour_html , cv_id)
+      else
+        DocWorker.perform_async(cv_id)
+      end
+      render json: { status: 'processing', cv_id: cv_id }
+    else 
+      doc_data = File.read(output_path)
+      doc_blob = Base64.encode64(doc_data)
+      render json: { status: 'ready' ,blob: doc_blob}
+    end
+  end
 
-    # PDF req.. 
-    system(" lowriter --headless --infilter='writer_pdf_import' --convert-to doc:'MS Word 97' public/tempCv.pdf --outdir public/")
-    output_path = "public/tempCv.doc"
-    doc_data = File.read(output_path)
+  def doc_status
+    cv_id = params[:id]
+    if File::exist?( "public/temp/tempCv_#{cv_id}.doc")
+      render json: { status: 'ready' }
+    else
+      render json: { status: 'processing' }
+    end
+  end
 
-    send_data doc_data, filename: "grCv.doc", type: "application/msword", disposition: 'attachment' 
+  def  doc_download
+    cv_id = params[:id]
+    output_path = "public/temp/tempCv_#{cv_id}.doc"
+    if File::exist?(output_path)
+      doc_data  = File.read(output_path)
+      send_data doc_data, filename: "grCv.doc", type: "application/msword", disposition: 'attachment' 
+    else
+      download_cache = CvDownloadedData.find_by(cv_id: cv_id)
+      if !download_cache.blank?
+        download_cache.update(doc_downloaded: false)
+      end
+      render json: { status: '404' }
+    end
   end
 
   def get_html(cv_id)
